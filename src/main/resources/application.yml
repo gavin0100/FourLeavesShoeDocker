@@ -49,4 +49,4 @@ application:
       secret-key: ${{ secrets.MOMO}}
     vnpay:
       vnp_TmnCode: X3VCO73C
-      vnp_HashSecret: ${{ secrets.VNPAY}}
+      vnp_HashSecret: 70OXPPONL7XA9QR57L1QDWQVZPYC4L3U

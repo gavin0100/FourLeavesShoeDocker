@@ -36,26 +36,26 @@ spring:
         registration:
           google:
             client-id: 955503971044-oo6d985jcqrn41hk31bc5ghasobipfl5.apps.googleusercontent.com
-            client-secret:
+            client-secret: ${{ secrets.GOOGLE}}
           facebook:
             client-id: 1535863076974023
-            client-secret: 
+            client-secret: ${{ secrets.FACEBOOK}}
 twilio:
   AccountSid: AC8c8c886543a259ef1c32a52428752846
-  AuthToken: 7daaa874db1a91b5642a48344f678506
+  AuthToken: ${{ secrets.TWILIO}}
   phoneNumber: +14148009296
 application:
   security:
     jwt:
-      secret-key: f2f1035db6a255e7885838b020f370d702d4bb0f35a368f06ded1ce8e6684a27
+      secret-key: ${{ secrets.JWT}}
       expiration: 36000000
     momo:
       access-key: mTCKt9W3eU1m39TW
       partner-code: MOMOLRJZ20181206
-      secret-key: SetA5RDnLHvt51AULf51DyauxUo3kDU6
+      secret-key: ${{ secrets.MOMO}}
     vnpay:
       vnp_TmnCode: X3VCO73C
-      vnp_HashSecret: 70OXPPONL7XA9QR57L1QDWQVZPYC4L3U
+      vnp_HashSecret: ${{ secrets.VNPAY}}
 
 #server:
 #  port: 3030
@@ -94,27 +94,27 @@ application:
 #        registration:
 #          google:
 #            client-id: 955503971044-oo6d985jcqrn41hk31bc5ghasobipfl5.apps.googleusercontent.com
-#            client-secret: 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
+#            client-secret: ${{ secrets.GOOGLE}}
 #          facebook:
 #            client-id: 1535863076974023
-#            client-secret: e59a8213e541a08975606a142f6eb922
+#            client-secret: ${{ secrets.FACEBOOK}}
 #twilio:
 #  AccountSid: hsadnasndakjds
-#  AuthToken: dnkjsanjdnsadn
+#  AuthToken: ${{ secrets.TWILIO}}
 #  phoneNumber: +86415531184
 #
 #application:
 #  security:
 #    jwt:
-#      secret-key: f2f1035db6a255e7885838b020f370d702d4bb0f35a368f06ded1ce8e6684a27
+#      secret-key: ${{ secrets.JWT}}
 #      expiration: 36000000
 #    momo:
 #      access-key: mTCKt9W3eU1m39TW
 #      partner-code: MOMOLRJZ20181206
-#      secret-key: SetA5RDnLHvt51AULf51DyauxUo3kDU6
+#      secret-key: ${{ secrets.MOMO}}
 #    vnpay:
 #      vnp_TmnCode: X3VCO73C
-#      vnp_HashSecret: 70OXPPONL7XA9QR57L1QDWQVZPYC4L3U
+#      vnp_HashSecret: ${{ secrets.VNPAY}}
 
 
 

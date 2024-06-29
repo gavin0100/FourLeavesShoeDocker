@@ -41,7 +41,7 @@ twilio:
 application:
   security:
     jwt:
-      secret-key: ${{ secrets.JWT}}
+      secret-key: f2f1035db6a255e7885838b020f370d702d4bb0f35a368f06ded1ce8e6684a27
       expiration: 36000000
     momo:
       access-key: mTCKt9W3eU1m39TW

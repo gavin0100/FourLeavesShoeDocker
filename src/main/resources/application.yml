@@ -1,9 +1,3 @@
-server:
-  port: 3030
-  error:
-    include-message: always
-    whitelabel:
-      enabled: false
 spring:
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/fourleavesshoe2

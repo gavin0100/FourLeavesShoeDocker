@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/fourleavesshoe2
-    username: sql12708810
-    password: uacVqcHzDI
+    username: root
+    password: duc2112002
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
@@ -50,99 +50,3 @@ application:
     vnpay:
       vnp_TmnCode: X3VCO73C
       vnp_HashSecret: ${{ secrets.VNPAY}}
-
-#server:
-#  port: 3030
-#  error:
-#    whitelabel:
-#      enabled: false
-#spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/fourleavesshoe2
-#    username: root
-#    password: duc2112002
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#  thymeleaf:
-#    prefix: classpath:/templates/
-#    suffix: .html
-#  mail:
-#    host: smtp.gmail.com
-#    username: voduc0100@gmail.com
-#    password: tvhnwfasjnjhbcro
-#    port: 587
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#  main:
-#    allow-circular-references: true
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id: 955503971044-oo6d985jcqrn41hk31bc5ghasobipfl5.apps.googleusercontent.com
-#            client-secret: ${{ secrets.GOOGLE}}
-#          facebook:
-#            client-id: 1535863076974023
-#            client-secret: ${{ secrets.FACEBOOK}}
-#twilio:
-#  AccountSid: hsadnasndakjds
-#  AuthToken: ${{ secrets.TWILIO}}
-#  phoneNumber: +86415531184
-#
-#application:
-#  security:
-#    jwt:
-#      secret-key: ${{ secrets.JWT}}
-#      expiration: 36000000
-#    momo:
-#      access-key: mTCKt9W3eU1m39TW
-#      partner-code: MOMOLRJZ20181206
-#      secret-key: ${{ secrets.MOMO}}
-#    vnpay:
-#      vnp_TmnCode: X3VCO73C
-#      vnp_HashSecret: ${{ secrets.VNPAY}}
-
-
-
-# server:
-#   port: 3030
-#   error:
-#     include-message: always
-#     whitelabel:
-#       enabled: false
-# spring:
-#   datasource:
-#     url: jdbc:mysql://root:V3o2EcvVi6lOr3LBnyLD@containers-us-west-7.railway.app:6989/railway
-#     username: root
-#     password: V3o2EcvVi6lOr3LBnyLD
-#     driver-class-name: com.mysql.cj.jdbc.Driver
-#   cloud:
-#     gcp:
-#       sql:
-#         enabled: false
-#   jpa:
-#     properties:
-#       hibernate:
-#         dialect: org.hibernate.dialect.MySQL8Dialect
-#   thymeleaf:
-#     prefix: classpath:/templates/
-#     suffix: .html
-#   mail:
-#     host: smtp.gmail.com
-#     username: voduc0100@gmail.com
-#     port: 587
-#     properties:
-#       mail:
-#         smtp:
-#           auth: true
-#           starttls:
-#             enable: true
-# #spring.config.import=secret.properties

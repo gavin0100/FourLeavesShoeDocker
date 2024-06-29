@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  docker-mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: fourleavesshoe2
+      MYSQL_ROOT_PASSWORD: duc2112002
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    ports:
+      - "3307:3306"
+    volumes:
+      - fourleavesshoe2-volume:/var/lib/mysql
+      - ./db/fourleavesshoe2.sql:/docker-entrypoint-initdb.d/fourleavesshoe2.sql
+  back-end:
+    image: voduc0100/springboot_filtro:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: docker-mysql
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      docker-mysql:
+        condition: service_healthy
+
+volumes:
+  filtro-volume:

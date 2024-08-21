@@ -60,7 +60,8 @@ public class SecurityConfig{
                                         "/cart/**",
                                         "/product/**",
                                         "/user_google_hihi",
-                                        "/otp/**"
+                                        "/otp/**",
+                                        "/test/**"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**").permitAll()

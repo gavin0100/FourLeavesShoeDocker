@@ -29,7 +29,7 @@ public class controller {
         try{
             model model = service.getModelById(id);
             if (model == null){
-                log.error("can find model with id {}", id);
+                log.error("can't find model with id {}", id);
             }
             return model;
         } catch (Exception exception){

@@ -184,4 +184,4 @@ If you have configured Maven to deploy the application, Maven performs the deplo
 ## The purpose of the Maven, JDK, JRE, JVM; Plugin, Library, Dependency; Static code analysis; Virtual Machine, Container; Compilation (biên dịch) vs Interpretation (Thông dịch)?
 ![img_2.png](img_2.png)
 
-![img_3.png](img_3.png)
+![img_3.png](img_3.png) 

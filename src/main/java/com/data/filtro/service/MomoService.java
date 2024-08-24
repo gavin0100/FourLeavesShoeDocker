@@ -39,13 +39,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class MomoService {
-    private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
-    private final String RETURN_URL = "https://shoeselling-fourleavesshoes.onrender.com/user/billing";
-    private final String IPN_API = "https://shoeselling-fourleavesshoes.onrender.com";
-
 //    private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
-//    private final String RETURN_URL = "http://localhost:3030/user/billing";
-//    private final String IPN_API = "https://3c409edc5fb783b59c77fbe5bd826a6c.serveo.net";
+//    private final String RETURN_URL = "https://shoeselling-fourleavesshoes.onrender.com/user/billing";
+//    private final String IPN_API = "https://shoeselling-fourleavesshoes.onrender.com";
+
+    private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
+    private final String RETURN_URL = "http://localhost:8080/user/billing";
+    private final String IPN_API = "https://825ff40ad9afc67af10b4bfc8cd26148.serveo.net";
 
     private final Environment env;
     private final CartService cartService;

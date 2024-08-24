@@ -9,6 +9,8 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       discovery.type: single-node
+      xpack.security.enabled: "false"
+
     ports:
       - '9200:9200'
       - '9300:9300'
@@ -21,11 +23,10 @@ services:
     restart: always
     volumes:
       - elk-logs:/app/logs
+      - ./logstash/logstash.conf:/logstash_dir/logstash.conf
+    command: logstash -f /logstash_dir/logstash.conf
     depends_on:
       - Elasticsearch
-    configs:
-      - source: logstash-config
-        target: /usr/share/logstash/pipeline/logstash.conf
     ports:
       - '9600:9600'
     environment:
@@ -47,10 +48,7 @@ services:
       - elk
 volumes:
   elastic_data: {}
-
-configs:
-  logstash-config:
-    file: ./logstash.conf
+  elk-logs:
 
 networks:
   elk:

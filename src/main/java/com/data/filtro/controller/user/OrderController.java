@@ -92,7 +92,7 @@ public class OrderController {
         for (CartItem cartItem : cartItems){
             cartItemService.deleteCartItemFromCartItemIdAndCartId(cartItem.getId(), cartItem.getCart().getId());
         }
-        orderService.updateStatusOrder(OrderStatus.CONFIRMED, order);
+        orderService.updateStatusOrder(OrderStatus.PENDING, order);
         String to = user.getEmail();
 
         // Sender's email ID needs to be mentioned

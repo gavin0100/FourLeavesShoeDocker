@@ -137,23 +137,203 @@ jobs:
 # Docker file
 ```ruby
 FROM eclipse-temurin:17-jdk-alpine
+// The runner will use the Eclipse Temurin JDK 17 to run the JAR file.
 
 WORKDIR /app
+// This sets the working directory inside the container to /app. Any subsequent commands will be run from this directory /ˈsʌbsɪkwənt/ các lệnh tiếp theo 
 
 COPY target/filtro-0.0.1-SNAPSHOT.jar /app/fourleavesshoedocker.jar
+// After building and running the Spring project, the JAR file is located in the target directory. When the job in the GitHub Actions workflow is executed, the checkout@v3 action will retrieve the source code from the repository. /rɪˈpɑːzətɔːri/ 
+// This command will then copy the JAR file from the source code to the GitHub runner’s /app directory
 
 EXPOSE 8080
+// This informs Docker that the container will listen on port 8080 at runtime. It doesn’t actually publish the port; it just serves as documentation and a hint for users of the image.
 
 CMD ["java","-jar","/app/fourleavesshoedocker.jar"]
+// This specifies the command to run when the container starts. It runs the JAR file using the java -jar command. /kəˈmænd/
+// When you build and push an image to Docker Hub, the CMD command in your Dockerfile doesn’t execute during the build or push process. 
+// It only runs when you start a container from that image.
 ```
 
 # docker-compose.yml
 ```ruby
+version: '3.7'
+// This specifies the version of the Docker Compose file format you’re using.
 
+services:
+  docker-mysql:
+    image: mysql:8.0
+    restart: always
+    // Always restart the container if it stops unexpectedly, such as Network Issues
+    
+    environment:
+    // Sets environment variables for the MySQL container
+      MYSQL_DATABASE: fourleavesshoe2
+      MYSQL_ROOT_PASSWORD: duc2112002
+      
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+      // Checks the health of the MySQL service by pinging it. If it fails, it retries up to 10 times with a 20-second timeout.: thời gian chờ 20s
+      
+    ports:
+      - "3307:3306"
+      // Maps port 3307 on the host to port 3306 in the container.
+      
+    volumes:
+      - fourleavesshoe2-volume:/var/lib/mysql
+      // This volume is used to store updated data when the image is run. When the container starts, this data (queries) will be automatically executed in the MySQL container.
+      
+      - ./db/fourleavesshoe2.sql:/docker-entrypoint-initdb.d/fourleavesshoe2.sql
+      // This volume is used to store the original data. When you mount fourleavesshoe2.sql into the docker-entrypoint-initdb.d folder, this query will be automatically executed in the MySQL container. 
+  
+  back-end:
+    image: gavinvo/springboot_filtro:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: docker-mysql
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      // These lines are used to synchronize the container’s time with the host’s time zone and local time on a Linux system. Since Windows doesn’t have /etc/timezone or /etc/localtime, these lines won’t have any effect when running Docker on Windows.
+      
+      - elk-logs:/app/logs
+      // This line creates a named volume elk-logs that is mounted to /app/logs inside the container. This allows the container to store log files in this volume, and other containers can access this volume for CRUD (Create, Read, Update, Delete) operations.
+    depends_on:
+      docker-mysql:
+        condition: service_healthy
+    // Ensures the docker-mysql service is healthy before starting the backend service.
+
+volumes:
+  fourleavesshoe2-volume:
+  elk-logs:
+  // Defines named volumes for persisting MySQL data and storing application logs.
+  // Persisting MySQL data means ensuring that the data stored in a MySQL database remains intact and is not lost when the container running the MySQL database is stopped or removed.: dữ liệu được cập nhật khi chạy container
 ```
 
 # elk-docker-compose.yml
 ```ruby
+// In the ELK stack process, Logstash reads log files stored in a backend container mounted with a volume. Logstash then pushes these logs into Elasticsearch’s cache. Kibana retrieves the logs from Elasticsearch’s cache, visualizes, and analyzes them using Elasticsearch’s algorithms
+version: '3.6'
+services:
+  Elasticsearch:
+    image: elasticsearch:7.16.2
+    container_name: elasticsearch
+    restart: always
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data/
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      // Disable Elasticsearch's security to reduce notifications.
+
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    networks:
+      - elk
+    // these configurations are default. 
+    
+  Logstash:
+    image: logstash:7.16.2
+    container_name: logstash
+    restart: always
+    volumes:
+      - elk-logs:/app/logs
+      // Mount the elk-logs volume to the /app/logs folder. This allows the container to read the log files stored in the back-end container. 
+      
+      - ./logstash/logstash.conf:/logstash_dir/logstash.conf
+      // Copy the logstash.conf file from the host to the container. This file is used to run and connect the Logstash container with the Elasticsearch container.
+      // It also registers a new index named 'application' in Elasticsearch's cache. 
+      
+      
+    command: logstash -f /logstash_dir/logstash.conf
+    // run the logstash.conf config file.
+    
+    depends_on:
+      - Elasticsearch
+    ports:
+      - '9600:9600'
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+
+  Kibana:
+    image: kibana:7.16.2
+    container_name: kibana
+    restart: always
+    ports:
+      - '5601:5601'
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      // Connect the Kibana container to the Elasticsearch container using their service names.
+    depends_on:
+      - Elasticsearch
+    networks:
+      - elk
+volumes:
+  elastic_data: {}
+  elk-logs:
+
+networks:
+  elk:
+```
+
+# logstash.conf
+```ruby
+input {
+  file {
+    path => /app/logs/elk-stack.log
+    start_position => "beginning"
+    codec => plain {  # Using plain to read raw log lines first
+      charset => "UTF-8"
+    }
+  }
+}
+
+// input: Specifies the source of the data.
+    // file: Reads log data from a file.
+        // path: The path to the log file (/app/logs/elk-stack.log). This file is from the back-end container and is accessed via a volume.
+        // start_position: Starts reading from the beginning of the file.
+        // codec: Specifies how to decode the log lines.
+            // plain: Reads raw log lines.
+            // charset: Sets the character encoding to UTF-8.
+
+filter {
+  mutate {
+    # Remove \r and \n characters from the message field
+    gsub => [
+      "message", "\r", "",  # Remove \r
+      "message", "\n", ""   # Remove \n
+    ]
+  }
+}
+// filter: Processes and transforms the data.: xử lý và chuyển đổi
+    // mutate: A filter plugin that allows you to perform general transformations.
+        //gsub: Performs a substitution on the message field.: thực hiện sự thay thế
+        // Removes carriage return (\r) and newline (\n) characters from the message field with a empty character "". ký tự trả về /ˈkærɪdʒ/ 
+
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "application"
+  }
+}
+  // output: Specifies where to send the processed data.
+    // stdout: Outputs the data to the console.
+        //codec: Formats the output using the rubydebug codec for easy reading.
+    // elasticsearch: Sends the data to an Elasticsearch instance.
+        // hosts: The address of the Elasticsearch server (http://localhost:9200).
+        // index: The name of the index to store the data (application).
+
 
 ```
 

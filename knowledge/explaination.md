@@ -47,6 +47,8 @@ jobs:
         image: mysql:8.0
         ports:
           - 3306:3306
+        // the left side port is in host, the other one is inside container.
+        
         env:
             MYSQL_ROOT_PASSWORD: duc2112002
             MYSQL_DATABASE: fourleavesshoe2
@@ -244,6 +246,7 @@ services:
     volumes:
       - elk-logs:/app/logs
       // Mount the elk-logs volume to the /app/logs folder. This allows the container to read the log files stored in the back-end container. 
+      // if the /app/logs folder doesn't exist, Docker will automatically create the /app/logs directory.
       
       - ./logstash/logstash.conf:/logstash_dir/logstash.conf
       // Copy the logstash.conf file from the host to the container. This file is used to run and connect the Logstash container with the Elasticsearch container.

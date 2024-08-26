@@ -88,7 +88,15 @@
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/87d43512-0fb6-4de5-8ad8-e13dafcd3ac1)
 
 ## 2. Payment is handled through Momo e-wallet and Vnpay payment gateway.
+If you run this project in local, you have to map your url from http to https, in order to receive response returned from the IPN of Momo and Vnpay.
+![img.png](img.png)
 
+If you run this project locally, you need to map your URL from HTTP to HTTPS to receive responses from the IPN of Momo and Vnpay.
+Here is MomoService.java
+![img_1.png](img_1.png)
+
+Here is VnpayService.java
+![img_2.png](img_2.png)
 ### 2.1. Payment through Momo e-wallet
 ![chonPhuongThucThanhToan](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/33abae17-62af-4195-acee-5e37726ed427)
 ![trangThanhToanMomo](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/4ddf59cb-08c2-44fe-943a-f94108b8750d)

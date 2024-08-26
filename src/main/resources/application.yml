@@ -11,6 +11,11 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
+#    If you set this setting with the suffix `.html`, it means that only `.html` files stored in the `templates` folder can be accessed. However, other files such as CSS, JS, and images are stored by default in the `static` folder. You need to access these files from this directory.
+#    If you want to access every file through the `templates` folder, just remove the suffix.
+#    You must store and access CSS files through the `/css` directory; otherwise, you will encounter errors.
+#    Similarly, you need to do this with JS and image files with their directory
+
   mail:
     host: smtp.gmail.com
     username: voduc0100@gmail.com

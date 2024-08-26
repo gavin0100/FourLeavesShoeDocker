@@ -1,0 +1,84 @@
+<!--A template is a pre-designed interface for a specific topic, where HTML, CSS, and JS serve and have practical significance only within this context.
+Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front-end design can use these CSS classes to style its elements-->
+
+<!--Thymeleaf has the following folder structure: layout, fragment, content.-->
+
+<!--Layout is used to define the structure of a view. In this project, the structure of a view includes {header, content, footer}.-->
+
+<!--Fragment is used to store components that do not change when the view changes. In this project, Fragment includes {header, footer}.-->
+
+<!--Content is the main content of the view.-->
+
+<!--The Controller will return an HTML file containing the content.-->
+
+<!--At the beginning of each HTML content file, there is a line declaring which layout type to use:-->
+
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{test/template/test_layout :: layout_test(~{::content}, ~{::head_additional})}">-->
+
+<!--At this point, the Thymeleaf system will go to the test_layout.html file to load the predefined view structure. Then, Thymeleaf will load the defined fragments. Finally, we have a complete HTML structure.-->
+
+<!--When loading CSS and JS resources from the head, the order of appearance will follow the order listed in the structure file. For example, in the layout file, the head section is defined as follows:-->
+
+<!--<head>-->
+<!--  <div th:replace="~{test/template/test_fragment :: head_html}"></div>-->
+<!--  &lt;!&ndash; this head will be executed first, this belongs to fragment &ndash;&gt;-->
+
+<!--  <div th:replace="${head_additional}"></div>-->
+<!--  &lt;!&ndash; this head will overwrite any changes made by the first one &ndash;&gt;-->
+<!--</head>-->
+
+<!--The head of the view will be as follows: {head of test_fragment, head of content “head_additional”}.-->
+
+<!--However, the tags in this head section have different priorities. -->
+<!--The following tags are prioritized when they appear first:-->
+<!--  <meta charset="utf-8"> Ensures your website uses the correct character set.-->
+<!--  <title> Sets the title for your website.-->
+<!--  <meta name="viewport"> Ensures your website displays correctly on mobile devices.-->
+<!--  <meta name="keywords"> and <meta name="description"> Provide information about keywords and descriptions of the website for search engines.-->
+<!--  -->
+<!-- The following tags are prioritized when they appear last:-->
+<!--  CSS file: <link rel="stylesheet">-->
+<!--  JS file: `<script src=“”>-->
+<!--  However, if not configured using a .java config file combined with application.yml, CSS files must be placed in /resources/static/css and accessed via /css. Similarly, JavaScript files must be placed in /resources/static/javascript and accessed via /javascript. This is the default when using Thymeleaf; otherwise, it will result in an error.-->
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{test/template/test_layout :: layout_test(~{::content}, ~{::head_additional})}">
+<html lang="en">
+
+<head>
+  <th:block th:fragment="head_additional">
+    <meta charset="utf-8">
+    <title>EShopper - InterView hihi</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" th:href="@{/css/CSS_test/test_default_page.css}">
+    <script th:src="@{/javascript/JS_test/test_default_page.js}"></script>
+  </th:block>
+</head>
+<body>
+<div th:fragment="content">
+  <p>Welcome to my website!</p>
+  <h1>Model List</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="model : ${models}">
+      <td th:text="${model.id}"></td>
+      <td th:text="${model.name}"></td>
+      <td th:text="${model.status ? 'Active' : 'Inactive'}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>

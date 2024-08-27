@@ -59,8 +59,8 @@ logging:
   file:
 #    name: D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log
     name: /app/logs/elk-stack.log
-  level:
-    root: error
+#  level:
+#    root: error
 
 
 

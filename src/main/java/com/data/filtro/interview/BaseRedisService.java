@@ -15,7 +15,7 @@ public interface BaseRedisService {
     Object get(String key);
     public Map<String, Object> getField(String key);
     Object hashGet(String key, String field);
-    List<Object> hashGetByFeildPrefix(String key, String fieldPrefix);
+    List<Object> hashGetByFieldPrefix(String key, String fieldPrefix);
     Set<String> getFieldPrefixes(String key);
     void delete(String key);
     void delete(String key, String field);

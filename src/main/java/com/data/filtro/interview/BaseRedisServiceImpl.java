@@ -2,6 +2,7 @@ package com.data.filtro.interview;
 
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+@Service
 public class BaseRedisServiceImpl implements BaseRedisService{
     private final RedisTemplate<String, Object> redisTemplate;
     private final HashOperations<String, String, Object> hashOperations;
 
-    public BaseRedisServiceImpl(RedisTemplate<String, Object> redisTemplate, HashOperations<String, String, Object> hashOperations) {
+    public BaseRedisServiceImpl(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
-        this.hashOperations = hashOperations;
+        this.hashOperations = redisTemplate.opsForHash();
     }
 
     @Override
@@ -40,7 +42,7 @@ public class BaseRedisServiceImpl implements BaseRedisService{
 
     @Override
     public Object get(String key) {
-        return null;
+        return redisTemplate.opsForValue().get(key);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class BaseRedisServiceImpl implements BaseRedisService{
     }
 
     @Override
-    public List<Object> hashGetByFeildPrefix(String key, String fieldPrefix) {
+    public List<Object> hashGetByFieldPrefix(String key, String fieldPrefix) {
         List<Object> objects = new ArrayList<>();
         Map<String, Object> hashEntries = hashOperations.entries(key);
         for (Map.Entry<String, Object> entry: hashEntries.entrySet()){
@@ -63,6 +65,7 @@ public class BaseRedisServiceImpl implements BaseRedisService{
             }
         }
         return objects;
+        // entry.getKey() là lấy field, không phải lấy key
     }
 
     @Override

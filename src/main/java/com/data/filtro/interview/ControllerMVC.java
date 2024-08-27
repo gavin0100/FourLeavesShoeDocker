@@ -13,6 +13,8 @@ import java.util.List;
 public class ControllerMVC {
     @Autowired
     Service service;
+
+    private BaseRedisService baseRedisService;
     @Value(value = "6379")
     private String redisPort;
 
@@ -27,5 +29,7 @@ public class ControllerMVC {
         model.addAttribute("models", modelList);
         return "test/template/test_default_page";
     }
+
+
 
 }

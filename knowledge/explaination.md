@@ -368,3 +368,86 @@ If you have configured Maven to deploy the application, Maven performs the deplo
 ![img_2.png](img_2.png)
 
 ![img_3.png](img_3.png) 
+
+
+## What is a annotation and how does this work?
+### Annotations in Java
+
+Annotations in Java are essentially comments or metadata that provide information about the code. For example, with @Value, the following definitions are provided:
+```ruby
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Value {
+    String value();
+}
+```
+- @Target specifies the kinds of elements an annotation can be applied to.
+- @Retention defines how long the annotation is retained. For @Value, it is retained at runtime.
+
+Types of Retention Policies
+- RetentionPolicy.SOURCE: The annotation is only present in the source code and discarded during compilation.
+- RetentionPolicy.CLASS: The annotation is present in the compiled class files but not available at runtime.
+- RetentionPolicy.RUNTIME: The annotation is available at runtime, meaning it can be used in the business logic.
+
+We can view .class files, where annotations are defined, by decompiling them using tools like IntelliJ IDEA with the FernFlower decompiler. Decompilers convert bytecode back into Java source code, which closely resembles the original code, helping you understand and analyze compiled code.
+
+### Practical Use of Annotations
+The fields defined in an annotation are used by hidden classes like BeanPostProcessor. This class uses these fields to perform the desired business logic. For example:
+
+- @Controller: Handles HTTP requests.
+- @Value: Assigns values to variables with a common purpose across different files.
+- @Autowired:  Injects an existing bean into a variable, allowing the variable to access the bean’s properties, configurations, and methods. For example, if a class is annotated with @Service, Spring will create an instance of this class and manage it as a bean. When you build a Spring Boot application, the Spring Framework will inject this instance into any fields annotated with @Autowired.
+
+### Example of Creating and Processing a Custom Annotation @MyValue
+To create a new annotation @MyValue with similar functionality to @Value, the processing of this annotation would look like this:
+```ruby
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyValue {
+    String value();
+}
+```
+
+```ruby
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
+import java.lang.reflect.Field;
+
+@Component
+public class MyValueProcessor implements BeanPostProcessor {
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        Field[] fields = bean.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(MyValue.class)) {
+                MyValue myValue = field.getAnnotation(MyValue.class);
+                String value = myValue.value();
+                field.setAccessible(true);
+                try {
+                    // Convert the value to the appropriate type
+                    if (field.getType() == int.class) {
+                        field.setInt(bean, Integer.parseInt(value));
+                    } else if (field.getType() == boolean.class) {
+                        field.setBoolean(bean, Boolean.parseBoolean(value));
+                    } else {
+                        field.set(bean, value);
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new BeansException("Failed to inject value", e) {};
+                }
+            }
+        }
+        return bean;
+    }
+}
+```
+In this code, the Spring framework scans all classes to find fields annotated with @MyValue. It then filters and retains those fields with the @MyValue annotation. After that, it assigns the value defined in @MyValue to these fields, depending on whether the field type is int or boolean.
+

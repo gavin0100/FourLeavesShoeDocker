@@ -18,11 +18,18 @@ services:
       - ./db/fourleavesshoe2.sql:/docker-entrypoint-initdb.d/fourleavesshoe2.sql
   back-end:
     image: gavinvo/springboot_filtro:latest
+#    healthcheck:
+#      test: [ "CMD", "curl", "-f", "http://back-end:8080/health" ]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 3
     ports:
       - "8080:8080"
     environment:
       DB_HOST: docker-mysql
       LOG_ADDRESS: /app/logs/elk-stack.log
+      SPRING_REDIS_HOST: redis # Tên dịch vụ Redis (được đặt trong phần networks)
+      SPRING_REDIS_PORT: 6379 # Cổng Redis
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -30,6 +37,22 @@ services:
     depends_on:
       docker-mysql:
         condition: service_healthy
+  redis:
+    image: redis:5.0.14-alpine3.14
+    restart: always
+#    healthcheck:
+#      test: [ "CMD", "redis-cli", "ping" ]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 3
+    ports:
+      - "6379:6379"
+    volumes:
+      - /path/to/local/dаta:/root/redis
+      - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
+#    depends_on:
+#      back-end:
+#        condition: service_healthy
 
 volumes:
   fourleavesshoe2-volume:

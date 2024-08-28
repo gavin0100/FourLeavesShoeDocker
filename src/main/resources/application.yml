@@ -39,6 +39,10 @@ spring:
           facebook:
             client-id: 1535863076974023
             client-secret: ${{ secrets.FACEBOOK}}
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
 twilio:
   AccountSid: AC8c8c886543a259ef1c32a52428752846
   AuthToken: ${{ secrets.TWILIO}}

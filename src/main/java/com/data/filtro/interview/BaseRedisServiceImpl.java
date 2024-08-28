@@ -89,4 +89,23 @@ public class BaseRedisServiceImpl implements BaseRedisService{
             hashOperations.delete(key, field);
         }
     }
+    @Override
+    public boolean hasKey(String key) {
+        return redisTemplate.hasKey(key);
+    }
+
+    @Override
+    public List<Object> findAllValueHashKey(String key) {
+        return hashOperations.values(key);
+    }
+
+    @Override
+    public List<Object> getList(String key) {
+        return redisTemplate.opsForList().range(key, 0, -1);
+    }
+
+    @Override
+    public void setList(String key, List<String> products) {
+        redisTemplate.opsForList().rightPushAll(key, products.toArray());
+    }
 }

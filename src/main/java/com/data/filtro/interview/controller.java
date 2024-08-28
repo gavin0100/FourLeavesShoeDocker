@@ -103,20 +103,15 @@ public class controller {
     }
     // [Anh2, Anh4, Anh, Anh1, Anh3]
 
-    @GetMapping("/delete")
-    public void delete(){
-        System.out.println(baseRedisService.getFieldPrefixes("hihi7"));
-    }
-    // [name2, name3, name1, name, name4]
-
     @GetMapping("/getFieldPrefixes7")
     public void getFieldPrefixes(){
         System.out.println(baseRedisService.getFieldPrefixes("hihi7"));
     }
+    // [name4, name3]
 
-    @DeleteMapping("/delete2")
+    @DeleteMapping("/homepage")
     public void delete2(){
-        baseRedisService.delete("hihi2");
+        baseRedisService.delete("homepage");
     }
 
     @DeleteMapping("/deleteField7")
@@ -132,4 +127,17 @@ public class controller {
         baseRedisService.delete("hihi7", fields);
     }
 
+    @GetMapping("/valuehihi100")
+    public void getValue100(){
+//        String value = String.valueOf(baseRedisService.get("hihi100"));
+//        System.out.println(baseRedisService.get("hihi100"));
+        if (baseRedisService.hasKey("hihi100")){
+            System.out.println("gia tri la: " + baseRedisService.get("hihi100"));
+        } else {
+            System.out.println("khong ton tai trong redis");
+        }
+    }
+    // redis trả ve null nhưng null trong redis là giá trị không tồn tại
+    // còn null trong java là giá trị mặc định được gán cho biến đã  được khai báo nhưng chưa được định nghĩa,
+    // kiểu như null cũng là trạng thái của 1 biến nói biến này chưa được gán giá trị
 }

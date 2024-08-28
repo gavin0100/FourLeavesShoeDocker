@@ -20,4 +20,12 @@ public interface BaseRedisService {
     void delete(String key);
     void delete(String key, String field);
     void delete(String key, List<String> fields);
+
+    boolean hasKey(String key);
+
+    List<Object> findAllValueHashKey(String key);
+
+    List<Object> getList(String key);
+
+    void setList(String key, List<String> products);
 }

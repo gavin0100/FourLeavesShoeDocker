@@ -1,5 +1,6 @@
 package com.data.filtro.controller.user;
 
+import com.data.filtro.interview.BaseRedisService;
 import com.data.filtro.model.Category;
 import com.data.filtro.model.Product;
 import com.data.filtro.service.CategoryService;
@@ -20,12 +21,17 @@ public class HomeController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    BaseRedisService baseRedisService;
 
     @GetMapping
     public String home(Model model) {
+
+
         List<Product> productTopSellingList = productService.getTopSellingProducts();
         List<Product> product6thList = productService.getSixthProducts();
         List<Product> productTop4Discount = productService.getTopDiscountProducts();
+
         model.addAttribute("productTopSellingList", productTopSellingList);
         model.addAttribute("product6thList", product6thList);
         model.addAttribute("productTop4DiscountList", productTop4Discount);

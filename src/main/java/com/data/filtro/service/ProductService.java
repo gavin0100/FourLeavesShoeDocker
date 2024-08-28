@@ -1,8 +1,11 @@
 package com.data.filtro.service;
 
+import com.data.filtro.Util.JsonConverter;
+import com.data.filtro.interview.BaseRedisService;
 import com.data.filtro.model.Account;
 import com.data.filtro.model.Product;
 import com.data.filtro.repository.ProductRepository;
+import com.github.kristofa.brave.internal.zipkin.internal.moshi.Json;
 import jakarta.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +31,11 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private BaseRedisService baseRedisService;
+
+    public static final String HASH_KEY = "products"; // Key cho hash
 
 
     public void save(Product product) {
@@ -79,10 +88,24 @@ public class ProductService {
 
     @Transactional
     public List<Product> getTopSellingProducts() {
-        List<Product> productList = productRepository.findTop8SellingProducts();
+        List<Product> productList = new ArrayList<>();
+//        if (baseRedisService.hasKey("key_discounted_products")){
+//            List<Object> productListJson = baseRedisService.getList("key_discounted_products");
+//            for (Product p: productList){
+//                System.out.println(p.getProductName());
+//            }
+//            return  productList;
+//        }
+        productList = productRepository.findTop8SellingProducts();
+        String json = JsonConverter.convertListToJsonProduct(productList);
+        System.out.println(json);
+//        List<Product> productList1 = JsonConverter.convertJsonToListProduct(json);
+
+//        baseRedisService.setList("key_discounted_products", productList);
         for (Product product : productList) {
             Hibernate.initialize(product.getCategory());
         }
+
         return productList;
     }
 

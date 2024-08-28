@@ -58,7 +58,7 @@ application:
 logging:
   file:
 #    name: D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log
-    name: /app/logs/elk-stack.log
+    name: ${LOG_ADDRESS:D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log}
 #  level:
 #    root: error
 

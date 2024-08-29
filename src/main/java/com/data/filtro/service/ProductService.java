@@ -2,13 +2,18 @@ package com.data.filtro.service;
 
 import com.data.filtro.Util.JsonConverter;
 import com.data.filtro.interview.BaseRedisService;
+import com.data.filtro.interview.MyModel;
 import com.data.filtro.model.Account;
 import com.data.filtro.model.Product;
 import com.data.filtro.repository.ProductRepository;
 import com.github.kristofa.brave.internal.zipkin.internal.moshi.Json;
+import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,6 +31,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
@@ -34,6 +40,15 @@ public class ProductService {
 
     @Autowired
     private BaseRedisService baseRedisService;
+
+    @Value("${spring.data.minio.bucketName}")
+    private String bucketName;
+
+    @Value("${spring.data.minio.url}")
+    private String url;
+
+    @Autowired
+    private MinioClient minioClient;
 
     public static final String HASH_KEY = "products"; // Key cho hash
 
@@ -49,9 +64,9 @@ public class ProductService {
     }
 
 
-    public void update(Product product, MultipartFile file) throws Exception {
+    public void update(Product product, MultipartFile avatarFile) throws Exception {
 
-        Product existingProduct = productRepository.findById(product.getId()).orElseThrow(() -> new Exception("Product not found"));
+        Product existingProduct = productRepository.findById(product.getId()).orElseThrow(null);
 
         // Update the existing product's properties with the new product's properties
         existingProduct.setProductName(product.getProductName());
@@ -64,8 +79,30 @@ public class ProductService {
         existingProduct.setStatus(product.getStatus());
         existingProduct.setDiscount(product.getDiscount());
 
-        existingProduct.setImage(product.getImage());
+//        existingProduct.setImage(product.getImage());
+        try {
+            if (!avatarFile.isEmpty()){
+                updateAvatarToMinIO(avatarFile);
+                String avatarLink = url + bucketName+ "/" + avatarFile.getOriginalFilename();
+                existingProduct.setImage(avatarLink);
+            }
+        } catch (Exception ex){
+            log.error("Can't upload image {} to model has id {}", avatarFile.getOriginalFilename(), product.getId());
+        }
         productRepository.save(existingProduct);
+    }
+
+    public void updateAvatarToMinIO(MultipartFile avatarFile){
+        try {
+            InputStream inputStream = avatarFile.getInputStream();
+            minioClient.putObject(PutObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(avatarFile.getOriginalFilename())
+                    .stream(inputStream, inputStream.available(), -1)
+                    .build());
+        } catch (Exception e) {
+            log.error("Failed to upload file.");
+        }
     }
 
 

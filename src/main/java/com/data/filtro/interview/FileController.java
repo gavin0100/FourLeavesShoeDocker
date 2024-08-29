@@ -1,10 +1,8 @@
 package com.data.filtro.interview;
-import io.minio.GetObjectArgs;
-import io.minio.GetPresignedObjectUrlArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
 import io.minio.errors.MinioException;
 import io.minio.http.Method;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -67,6 +65,20 @@ public class FileController {
                     .body(new InputStreamResource(stream));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @DeleteMapping("/delete/{fileName}")
+    public String deleteFile(@PathVariable("fileName") String fileName) {
+        System.out.println(fileName);
+        try {
+            minioClient.removeObject(RemoveObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(fileName)
+                    .build());
+            return "File uploaded successfully.";
+        } catch (Exception e) {
+            return "Failed to upload file.";
         }
     }
 

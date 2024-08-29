@@ -32,7 +32,7 @@
         .custom-form-group .form-control {
             flex-grow: 2; /* Cho phép select chiếm không gian lớn hơn */
             width: 50%;
-            max-width: 130px;
+            max-width: 230px;
         }
     </style>
     <div class="flex flex-col flex-1 w-full">
@@ -394,7 +394,7 @@
                                 <th class="px-4 py-3">Image</th>
                                 <th class="px-4 py-3">Price</th>
                                 <th class="px-4 py-3">Quantity</th>
-                                <th class="px-4 py-3">Sole</th>
+                                <th class="px-4 py-3">Sold</th>
                                 <th class="px-4 py-3">Description</th>
                                 <th class="px-4 py-3">CreateDate</th>
                                 <th class="px-4 py-3">Status</th>
@@ -416,8 +416,17 @@
                                 <td class="px-4 py-3 text-sm" th:text="${product.productName}">
                                     2022-11-12
                                 </td>
-                                <td class="px-4 py-3 text-sm"><img th:src="@{${product.image}}" alt="?"
-                                         style="width: 150px;height: 150px;">
+                                <td class="px-4 py-3 text-sm">
+                                    <img th:src="@{${product.image}}" alt="?"
+                                         style="width: 150px;height: 150px; vertical-align: middle; margin-right: 10px;">
+                                    <a th:href="@{'http://localhost:8080/app-minio/download/' + ${product.image != null ? product.image.substring(product.image.lastIndexOf('/') + 1) : ''}}"
+                                       th:if="${product.image != null && product.image.contains('fourleavesshoedocker')}"
+                                       style="text-decoration: none; display: inline-block; vertical-align: middle;">
+                                        <button type="button"
+                                                style="background-color: #4CAF50; border: none; color: white; padding: 5px 10px; text-align: center; font-size: 14px; cursor: pointer;">
+                                            Download
+                                        </button>
+                                    </a>
                                 </td>
                                 <td class="px-4 py-3 text-sm" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA')+'đ'}">
                                     2022-11-12
@@ -451,9 +460,10 @@
                                     1
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    <a href="#editModal" class="edit" data-toggle="modal"
-                                       onclick="showEditModal()"><i
-                                      class="material-icons"
+                                    <a href="#editModal" class="edit edit-button" data-toggle="modal"
+                                       onclick="showEditModal()"
+                                       th:data-avatar="${product.image}"><i
+                                      class="material-icons edit-button"
                                       data-toggle="tooltip"
                                       title="Edit">&#xE254;</i></a>
                                     <a href="#deleteModal" id="deleteModalIcon" class="delete" data-toggle="modal"
@@ -517,10 +527,10 @@
                     </div>
                 </div>
                 <!-- Edit Modal HTML -->
-                <div id="editModal" class="modal fade" style="display: none; width: 350px;">
+                <div id="editModal" class="modal fade" style="display: none; width: 430px;">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form method="post" th:action="@{/admin/product/update}">
+                            <form method="post" th:action="@{/admin/product/update}" enctype="multipart/form-data">
                                 <div class="modal-header">
                                     <div class="header-left">
                                         <h4 class="modal-title text-primary"><i class="fas fa-user-edit"></i> Update Product</h4>
@@ -546,9 +556,13 @@
                                         <label>Description</label>
                                         <textarea name="description" id="description" class="form-control" style="width: 187px; height: 90px;"  required></textarea>
                                     </div>
-                                    <div class="form-group custom-form-group">
+                                    <div class="form-group custom-form-group" style="margin: 5px 0px;">
                                         <label>Image</label>
-                                        <input type="text" name="image" id="image" class="form-control" required>
+<!--                                        <input type="text" name="image" id="image" class="form-control" required>-->
+                                        <div class="form-control" style="text-align: -webkit-right;">
+                                            <input type="file" id="editAvatar" name="avatarFile" accept="image/*"><br><br>
+                                            <img id="previewAvatar" src="#" alt="Preview Avatar" style="display: none; width: 150px;height: auto;margin-bottom: 15px;">
+                                        </div>
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label>Sold</label>
@@ -556,7 +570,7 @@
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label for="editProductStatus">Status</label>
-                                        <select name="status" id="editProductStatus">
+                                        <select name="status" id="editProductStatus" class="form-control">
                                             <option value="1">Available</option>
                                             <option value="0">Out of stock</option>
                                         </select>
@@ -567,7 +581,7 @@
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label for="editMaterial">Material</label>
-                                        <select id="editMaterial" name="material">
+                                        <select id="editMaterial" name="material" class="form-control">
                                             <th:block th:each="material : ${materials}">
                                                 <option th:value="${material.getId()}" th:text="${material.materialName}"></option>
                                             </th:block>
@@ -575,7 +589,7 @@
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label for="editCategory">Category</label>
-                                        <select id="editCategory" name="category">
+                                        <select id="editCategory" name="category" class="form-control">
                                             <th:block th:each="category : ${categories}">
                                                 <option th:value="${category.getId()}"
                                                         th:text="${category.getCategoryName()}"></option>
@@ -765,6 +779,30 @@
         closeButton.addEventListener("click", function() {
             var editModal = document.getElementById("deleteModal");
             editModal.style.display = "none";
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const avatarUrl = this.getAttribute('data-avatar');
+                console.log(avatarUrl);
+                console.log("hihi");
+                const previewAvatar = document.getElementById('previewAvatar');
+                if (avatarUrl) {
+                    previewAvatar.src = avatarUrl;
+                    previewAvatar.style.display = 'block';
+                } else {
+                    previewAvatar.style.display = 'none';
+                }
+            });
+        });
+        document.getElementById('editAvatar').addEventListener('change', function() {
+            const [file] = this.files;
+            if (file) {
+                const previewAvatar = document.getElementById('previewAvatar');
+                previewAvatar.src = URL.createObjectURL(file);
+                previewAvatar.style.display = 'block';
+            }
         });
     </script>
 

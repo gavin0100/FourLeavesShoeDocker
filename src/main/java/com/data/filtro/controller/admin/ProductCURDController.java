@@ -86,8 +86,9 @@ public class ProductCURDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT')")
-    public String update(@ModelAttribute("product") Product product) throws Exception {
-        productService.addProduct(product);
+    public String update(@ModelAttribute("product") Product product,
+                         @RequestParam("avatarFile") MultipartFile avatarFile) throws Exception {
+        productService.update(product, avatarFile);
         return "redirect:/admin/product";
     }
 

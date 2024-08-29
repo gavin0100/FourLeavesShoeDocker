@@ -35,7 +35,6 @@ public class FileController {
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
-        System.out.println("hihi");
         try {
             InputStream inputStream = file.getInputStream();
             minioClient.putObject(PutObjectArgs.builder()
@@ -71,28 +70,4 @@ public class FileController {
         }
     }
 
-    @GetMapping("/temporary-url/{fileName}")
-    public ResponseEntity<String> getTemporaryFileUrl(@PathVariable("fileName") String fileName) {
-        try {
-            String url = getTempUrl(bucketName, fileName);
-            return ResponseEntity.ok(url);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to generate temporary URL for file.");
-        }
-    }
-
-    private String getTempUrl(String bucketName, String objectName) throws IOException, NoSuchAlgorithmException, InvalidKeyException, MinioException {
-        Map<String, String> reqParams = new HashMap<>();
-        reqParams.put("response-content-type", "application/json");
-        String url = minioClient.getPresignedObjectUrl(
-                GetPresignedObjectUrlArgs.builder()
-                        .method(Method.GET)
-                        .bucket(bucketName)
-                        .object(objectName)
-                        .expiry(2, TimeUnit.HOURS)
-                        .extraQueryParams(reqParams)
-                        .build());
-        System.out.println(url);
-        return url;
-    }
 }

@@ -74,13 +74,31 @@ Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front
     </tr>
     </thead>
     <tbody>
-    <tr th:each="model : ${models}">
+    <tr th:each="model : ${models}" style="white-space: nowrap;">
       <td th:text="${model.id}"></td>
       <td th:text="${model.name}"></td>
       <td th:text="${model.status ? 'Active' : 'Inactive'}"></td>
       <td>
-        <img th:src="${model.avatar}" th:alt="${'Avatar of ' + model.name}" width="50" height="50">
-        <button class="edit-button" th:data-id="${model.id}" th:data-name="${model.name}" th:data-status="${model.status}" th:data-avatar="${model.avatar}">Edit</button>
+        <img th:src="${model.avatar}" th:alt="${'Avatar of ' + model.name}" width="50" height="50" style="vertical-align: middle; margin-right: 10px;">
+        <button class="edit-button"
+                th:data-id="${model.id}"
+                th:data-name="${model.name}"
+                th:data-status="${model.status}"
+                th:data-avatar="${model.avatar}"
+                style="background-color: #008CBA; border: none; color: white; padding: 5px 10px; text-align: center; display: inline-block; font-size: 14px; margin-right: 10px; cursor: pointer; vertical-align: middle;">
+          Edit
+        </button>
+
+        <!-- Download Button -->
+        <a th:href="@{'http://localhost:8080/app-minio/download/' + ${model.avatar != null ? model.avatar.substring(model.avatar.lastIndexOf('/') + 1) : ''}}"
+           th:if="${model.avatar != null}"
+           style="text-decoration: none; display: inline-block; vertical-align: middle;">
+          <button type="button"
+                  style="background-color: #4CAF50; border: none; color: white; padding: 5px 10px; text-align: center; font-size: 14px; cursor: pointer;">
+            Download
+          </button>
+        </a>
+
       </td>
 
     </tr>
@@ -89,6 +107,9 @@ Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front
 
   <div class="edit-form-overlay">
     <form id="editForm" enctype="multipart/form-data" method="post" th:action="@{/test/mvc/editModel}" th:object="${MyModel}">
+      <!-- Close Button -->
+      <button type="button" id="closeButton" style="position: absolute; top: 10px; right: 10px; background-color: transparent; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+
       <div>
         <label for="editName">Name:</label><br>
         <input type="text" id="editName" name="name"><br><br>
@@ -154,6 +175,11 @@ Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front
     document.getElementById('editForm').addEventListener('submit', function(event) {
       const form = document.querySelector('.edit-form-overlay');
       form.style.display = 'none';
+    });
+
+    // Close the form when the close button is clicked
+    document.getElementById('closeButton').addEventListener('click', function() {
+      document.querySelector('.edit-form-overlay').style.display = 'none';
     });
 
 

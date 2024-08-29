@@ -36,10 +36,9 @@ public class ControllerMVC {
             @RequestParam("avatarFile") MultipartFile avatarFile,
             HttpSession session) {
 
-        System.out.println("Model: " + model.getId() + " " + model.getName() + " " + model.isStatus());
-        if (!avatarFile.isEmpty()) {
-            System.out.println(avatarFile.getOriginalFilename());
-        }
+//        if (!avatarFile.isEmpty()) {
+//            System.out.println(avatarFile.getOriginalFilename());
+//        }
         service.updateService(model, avatarFile);
         return "redirect:/test/mvc";
     }

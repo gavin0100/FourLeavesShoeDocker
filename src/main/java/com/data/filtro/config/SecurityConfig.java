@@ -61,7 +61,8 @@ public class SecurityConfig{
                                         "/product/**",
                                         "/user_google_hihi",
                                         "/otp/**",
-                                        "/test/**"
+                                        "/test/**",
+                                        "/app-minio/**"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**").permitAll()

@@ -70,6 +70,7 @@ Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front
       <th>ID</th>
       <th>Name</th>
       <th>Status</th>
+      <th>Avatar</th>
     </tr>
     </thead>
     <tbody>
@@ -77,8 +78,86 @@ Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front
       <td th:text="${model.id}"></td>
       <td th:text="${model.name}"></td>
       <td th:text="${model.status ? 'Active' : 'Inactive'}"></td>
+      <td>
+        <img th:src="${model.avatar}" th:alt="${'Avatar of ' + model.name}" width="50" height="50">
+        <button class="edit-button" th:data-id="${model.id}" th:data-name="${model.name}" th:data-status="${model.status}" th:data-avatar="${model.avatar}">Edit</button>
+      </td>
+
     </tr>
     </tbody>
   </table>
+
+  <div class="edit-form-overlay">
+    <form id="editForm" enctype="multipart/form-data" method="post" th:action="@{/test/mvc/editModel}" th:object="${MyModel}">
+      <div>
+        <label for="editName">Name:</label><br>
+        <input type="text" id="editName" name="name"><br><br>
+      </div>
+
+      <div>
+        <label for="editStatus">Status:</label><br>
+        <select id="editStatus" name="status">
+          <option value="true" >Active</option>
+          <option value="false">Inactive</option>
+        </select><br><br>
+      </div>
+      <div>
+        <label for="editAvatar">Avatar:</label><br>
+        <input type="file" id="editAvatar" name="avatarFile" accept="image/*"><br><br>
+        <img id="previewAvatar" src="#" alt="Preview Avatar" width="50" height="50" style="display: none;"><br><br>
+      </div>
+
+      <input type="hidden" id="editId" name="id">
+
+      <button type="submit" id="saveButton">Save</button>
+    </form>
+  </div>
+
+  <script>
+    document.querySelectorAll('.edit-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const form = document.querySelector('.edit-form-overlay');
+        form.style.display = 'block';
+
+        // Set the ID field
+        document.getElementById('editId').value = this.getAttribute('data-id');
+
+        // Set the Name field
+        document.getElementById('editName').value = this.getAttribute('data-name');
+
+        // Set the Status field
+        const status = this.getAttribute('data-status') === 'true';
+        document.getElementById('editStatus').value = status ? 'true' : 'false';
+
+        // Handle the Avatar preview
+        const avatarUrl = this.getAttribute('data-avatar');
+        const previewAvatar = document.getElementById('previewAvatar');
+        if (avatarUrl) {
+          previewAvatar.src = avatarUrl;
+          previewAvatar.style.display = 'block';
+        } else {
+          previewAvatar.style.display = 'none';
+        }
+      });
+    });
+
+
+    document.getElementById('editAvatar').addEventListener('change', function() {
+      const [file] = this.files;
+      if (file) {
+        const previewAvatar = document.getElementById('previewAvatar');
+        previewAvatar.src = URL.createObjectURL(file);
+        previewAvatar.style.display = 'block';
+      }
+    });
+
+    document.getElementById('editForm').addEventListener('submit', function(event) {
+      const form = document.querySelector('.edit-form-overlay');
+      form.style.display = 'none';
+    });
+
+
+  </script>
+
 </div>
 </body>

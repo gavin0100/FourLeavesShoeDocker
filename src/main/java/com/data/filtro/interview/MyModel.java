@@ -6,7 +6,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
 // @Entity: In Spring Boot, an entity is a class that represents a table in a database.
 //In Spring Boot, the @Entity annotation is used to specify that a class is an entity /ˈen.tɪ.ti/
 // and is mapped to a database /ˈdeɪ.tə.beɪs/ table. This is part of the Java Persistence API (JPA).
@@ -36,9 +35,11 @@ import org.springframework.data.redis.core.RedisHash;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Model {
+public class MyModel {
     @Id
     private int id;
     private String name;
     private boolean status;
+
+    private String avatar;
 }

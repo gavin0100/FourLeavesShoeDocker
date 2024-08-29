@@ -1,9 +1,7 @@
 package com.data.filtro.interview;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,16 +20,16 @@ public class controller {
     private BaseRedisService baseRedisService;
 
     @GetMapping
-    public List<Model> getAllNameModel(){
-        List<Model> models = service.getAllModelInterView();
+    public List<MyModel> getAllNameModel(){
+        List<MyModel> models = service.getAllModelInterView();
         models.forEach(model -> System.out.println(model));
         return models;
     }
 
     @GetMapping("/getModel/{id}")
-    public Model getModelById(@PathVariable int id){
+    public MyModel getModelById(@PathVariable int id){
         try{
-            Model model = service.getModelById(id);
+            MyModel model = service.getModelById(id);
             if (model == null){
                 log.error("can't find model with id {}", id);
             }

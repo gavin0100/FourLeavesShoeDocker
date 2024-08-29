@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ModelRepository extends JpaRepository<Model, Integer> {
-    List<Model> findAll();
+public interface ModelRepository extends JpaRepository<MyModel, Integer> {
+    List<MyModel> findAll();
 }

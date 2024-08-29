@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,10 +26,25 @@ public class ControllerMVC {
     public String getAllNameModel(HttpSession session, org.springframework.ui.Model model){
         System.out.println("a real annotation: " +  redisPort);
         System.out.println("a customed annotaion: " + customAnnotaion);
-        List<Model> modelList = service.getAllModelInterView();
+        List<MyModel> modelList = service.getAllModelInterView();
         model.addAttribute("models", modelList);
         return "test/template/test_default_page";
     }
+    @PostMapping("/mvc/editModel")
+    public String editModel(
+            @ModelAttribute("MyModel") MyModel model,
+            @RequestParam("avatarFile") MultipartFile avatarFile,
+            HttpSession session) {
+
+        System.out.println("Model: " + model.getId() + " " + model.getName() + " " + model.isStatus());
+        if (!avatarFile.isEmpty()) {
+            System.out.println(avatarFile.getOriginalFilename());
+        }
+        service.updateService(model, avatarFile);
+        return "redirect:/test/mvc";
+    }
+
+
 
 
 

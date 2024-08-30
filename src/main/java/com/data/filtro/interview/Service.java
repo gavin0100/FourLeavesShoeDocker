@@ -60,8 +60,9 @@ public class Service {
                     .object(avatarFile.getOriginalFilename())
                     .stream(inputStream, inputStream.available(), -1)
                     .build());
+            log.info("Successfully to upload file.");
         } catch (Exception e) {
-            log.error("Failed to upload file.");
+            log.error("Failed to upload file: " + e.getMessage());
         }
     }
 

@@ -2,6 +2,7 @@ package com.data.filtro.interview;
 import io.minio.*;
 import io.minio.errors.MinioException;
 import io.minio.http.Method;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -21,6 +22,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/app-minio")
+@Slf4j
 public class FileController {
     @Value("${spring.data.minio.bucketName}")
     private String bucketName;
@@ -64,6 +66,7 @@ public class FileController {
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(new InputStreamResource(stream));
         } catch (Exception e) {
+            log.error("Failed to download file: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

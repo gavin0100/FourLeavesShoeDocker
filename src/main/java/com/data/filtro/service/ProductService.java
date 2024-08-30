@@ -70,7 +70,7 @@ public class ProductService {
             if (!avatarFile.isEmpty()){
 
                 updateAvatarToMinIO(avatarFile);
-                String avatarLink = url + bucketName+ "/" + avatarFile.getOriginalFilename();
+                String avatarLink = urlHostImage + bucketName+ "/" + avatarFile.getOriginalFilename();
                 product.setImage(avatarLink);
             }
         } catch (Exception ex){

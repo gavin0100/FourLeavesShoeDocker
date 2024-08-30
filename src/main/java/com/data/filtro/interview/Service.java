@@ -33,6 +33,9 @@ public class Service {
     @Value("${spring.data.minio.url}")
     private String url;
 
+    @Value("${spring.data.minio.url_host_image}")
+    private String urlHostImage;
+
     @Autowired
     private MinioClient minioClient;
 
@@ -40,7 +43,7 @@ public class Service {
         try {
             if (!avatarFile.isEmpty()){
                 updateAvatarToMinIO(avatarFile);
-                String avatarLink = url + bucketName+ "/" + avatarFile.getOriginalFilename();
+                String avatarLink = urlHostImage + bucketName+ "/" + avatarFile.getOriginalFilename();
                 myModel.setAvatar(avatarLink);
             }
             else {

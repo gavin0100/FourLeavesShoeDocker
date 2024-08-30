@@ -30,7 +30,8 @@ services:
       LOG_ADDRESS: /app/logs/elk-stack.log
       SPRING_REDIS_HOST: redis # Tên dịch vụ Redis (được đặt trong phần networks)
       SPRING_REDIS_PORT: 6379 # Cổng Redis
-      URL_MINIO: http://127.0.0.1:9000/
+      URL_MINIO: http://minio:9000/
+      URL_IMAGE_MINIO: http://127.0.0.1:9000/
       BUCKET_NAME: fourleavesshoedocker
     volumes:
       - /etc/timezone:/etc/timezone:ro

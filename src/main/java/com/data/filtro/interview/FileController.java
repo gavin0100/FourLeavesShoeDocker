@@ -27,6 +27,9 @@ public class FileController {
     @Value("${spring.data.minio.bucketName}")
     private String bucketName;
 
+    @Value("${spring.data.minio.url_host_image}")
+    private String urlHostImage;
+
     private final MinioClient minioClient;
 
     public FileController(MinioClient minioClient) {

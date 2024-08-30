@@ -45,9 +45,12 @@ spring:
       port: ${SPRING_REDIS_PORT:6379}
     minio:
       url: ${URL_MINIO:http://127.0.0.1:9000/}
+#      this link is used to push and download file
       accessKey: minioadmin
       secretKey: minioadmin
       bucketName: ${BUCKET_NAME:fourleavesshoedocker}
+      url_host_image: ${URL_IMAGE_MINIO:http://127.0.0.1:9000/}
+#      this link is used to access file in MinIO via local such as browser GG chrome,...
 twilio:
   AccountSid: AC8c8c886543a259ef1c32a52428752846
   AuthToken: ${{ secrets.TWILIO}}

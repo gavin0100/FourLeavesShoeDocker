@@ -1,5 +1,6 @@
 package com.data.filtro.controller.admin;
 
+import com.data.filtro.interview.BaseRedisService;
 import com.data.filtro.model.*;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
@@ -31,6 +32,11 @@ public class ProductCURDController {
 
     @Autowired
     MaterialService materialService;
+
+    private final String PREFIX_DETAILED_PRODUCT = "detailed_product:";
+
+    @Autowired
+    private BaseRedisService baseRedisService;
 
 
     public Pageable sortProduct(int currentPage, int pageSize, int sortType) {

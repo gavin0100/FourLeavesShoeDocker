@@ -1,5 +1,7 @@
 package com.data.filtro.controller.user;
 
+import com.data.filtro.Util.JsonConverter;
+import com.data.filtro.interview.BaseRedisService;
 import com.data.filtro.model.Feedback;
 import com.data.filtro.model.Product;
 import com.data.filtro.model.User;
@@ -7,6 +9,7 @@ import com.data.filtro.service.FeedbackService;
 import com.data.filtro.service.InputService;
 import com.data.filtro.service.ProductService;
 import jakarta.servlet.http.HttpSession;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +33,11 @@ public class ProductController {
     @Autowired
     InputService inputService;
 
+    @Autowired
+    private BaseRedisService baseRedisService;
+
+    private final String PREFIX_DETAILED_PRODUCT = "detailed_product:";
+
     private String errorMessage;
     private String csrfToken;
 
@@ -47,7 +55,17 @@ public class ProductController {
         long maxProductId = productService.countAll();
         int t1 = 13;
         long t2 = 24;
-        Product product = productService.getProductById(id);
+        Product product = new Product();
+        if (baseRedisService.hasKey(PREFIX_DETAILED_PRODUCT + String.valueOf(id))){
+            String discountProductJson = (String) baseRedisService.get(PREFIX_DETAILED_PRODUCT + String.valueOf(id));
+            product = JsonConverter.convertJsonToProduct(discountProductJson);
+            Hibernate.initialize(product.getCategory());
+        }
+
+        product = productService.getProductById(id);
+        String json = JsonConverter.convertToJsonProduct(product);
+        baseRedisService.set(PREFIX_DETAILED_PRODUCT + String.valueOf(id), json);
+
         List<Feedback> feedbackList = feedbackService.getAllFeedBackByProductId(id);
         int numberOfFeedback = feedbackList.size();
         List<Product> productList = productService.getTop4ProductsByMaterial(product.getMaterial().getId(), currentProductId);

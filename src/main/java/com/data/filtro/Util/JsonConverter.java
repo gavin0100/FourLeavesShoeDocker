@@ -19,11 +19,32 @@ public class JsonConverter {
         }
     }
 
+    public static String convertToJsonProduct(Product product) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static List<Product> convertJsonToListProduct(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             List<Product> products = objectMapper.readValue(json, new TypeReference<List<Product>>() {});
             return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Product convertJsonToProduct(String json) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Product product = objectMapper.readValue(json, Product.class);
+            return product;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

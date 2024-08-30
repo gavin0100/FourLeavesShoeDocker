@@ -59,7 +59,7 @@ public class ProductService {
     @Autowired
     private MinioClient minioClient;
 
-    public static final String HASH_KEY = "products"; // Key cho hash
+    private final String PREFIX_DETAILED_PRODUCT = "detailed_product:";
 
 
     public void save(Product product) {
@@ -119,6 +119,7 @@ public class ProductService {
         }
         productRepository.save(existingProduct);
         baseRedisService.delete("top_fourth_discount_products");
+        baseRedisService.delete(PREFIX_DETAILED_PRODUCT + String.valueOf(existingProduct.getId()));
     }
 
     public void updateAvatarToMinIO(MultipartFile avatarFile){

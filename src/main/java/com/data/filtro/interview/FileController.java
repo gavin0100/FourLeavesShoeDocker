@@ -70,7 +70,6 @@ public class FileController {
 
     @DeleteMapping("/delete/{fileName}")
     public String deleteFile(@PathVariable("fileName") String fileName) {
-        System.out.println(fileName);
         try {
             minioClient.removeObject(RemoveObjectArgs.builder()
                     .bucket(bucketName)

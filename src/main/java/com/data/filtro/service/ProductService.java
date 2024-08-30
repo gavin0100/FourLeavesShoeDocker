@@ -9,6 +9,7 @@ import com.data.filtro.repository.ProductRepository;
 import com.github.kristofa.brave.internal.zipkin.internal.moshi.Json;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
@@ -62,6 +63,20 @@ public class ProductService {
         product.setCreatedDate(new Date());
         productRepository.save(product);
     }
+    public void addProductWithImage(Product product, MultipartFile avatarFile) throws Exception {
+        try {
+            if (!avatarFile.isEmpty()){
+
+                updateAvatarToMinIO(avatarFile);
+                String avatarLink = url + bucketName+ "/" + avatarFile.getOriginalFilename();
+                product.setImage(avatarLink);
+            }
+        } catch (Exception ex){
+            log.error("ProductService.java addProductWithImage: Can't upload image {} to product has id {}", avatarFile.getOriginalFilename(), product.getId());
+        }
+        product.setCreatedDate(new Date());
+        productRepository.save(product);
+    }
 
 
     public void update(Product product, MultipartFile avatarFile) throws Exception {
@@ -82,12 +97,16 @@ public class ProductService {
 //        existingProduct.setImage(product.getImage());
         try {
             if (!avatarFile.isEmpty()){
+                if (existingProduct.getImage().contains("fourleavesshoedocker")){
+                    String oldFileName = existingProduct.getImage().substring(existingProduct.getImage().lastIndexOf('/') + 1);
+                    deleteAvatarToMinIO(oldFileName);
+                }
                 updateAvatarToMinIO(avatarFile);
                 String avatarLink = url + bucketName+ "/" + avatarFile.getOriginalFilename();
                 existingProduct.setImage(avatarLink);
             }
         } catch (Exception ex){
-            log.error("Can't upload image {} to model has id {}", avatarFile.getOriginalFilename(), product.getId());
+            log.error("Can't upload image {} to product has id {}", avatarFile.getOriginalFilename(), product.getId());
         }
         productRepository.save(existingProduct);
     }
@@ -104,6 +123,17 @@ public class ProductService {
             log.error("Failed to upload file.");
         }
     }
+    public void deleteAvatarToMinIO(String fileName){
+        try {
+            minioClient.removeObject(RemoveObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(fileName)
+                    .build());
+        } catch (Exception e) {
+            log.error("Failed to delete file.");
+        }
+    }
+
 
 
     public void deleteById(int id) {

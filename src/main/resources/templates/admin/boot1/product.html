@@ -371,7 +371,7 @@
                             </svg>
                         </a>
                         <div>
-                            <a href="#addModal" class="mb-2 text-sm font-medium text-red-600 dark:text-red-400" onclick="showCreateModal()" style="cursor: pointer;">
+                            <a href="#addModal" class="mb-2 text-sm font-medium text-red-600 dark:text-red-400 create-button" onclick="showCreateModal()" style="cursor: pointer;">
                                 Create
                             </a>
                             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200"> </p>
@@ -416,17 +416,16 @@
                                 <td class="px-4 py-3 text-sm" th:text="${product.productName}">
                                     2022-11-12
                                 </td>
-                                <td class="px-4 py-3 text-sm">
-                                    <img th:src="@{${product.image}}" alt="?"
-                                         style="width: 150px;height: 150px; vertical-align: middle; margin-right: 10px;">
+                                <td class="px-4 py-3 text-sm" style="text-align: center;">
                                     <a th:href="@{'http://localhost:8080/app-minio/download/' + ${product.image != null ? product.image.substring(product.image.lastIndexOf('/') + 1) : ''}}"
                                        th:if="${product.image != null && product.image.contains('fourleavesshoedocker')}"
                                        style="text-decoration: none; display: inline-block; vertical-align: middle;">
-                                        <button type="button"
-                                                style="background-color: #4CAF50; border: none; color: white; padding: 5px 10px; text-align: center; font-size: 14px; cursor: pointer;">
-                                            Download
-                                        </button>
+                                        <img th:src="@{${product.image}}" alt="?"
+                                             style="width: 150px;height: 150px; vertical-align: middle; margin-right: 10px;">
                                     </a>
+                                    <img th:if="${!product.image.contains('fourleavesshoedocker')}"
+                                         th:src="@{${product.image}}" alt="?"
+                                         style="width: 150px;height: 150px; vertical-align: middle; margin-right: 10px;">
                                 </td>
                                 <td class="px-4 py-3 text-sm" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA')+'đ'}">
                                     2022-11-12
@@ -607,10 +606,10 @@
                     </div>
                 </div>
                 <!-- Create Modal HTML -->
-                <div id="addModal" class="modal fade" style="display: none; width: 350px;">
+                <div id="addModal" class="modal fade" style="display: none; width: 430px;">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form method="post" th:action="@{/admin/product/create}">
+                            <form method="post" th:action="@{/admin/product/create}" enctype="multipart/form-data">
                                 <div class="modal-header">
                                     <div class="header-left">
                                         <h4 class="modal-title">Create Product</h4>
@@ -636,9 +635,13 @@
                                         <label>Description</label>
                                         <textarea name="description" class="form-control" required></textarea>
                                     </div>
-                                    <div class="form-group custom-form-group">
+                                    <div class="form-group custom-form-group" style="margin: 5px 0px;">
                                         <label>Image</label>
-                                        <input type="text" name="image" class="form-control" required>
+                                        <!--                                        <input type="text" name="image" id="image" class="form-control" required>-->
+                                        <div class="form-control" style="text-align: -webkit-right;">
+                                            <input type="file" id="createAvatar" name="avatarFile" accept="image/*"><br><br>
+                                            <img id="previewCreatedAvatar" src="#" alt="Preview Avatar" style="display: none; width: 150px;height: auto;margin-bottom: 15px;">
+                                        </div>
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label>Sold</label>
@@ -646,7 +649,7 @@
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label for="addProductStatus">Status</label>
-                                        <select name="status" id="addProductStatus">
+                                        <select name="status" id="addProductStatus" class="form-control">
                                             <option value="0">Unavailable</option>
                                             <option value="1">Available</option>
                                         </select>
@@ -657,7 +660,7 @@
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label for="addFlavor">Material</label>
-                                        <select id="addFlavor" name="material">
+                                        <select id="addFlavor" name="material" class="form-control">
                                             <th:block th:each="material : ${materials}">
                                                 <option th:value="${material.id}" th:text="${material.materialName}"></option>
                                             </th:block>
@@ -665,7 +668,7 @@
                                     </div>
                                     <div class="form-group custom-form-group">
                                         <label for="addCategory">Category</label>
-                                        <select id="addCategory" name="category">
+                                        <select id="addCategory" name="category" class="form-control">
                                             <th:block th:each="category : ${categories}">
                                                 <option th:value="${category.getId()}"
                                                         th:text="${category.getCategoryName()}"></option>
@@ -800,6 +803,17 @@
             const [file] = this.files;
             if (file) {
                 const previewAvatar = document.getElementById('previewAvatar');
+                previewAvatar.src = URL.createObjectURL(file);
+                previewAvatar.style.display = 'block';
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById('createAvatar').addEventListener('change', function() {
+            const [file] = this.files;
+            if (file) {
+                const previewAvatar = document.getElementById('previewCreatedAvatar');
                 previewAvatar.src = URL.createObjectURL(file);
                 previewAvatar.style.display = 'block';
             }

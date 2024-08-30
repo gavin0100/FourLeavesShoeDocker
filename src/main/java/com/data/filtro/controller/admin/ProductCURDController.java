@@ -78,8 +78,9 @@ public class ProductCURDController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT')")
-    public String create(@ModelAttribute("product") Product product) throws Exception {
-        productService.addProduct(product);
+    public String create(@ModelAttribute("product") Product product,
+                         @RequestParam("avatarFile") MultipartFile avatarFile) throws Exception {
+        productService.addProductWithImage(product, avatarFile);
         return "redirect:/admin/product";
     }
 

@@ -81,9 +81,9 @@ public class FileController {
                     .bucket(bucketName)
                     .object(fileName)
                     .build());
-            return "File uploaded successfully.";
+            return "File deleted successfully.";
         } catch (Exception e) {
-            return "Failed to upload file.";
+            return "Failed to delete file.";
         }
     }
 

@@ -48,6 +48,8 @@ public class ProductService {
     @Value("${spring.data.minio.url}")
     private String url;
 
+    @Value("${spring.data.minio.url_host_image}")
+    private String urlHostImage;
     @Autowired
     private MinioClient minioClient;
 
@@ -102,7 +104,7 @@ public class ProductService {
                     deleteAvatarToMinIO(oldFileName);
                 }
                 updateAvatarToMinIO(avatarFile);
-                String avatarLink = url + bucketName+ "/" + avatarFile.getOriginalFilename();
+                String avatarLink = urlHostImage + bucketName+ "/" + avatarFile.getOriginalFilename();
                 existingProduct.setImage(avatarLink);
             }
         } catch (Exception ex){

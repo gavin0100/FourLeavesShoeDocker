@@ -50,6 +50,12 @@ public class ProductService {
 
     @Value("${spring.data.minio.url_host_image}")
     private String urlHostImage;
+
+    @Value("${spring.data.app.resetTopSellingProductByDays}")
+    private String resetTopSellingProductByDays;
+
+    @Value("${spring.data.app.resetTopSellingProductByHours}")
+    private String resetTopSellingProductByHours;
     @Autowired
     private MinioClient minioClient;
 
@@ -78,6 +84,7 @@ public class ProductService {
         }
         product.setCreatedDate(new Date());
         productRepository.save(product);
+        baseRedisService.delete("top_sixth_products");
     }
 
 
@@ -111,6 +118,7 @@ public class ProductService {
             log.error("Can't upload image {} to product has id {}", avatarFile.getOriginalFilename(), product.getId());
         }
         productRepository.save(existingProduct);
+        baseRedisService.delete("top_fourth_discount_products");
     }
 
     public void updateAvatarToMinIO(MultipartFile avatarFile){
@@ -158,19 +166,24 @@ public class ProductService {
     @Transactional
     public List<Product> getTopSellingProducts() {
         List<Product> productList = new ArrayList<>();
-//        if (baseRedisService.hasKey("key_discounted_products")){
-//            List<Object> productListJson = baseRedisService.getList("key_discounted_products");
-//            for (Product p: productList){
-//                System.out.println(p.getProductName());
-//            }
-//            return  productList;
-//        }
+        if (baseRedisService.hasKey("top_selling_products")){
+            String discountProductsJson = (String) baseRedisService.get("top_selling_products");
+            List<Product> productList1 = JsonConverter.convertJsonToListProduct(discountProductsJson);
+            for (Product product : productList1) {
+                Hibernate.initialize(product.getCategory());
+            }
+            return  productList1;
+        }
         productList = productRepository.findTop8SellingProducts();
         String json = JsonConverter.convertListToJsonProduct(productList);
-        System.out.println(json);
-//        List<Product> productList1 = JsonConverter.convertJsonToListProduct(json);
+        baseRedisService.set("top_selling_products", json);
+        if (Integer.parseInt(resetTopSellingProductByDays) != 0){
+            baseRedisService.setTimeToLivedByDays("top_selling_products", Integer.parseInt(resetTopSellingProductByDays));
+        }
+        if (Integer.parseInt(resetTopSellingProductByHours) != 0){
+            baseRedisService.setTimeToLivedByHours("top_selling_products", Integer.parseInt(resetTopSellingProductByHours));
+        }
 
-//        baseRedisService.setList("key_discounted_products", productList);
         for (Product product : productList) {
             Hibernate.initialize(product.getCategory());
         }
@@ -179,11 +192,41 @@ public class ProductService {
     }
 
     public List<Product> getSixthProducts(){
-        List<Product> productList = productRepository.find6thProducts();
+        List<Product> productList = new ArrayList<>();
+        if (baseRedisService.hasKey("top_sixth_products")){
+            String sixthProductsJson = (String) baseRedisService.get("top_sixth_products");
+            List<Product> productList1 = JsonConverter.convertJsonToListProduct(sixthProductsJson);
+            for (Product product : productList1) {
+                Hibernate.initialize(product.getCategory());
+            }
+            return  productList1;
+        }
+        productList = productRepository.find6thProducts();
+        String json = JsonConverter.convertListToJsonProduct(productList);
+        baseRedisService.set("top_sixth_products", json);
+        for (Product product : productList) {
+            Hibernate.initialize(product.getCategory());
+        }
+
         return productList;
     }
     public List<Product> getTopDiscountProducts() {
-        List<Product> productList = productRepository.findTop4MostDiscountProducts();
+        List<Product> productList = new ArrayList<>();
+        if (baseRedisService.hasKey("top_fourth_discount_products")){
+            String top4ProductsJson = (String) baseRedisService.get("top_fourth_discount_products");
+            List<Product> productList1 = JsonConverter.convertJsonToListProduct(top4ProductsJson);
+            for (Product product : productList1) {
+                Hibernate.initialize(product.getCategory());
+            }
+            return  productList1;
+        }
+        productList = productRepository.findTop4MostDiscountProducts();
+        String json = JsonConverter.convertListToJsonProduct(productList);
+        baseRedisService.set("top_fourth_discount_products", json);
+        for (Product product : productList) {
+            Hibernate.initialize(product.getCategory());
+        }
+
         return productList;
     }
 

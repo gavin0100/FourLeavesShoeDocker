@@ -39,7 +39,7 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "mavatlieu", referencedColumnName = "mavatlieu")
-    @JsonManagedReference
+    @JsonBackReference(value = "material-product")
     private Material material;
 
     @Column(name = "mota")
@@ -59,7 +59,7 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "madanhmuc", referencedColumnName = "madanhmuc")
-    //@JsonManagedReference
+    @JsonBackReference(value = "category-product")
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

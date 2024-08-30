@@ -34,7 +34,7 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnore
-    //@JsonBackReference
+    @JsonManagedReference(value = "category-product")
     private List<Product> productList;
 
 }

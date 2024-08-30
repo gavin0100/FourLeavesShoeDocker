@@ -2,6 +2,7 @@ package com.data.filtro.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +34,7 @@ public class Material {
     private Integer status;
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference(value = "material-product")
     private List<Product> products;
 
 }

@@ -33,6 +33,8 @@ services:
       URL_MINIO: http://minio:9000/
       URL_IMAGE_MINIO: http://127.0.0.1:9000/
       BUCKET_NAME: fourleavesshoedocker
+      RESET_TOP_SELLING_PRODUCTS_BY_DAYS: 1
+      RESET_TOP_SELLING_PRODUCTS_BY_HOURS: 0
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

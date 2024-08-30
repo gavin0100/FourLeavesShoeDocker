@@ -44,10 +44,10 @@ spring:
       host: ${SPRING_REDIS_HOST:localhost}
       port: ${SPRING_REDIS_PORT:6379}
     minio:
-      url: http://127.0.0.1:9000/
+      url: ${URL_MINIO:http://127.0.0.1:9000/}
       accessKey: minioadmin
       secretKey: minioadmin
-      bucketName: fourleavesshoedocker
+      bucketName: ${BUCKET_NAME:fourleavesshoedocker}
 twilio:
   AccountSid: AC8c8c886543a259ef1c32a52428752846
   AuthToken: ${{ secrets.TWILIO}}

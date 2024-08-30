@@ -41,10 +41,10 @@ public class CategoryCRUDController {
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY', 'VIEW_CATEGORY')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
-        User admin = (User) session.getAttribute("admin");
-        if (admin == null) {
-            return "redirect:/admin/login";
-        }
+//        User admin = (User) session.getAttribute("admin");
+//        if (admin == null) {
+//            return "redirect:/admin/login";
+//        }
         List<Category> activeCategories = categoryService.getActiveCategory(1);
         int numberActiveCategory = activeCategories.size();
         int currentPage = page.orElse(1);

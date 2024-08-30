@@ -46,10 +46,10 @@ public class StaffCRUDController {
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF', 'VIEW_STAFF')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
-        User admin = (User) session.getAttribute("admin");
-        if (admin == null) {
-            return "redirect:/admin/login";
-        }
+//        User admin = (User) session.getAttribute("admin");
+//        if (admin == null) {
+//            return "redirect:/admin/login";
+//        }
         int currentPage = page.orElse(1);
         int pageSize = sortType;
         List<User> usableAccounts = userService.getEligibleAccountForStaff();

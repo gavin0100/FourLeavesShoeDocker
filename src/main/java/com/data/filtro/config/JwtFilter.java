@@ -39,25 +39,18 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-//        System.out.println(request.getHeader("Host"));
-//        System.out.println("doFilterInternal trong jwtFilter");
-
-//        final String authHeader = request.getHeader(AUTHORIZATION);
         String jwt = "";
         String accountName = "";
         if (request.getCookies() != null){
             for (int i =0; i < request.getCookies().length; i++){
-//                System.out.println(request.getCookies()[i].getName() + " " + request.getCookies()[i].getValue()  );
-                if (request.getCookies()[i].getName().equals("token")){
+                if (request.getCookies()[i].getName().equals("fourleavesshoestoken")){
                     jwt = request.getCookies()[i].getValue();
                     accountName = jwtService.extractUsername(jwt);
                     break;
                 }
             }
         }
-//        System.out.println(authHeader);
         if(jwt.equals("")){
-//            logger.error("JWT Token does not begin with Bearer String");
             filterChain.doFilter(request, response);
             return;
         }
@@ -67,10 +60,6 @@ public class JwtFilter extends OncePerRequestFilter {
             UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
 
             if(jwtService.isValidToken(jwt, userDetails)){
-//                System.out.println(userDetails.getUsername());
-//                System.out.println(userDetails.getPassword());
-//                System.out.println(userDetails.getAuthorities().toString());
-//                System.out.println("===");
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,

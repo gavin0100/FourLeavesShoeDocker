@@ -74,7 +74,7 @@ public class SecurityConfig{
                                 .logout() // neu da dang ky ngoai nay thi may cai viet trong controler logout khong duoc thuc hien
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")
-                                .deleteCookies("token")
+                                .deleteCookies("fourleavesshoestoken")
                                 .clearAuthentication(true)
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .logoutSuccessUrl("/login")

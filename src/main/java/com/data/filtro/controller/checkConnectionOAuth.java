@@ -49,7 +49,7 @@ public class checkConnectionOAuth {
 //            User user = userService.authenticateUser(accountName, password);
 //            System.out.println(user.getName());
         session.setAttribute("user", authenticateResponse.getUser());
-        Cookie cookie = new Cookie("token", authenticateResponse.getAccessToken());
+        Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
         cookie.setHttpOnly(true);
         cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
         response.addCookie(cookie);

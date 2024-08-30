@@ -29,10 +29,10 @@ public class UserPermissionCRUDController {
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String show( Model model, HttpSession session) {
-        User admin = (User) session.getAttribute("admin");
-        if (admin == null) {
-            return "redirect:/admin/login";
-        }
+//        User admin = (User) session.getAttribute("admin");
+//        if (admin == null) {
+//            return "redirect:/admin/login";
+//        }
         List<UserPermission> userPermissions = userPermissionService.getAll();
         model.addAttribute("userPermissions", userPermissions);
         return "admin/boot1/user-permission";

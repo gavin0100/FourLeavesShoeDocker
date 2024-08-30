@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class AccessDeniedController {
     @GetMapping("/access-denied")
     public String getAccessDenied(HttpServletResponse response){
-//        System.out.println("hihihiihhihihihhihiih");
         return "error/accessDenied";
     }
 

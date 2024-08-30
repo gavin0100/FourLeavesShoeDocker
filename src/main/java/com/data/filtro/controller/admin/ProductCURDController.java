@@ -54,10 +54,10 @@ public class ProductCURDController {
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT', 'VIEW_PRODUCT')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
-        User admin = (User) session.getAttribute("admin");
-        if (admin == null) {
-            return "redirect:/admin/login";
-        }
+//        User admin = (User) session.getAttribute("admin");
+//        if (admin == null) {
+//            return "redirect:/admin/login";
+//        }
         List<Product> availableProducts = productService.getAvailableProducts(1);
         int numberAvailableProduct = availableProducts.size();
         List<Product> discountProducts = productService.getDiscountProducts();

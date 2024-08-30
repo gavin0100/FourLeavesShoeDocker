@@ -43,7 +43,7 @@ public class LoginAdminController {
         try {
             AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password, session);
             session.setAttribute("admin", authenticateResponse.getUser());
-            Cookie cookie = new Cookie("token", authenticateResponse.getAccessToken());
+            Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
             cookie.setHttpOnly(true);
             cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
             response.addCookie(cookie);

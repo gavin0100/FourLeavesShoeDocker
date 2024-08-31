@@ -30,11 +30,24 @@ public class AuthenticationService {
                     accountName,
                     password
             );
-//            System.out.println("token trong authenticationService: " + token);
-//            System.out.println("token trong authenticationService: " + token.getCredentials());
-            manager.authenticate(token);
+            System.out.println("token trong authenticationService: " + token);
+            System.out.println("token Credentials trong authenticationService: " + token.getCredentials());
+            System.out.println("token principal trong authenticationService: " + token.getPrincipal());
+
+//            token trong authenticationService: UsernamePasswordAuthenticationToken [Principal=doananh0100, Credentials=[PROTECTED], Authenticated=false, Details=null, Granted Authorities=[]]
+//            token Credentials trong authenticationService: Duc2112002@
+//            token principal trong authenticationService: doananh0100
+
+//            manager.authenticate(token);
             session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
-//            System.out.println(SecurityContextHolder.getContext().getAuthentication().getCredentials().toString());
+//            System.out.println();
+//            System.out.println("token trong authenticationService: " + token);
+//            System.out.println("token Credentials trong authenticationService: " + token.getCredentials());
+//            System.out.println("token principal trong authenticationService: " + token.getPrincipal());
+//            System.out.println();
+//            System.out.println("SecurityContextHolder chứa thông tin: " +
+//                    SecurityContextHolder.getContext().getAuthentication().getCredentials().toString() +
+//                    SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
         }catch (AuthenticationException e){
 //            System.out.println(e.getMessage());
             throw new AuthenticationAccountException("Invalid username/password supplied: " + e.getMessage());

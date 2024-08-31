@@ -451,3 +451,37 @@ public class MyValueProcessor implements BeanPostProcessor {
 ```
 In this code, the Spring framework scans all classes to find fields annotated with @MyValue. It then filters and retains those fields with the @MyValue annotation. After that, it assigns the value defined in @MyValue to these fields, depending on whether the field type is int or boolean.
 
+### The meaning of @Annotations.
+#### @Entity: 
+In Spring Boot, an entity is a class that represents a table in a database. The @Entity annotation is used to specify that a class is an entity /ˈen.tɪ.ti/
+and is mapped to a database /ˈdeɪ.tə.beɪs/ table. This is part of the Java Persistence API (JPA).
+When you annotate a class with @Entity, it means that the class represents a table
+stored in a database, and each instance of the class corresponds to a row in that table
+
+#### Lombok
+Lombok is a Java library that helps reduce boilerplate /ˈbɔɪ.lə.pleɪt/ code by automatically /ˌɔː.təˈmæt.ɪ.kəl.i/
+generating common methods like getters, setters, constructors, and more through annotations.
+This can make your code cleaner and easier to maintain.
+
+In a Spring Boot application, Lombok can be particularly useful.
+Here are some common Lombok annotations and their uses:
+- @Getter and @Setter: Automatically generate getter and setter methods for all fields.
+- @NoArgsConstructor, @AllArgsConstructor, and @RequiredArgsConstructor:
+          Generate constructors with no arguments, all arguments, or required arguments
+          (final fields and fields with constraints), respectively.
+- @Data: A shortcut for @ToString, @EqualsAndHashCode, @Getter, @Setter, and @RequiredArgsConstructor all in one. (a shortcut for: 1 phím tắt)
+- @Builder: Implements the builder pattern for your class.
+- @Slf4j: Creates a logger field in the class for logging purposes. /ˈpɜːrpəs/
+- @ToString
+
+- Here are the main log levels available in SLF4J that I often use:
+
+    - INFO: Informational messages that highlight the progress of the application.
+    - ERROR: Error events that might still allow the application to continue running.
+    - Additionally, there are other types of logs:
+    
+        - TRACE: The most detailed level, used for fine-grained debugging.
+        - DEBUG: Used for general debugging information.
+        - WARN: Potentially harmful situations that are not necessarily errors
+        - FATAL: Severe error events that will presumably lead the application to abort (though this level is not explicitly defined in SLF4J, it is often used in conjunction with other logging frameworks).
+  

@@ -18,6 +18,7 @@ public class RedisConfiguration {
     @Value("${spring.data.redis.host}")
     private String redisHost;
 
+
     @Bean
     public JedisConnectionFactory connectionFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();

@@ -485,3 +485,224 @@ Here are some common Lombok annotations and their uses:
         - WARN: Potentially harmful situations that are not necessarily errors
         - FATAL: Severe error events that will presumably lead the application to abort (though this level is not explicitly defined in SLF4J, it is often used in conjunction with other logging frameworks).
   
+#### @Annotation
+Let’s discuss the different types of annotations and their advantages.
+
+public class Material {
+
+- @Id
+   - Primary key for the class
+
+- @GeneratedValue(strategy = GenerationType.IDENTITY)
+   - Automatically generates the primary key value. GenerationType.IDENTITY is an auto-incrementing primary key based on the most recent value in the database (regardless of deletions).
+
+
+- There are 4 types of GenerationType: AUTO (default), IDENTITY, SEQUENCE, TABLE. 
+   - GenerationType.AUTO is the default primary key generation strategy that allows the persistence provider to choose between IDENTITY, SEQUENCE, and TABLE strategies.
+   - GenerationType.IDENTITY relies on an auto-incrementing value in the database, allowing the database to generate a new value with each insert operation. This method has a significant drawback as it disables the JDBC Batch Insert feature (grouping multiple queries before sending them to the database). When performing an insert, the object's ID is needed. Using this strategy requires executing the insert command immediately to know the next ID. If executing 10 insert commands, it must send 10 queries to the database in order because each query retrieves the primary key value for managing the next entity. Therefore, it is impossible to send 10 insert queries at once because the Batch Insert JDBC feature is disable. (/ˈdrɔːbæk/: = disadvantage)
+   - The Batch feature adds queries to the Statement using the addBatch method and sends them to the database using the executeBatch method.
+   - GenerationType.SEQUENCE: A sequence is a database object that can generate unique and sequential numeric values. Sequences are not affected by different transactions and can generate new values independently.
+   - GenerationType.TABLE: It simulates a sequence by storing and updating the next value of the primary key in a table using pessimistic locks, which require transactions to be executed in order. (/ˈsɪmjuleɪt/ /ˌpesɪˈmɪstɪk/)
+}
+
+
+- Here is how to use the Batch feature
+```agsl
+Statement statement = connection.createStatement();
+statement.addBatch("INSERT INTO EMPLOYEE(ID, NAME, DESIGNATION) "
+ + "VALUES ('1','EmployeeName','Designation')");
+statement.addBatch("INSERT INTO EMP_ADDRESS(ID, EMP_ID, ADDRESS) "
+ + "VALUES ('10','1','Address')");
+statement.executeBatch();
+
+```
+
+
+- @Column(name = "mavatlieu")
+- private Integer id;
+  - Maps to the column name in the table stored in the database
+
+
+- @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
+  - On the OneToMany side, the mappedBy value corresponds to the variable name in the object with the ManyToOne relationship
+- @JsonManagedReference(value = "material-product")
+  - @JsonManagedReference on the parent object, @JsonBackReference on the child object to handle the conversion between JSON and object
+- private List<Product> products;
+
+
+- @ToString(exclude = {"material", "category", "cartItemList"})
+  - Automatically generates a toString() method for the class, including the class name and the values of non-static fields, excluding static fields and those specified in exclude.
+- public class Product implements Serializable {
+
+
+- @ManyToOne(fetch = FetchType.EAGER)
+  - EAGER means that the related data will be loaded immediately when the main entity is loaded from the database.
+  - LAZY: The related data will only be loaded when you access it for the first time. If you want to use these fields when fetching data from the database, you need to design a specific HQL or JPQL query using JOIN FETCH to bypass lazy loading and force the related fields to be fetched. If you only use join, lazy loading will still be applied.
+  - FetchType.LAZY and FetchType.EAGER affect how data is loaded from the database, while @JsonManagedReference and @JsonBackReference affect JSON and Object conversion.
+
+
+- @JoinColumn(name = "mavatlieu", referencedColumnName = "mavatlieu")
+- @JsonBackReference(value = "material-product")
+  - If a class declares multiple @JsonBackReference or @JsonManagedReference without names, they will have the same default name. Jackson will not be able to distinguish which fields to include or exclude during Object to JSON conversion, so you need to name them to differentiate.
+- private Material material;
+
+
+- @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  - Cascade will be set in the parent class, at the List<ChildClass> field. The cascade settings determine how the child objects are affected when the parent object is acted upon.
+  - ALL: All cascade operations.
+  - PERSIST: Automatically saves related entities when the main entity is saved. In Spring Data JPA, this is equivalent to save if the entity does not already exist in the database.
+  - MERGE: Automatically updates related entities when the main entity is updated. In Spring Data JPA, this is equivalent to save if the entity already exists in the database.
+  - REMOVE: Automatically deletes related entities when the main entity is deleted. In Spring Data JPA, this is equivalent to delete.
+  - There are also refresh and detach operations.
+
+- @JsonIgnore
+  - is used to indicate that a certain field or property of a Java object should be ignored when serializing the object to JSON or deserializing JSON to the object.
+    - Serialization (Trình tự hóa /ˌsɪriələˈzeɪʃn/) is the process of converting a object to a byte string or json.
+    - Deserialization (Giải trình tự hóa) is the process of converting a byte string or json to a object.
+- private List<InvoiceDetail> invoiceDetails;
+- In this example, one Product contains multiple InvoiceDetails. With the following code, when the product is updated, the invoiceDetails are also updated.
+```agsl
+Product product = productRepository.find(productId);
+product.setName("Updated Product Name");
+
+InvoiceDetail invoiceDetail = product.getInvoiceDetails().get(0);
+invoiceDetail.setName("Updated Child Name");
+
+productRepository.save(product);
+```
+
+#### How to convert back and forth between JSON and Object Model
+```agsl
+ObjectMapper objectMapper = new ObjectMapper();
+// List Object to Json
+return objectMapper.writeValueAsString(List<Product> products);
+// Object to Json
+return objectMapper.writeValueAsString(Product);
+// Json to List Object
+List<Product> products = objectMapper.readValue(String json, new TypeReference<List<Product>>() {});
+// Json to Object
+Product product = objectMapper.readValue(String json, Product.class);
+```
+
+- @Controller
+  - Used to handle requests and return views in the MVC model. In my project, i use Thymeleaf engine to render view in model MVC. In file application.properties and the pom file, i declared this engine. So, the spring boot framework will automatically config settings in these file and inject the Thymeleaf template engine into that class, allowing you to render views using Thymeleaf templates.
+
+
+- @RestController
+  - Used to handle requests and return APIs
+
+
+- @Slf4j
+  - An annotation from the Lombok library, used for logging
+
+
+- @RequestMapping("/admin/order")
+  - Defines an endpoint for HTTP requests. This means that when a request is sent to this path, the corresponding method will be called to handle the request {GET, POST, PUT, DELETE}
+
+
+- @Autowired
+  - This annotation is used for automatic dependency injection. Specifically, when a variable is annotated with this, the Spring Framework will automatically search for a bean that matches the data type of the variable. These beans can be defined with annotations like @Service, @Repository, @Component, or methods that return this data type marked with @Bean in classes marked with @Configuration. If found, Spring will automatically inject an instance of that bean into the variable.
+
+
+- @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
+  - Correspond to the four methods used to call the server. They are used to map HTTP requests to specific handler methods in the controller.
+  - Our server can be considered somewhat RESTful because:
+    - It uses HTTP methods like GET, POST, PUT, DELETE to perform CRUD (Create, Read, Update, Delete) operations on resources.
+    - Resources in RESTful services are represented by URLs. Each URL represents a specific resource, such as CSS, JS, or image files.
+    - Stateless: Each request from the client to the server must contain all the information needed for the server to understand and process the request. The server does not store the client’s state between requests. We use JWT tokens and configure stateless sessions in Spring Security.
+    - We use JSON for communication with Redis.
+
+
+- @PreAuthorize(“hasAnyRole(‘ADMIN’, ‘WAREHOUSE_STAFF’, ‘ACCOUNTING_STAFF’) and hasAnyAuthority(‘FULL_ACCESS_ORDER’, ‘VIEW_ORDER’)”)
+  - @PreAuthorize: Checks if the current user’s permissions meet the conditions to execute the following method.
+  - hasAnyRole: Checks if the current user has any of the roles ‘ADMIN’, ‘WAREHOUSE_STAFF’, or ‘ACCOUNTING_STAFF’.
+  - hasAnyAuthority: Checks if the current user has any of the authorities ‘FULL_ACCESS_ORDER’ or ‘VIEW_ORDER’.
+  - The request can only be executed if the user has one of the three roles and one of the two authorities.
+
+
+- @RequestParam(defaultValue = “5”) int sortType
+  - Used to retrieve the value of a parameter from the URL query string (after the ?) and assign it to a variable in the request handling method.
+
+
+- @ModelAttribute Order order
+  - Binds data from HTTP requests to MVC objects. In Thymeleaf, it must be combined with th:object="${MyModel}" in a <form>, with the POST method being the most commonly used.
+  - Binds data  refers to the process of connecting or associating data from one source to another. (kết nối hoặc liên kết)
+
+
+- @Value(value = “1111”)
+  - @Value not only assigns a value to a variable, but it can also retrieve data specified in the application.properties file. For example, @Value("${spring.data.redis.host}").
+
+
+- @RequestParam(“avatarFile”) MultipartFile avatarFile
+  - MultipartFile is an interface in Spring that represents a file uploaded in an HTTP request. When submitting a <form>, it must be combined with enctype="multipart/form-data".
+  
+
+- @GetMapping(“/getModel/{id}”)
+- public MyModel getModelById(@PathVariable int id)
+  - Retrieves data from the URL.
+
+
+- @Configuration
+- public class RedisConfiguration {
+  - @Bean
+    - @Bean must be defined in a class annotated with @Configuration so that @Autowired can scan and inject beans with the corresponding return type.
+
+
+- @Configuration
+  - This annotation tells Spring that this class contains bean configurations.
+- @EnableWebSecurity
+  - This annotation enables the web security features of Spring Security. It allows you to configure security for HTTP requests, such as authentication and authorization, in this class.
+- @RequiredArgsConstructor
+  - This annotation from Lombok automatically generates a constructor for all final fields or fields marked with @NonNull. This helps reduce boilerplate code.
+- @EnableMethodSecurity
+  - This annotation enables method-level security. It allows you to use annotations like @PreAuthorize, @PostAuthorize, @Secured, and @RolesAllowed to control access to specific methods.
+- public class SecurityConfig {
+
+
+- public class JwtFilter extends OncePerRequestFilter {
+  - @Override
+    - OncePerRequestFilter is a base class in Spring that ensures the filter is executed only once per HTTP request.
+    - @Override: This annotation is used to override a method from the parent class.
+
+
+- Session is used by Spring Security vs Session in Controller
+  - .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) >< session.setAttribute("admin", authenticateResponse.getUser());
+    - Spring Security Session Management
+      - you are telling Spring Security to not create or use HTTP sessions to store security information. This is typically used in stateless applications, such as those using JWT for authentication.
+    - Session in Controller
+      -  implies that you are storing some information in the HTTP session. This is a stateful approach, which contradicts the stateless configuration in Spring Security.
+    - Session Timeout
+      -  The default session timeout of 30 minutes can be set in application.properties with spring.session.timeout=30m. This setting applies to the HTTP session managed by the servlet container.
+    - When sessions are disabled in Spring Security, the application operates in a stateless mode. On the other hand, setting up sessions in the controller means the application is using a stateful mode. These two configurations do not interfere with each other, but for consistency in design, it is advisable to use only one of the two modes.
+
+
+- Comparison of @Autowired vs @RequiredArgsConstructor and final
+  - @Autowired: This annotation automatically finds a @Bean of the corresponding type and injects it into the annotated field. However, it can be challenging to trace where the bean is coming from, and since the field is not final, it can be changed during different requests.
+  - @RequiredArgsConstructor and final: This approach requires the use of a constructor in the class. If the final field is an interface, Spring will look for a class that implements this interface and is annotated with @Service to create a bean and inject it into the final field. This works similarly to @Autowired. In cases where multiple classes implement the interface, you can use @Qualifier("[name of service]") on the implementing class and specify it in the constructor like this:
+    ```
+    public MyController(@Qualifier("name of service") MyService myService) {
+        this.myService = myService;
+    }
+
+    ```
+
+
+## The purpose of persistence data, persistence, jdbc, ORM, hibernate, spring data JPA, JPA
+![JPAtoJDBC.jpg](JPAtoJDBC.jpg)
+- Persistence data refers to data stored in a database that needs to be retained for a long time. Persistence involves the methods of managing and accessing this data.
+
+- JDBC is a component that executes raw SQL queries. These queries contain table names that match the names stored in the database.
+
+- ORM (Object-Relational Mapping) is a method of executing SQL commands without requiring the table names to match those in the database. It maps the names of objects in the source code to the table names stored in the database.
+
+- Hibernate is an ORM framework provided by Java. Hibernate executes HQL (Hibernate Query Language) commands, which contain the names of objects, or raw SQL commands.
+
+- Spring Data JPA is an abstraction layer provided by JPA. Its main function is to generate SQL/JPQL queries from method names, and Hibernate will execute these SQL commands.
+
+- JPA (Java Persistence API) is a blueprint that outlines how to manage and store objects that are mapped to tables in the database. JPA has a system of annotations to define classes that map to database tables accurately. Essentially, JPA is a set of principles and interfaces that Hibernate must follow and implement.
+
+
+### Why do we need Hibernate when Spring Data JPA has already generated the queries?
+- Hibernate will:
+  - Convert JPQL Queries to SQL: Hibernate translates JPQL queries into specific SQL queries for the database and passes them down to JDBC.
+  - ORM Object Mapping: Hibernate maps objects in HQL to tables in SQL using the annotations defined in the class that creates the object.

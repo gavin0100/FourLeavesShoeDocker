@@ -1,0 +1,159 @@
+public class Material {
+    @Id
+	// Khóa chính cho class
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	// Tự tạo giá trị cho khóa chính, GenerationType.IDENTITY là khóa chính tự tăng 1 đơn vị so với giá trị trong db (giá trị tồn tại gần đây nhất, mặc kệ bị xóa)
+	// Có 4 loại GenerationType: AUTO (default), IDENTITY, SEQUENCE, TABLE
+	// GenerationType.AUTO là kiểu generate primary key mặc định cho phép persistence provider tự lựa chọn kiểu mà nó muốn.
+	// GenerationType.IDENTITY dựa trên một dữ liệu tăng dần (AUTO_INCREMENT) trong database, cho phép database sinh một giá trị mới với mỗi thao tác insert. Cách này có nhược điểm rất lớn vì vô hiệu hóa tính năng Batch Insert JDBC (nhóm nhiều câu truy vấn vào rồi chuyển xuống db). Khi thực hiện lệnh insert cần có id của object, khi sử dụng dạng này thì phải thực thi lệnh insert ngay lúc đó thì mới biết id tiếp theo được. Nếu thực thi 10 câu insert thì phải tiến hành 10 lần gửi câu query xuống database, vì sau mỗi lần gửi sẽ lấy được giá trị của primary key để quản lý entity kế tiếp, dựa vào giá trị id này mới có thể thực hiện câu insert tiếp theo. Vì thế không thể gửi một lần 10 câu query insert xuống db được do tính năng của Batch Insert JDBC.
+	// Tính năng Batch thì thêm các câu query vào Statement thông qua phương thức addBatch rồi gửi chúng xuống db bằng phương thức executeBatch
+	// GenerationType.SEQUENCE: Sequence là một đối tượng trong cơ sở dữ liệu có thể tạo ra các giá trị số duy nhất và tuần tự. Sequence không bị ảnh hưởng bởi các transaction khác nhau và có thể tạo ra các giá trị mới một cách độc lập.
+	// GenerationType.TABLE: nó mô phỏng một sequence bằng cách lưu trữ và cập nhật giá trị tiếp theo của primary key trong một table sử dụng cơ chế pessimistic locks bắt buộc các transaction phải được thực thi theo thứ tự
+Statement statement = connection.createStatement();
+statement.addBatch("INSERT INTO EMPLOYEE(ID, NAME, DESIGNATION) "
+ + "VALUES ('1','EmployeeName','Designation')");
+statement.addBatch("INSERT INTO EMP_ADDRESS(ID, EMP_ID, ADDRESS) "
+ + "VALUES ('10','1','Address')");
+statement.executeBatch();
+
+
+    @Column(name = "mavatlieu")
+    private Integer id;
+// Ánh xạ tới tên column trong table lưu trong database
+
+    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
+// Bên OneToMany, giá trị mappedBy tương ứng với tên biến bên Object có relationship là ManyToOne
+    @JsonManagedReference(value = "material-product")
+// @JsonManagedReference bên Object cha, @JsonBackReference bên Object con để tiến hành chuyển đổi qua lại giữa Json và Object
+    private List<Product> products;
+}
+
+@ToString(exclude = {"material", "category", "cartItemList"})
+Tạo ra một phương thức toString() tự động cho lớp, bao gồm tên lớp và các giá trị của các trường không tĩnh (non-static), không bao gồm các trường static và thuộc exclude
+public class Product implements Serializable {
+    @ManyToOne(fetch = FetchType.EAGER)
+// EAGER có nghĩa là dữ liệu liên quan sẽ được tải ngay lập tức khi thực thể chính được tải từ database
+// LAZY: dữ liệu liên quan sẽ chỉ được tải khi bạn truy cập nó lần đầu tiên. Nếu muốn sử dụng những trường này khi lấy dữ liệu từ database lên thì phải thiết kế câu HQL hay JPQL riêng sử dụng JOIN FETCH để bỏ qua lazy, bắt buộc lấy trường liên quan lên, nếu chỉ sử dụng join thì lazy vẫn được áp dụng.
+// FetchType.LAZY và FetchType.EAGER là tác động lên việc tải dữ liệu từ database lên còn @JsonManagedReference và @JsonBackReference  là tác động lên việc chuyển đổi JSON và Object.
+
+    @JoinColumn(name = "mavatlieu", referencedColumnName = "mavatlieu")
+    @JsonBackReference(value = "material-product")
+// Trường hợp trong 1 class khai báo nhiều @JsonBackReference hoặc nhiều @JsonManagedReference mà không có tên, thì mặc định sẽ tên giống nhau, Jackson sẽ không thể phân biệt sử dụng và loại bỏ trường nào khi chuyển đổi giữa Object và Json, nên phải đặt tên để phân biệt
+    private Material material;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+// cascade sẽ được đặt ở lớp cha, tại trường List<Class con>. Các chế độ thiết lập có ý nghĩa khi object cha bị tác động như nào thì các object con sẽ bị tác động như thế.
+// ALL: tất cả các cascade
+// PERSIST: Tự động lưu các entity liên quan khi entity chính được lưu. Trong Spring data JPA là save nếu entity chưa tồn tại trong database.
+// MERGE: Tự động cập nhật các entity liên quan khi entity chính được cập nhật. Trong Spring data JPA là save nếu entity đã tồn tại trong database.
+// REMOVE: Tự động xóa các entity liên quan khi entity chính bị xóa. Trong Spring data JPA là delete.
+// còn refresh và detach
+    @JsonIgnore
+    private List<InvoiceDetail> invoiceDetails;
+// Trong ví dụ này, 1 Product chứa n invoiceDetails. với đoạn code sau thì khi product được cập nhật thì invoiceDetails cũng được cập nhật
+Product product = productRepository.find(productId);
+product.setName("Updated Product Name");
+
+InvoiceDetail invoiceDetail = product.getInvoiceDetails().get(0);
+invoiceDetail.setName("Updated Child Name");
+
+productRepository.save(product);
+
+}
+
+
+How to convert back and forth between JSON and Object Model
+ObjectMapper objectMapper = new ObjectMapper();
+// List Object to Json
+return objectMapper.writeValueAsString(List<Product> products);
+// Object to Json
+return objectMapper.writeValueAsString(Product);
+// Json to List Object
+List<Product> products = objectMapper.readValue(String json, new TypeReference<List<Product>>() {});
+// Json to Object
+Product product = objectMapper.readValue(String json, Product.class);
+
+@Controller
+// Được sử dụng để xử lý request và trả lại view trong mô hình MVC
+@RestController
+// Được sử dụng để xử lý request và trả lại API
+@Slf4j
+// là annotation trong thư viện Lombok, được dùng để ghi log
+@RequestMapping("/admin/order")
+// để định nghĩa một endpoint cho các yêu cầu HTTP. có nghĩa là khi request được gửi đến đường dẫn này thì phương thức tương ứng sẽ được gọi để xử lý yêu cầu {GET, POST, PUT, DELETE}
+@Autowired
+// Annotation này có tác dụng tự động tiêm (inject). Nói rõ hơn là khi một biến được gắn với annotation này, Spring Framework sẽ tự động đi tìm xem có bean nào có kiểu dữ liệu trùng với kiểu dữ liệu của biến đó. Các bean này có thể được định nghĩa bằng các annotation như @Service, @Repository, @Component, hoặc là các phương thức trả về kiểu dữ liệu này được đánh dấu @Bean trong các class được đánh dấu @Configuration. Nếu tìm thấy, Spring sẽ tự động tiêm instance của bean đó vào biến
+ 
+@GetMapping/ @PostMapping/ @PutMapping/ @DeleteMapping
+// ứng với 4 method để gọi server. được sử dụng để ánh xạ các yêu cầu HTTP đến các phương thức xử lý cụ thể trong controller.
+// server của mình cũng hơi được gọi là server restful vì:
+	// sử dụng các phương thức HTTP như GET, POST, PUT, DELETE để thực hiện các thao tác CRUD (Create, Read, Update, Delete) trên tài nguyên.
+	// Tài nguyên trong RESTful được đại diện bằng các URL. Mỗi URL đại diện cho một tài nguyên cụ thể như css, js, image.
+	// Stateless: Mỗi yêu cầu từ client đến server phải chứa đủ thông tin để server hiểu và xử lý yêu cầu. Server không lưu trữ trạng thái của client giữa các yêu cầu. Web mình sử dụng jwt token, cấu hình stateless trong spring security
+	// sài json khi giao tiếp với redis
+
+
+@PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER', 'VIEW_ORDER')")
+// PreAuthorize: kiểm tra xem quyền của người dùng hiện tại có đủ điều kiện để thực thi phương thức sau không.
+// hasAnyRole: kiểm tra người dùng hiện tại có vai trò nào trong số 'ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF'
+// hasAnyAuthority: kiểm tra xem người dùng hiện tại có bất kỳ quyền nào trong số các quyền FULL_ACCESS_ORDER hoặc VIEW_ORDER hay không
+// phải là một trong 3 role và 1 trong 2 quyền thì mới thực hiện được request này
+
+@RequestParam(defaultValue = "5") int sortType
+//  để lấy giá trị của tham số từ URL query string (sau dấu ?) và gán nó cho một biến trong phương thức xử lý yêu cầu
+
+@ModelAttribute Order order
+// ràng buộc dữ liệu từ các yêu cầu HTTP vào các Object của MVC. Trong thymeleaf thì phải kết hợp với th:object="${MyModel}" trong <form>, method post thường được ưu tiên dùng nhất.
+
+@Value(value = "1111")
+private int customAnnotaion;
+// @Value ngoài có tác dụng gán giá trị cho một biến, nó còn có tác dụng lấy dữ liệu được quy định qua file application.properties. @Value("${spring.data.redis.host}")
+
+@RequestParam("avatarFile") MultipartFile avatarFile
+// MultipartFile là một interface trong Spring, đại diện cho một tệp tin được tải lên trong một yêu cầu HTTP. Khi gửi <form> phải kết hợp với enctype="multipart/form-data"
+
+@GetMapping("/getModel/{id}")
+public MyModel getModelById(@PathVariable int id)
+// lấy dữ liệu từ url
+
+@Configuration
+public class RedisConfiguration
+@Bean
+// @Bean phải được định nghĩa trong class có gắn @Configuration để @Autowired mới có thể quét được những @Bean có kiểu dữ liệu trả về tương ứng được.
+
+@Configuration
+// Annotation này cho Spring biết rằng lớp này chứa các cấu hình bean.
+@EnableWebSecurity
+// Annotation này kích hoạt tính năng bảo mật web của Spring Security. Nó cho phép bạn cấu hình bảo mật cho các yêu cầu HTTP, như xác thực và phân quyền trên class này.
+@RequiredArgsConstructor
+// Annotation này từ Lombok tự động tạo constructor cho tất cả các trường final hoặc các trường được đánh dấu với @NonNull. Điều này giúp giảm bớt mã boilerplate: trùng lặp code
+@EnableMethodSecurity
+// Annotation này kích hoạt bảo mật ở cấp độ phương thức. Nó cho phép bạn sử dụng các annotation như @PreAuthorize, @PostAuthorize, @Secured, và @RolesAllowed để kiểm soát truy cập vào các phương thức cụ thể
+public class SecurityConfig
+
+public class JwtFilter extends OncePerRequestFilter
+@Override
+// OncePerRequestFilter là một lớp cơ bản trong Spring, đảm bảo rằng bộ lọc chỉ được thực thi một lần cho mỗi yêu cầu HTTP. 
+// @Override: Annotation này được sử dụng để ghi đè một phương thức từ lớp cha
+
+Session is used by Spring Security vs Session in Controller
+.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) >< session.setAttribute("admin", authenticateResponse.getUser());
+the time out default of Controller's session is 30 minutes. That time is set in application.properties: spring.session.timeout=30m
+
+
+Compare @Autowired vs {@RequiredArgsConstructor and final}
+// @Autowired: tự tìm @Bean có kiểu dữ liệu tương ứng rồi tiêm cho biến được gắn annotation này. Tuy nhiên, việc kiểm tra khá khó khăn do không biết bean này nằm ở đâu, và cũng không phải final nên có thể bị thay đổi khi thực hiện các request khác.
+// @RequiredArgsConstructor and final: cần kết hợp với constuctor của class đó, nếu biến final là một interface, nó sẽ đi tìm class implement interface này có gắn @Service để tạo bean rồi gắn cho biến final hoặc có tác dụng như @Autowrired. Trong trường hợp có nhiều class implement interface này thì sử dụng @Qualifier("[name of service]") cho class implement và khi sử dụng thì trong constructor của class, khai báo như định dạng 
+public MyController(@Qualifier("name of service") MyService myService) {
+        this.myService = myService;
+    }
+
+persistence data là những dữ liệu lưu trong database. những dữ liệu này cần được lưu lâu dài.
+persistence là những cách quản lý, truy cập những dữ liệu đó.
+jdbc là một bộ phận thực thi những câu sql thô. những câu sql này chứa tên bảng giống với tên lưu trong database.
+orm là một phương pháp thực thi những câu lệnh sql nhưng không cần tên table phải giống trên database, nó sẽ ánh xạ tên object trên source code với tên table lưu trên database.
+hibernate là một framework ORM mà java cung cấp. hibernate thực thi những câu HQL, chứa tên của object hoặc những câu sql thô.
+spring data jpa là một lớp trừu tượng mà jpa cung cấp, nó có chức năng chính là từ tên hàm sinh ra SQL/ JPQL query. và hibernate sẽ thực thi những câu lệnh sql này.
+JPA là một bản vẽ, thể hiện cách quản lý, lữu trữ những object mà ánh xạ với các table trong database. JPA có hệ thống các @Annotation để định nghĩa các Class để ánh xạ với table trong database mà không bị sai sót. Nói rõ ra JPA là tập hợp những nguyên tắc, bản thân nó là tập hợp các interface mà hibernate phải tuân theo, implement các interface này
+
+	

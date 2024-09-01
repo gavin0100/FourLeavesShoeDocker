@@ -28,6 +28,13 @@ public class ControllerMVC {
         System.out.println("a customed annotaion: " + customAnnotaion);
         List<MyModel> modelList = service.getAllModelInterView();
         model.addAttribute("models", modelList);
+//        MyModelInterface myModelInterface = new MyModel();
+//        System.out.println(myModelInterface.getUserName());
+//        System.out.println(myModelInterface.getPassword());
+//        MyModelInterface myModelInterface =  service.testInterface();
+//        System.out.println(myModelInterface);
+//        MyModel myModel2 = (MyModel) myModelInterface;
+//        System.out.println(myModel2);
         return "test/template/test_default_page";
     }
     @PostMapping("/mvc/editModel")

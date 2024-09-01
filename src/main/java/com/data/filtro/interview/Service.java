@@ -68,5 +68,9 @@ public class Service {
             log.error("Failed to upload file: " + e.getMessage());
         }
     }
+    public MyModelInterface testInterface(){
+        return new MyModel(1, "a", false, "link");
+    }
+
 
 }

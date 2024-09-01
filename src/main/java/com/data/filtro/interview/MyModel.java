@@ -13,11 +13,21 @@ import org.springframework.data.redis.core.RedisHash;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MyModel {
+public class MyModel implements MyModelInterface{
     @Id
     private int id;
     private String name;
     private boolean status;
 
     private String avatar;
+
+    @Override
+    public String getUserName() {
+        return "user name my model";
+    }
+
+    @Override
+    public String getPassword() {
+        return "password my model";
+    }
 }

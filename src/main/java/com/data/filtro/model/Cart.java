@@ -3,10 +3,7 @@ package com.data.filtro.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 
@@ -20,6 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "user")
 public class Cart implements Serializable {
 
     @Id

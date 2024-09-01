@@ -86,10 +86,7 @@ public class LoginController {
             return "redirect:/login";
         }
         try {
-//            System.out.println("dang nhap");
             AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password, session);
-//            User user = userService.authenticateUser(accountName, password);
-//            System.out.println(user.getName());
             session.setAttribute("user", authenticateResponse.getUser());
             Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
             cookie.setHttpOnly(true);
@@ -105,7 +102,6 @@ public class LoginController {
             return "redirect:/";
         } catch (AuthenticationAccountException exception) {
             exception.printStackTrace();
-//            System.out.println(exception.getMessage());
             model.addAttribute("message", "Tên tài khoản hoặc mật khẩu không đúng!");
             String _csrfToken = generateRandomString();
             csrfToken = _csrfToken;

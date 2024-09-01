@@ -1,6 +1,7 @@
 package com.data.filtro.config;
 
 import com.data.filtro.authentication.JwtService;
+import com.data.filtro.model.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,15 +30,18 @@ public class JwtFilter extends OncePerRequestFilter {
     private final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsService userDetailsService;
     private  final JwtService jwtService;
+    private int temp = 0;
+    private boolean tempbool = false;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
-//        System.out.println(request.getRequestURL());
+//        System.out.println("tempbool: " + tempbool + " " + request.getRequestURI());
         if (path.startsWith("/css/") || path.startsWith("/javascript/") || path.startsWith("/image/") || path.startsWith("/login") || path.startsWith("/img/") || path.startsWith("/access-denied")) {
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
             filterChain.doFilter(request, response);
             return;
         }
+
 
         String jwt = "";
         String accountName = "";
@@ -58,7 +62,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
-
             if(jwtService.isValidToken(jwt, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
@@ -66,9 +69,21 @@ public class JwtFilter extends OncePerRequestFilter {
                         userDetails.getAuthorities()
                 );
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                // lưu những thông tin chi tiết vào SecurityContextHolder như thông tin địa chỉ IP, session ID của request gửi yêu cầu có token mà context holder không chứa thông tin
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+//                System.out.println("SecurityContextHolder chứa thông tin: " + temp +
+//                        SecurityContextHolder.getContext().getAuthentication().getCredentials() +
+//                        SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
+//                        SecurityContextHolder.getContext().getAuthentication().getAuthorities() );
             }
         }
+        System.out.println("SecurityContextHolder chứa thông tin: " +
+                SecurityContextHolder.getContext().getAuthentication().getCredentials() +
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
+                SecurityContextHolder.getContext().getAuthentication().getAuthorities() );
+
+
+        temp = temp + 1;
         filterChain.doFilter(request, response);
     }
 }

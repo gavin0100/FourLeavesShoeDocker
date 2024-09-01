@@ -36,6 +36,7 @@ public class SecurityConfig{
         return new CustomAccessDeniedHandler();
     }
 
+
 //    private final LogoutHandler logoutHandler;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -65,7 +66,7 @@ public class SecurityConfig{
                                         "/app-minio/**"
 
                                 ).permitAll()
-                                .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**").permitAll()
+                                .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .exceptionHandling()
@@ -85,7 +86,6 @@ public class SecurityConfig{
                                     oauth2.defaultSuccessUrl("/user_google_hihi", true);
                                 });
                     } catch (Exception e) {
-                        System.out.println("Lỗi truy cập xử lý html");
                         throw new RuntimeException(e);
                     }
                 })

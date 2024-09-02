@@ -3,9 +3,11 @@ package com.data.filtro.config;
 import com.data.filtro.handler.FilterExceptionHandler;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -31,6 +34,9 @@ public class SecurityConfig{
 
     private final JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @Bean
     public CustomAccessDeniedHandler accessDeniedHandler(){
         return new CustomAccessDeniedHandler();
@@ -40,6 +46,8 @@ public class SecurityConfig{
 //    private final LogoutHandler logoutHandler;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        CustomUsernamePasswordAuthenticationFilter customFilter = new CustomUsernamePasswordAuthenticationFilter(authenticationManager);
+        customFilter.setAuthenticationSuccessHandler(new CustomAuthenticationSuccessHandler());
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(ahr -> {
@@ -89,11 +97,13 @@ public class SecurityConfig{
                         throw new RuntimeException(e);
                     }
                 })
+                .formLogin().disable()
+                .addFilter(customFilter)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
+
         // session nếu không bị khóa thì spring security sẽ chuyển sang sài session mặc định để lưu thông tin,
         // nhưng quyền jwt thì lại được lưu trong cookie, điều này lại gây sự cố
         // nhưng mà nếu session bị khóa, thì hệ thống phân quyền hoạt động bình thường nhưng oauth lại trả về null user

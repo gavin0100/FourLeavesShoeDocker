@@ -11,6 +11,7 @@ import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.apache.hc.core5.ssl.TrustStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -57,6 +58,8 @@ public class ApplicationConfig {
         dao.setPasswordEncoder(passwordEncoder());
         return dao;
     }
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){

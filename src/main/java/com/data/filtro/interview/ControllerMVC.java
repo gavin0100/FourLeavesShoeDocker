@@ -3,6 +3,7 @@ package com.data.filtro.interview;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,10 @@ public class ControllerMVC {
 //        System.out.println(myModelInterface);
 //        MyModel myModel2 = (MyModel) myModelInterface;
 //        System.out.println(myModel2);
+        System.out.println("SecurityContextHolder chứa thông tin: " +
+                SecurityContextHolder.getContext().getAuthentication().getCredentials() +
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
+                SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         return "test/template/test_default_page";
     }
     @PostMapping("/mvc/editModel")

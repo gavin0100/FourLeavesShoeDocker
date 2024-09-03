@@ -42,7 +42,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/img/") ||
                 path.startsWith("/access-denied") ||
                 path.startsWith("/product/img") ||
-                path.startsWith("/") ||
+                path.equals("/") ||
                 path.startsWith("/product/") ||
                 path.startsWith("/cart") ||
                 path.startsWith("/category/") ||
@@ -52,11 +52,13 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/app-minio") ||
                 path.startsWith("/contact") ||
                 path.startsWith("/admin/login") ||
-                path.startsWith("/forgot-password")) {
+                path.startsWith("/forgot-password") ||
+                path.startsWith("/favicon.ico")) {
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
             filterChain.doFilter(request, response);
             return;
         }
+        System.out.println(path);
         String jwt = "";
         String accountName = "";
         if (request.getCookies() != null){
@@ -64,20 +66,19 @@ public class JwtFilter extends OncePerRequestFilter {
                 if (request.getCookies()[i].getName().equals("fourleavesshoestoken")){
                     try{
                         jwt = request.getCookies()[i].getValue();
-                        if(jwt.equals("")){
-//                        filterChain.doFilter(request, response);
-                        }
                         accountName = jwtService.extractUsername(jwt);
                         break;
                     } catch (Exception ex){
-                        throw new MyServletException("JWT is empty", null, false, false);
+                        throw new MyServletException("Can't get accountName from JWT or JWT is empty", null, false, false);
                     }
 
                 }
             }
         }
 
-
+        if (jwt.equals("") || jwt== null){
+            throw new MyServletException("Token doesn't exist", null, false, false);
+        }
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
@@ -94,6 +95,9 @@ public class JwtFilter extends OncePerRequestFilter {
 //                        SecurityContextHolder.getContext().getAuthentication().getCredentials() +
 //                        SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
 //                        SecurityContextHolder.getContext().getAuthentication().getAuthorities() );
+
+            } else {
+                throw new MyServletException("Token is not valid", null, false, false);
             }
         }
         System.out.println("SecurityContextHolder chứa thông tin: " +

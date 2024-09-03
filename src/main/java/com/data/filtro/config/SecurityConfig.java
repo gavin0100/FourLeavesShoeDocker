@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -35,7 +36,7 @@ public class SecurityConfig{
     private final FilterExceptionHandler filterExceptionHandler;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private  AuthenticationManager authenticationManager;
 
     @Bean
     public CustomAccessDeniedHandler accessDeniedHandler(){
@@ -83,7 +84,7 @@ public class SecurityConfig{
                                 .anyRequest().authenticated()
                                 .and()
                                 .exceptionHandling()
-                                .authenticationEntryPoint(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
+                                .accessDeniedHandler(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
 //                                .and()
 //                                .logout() // neu da dang ky ngoai nay thi may cai viet trong controler logout khong duoc thuc hien
 //                                .invalidateHttpSession(true)

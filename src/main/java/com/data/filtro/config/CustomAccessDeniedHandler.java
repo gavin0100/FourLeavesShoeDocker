@@ -14,15 +14,14 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import java.io.IOException;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler, AuthenticationEntryPoint {
-    private JwtService jwtService;
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        response.sendRedirect("/access-denied");
+        response.sendRedirect("/");
     }
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        response.sendRedirect("/access-denied");
+        response.sendRedirect("/");
     }
 }

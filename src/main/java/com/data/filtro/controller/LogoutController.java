@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LogoutController {
     @GetMapping
     public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("vao logout");
         String sessionAccount = "";
         if (session.getAttribute("user") != null){
             sessionAccount = "user";

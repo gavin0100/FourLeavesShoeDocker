@@ -15,6 +15,7 @@ import org.apache.hc.client5.http.utils.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -45,7 +46,8 @@ public class MomoService {
 
     private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
     private final String RETURN_URL = "http://localhost:8080/user/billing";
-    private final String IPN_API = "https://825ff40ad9afc67af10b4bfc8cd26148.serveo.net";
+    @Value("${spring.data.payment.serveo_link}")
+    private final String IPN_API;
 
     private final Environment env;
     private final CartService cartService;
@@ -59,6 +61,7 @@ public class MomoService {
     public MomoResponse createMomoOrder(Order order){
         System.out.println("truy cap vao create Momo order");
         String endpoint = MOMO_API + "/create";
+        logger.info(endpoint);
         MomoRequest momoRequest = momoRequest(order);
         return processMomoOrder(endpoint, momoRequest);
     }
@@ -179,19 +182,21 @@ public class MomoService {
         }
         System.out.println("sau khi chuyen dto");
         String orderName = order.getOrder_code() + " " + order.getUser().getAccountName();
+        logger.info(env.getProperty("application.security.momo.partner-code"));
+
         MomoRequest momoRequest = MomoRequest.builder()
-                .partnerCode(env.getProperty("application.security.momo.partner-code"))
-                .partnerName("TEST")
-                .storeName("FOUR-LEAVES-SHOE")
-                .requestType("captureWallet")
-                .redirectUrl(RETURN_URL)
-                .ipnUrl(IPN_API + "/api/v1/momo/webhook/ipn")
-                .requestId(UUID.randomUUID().toString())
-                .amount(Long.valueOf(order.getTotal() * 24000))
-                .lang("vi")
-                .orderId(order.getOrder_code())
-                .orderInfo("Thanh toán đơn hàng bằng MOMO")
-                .extraData(Base64.encodeBase64String(orderName.getBytes()))
+                .partnerCode(env.getProperty("application.security.momo.partner-code")) // giống username gửi request tới momo
+                .partnerName("TEST")  // lựa chọn môi trường test momo
+                .storeName("FOUR-LEAVES-SHOE") // tên cửa hàng trên momo
+                .requestType("captureWallet") // bạn đang yêu cầu thực hiện một giao dịch thanh toán qua ví MoMo
+                .redirectUrl(RETURN_URL) // đường dẫn trả về khi thanh toán thành công
+                .ipnUrl(IPN_API + "/api/v1/momo/webhook/ipn")  // đường dẫn trả về để momo trả dữ liệu về
+                .requestId(UUID.randomUUID().toString()) // tạo id cho request tới momo
+                .amount(Long.valueOf(order.getTotal() * 24000))  // tổng tiền trên momo
+                .lang("vi") // mã ngôn ngữ đại diện cho tiếng Việt.
+                .orderId(order.getOrder_code()) // mã đơn hàng
+                .orderInfo("Thanh toán đơn hàng bằng MOMO") // mô tả trên momo
+                .extraData(Base64.encodeBase64String(orderName.getBytes())) //mã đơn hàng trên momo
                 .build();
 
         String rawSignature = "accessKey=" + env.getProperty("application.security.momo.access-key")
@@ -204,30 +209,32 @@ public class MomoService {
         momoRequest.setSignature(signature);
 
         List<MomoItems> momoItems = new ArrayList<>();
+        int sumOfQuantity = 0;
         for(OrderDetailDto od : orderDetailDtos){
             MomoItems momoItem = MomoItems.builder()
-                    .id(od.getIdProductDetail().toString())
-                    .name(od.getProductName())
-                    .imageUrl(od.getUrlImage())
-                    .price(Long.valueOf(od.getPrice()))
-                    .currency("VND")
-                    .quantity(od.getQuantity())
-                    .totalPrice(Long.valueOf(od.getTotal()))
+                    .id(od.getIdProductDetail().toString()) // id sản phẩm
+                    .name(od.getProductName()) // tên sản phẩm
+                    .imageUrl(od.getUrlImage()) // đường dẫn hình ảnh sản phẩm
+                    .price(Long.valueOf(od.getPrice())) //  // giá từng sản phẩm
+                    .currency("VND") // đơn vị tiền
+                    .quantity(od.getQuantity()) // số lượng
+                    .totalPrice(Long.valueOf(od.getTotal())) // tổng giá tiền của sản phẩm
                     .build();
+            sumOfQuantity += od.getQuantity();
             momoItems.add(momoItem);
         }
         momoRequest.setItems(momoItems);
         MomoUserInfo momoUserInfo = MomoUserInfo.builder()
-                .name(orderName)
-                .email(order.getEmail())
-                .phoneNumber(order.getPhoneNumber())
+                .name(orderName)  //mã đơn hàng
+                .email(order.getEmail()) // email ng dùng
+                .phoneNumber(order.getPhoneNumber()) // số điện thoại
                 .build();
         momoRequest.setUserInfo(momoUserInfo);
 
         MomoDeliveryInfo momoDeliveryInfo = MomoDeliveryInfo.builder()
-                .deliveryAddress(order.getAddress())
-                .deliveryFee(String.valueOf(0))
-                .quantity(String.valueOf(momoRequest.getItems().size()))
+                .deliveryAddress(order.getAddress())  // địa chỉ đơn hàng
+                .deliveryFee(String.valueOf(0)) // phí vận chuyển 0đ
+                .quantity(String.valueOf(sumOfQuantity)) // số lượng loại sản phẩm
                 .build();
         momoRequest.setDeliveryInfo(momoDeliveryInfo);
         return momoRequest;

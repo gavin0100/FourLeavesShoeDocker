@@ -54,6 +54,8 @@ spring:
     app:
       resetTopSellingProductByDays: ${RESET_TOP_SELLING_PRODUCTS_BY_DAYS:1}
       resetTopSellingProductByHours: ${RESET_TOP_SELLING_PRODUCTS_BY_HOURS:0}
+    payment:
+      serveo_link: ${SERVEO_LINK:https://825ff40ad9afc67af10b4bfc8cd26148.serveo.net}
 twilio:
   AccountSid: AC8c8c886543a259ef1c32a52428752846
   AuthToken: ${{ secrets.TWILIO}}

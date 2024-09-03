@@ -35,29 +35,31 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
-//        System.out.println("tempbool: " + tempbool + " " + request.getRequestURI());
-        if (path.startsWith("/css/") || path.startsWith("/javascript/") || path.startsWith("/image/") || path.startsWith("/login") || path.startsWith("/img/") || path.startsWith("/access-denied")) {
+        if (path.startsWith("/css/") || path.startsWith("/javascript/") || path.startsWith("/image/") || path.startsWith("/login") || path.startsWith("/img/") || path.startsWith("/access-denied") || path.startsWith("/product/img")) {
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
             filterChain.doFilter(request, response);
             return;
         }
-
-
         String jwt = "";
         String accountName = "";
         if (request.getCookies() != null){
             for (int i =0; i < request.getCookies().length; i++){
                 if (request.getCookies()[i].getName().equals("fourleavesshoestoken")){
-                    jwt = request.getCookies()[i].getValue();
-                    accountName = jwtService.extractUsername(jwt);
-                    break;
+                    try{
+                        jwt = request.getCookies()[i].getValue();
+                        if(jwt.equals("")){
+//                        filterChain.doFilter(request, response);
+                        }
+                        accountName = jwtService.extractUsername(jwt);
+                        break;
+                    } catch (Exception ex){
+                        throw new MyServletException("JWT is empty", null, false, false);
+                    }
+
                 }
             }
         }
-        if(jwt.equals("")){
-            filterChain.doFilter(request, response);
-            return;
-        }
+
 
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){

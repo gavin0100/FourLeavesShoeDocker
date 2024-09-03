@@ -5,6 +5,7 @@ import com.data.filtro.model.Category;
 import com.data.filtro.model.Product;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +26,7 @@ public class HomeController {
     BaseRedisService baseRedisService;
 
     @GetMapping
-    public String home(Model model) {
-
+    public String home(HttpServletRequest request, Model model) {
 
         List<Product> productTopSellingList = productService.getTopSellingProducts();
         List<Product> product6thList = productService.getSixthProducts();

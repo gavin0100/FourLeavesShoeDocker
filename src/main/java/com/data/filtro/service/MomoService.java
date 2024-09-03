@@ -109,7 +109,7 @@ public class MomoService {
 
     private boolean verifyAmount(MomoIPN momoIPN){
         Order order = orderService.getOrderByOrderCode(momoIPN.getOrderId());
-        return String.valueOf(order.getTotal()).equals(String.valueOf(momoIPN.getAmount()/24000));
+        return String.valueOf(order.getTotal()).equals(String.valueOf(momoIPN.getAmount()));
     }
 
     private void updateOrderStatus(MomoIPN momoIPN){
@@ -192,7 +192,7 @@ public class MomoService {
                 .redirectUrl(RETURN_URL) // đường dẫn trả về khi thanh toán thành công
                 .ipnUrl(IPN_API + "/api/v1/momo/webhook/ipn")  // đường dẫn trả về để momo trả dữ liệu về
                 .requestId(UUID.randomUUID().toString()) // tạo id cho request tới momo
-                .amount(Long.valueOf(order.getTotal() * 24000))  // tổng tiền trên momo
+                .amount(Long.valueOf(order.getTotal()))  // tổng tiền trên momo
                 .lang("vi") // mã ngôn ngữ đại diện cho tiếng Việt.
                 .orderId(order.getOrder_code()) // mã đơn hàng
                 .orderInfo("Thanh toán đơn hàng bằng MOMO") // mô tả trên momo

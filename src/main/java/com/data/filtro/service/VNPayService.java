@@ -128,7 +128,7 @@ public class VNPayService {
     private boolean verifyAmount(VNPIPN vnpipn){
         Order order = orderService.getOrderByOrderCode(vnpipn.getVnp_TxnRef());
         if(order != null){
-                return order.getTotal() == Integer.parseInt(vnpipn.getVnp_Amount())/(100*24000);
+                return order.getTotal() == Integer.parseInt(vnpipn.getVnp_Amount())/(100);
         }
         return false;
     }
@@ -200,7 +200,7 @@ public class VNPayService {
         VNPRequest request = VNPRequest.builder()
                 .vnp_Version("2.1.0")
                 .vnp_Command("pay")
-                .vnp_Amount(String.valueOf(order.getTotal()*100*24000)) // tổng giá tiền
+                .vnp_Amount(String.valueOf(order.getTotal()*100)) // tổng giá tiền
                 .vnp_TxnRef(order.getOrder_code()) // mã đơn hàng bằng order_id và account name
                 .vnp_BankCode("")
                 .vnp_IpAddr(getIpAddress(req)) //

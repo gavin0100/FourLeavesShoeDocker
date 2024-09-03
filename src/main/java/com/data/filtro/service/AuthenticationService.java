@@ -67,7 +67,6 @@ public class AuthenticationService {
 
     public AuthenticateResponse authenticate(Authentication authentication){
         User user = (User) authentication.getPrincipal();
-//        User user = userService.getUserByAccountName(accountName);
         String token = jwtService.generateToken(user);
         AuthenticateResponse authenticateResponse = new AuthenticateResponse();
         authenticateResponse.setAccessToken(token);

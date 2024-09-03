@@ -1,15 +1,17 @@
 package com.data.filtro.config;
 
 import com.data.filtro.authentication.JwtService;
-import com.data.filtro.model.User;
+import com.data.filtro.model.AuthenticateResponse;
+import com.data.filtro.service.AuthenticationService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,19 +21,25 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Arrays;
-
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Slf4j
 public class JwtFilter extends OncePerRequestFilter {
     private final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsService userDetailsService;
-    private  final JwtService jwtService;
+    private final JwtService jwtService;
+
+    private final AuthenticationService authenticationService;
     private int temp = 0;
     private boolean tempbool = false;
+
+    public JwtFilter(UserDetailsService userDetailsService, JwtService jwtService, @Lazy AuthenticationService authenticationService) {
+        this.userDetailsService = userDetailsService;
+        this.jwtService = jwtService;
+        this.authenticationService = authenticationService;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
@@ -55,6 +63,19 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/forgot-password") ||
                 path.startsWith("/favicon.ico")) {
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
+            filterChain.doFilter(request, response);
+            return;
+        }
+        // khi respone gửi momo, vnpay về thông qua ipn thì token fourleavesshoestoken của mình đã bị xóa,
+        // tuy nhiên các yêu cầu khi nhận respone thông qua ipn vẫn làm đủ. nhưng khi trả về trang user-billing thì không có token,
+        // nên giờ phải thêm lại
+        if (path.startsWith("/user/billing") && SecurityContextHolder.getContext().getAuthentication() != null){
+            AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
+            Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
+            cookie.setHttpOnly(true);
+            cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
+            response.addCookie(cookie);
+            response.sendRedirect("/user/billing");
             filterChain.doFilter(request, response);
             return;
         }

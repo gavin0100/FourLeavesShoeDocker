@@ -47,7 +47,7 @@ public class MomoService {
     private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
     private final String RETURN_URL = "http://localhost:8080/user/billing";
     @Value("${spring.data.payment.serveo_link}")
-    private final String IPN_API;
+    private String IPN_API;
 
     private final Environment env;
     private final CartService cartService;

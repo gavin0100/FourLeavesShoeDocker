@@ -36,6 +36,7 @@ public class SecurityConfig{
     private final FilterExceptionHandler filterExceptionHandler;
 
     @Autowired
+    @Lazy
     private  AuthenticationManager authenticationManager;
 
     @Bean

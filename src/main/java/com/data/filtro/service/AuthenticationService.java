@@ -24,7 +24,6 @@ public class AuthenticationService {
     private final UserService userService;
     private final JwtService jwtService;
 
-    @Lazy
     private final AuthenticationManager manager;
 
 

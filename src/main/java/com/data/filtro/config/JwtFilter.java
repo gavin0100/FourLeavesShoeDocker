@@ -35,7 +35,24 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
-        if (path.startsWith("/css/") || path.startsWith("/javascript/") || path.startsWith("/image/") || path.startsWith("/login") || path.startsWith("/img/") || path.startsWith("/access-denied") || path.startsWith("/product/img")) {
+        if (path.startsWith("/css/") ||
+                path.startsWith("/javascript/") ||
+                path.startsWith("/image/") ||
+                path.startsWith("/login") ||
+                path.startsWith("/img/") ||
+                path.startsWith("/access-denied") ||
+                path.startsWith("/product/img") ||
+                path.startsWith("/") ||
+                path.startsWith("/product/") ||
+                path.startsWith("/cart") ||
+                path.startsWith("/category/") ||
+                path.startsWith("/register") ||
+                path.startsWith("/api/") ||
+                path.startsWith("/test") ||
+                path.startsWith("/app-minio") ||
+                path.startsWith("/contact") ||
+                path.startsWith("/admin/login") ||
+                path.startsWith("/forgot-password")) {
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
             filterChain.doFilter(request, response);
             return;

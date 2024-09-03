@@ -183,18 +183,18 @@ public class VNPayService {
 //    }
 
     private String vnpRequest(Order order, HttpServletRequest req){
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String vnp_CreateDate = dateFormat.format(calendar.getTime());
-        calendar.add(Calendar.MINUTE, 15);
-        String vnp_ExpireDate = dateFormat.format(calendar.getTime());
-
-//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
+//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//        calendar.add(Calendar.HOUR_OF_DAY, 7);
 //        String vnp_CreateDate = dateFormat.format(calendar.getTime());
 //        calendar.add(Calendar.MINUTE, 15);
 //        String vnp_ExpireDate = dateFormat.format(calendar.getTime());
+
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        calendar.add(Calendar.HOUR_OF_DAY, 14);
+        String vnp_CreateDate = dateFormat.format(calendar.getTime());
+        calendar.add(Calendar.MINUTE, 15);
+        String vnp_ExpireDate = dateFormat.format(calendar.getTime());
         // phải thêm 7 tiếng vì giờ của server thuê là ở múi giờ 0, còn vnpay là +7.
 
         VNPRequest request = VNPRequest.builder()

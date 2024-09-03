@@ -40,6 +40,8 @@ public class FilterExceptionHandler extends OncePerRequestFilter {
             handleMalformedJwtException(request,response);
         }catch (SignatureException se){
             handleSignatureException(request,response);
+        }catch (AccessDeniedException ac){
+            response.sendRedirect("/");
         }
     }
 

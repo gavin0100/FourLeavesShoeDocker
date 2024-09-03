@@ -22,7 +22,8 @@ public class AccessDeniedProcession {
     @ExceptionHandler(value = AccessDeniedException.class)
     public void accessDenied(HttpServletResponse response) throws IOException, MyServletException {
         System.out.println("AccessDeniedProcession được gọi");
-        response.sendRedirect("/");
+//        response.sendRedirect("/");
 //        throw new MyServletException("từ chối truy cập", null, false, false);
+        throw new AccessDeniedException("không có quyền truy cập");
     }
 }

@@ -38,8 +38,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Unit Test
-      run: mvn --batch-mode package
+#    - name: Unit Test
+#      run: mvn --batch-mode clean test
     - name: Test with Maven
       run: mvn -B test --file pom.xml
     - name: Build with Maven

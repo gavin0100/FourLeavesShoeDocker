@@ -45,7 +45,7 @@ public class MomoService {
 //    private final String IPN_API = "https://shoeselling-fourleavesshoes.onrender.com";
 
     private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
-    private final String RETURN_URL = "http://localhost:8080/user/billing";
+//    private final String RETRN_URL = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login";
     @Value("${spring.data.payment.serveo_link}")
     private String IPN_API;
 
@@ -183,13 +183,15 @@ public class MomoService {
         System.out.println("sau khi chuyen dto");
         String orderName = order.getOrder_code() + " " + order.getUser().getAccountName();
         logger.info(env.getProperty("application.security.momo.partner-code"));
-
+//        String fullReturnUrl = RETURN_URL + "?username=" + order.getUser().getAccountName();
+        String fullReturnUrl = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login" + "?username=" + order.getUser().getAccountName();
+        // khi response gửi từ vnpay hay momo về thì mất token, session, không vào lại web với quyền truy cập được
         MomoRequest momoRequest = MomoRequest.builder()
                 .partnerCode(env.getProperty("application.security.momo.partner-code")) // giống username gửi request tới momo
                 .partnerName("TEST")  // lựa chọn môi trường test momo
                 .storeName("FOUR-LEAVES-SHOE") // tên cửa hàng trên momo
                 .requestType("captureWallet") // bạn đang yêu cầu thực hiện một giao dịch thanh toán qua ví MoMo
-                .redirectUrl(RETURN_URL) // đường dẫn trả về khi thanh toán thành công
+                .redirectUrl(fullReturnUrl) // đường dẫn trả về khi thanh toán thành công
                 .ipnUrl(IPN_API + "/api/v1/momo/webhook/ipn")  // đường dẫn trả về để momo trả dữ liệu về
                 .requestId(UUID.randomUUID().toString()) // tạo id cho request tới momo
                 .amount(Long.valueOf(order.getTotal()))  // tổng tiền trên momo

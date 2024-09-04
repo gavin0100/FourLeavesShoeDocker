@@ -74,4 +74,13 @@ public class AuthenticationService {
         return authenticateResponse;
     }
 
+    public AuthenticateResponse authenticateWithOnlyAccountName(String accountName){
+        User user = userService.getUserByAccountName(accountName);
+        String token = jwtService.generateToken(user);
+        AuthenticateResponse authenticateResponse = new AuthenticateResponse();
+        authenticateResponse.setAccessToken(token);
+        authenticateResponse.setUser(user);
+        return authenticateResponse;
+    }
+
 }

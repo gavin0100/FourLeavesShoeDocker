@@ -1,13 +1,11 @@
 package com.data.filtro.controller.user;
 
 import com.data.filtro.exception.AuthenticationAccountException;
-import com.data.filtro.model.Account;
-import com.data.filtro.model.Order;
-import com.data.filtro.model.User;
+import com.data.filtro.model.*;
 import com.data.filtro.model.payment.OrderStatus;
-import com.data.filtro.service.AccountService;
-import com.data.filtro.service.OrderService;
-import com.data.filtro.service.UserService;
+import com.data.filtro.service.*;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,12 @@ public class UserController {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    AuthenticationService authenticationService;
+
+    @Autowired
+    CartService cartService;
 
 
     @GetMapping
@@ -118,6 +122,24 @@ public class UserController {
         }
         return "user/boot1/user-security";
     }
+    @GetMapping("/billing/reset_login")
+    public String resetLogin(@RequestParam("username") String accountName, HttpSession session, HttpServletResponse response){
+        System.out.println("/billing/reset_login");
+        AuthenticateResponse authenticateResponse = authenticationService.authenticateWithOnlyAccountName(accountName);
+        session.setAttribute("user", authenticateResponse.getUser());
+        Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
+        cookie.setHttpOnly(true);
+        cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
+        response.addCookie(cookie);
+        Cart cart = cartService.getCurrentCartByUserId(authenticateResponse.getUser().getId());
+        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
+        if (guestCart != null) {
+            cart = cartService.convertGuestCartToCart(guestCart,  authenticateResponse.getUser());
+            session.removeAttribute("guestCart");
+        }
+        session.setAttribute("cart", cart);
+        return "redirect:/user/billing";
+    }
 
     public List<OrderStatus> returnListOrderStatus(){
         List<OrderStatus> danhSachOrderStatus = new ArrayList<>();
@@ -131,4 +153,5 @@ public class UserController {
         danhSachOrderStatus.add(OrderStatus.FAILED);
         return danhSachOrderStatus;
     }
+
 }

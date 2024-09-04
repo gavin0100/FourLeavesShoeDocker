@@ -56,10 +56,10 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         // xử lý cho trang home, khi đã đăng nhập xong nhưng lại mất token,
         // load lại trang home nhưng dữ liệu trong session ở controller vẫn chưa bị xóa
-        System.out.println(path);
-        System.out.println(jwt);
+//        System.out.println(path);
+//        System.out.println(jwt);
         if ((path.equals("/")||path.equals(""))&&(jwt.equals("") || jwt== null)&&request.getSession().getAttribute("user") != null){
-            System.out.println("hihihiihhi");
+//            System.out.println("hihihiihhi");
             throw new AccessDeniedException("token khong tai");
         }
         if (path.startsWith("/css/") ||
@@ -81,7 +81,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/forgot-password") ||
                 path.startsWith("/favicon.ico") ||
                 path.equals("/") ||
-                path.startsWith("/logout_to_login")){
+                path.startsWith("/logout_to_login") ||
+                path.startsWith("/user/billing/reset_login")){
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
             filterChain.doFilter(request, response);
             return;
@@ -89,20 +90,20 @@ public class JwtFilter extends OncePerRequestFilter {
         // khi respone gửi momo, vnpay về thông qua ipn thì token fourleavesshoestoken của mình đã bị xóa,
         // tuy nhiên các yêu cầu khi nhận respone thông qua ipn vẫn làm đủ. nhưng khi trả về trang user-billing thì không có token,
         // nên giờ phải thêm lại
-        System.out.println("SecurityContextHolder chứa thông tin: " +
-                SecurityContextHolder.getContext().getAuthentication());
+//        System.out.println("SecurityContextHolder chứa thông tin: " +
+//                SecurityContextHolder.getContext().getAuthentication());
 
-        if (path.startsWith("/user/billing") && SecurityContextHolder.getContext().getAuthentication() != null){
-            AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
-            Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
-            cookie.setHttpOnly(true);
-            cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
-            response.addCookie(cookie);
-            response.sendRedirect("/user/billing");
-            filterChain.doFilter(request, response);
-            return;
-        }
-        System.out.println(path);
+//        if (path.startsWith("/user/billing") && SecurityContextHolder.getContext().getAuthentication() != null){
+//            AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
+//            Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
+//            cookie.setHttpOnly(true);
+//            cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
+//            response.addCookie(cookie);
+//            response.sendRedirect("/user/billing");
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+//        System.out.println(path);
         String accountName = "";
         try{
             accountName = jwtService.extractUsername(jwt);
@@ -137,8 +138,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 throw new MyServletException("Token is not valid", null, false, false);
             }
         }
-        System.out.println("SecurityContextHolder chứa thông tin: " +
-                        SecurityContextHolder.getContext().getAuthentication());
+//        System.out.println("SecurityContextHolder chứa thông tin: " +
+//                        SecurityContextHolder.getContext().getAuthentication());
 
 
         temp = temp + 1;

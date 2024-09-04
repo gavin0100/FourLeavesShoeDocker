@@ -83,7 +83,8 @@ public class SecurityConfig{
                                         "/otp/**",
                                         "/test/**",
                                         "/app-minio/**",
-                                        "/logout_to_login/**"
+                                        "/logout_to_login/**",
+                                        "/user/billing/reset_login"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**", "/product/img/**").permitAll()

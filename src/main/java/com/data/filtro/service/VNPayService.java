@@ -45,7 +45,7 @@ public class VNPayService {
 //    private final String RETURN_URL = "https://shoeselling-fourleavesshoes.onrender.com/user/billing";
 //    private final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
-    private final String RETURN_URL = "http://localhost:8080/user/billing";
+//    private final String RETURN_URL = "http://localhost:8080/user/billing/reset_login";
     private final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
     @Autowired
@@ -196,7 +196,9 @@ public class VNPayService {
         calendar.add(Calendar.MINUTE, 15);
         String vnp_ExpireDate = dateFormat.format(calendar.getTime());
         // phải thêm 7 tiếng vì giờ của server thuê là ở múi giờ 0, còn vnpay là +7.
-
+//        String fullReturnUrl = RETURN_URL + "?username=" + order.getUser().getAccountName();
+        String fullReturnUrl = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login" + "?username=" + order.getUser().getAccountName();
+        // khi response gửi từ vnpay hay momo về thì mất token, session, không vào lại web với quyền truy cập được
         VNPRequest request = VNPRequest.builder()
                 .vnp_Version("2.1.0")
                 .vnp_Command("pay")
@@ -210,7 +212,7 @@ public class VNPayService {
                 .vnp_OrderType("other")  // đơn hàng không thuộc bất cứ loại cụ thể nào được định nghĩa bởi VNPAY
                 .vnp_OrderInfo("Thanh toán bằng VNPay")
                 .vnp_Locale("vn")
-                .vnp_ReturnUrl(RETURN_URL)  // url trả về sau khi thanh toán thành công
+                .vnp_ReturnUrl(fullReturnUrl)  // url trả về sau khi thanh toán thành công
                 .vnp_CreateDate(vnp_CreateDate)   // thiết lập thời gian bắt đầu và kết thúc thanh toán
                 .vnp_ExpireDate(vnp_ExpireDate)
                 .build();

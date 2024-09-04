@@ -14,11 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class AccessDeniedController {
     @GetMapping("/access-denied")
     public String getAccessDenied(HttpServletResponse response, Model model){
-        model.addAttribute("message1", "Yêu cầu của bạn");
-        model.addAttribute("message2", "không được thực hiện");
-        model.addAttribute("HTTPstatus", "500");
-        model.addAttribute("contentStatus", "Internal Server Error");
-        System.out.println("truy cap vao acc-denied" );
+        model.addAttribute("message1", "Thông tin xác thực");
+        model.addAttribute("message2", "đã bị thay đổi");
+        model.addAttribute("HTTPstatus", "401");
+        model.addAttribute("contentStatus", "Unauthorized");
         return "error/accessDenied";
     }
 

@@ -49,10 +49,10 @@ public class LoginController {
         }
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            String _csrfToken = generateRandomString();
-            csrfToken = _csrfToken;
+//            String _csrfToken = generateRandomString();
+//            csrfToken = _csrfToken;
 //        System.out.println("csrfToken:" + _csrfToken);
-            model.addAttribute("_csrfToken", _csrfToken);
+//            model.addAttribute("_csrfToken", _csrfToken);
             return "user/boot1/login";
         }
         else {
@@ -126,20 +126,16 @@ public class LoginController {
                         Authentication authentication,
                         HttpSession session,
                         Model model) {
-        System.out.println(username + " " + password);
-        System.out.println("vao ham login r ne: " + authentication.getAuthorities());
-        try {
-            System.out.println("ổn r đó");
-            System.out.println("SecurityContextHolder chứa thông tin: " +
-                    SecurityContextHolder.getContext().getAuthentication().getCredentials() +
-                    SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
-                    SecurityContextHolder.getContext().getAuthentication().getAuthorities());
-            return "redirect:/";
-        } catch (AuthenticationAccountException exception) {
-            System.out.println("Tên tài khoản hoặc mật khẩu không đúng!: " + exception.getMessage());
-        } catch (Exception err){
-            System.out.println("Lỗi gì á không biết: " + err.getMessage());
-        }
+        model.addAttribute("message", "Thông tin đăng nhập không đúng");
+        return "user/boot1/login";
+    }
+
+    @GetMapping("/login_failure")
+    public String login(HttpServletResponse response,
+                        Authentication authentication,
+                        HttpSession session,
+                        Model model) {
+        model.addAttribute("message", "Thông tin đăng nhập không đúng");
         return "user/boot1/login";
     }
 

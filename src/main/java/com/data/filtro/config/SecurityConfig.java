@@ -21,7 +21,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -33,7 +35,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig{
     private final AuthenticationProvider authenticationProvider;
     private final JwtFilter jwtFilter;
-    private final FilterExceptionHandler filterExceptionHandler;
+//    private final FilterExceptionHandler filterExceptionHandler;
 
     @Autowired
     @Lazy
@@ -55,6 +57,8 @@ public class SecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         CustomUsernamePasswordAuthenticationFilter customFilter = new CustomUsernamePasswordAuthenticationFilter(authenticationManager);
         customFilter.setAuthenticationSuccessHandler(new CustomAuthenticationSuccessHandler());
+        customFilter.setAuthenticationFailureHandler(new CustomAuthenticationFailureHandler());
+        CustomExceptionFilter customExceptionFilter = new CustomExceptionFilter();
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(ahr -> {
@@ -78,14 +82,15 @@ public class SecurityConfig{
                                         "/user_google_hihi",
                                         "/otp/**",
                                         "/test/**",
-                                        "/app-minio/**"
+                                        "/app-minio/**",
+                                        "/logout_to_login/**"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**", "/product/img/**").permitAll()
-                                .anyRequest().authenticated()
-                                .and()
-                                .exceptionHandling()
-                                .accessDeniedHandler(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
+                                .anyRequest().authenticated();
+//                                .and()
+//                                .exceptionHandling()
+//                                .accessDeniedHandler(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
 //                                .and()
 //                                .logout() // neu da dang ky ngoai nay thi may cai viet trong controler logout khong duoc thuc hien
 //                                .invalidateHttpSession(true)
@@ -108,6 +113,7 @@ public class SecurityConfig{
                 .addFilter(customFilter)
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(customExceptionFilter, LogoutFilter.class)
                 .logout(ahr -> {
                     ahr.invalidateHttpSession(true)
                             .deleteCookies("JSESSIONID")

@@ -19,11 +19,19 @@ public class AccessDeniedProcession {
 //        return new ModelAndView("error/accessDenied");
 //    }
 
+    // AccessDeniedException là do AuthorizationFilter có order 3600 thấp nhất quăng ra
+    // nên mấy lớp khác global mới bắt được
     @ExceptionHandler(value = AccessDeniedException.class)
     public void accessDenied(HttpServletResponse response) throws IOException, MyServletException {
         System.out.println("AccessDeniedProcession được gọi");
-//        response.sendRedirect("/");
+        response.sendRedirect("/");
 //        throw new MyServletException("từ chối truy cập", null, false, false);
-        throw new AccessDeniedException("không có quyền truy cập");
+//        throw new AccessDeniedException("không có quyền truy cập");
     }
+
+//    @ExceptionHandler(value = MyServletException.class)
+//    public void jwtTokenNotValid(HttpServletResponse response) throws IOException, MyServletException {
+//        System.out.println("jwtTokenNotValidProcession được gọi");
+//        response.sendRedirect("/");
+//    }
 }

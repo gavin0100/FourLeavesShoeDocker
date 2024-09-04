@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -36,7 +37,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private int temp = 0;
     private boolean tempbool = false;
 
-    public JwtFilter(UserDetailsService userDetailsService, JwtService jwtService, @Lazy AuthenticationService authenticationService) {
+    public JwtFilter(UserDetailsService userDetailsService, @Lazy JwtService jwtService, @Lazy AuthenticationService authenticationService) {
         this.userDetailsService = userDetailsService;
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;

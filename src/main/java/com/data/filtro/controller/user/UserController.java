@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -123,8 +124,10 @@ public class UserController {
         return "user/boot1/user-security";
     }
     @GetMapping("/billing/reset_login")
-    public String resetLogin(@RequestParam("username") String accountName, HttpSession session, HttpServletResponse response){
+    public String resetLogin(@RequestParam Map<String , String> params, HttpSession session, HttpServletResponse response){
         System.out.println("/billing/reset_login");
+        String accountName = params.get("username");
+        System.out.println("accountName trong vnpay reset login: " + accountName);
         AuthenticateResponse authenticateResponse = authenticationService.authenticateWithOnlyAccountName(accountName);
         session.setAttribute("user", authenticateResponse.getUser());
         Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());

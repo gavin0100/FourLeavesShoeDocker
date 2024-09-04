@@ -104,18 +104,20 @@ public class JwtFilter extends OncePerRequestFilter {
 //            return;
 //        }
 //        System.out.println(path);
-        String accountName = "";
-        try{
-            accountName = jwtService.extractUsername(jwt);
-        } catch (Exception ex){
-            throw new MyServletException("Can't get accountName from JWT", null, false, false);
-        }
+
 
         if (jwt.equals("") || jwt== null){
             throw new AccessDeniedException("token khong tai");
             // cách nào cũng được
 //            response.sendRedirect("/logout_to_login/fromJwtEmptyOrNullException");  // bí quá thì trả về response.sendRedirect("/");
 //            return;
+        }
+
+        String accountName = "";
+        try{
+            accountName = jwtService.extractUsername(jwt);
+        } catch (Exception ex){
+            throw new MyServletException("Can't get accountName from JWT", null, false, false);
         }
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){

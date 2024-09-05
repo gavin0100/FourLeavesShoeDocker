@@ -23,9 +23,16 @@ public class DashboardController {
 
 
     @GetMapping({"/dashboard", ""})
-    @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY', 'FULL_ACCESS_PLACE_ORDER')")
     public String showDashboard(){
-        return "/admin/boot1/dashboardhihi";
+        try{
+            System.out.println("tra ve dashboard");
+            return "/admin/boot1/dashboard";
+        } catch (Exception ex ){
+            System.out.println("tra ve product page admin");
+            return "/admin/boot1/product";
+        }
+
     }
 
 

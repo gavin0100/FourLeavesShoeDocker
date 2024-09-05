@@ -30,7 +30,7 @@ public class DashboardController {
             return "/admin/boot1/dashboard";
         } catch (Exception ex ){
             System.out.println("tra ve product page admin");
-            return "/admin/boot1/product";
+            return "redirect:/admin/product";
         }
 
     }

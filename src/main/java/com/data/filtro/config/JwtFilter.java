@@ -90,6 +90,21 @@ public class JwtFilter extends OncePerRequestFilter {
                 throw new MyServletException("Can't get accountName from JWT or Token is not valid", null, false, false);
             }
         }
+
+        if (!jwt.equals("") && jwt != null && accountName != null && request.getSession().getAttribute("admin") == null && (
+                path.startsWith("/admin"))){
+            try{
+                System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
+                accountName = jwtService.extractUsername(jwt);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
+                if(jwtService.isValidToken(jwt, userDetails)){
+                    request.getSession().setAttribute("admin", (User)userDetails);
+                }
+            } catch (Exception ex){
+                throw new MyServletException("Can't get accountName from JWT or Token is not valid", null, false, false);
+            }
+        }
+
         if (path.startsWith("/css/") ||
                 path.startsWith("/javascript/") ||
                 path.startsWith("/image/") ||

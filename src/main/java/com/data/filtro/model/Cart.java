@@ -17,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "user")
+@ToString(exclude = {"user", "cartItemList"})
 public class Cart implements Serializable {
 
     @Id

@@ -105,6 +105,8 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
+
+
         if (path.startsWith("/css/") ||
                 path.startsWith("/javascript/") ||
                 path.startsWith("/image/") ||
@@ -127,6 +129,27 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/logout_to_login") ||
                 path.startsWith("/user/billing/reset_login")){
             // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
+            if (path.startsWith("/product/") ||
+                    path.startsWith("/cart") ||
+                    path.startsWith("/category/") ||
+                    path.startsWith("/register") ||
+                    path.startsWith("/contact") ||
+                    path.startsWith("/admin/login") ||
+                    path.startsWith("/forgot-password") ||
+                    path.equals("/") ||
+                    path.startsWith("/login")
+            ){
+                // token bị đổi
+                if (!jwt.equals("") && jwt != null && accountName.equals("") && (
+                        request.getSession().getAttribute("user") != null ||
+                                request.getSession().getAttribute("admin") != null)){
+                    try{
+                        accountName = jwtService.extractUsername(jwt);
+                    } catch (Exception ex){
+                        throw new MyServletException("Can't get accountName from JWT", null, false, false);
+                    }
+                }
+            }
             filterChain.doFilter(request, response);
             return;
         }

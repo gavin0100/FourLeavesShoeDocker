@@ -27,18 +27,20 @@ public class controller {
     }
 
     @GetMapping("/getModel/{id}")
-    public MyModel getModelById(@PathVariable int id){
+    public Object getModelById(@PathVariable String id){
         try{
-            MyModel model = service.getModelById(id);
+            int id1 = Integer.parseInt(id);
+            MyModel model = service.getModelById(id1);
             if (model == null){
                 log.error("can't find model with id {}", id);
+                return "can't find model with id: " + id;
             }
             return model;
         } catch (Exception exception){
             log.error("can't find model with id {}", id);
+            return "can't find model with id: " + id;
         }
 
-        return null;
 
     }
 

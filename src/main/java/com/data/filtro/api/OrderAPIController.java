@@ -118,7 +118,9 @@ public class OrderAPIController {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable int id) {
+        System.out.println("Order: ");
         Order order = orderService.getOrderById(id);
+        System.out.println("Order: " + order);
         if (order == null) {
             String message = "Order not found!";
             ErrorResponse err = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());

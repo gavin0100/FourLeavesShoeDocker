@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-
 public class DashboardController {
 
 //    @GetMapping
@@ -26,7 +25,7 @@ public class DashboardController {
     @GetMapping({"/dashboard", ""})
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF')")
     public String showDashboard(){
-        return "/admin/boot1/dashboard";
+        return "/admin/boot1/dashboardhihi";
     }
 
 

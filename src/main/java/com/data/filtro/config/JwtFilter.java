@@ -2,6 +2,7 @@ package com.data.filtro.config;
 
 import com.data.filtro.authentication.JwtService;
 import com.data.filtro.model.AuthenticateResponse;
+import com.data.filtro.model.User;
 import com.data.filtro.service.AuthenticationService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -61,7 +62,33 @@ public class JwtFilter extends OncePerRequestFilter {
 //        System.out.println(jwt);
         if ((path.equals("/")||path.equals(""))&&(jwt.equals("") || jwt== null)&&request.getSession().getAttribute("user") != null){
 //            System.out.println("hihihiihhi");
-            throw new AccessDeniedException("token khong tai");
+            throw new AccessDeniedException("token khong ton tai");
+        }
+
+        // đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập la
+        String accountName = "";
+        if (!jwt.equals("") && jwt != null && accountName != null && request.getSession().getAttribute("user") == null && (
+                path.startsWith("/product/") ||
+                path.startsWith("/cart") ||
+                path.startsWith("/category/") ||
+                path.startsWith("/register") ||
+                path.startsWith("/login") ||
+                path.startsWith("/forgot-password") ||
+                path.startsWith("/contact") ||
+                path.startsWith("/user") ||
+                path.startsWith("/admin") ||
+                path.equals("/") ||
+                path.equals(""))){
+            try{
+                System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
+                accountName = jwtService.extractUsername(jwt);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
+                if(jwtService.isValidToken(jwt, userDetails)){
+                    request.getSession().setAttribute("user", (User)userDetails);
+                }
+            } catch (Exception ex){
+                throw new MyServletException("Can't get accountName from JWT or Token is not valid", null, false, false);
+            }
         }
         if (path.startsWith("/css/") ||
                 path.startsWith("/javascript/") ||
@@ -88,6 +115,7 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        System.out.println(path);
         // khi respone gửi momo, vnpay về thông qua ipn thì token fourleavesshoestoken của mình đã bị xóa,
         // tuy nhiên các yêu cầu khi nhận respone thông qua ipn vẫn làm đủ. nhưng khi trả về trang user-billing thì không có token,
         // nên giờ phải thêm lại
@@ -106,7 +134,7 @@ public class JwtFilter extends OncePerRequestFilter {
 //        }
 //        System.out.println(path);
 
-
+        // chưa có token thì xóa hết dữ liệu, quay lại trạng thái không đăng nhập
         if (jwt.equals("") || jwt== null){
             throw new AccessDeniedException("token khong tai");
             // cách nào cũng được
@@ -114,11 +142,12 @@ public class JwtFilter extends OncePerRequestFilter {
 //            return;
         }
 
-        String accountName = "";
-        try{
-            accountName = jwtService.extractUsername(jwt);
-        } catch (Exception ex){
-            throw new MyServletException("Can't get accountName from JWT", null, false, false);
+        if (accountName.equals("")){
+            try{
+                accountName = jwtService.extractUsername(jwt);
+            } catch (Exception ex){
+                throw new MyServletException("Can't get accountName from JWT", null, false, false);
+            }
         }
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){
@@ -143,6 +172,7 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 //        System.out.println("SecurityContextHolder chứa thông tin: " +
 //                        SecurityContextHolder.getContext().getAuthentication());
+        // có token mà không có session
 
 
         temp = temp + 1;

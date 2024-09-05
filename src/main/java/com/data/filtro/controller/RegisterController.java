@@ -3,6 +3,7 @@ package com.data.filtro.controller;
 import com.data.filtro.exception.AccountNameExistException;
 import com.data.filtro.exception.PasswordDoNotMatchException;
 import com.data.filtro.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,13 @@ public class RegisterController {
     private String csrfToken;
 
     @GetMapping
-    public String showRegister(Model model) {
+    public String showRegister(HttpServletRequest request, Model model) {
         String _csrfToken = generateRandomString();
         csrfToken = _csrfToken;
 //        System.out.println("csrfToken:" + _csrfToken);
+        if (request.getSession().getAttribute("user") != null){
+            return "redirect:/";
+        }
         model.addAttribute("_csrfToken", _csrfToken);
         return "user/boot1/register";
     }

@@ -27,7 +27,7 @@ public class DashboardController {
     public String showDashboard(){
         try{
             System.out.println("tra ve dashboard");
-            return "/admin/boot1/dashboard";
+            return "admin/boot1/dashboard";
         } catch (Exception ex ){
             System.out.println("tra ve product page admin");
             return "redirect:/admin/product";

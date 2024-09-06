@@ -58,6 +58,7 @@ public class UserCRUDController {
         return pageable;
     }
     String errorMessage = "";
+    String message = "";
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_USER', 'VIEW_USER')")
@@ -65,6 +66,10 @@ public class UserCRUDController {
         if (!errorMessage.equals("")){
             model.addAttribute("errorMessage", errorMessage);
             errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
         }
         int currentPage = page.orElse(1);
         int pageSize = sortType;
@@ -157,6 +162,7 @@ public class UserCRUDController {
             return "admin/boot1/user";
         }
         userService.create(user);
+        message = "Thêm user thành công!";
         return "redirect:/admin/user";
     }
 
@@ -174,14 +180,15 @@ public class UserCRUDController {
             return "redirect:/admin/user";
         }
         userService.update(user);
+        message = "Cập nhật user thành công!";
         return "redirect:/admin/user";
     }
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority( 'FULL_ACCESS_USER')")
     public String delete(@RequestParam("id") int id) {
-        User user = userService.getByUserId(id);
         userService.deleteById(id);
+        message="Cập nhật thông tin thành công";
         return "redirect:/admin/user";
     }
 

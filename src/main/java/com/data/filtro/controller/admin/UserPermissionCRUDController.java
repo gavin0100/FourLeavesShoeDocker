@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +27,20 @@ public class UserPermissionCRUDController {
     @Autowired
     UserPermissionService userPermissionService;
 
+    private String errorMessage = "";
+    private String message="";
+
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String show( Model model, HttpSession session) {
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
+        }
         List<UserPermission> userPermissions = userPermissionService.getAll();
         model.addAttribute("userPermissions", userPermissions);
         return "admin/boot1/user-permission";
@@ -36,9 +48,13 @@ public class UserPermissionCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public String update(@ModelAttribute UserPermission userPermission) {
-        System.out.println(userPermission.getPermissionId() + " " + userPermission.getUserManagement() + " " + userPermission.getMaterialManagement());
+    public String update(@ModelAttribute UserPermission userPermission, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/user-permission";
+        }
         userPermissionService.update(userPermission);
+        message="Cập nhật quyền thành công";
         return "redirect:/admin/user-permission";
     }
 

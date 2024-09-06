@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ import java.util.Optional;
 public class OrderCRUDController {
     @Autowired
     OrderService orderService;
+
+    private String errorMessage = "";
+    private String message="";
 
     public Pageable sortOrder(int currentPage, int pageSize, int sortType) {
         Pageable pageable;
@@ -43,6 +47,15 @@ public class OrderCRUDController {
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER', 'VIEW_ORDER')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
+        }
+
         List<Order> deliveriedOrders = orderService.filterStatusOrder(4);
         int numberOfdeliveriedOrders = deliveriedOrders.size();
         List<Order> awaitingRefundOrders = orderService.filterStatusOrder(5);
@@ -67,9 +80,19 @@ public class OrderCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER')")
-    public String update(@ModelAttribute Order order) {
+    public String update(@ModelAttribute Order order, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/order";
+        }
+
+        if (isNumeric(order.getPhoneNumber())== false){
+            errorMessage = "Nhập sai định dạng số điện thoại";
+            return "redirect:/admin/order";
+        }
         orderService.update(order);
         orderService.updateSoldByOrderStatus(order);
+        message="Cập nhật đơn hàng thành công";
         return "redirect:/admin/order";
     }
 
@@ -77,6 +100,7 @@ public class OrderCRUDController {
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER')")
     public String delete(@RequestParam int id) {
         orderService.delete(id);
+        message="Cập nhật thông tin thành công";
         return "redirect:/admin/order";
     }
 
@@ -93,4 +117,7 @@ public class OrderCRUDController {
         return danhSachOrderStatus;
     }
 
+    public boolean isNumeric(String str) {
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
+    }
 }

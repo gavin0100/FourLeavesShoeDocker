@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,6 +39,8 @@ public class ProductCURDController {
     @Autowired
     private BaseRedisService baseRedisService;
 
+    private String errorMessage = "";
+    private String message="";
 
     public Pageable sortProduct(int currentPage, int pageSize, int sortType) {
         Pageable pageable;
@@ -54,6 +57,15 @@ public class ProductCURDController {
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT', 'VIEW_PRODUCT')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
+        }
+
         List<Product> availableProducts = productService.getAvailableProducts(1);
         int numberAvailableProduct = availableProducts.size();
         List<Product> discountProducts = productService.getDiscountProducts();
@@ -80,8 +92,13 @@ public class ProductCURDController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT')")
-    public String create(@ModelAttribute("product") Product product,
+    public String create(@ModelAttribute("product") Product product,BindingResult bindingResult,
                          @RequestParam("avatarFile") MultipartFile avatarFile) throws Exception {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/product";
+        }
+
         productService.addProductWithImage(product, avatarFile);
         return "redirect:/admin/product";
     }
@@ -89,17 +106,25 @@ public class ProductCURDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT')")
-    public String update(@ModelAttribute("product") Product product,
+    public String update(@ModelAttribute("product") Product product, BindingResult bindingResult,
                          @RequestParam("avatarFile") MultipartFile avatarFile) throws Exception {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/product";
+        }
         productService.update(product, avatarFile);
+        message="Cập nhật thông tin thành công";
         return "redirect:/admin/product";
     }
 
     @PostMapping("/delete")
     public String delete(@RequestParam int id) {
         productService.deleteById(id);
+        message="Cập nhật thông tin thành công";
         return "redirect:/admin/product";
     }
 
-
+    public boolean isNumeric(String str) {
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,9 +44,20 @@ public class StaffCRUDController {
         return pageable;
     }
 
+    private String errorMessage = "";
+    private String message="";
+
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF', 'VIEW_STAFF')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
+        }
         int currentPage = page.orElse(1);
         int pageSize = sortType;
         List<User> usableAccounts = userService.getEligibleAccountForStaff();
@@ -71,8 +83,18 @@ public class StaffCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF')")
-    public String update(@ModelAttribute Staff staff) {
+    public String update(@ModelAttribute Staff staff, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/staff";
+        }
+
+        if (isNumeric(staff.getPhoneNumber())== false){
+            errorMessage = "Nhập sai định dạng số điện thoại";
+            return "redirect:/admin/staff";
+        }
         staffService.update(staff);
+        message="Cập nhật thông tin thành công";
         return "redirect:/admin/staff";
     }
 
@@ -80,7 +102,11 @@ public class StaffCRUDController {
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF')")
     public String delete(@RequestParam int id) {
         staffService.delete(id);
+        message="Cập nhật thông tin thành công";
         return "redirect:/admin/staff";
     }
 
+    public boolean isNumeric(String str) {
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
+    }
 }

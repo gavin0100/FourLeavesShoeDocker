@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,14 +40,20 @@ public class CategoryCRUDController {
         }
         return pageable;
     }
+    private String errorMessage = "";
+    private String message="";
 
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY', 'VIEW_CATEGORY')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
-//        User admin = (User) session.getAttribute("admin");
-//        if (admin == null) {
-//            return "redirect:/admin/login";
-//        }
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
+        }
         List<Category> activeCategories = categoryService.getActiveCategory(1);
         int numberActiveCategory = activeCategories.size();
         int currentPage = page.orElse(1);
@@ -67,15 +74,25 @@ public class CategoryCRUDController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY')")
-    public String create(@ModelAttribute Category category) {
+    public String create(@ModelAttribute Category category, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/order";
+        }
         categoryService.create(category);
+        message="Tạo danh mục thành công";
         return "redirect:/admin/category";
     }
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY')")
-    public String update(@ModelAttribute Category category) {
+    public String update(@ModelAttribute Category category, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/order";
+        }
         categoryService.update(category);
+        message="Cập nhật danh mục thành công";
         return "redirect:/admin/category";
     }
 
@@ -83,6 +100,7 @@ public class CategoryCRUDController {
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY')")
     public String delete(@RequestParam int id) {
         categoryService.delete(id);
+        message="Xóa danh mục thành công";
         return "redirect:/admin/category";
     }
 
@@ -94,13 +112,13 @@ public class CategoryCRUDController {
         try{
             boolean result = categoryService.importCategory(file);
             if (result == true){
-                model.addAttribute("message", "Import thành công!");
+                message = "Import thành công!";
             } else {
-                model.addAttribute("message", "Import thất bại!");
+                errorMessage = "Import thất bại!";
             }
 
         } catch (Exception ex){
-            model.addAttribute("message", "Import failed!");
+            errorMessage = "Import thất bại!";
         }
 
         return "redirect:/admin/category";

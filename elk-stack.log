@@ -1,1319 +1,227 @@
-2024-09-05T18:53:40.557+07:00 ERROR 35828 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.272+07:00 ERROR 31940 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.301+07:00 ERROR 31940 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.312+07:00 ERROR 31940 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.319+07:00 ERROR 31940 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.327+07:00 ERROR 31940 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.338+07:00 ERROR 31940 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.345+07:00 ERROR 31940 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.353+07:00 ERROR 31940 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.360+07:00 ERROR 31940 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.366+07:00 ERROR 31940 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.373+07:00 ERROR 31940 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.379+07:00 ERROR 31940 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.385+07:00 ERROR 31940 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.392+07:00 ERROR 31940 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.399+07:00 ERROR 31940 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.406+07:00 ERROR 31940 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.412+07:00 ERROR 31940 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.418+07:00 ERROR 31940 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.423+07:00 ERROR 31940 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:53.430+07:00 ERROR 31940 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.467+07:00 ERROR 31940 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.474+07:00 ERROR 31940 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.480+07:00 ERROR 31940 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.485+07:00 ERROR 31940 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.491+07:00 ERROR 31940 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.497+07:00 ERROR 31940 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.503+07:00 ERROR 31940 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.509+07:00 ERROR 31940 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.515+07:00 ERROR 31940 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.521+07:00 ERROR 31940 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.526+07:00 ERROR 31940 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.532+07:00 ERROR 31940 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.539+07:00 ERROR 31940 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.544+07:00 ERROR 31940 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.549+07:00 ERROR 31940 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.554+07:00 ERROR 31940 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.560+07:00 ERROR 31940 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.565+07:00 ERROR 31940 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.571+07:00 ERROR 31940 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:54.576+07:00 ERROR 31940 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.608+07:00 ERROR 31940 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.615+07:00 ERROR 31940 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.621+07:00 ERROR 31940 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.627+07:00 ERROR 31940 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.633+07:00 ERROR 31940 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.639+07:00 ERROR 31940 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.645+07:00 ERROR 31940 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.650+07:00 ERROR 31940 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.656+07:00 ERROR 31940 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.661+07:00 ERROR 31940 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.666+07:00 ERROR 31940 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.672+07:00 ERROR 31940 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.677+07:00 ERROR 31940 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.682+07:00 ERROR 31940 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.686+07:00 ERROR 31940 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.691+07:00 ERROR 31940 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.696+07:00 ERROR 31940 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.702+07:00 ERROR 31940 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.710+07:00 ERROR 31940 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:06:59.715+07:00 ERROR 31940 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:12.937+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:12.987+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.000+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.010+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.018+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.025+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.032+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.039+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.046+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.052+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.059+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.065+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.071+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.078+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.084+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.091+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.096+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.102+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.111+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:13.119+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.150+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.157+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.163+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.168+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.175+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.180+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.185+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.190+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.196+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.202+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.207+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.212+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.221+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.226+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.232+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.239+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.245+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.251+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.256+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:14.261+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.290+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.296+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.302+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.308+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.313+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.319+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.324+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.329+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.336+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.343+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.349+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.354+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.359+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.364+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.369+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.374+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.379+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.384+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.389+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:19.393+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.417+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.423+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.428+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.434+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.441+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.448+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.453+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.458+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.464+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.469+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.478+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.483+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.489+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.494+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.498+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.504+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.509+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.514+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.519+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:08:49.523+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.637+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.645+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.650+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.655+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.662+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.667+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.672+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.679+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.684+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.689+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.695+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.700+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.705+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.711+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.715+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.720+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.726+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.731+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.736+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:12.742+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.777+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.784+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.789+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.794+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.799+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.804+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.809+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.814+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.818+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.823+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.829+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.833+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.838+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.843+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.847+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.852+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.856+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.861+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.866+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:13.871+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.887+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.894+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.899+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.904+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.909+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.914+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.919+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.926+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.932+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.937+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.942+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.947+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.951+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.956+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.961+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.966+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.970+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.975+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.980+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:18.984+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.763+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.770+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.776+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.781+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.786+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.791+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.797+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.801+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.808+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.814+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.818+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.823+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.829+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.833+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.837+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.844+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.849+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.853+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.859+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:24.863+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.896+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.902+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.907+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.912+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.918+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.923+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.929+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.933+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.938+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.944+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.949+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.955+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.960+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.965+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.969+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.974+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.978+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.983+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.988+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:25.993+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.008+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.014+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.021+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.026+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.032+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.037+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.044+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.049+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.054+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.059+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.064+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.070+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.077+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.081+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.086+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.090+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.095+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.099+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.103+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:09:31.107+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.604+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.614+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.620+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.627+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.632+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.637+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.643+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.648+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.653+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.660+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.665+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.669+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.674+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.679+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.684+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.688+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.695+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.700+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.705+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:00.711+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.734+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.741+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.748+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.753+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.761+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.767+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.773+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.779+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.787+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.795+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.801+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.808+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.812+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.817+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.821+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.826+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.831+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.835+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.840+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:01.845+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.872+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.881+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.889+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.896+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.903+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.911+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.918+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.926+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.932+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.939+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.946+07:00 ERROR 16256 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.951+07:00 ERROR 16256 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.956+07:00 ERROR 16256 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.962+07:00 ERROR 16256 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.967+07:00 ERROR 16256 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.974+07:00 ERROR 16256 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.981+07:00 ERROR 16256 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.986+07:00 ERROR 16256 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.992+07:00 ERROR 16256 --- [http-nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:10:06.997+07:00 ERROR 16256 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:13:08.670+07:00 ERROR 2444 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:13:30.058+07:00 ERROR 2444 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:13:34.966+07:00 ERROR 2444 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:16:56.322+07:00 ERROR 26852 --- [http-nio-8080-exec-9] com.data.filtro.interview.controller     : can't find model with id 9999999999999999999
-2024-09-05T19:21:41.450+07:00 ERROR 42532 --- [http-nio-8080-exec-1] com.data.filtro.interview.controller     : can't find model with id 9999999999999999999
-2024-09-05T19:22:03.072+07:00 ERROR 42532 --- [http-nio-8080-exec-3] com.data.filtro.interview.controller     : can't find model with id 99999999999999
-2024-09-05T19:29:53.809+07:00 ERROR 35684 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:29:56.419+07:00 ERROR 35684 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:29:58.515+07:00 ERROR 35684 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:30:00.564+07:00 ERROR 35684 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
-2024-09-05T19:30:04.915+07:00 ERROR 35684 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Can't get accountName from JWT] with root cause
-
-com.data.filtro.config.MyServletException: Can't get accountName from JWT
-
+2024-09-06T06:31:22.272+07:00  INFO 10844 --- [restartedMain] com.data.filtro.FiltroApplication        : Starting FiltroApplication using Java 17.0.5 with PID 10844 (D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker\target\classes started by WINDOWS 10 in D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker)
+2024-09-06T06:31:22.278+07:00  INFO 10844 --- [restartedMain] com.data.filtro.FiltroApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-06T06:31:22.349+07:00  INFO 10844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-06T06:31:22.350+07:00  INFO 10844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-06T06:31:23.333+07:00  INFO 10844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T06:31:23.335+07:00  INFO 10844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-06T06:31:23.544+07:00  INFO 10844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 200 ms. Found 19 JPA repository interfaces.
+2024-09-06T06:31:23.564+07:00  INFO 10844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T06:31:23.565+07:00  INFO 10844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-06T06:31:23.582+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.interview.ModelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.583+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.583+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.584+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CategoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.584+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ContactRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.585+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.EmailValidCodeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.585+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.FeedbackRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.585+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.GuestCartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.586+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.586+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.586+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.MaterialRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.586+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.587+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.587+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderShipperRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.587+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.PaymentMethodRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.588+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.588+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.StaffRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.589+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserPermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.589+07:00  INFO 10844 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:31:23.589+07:00  INFO 10844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2024-09-06T06:31:24.354+07:00  INFO 10844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-06T06:31:24.368+07:00  INFO 10844 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-06T06:31:24.368+07:00  INFO 10844 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2024-09-06T06:31:24.435+07:00  INFO 10844 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-06T06:31:24.436+07:00  INFO 10844 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2085 ms
+2024-09-06T06:31:24.887+07:00  INFO 10844 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-06T06:31:24.940+07:00  INFO 10844 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-09-06T06:31:25.321+07:00  INFO 10844 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-09-06T06:31:25.323+07:00  WARN 10844 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-09-06T06:31:26.309+07:00  INFO 10844 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-06T06:31:26.317+07:00  INFO 10844 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T06:31:28.017+07:00  WARN 10844 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-06T06:31:28.332+07:00  INFO 10844 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@200201d9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45491f80, org.springframework.security.web.context.SecurityContextHolderFilter@74831fc9, org.springframework.security.web.header.HeaderWriterFilter@489353af, com.data.filtro.config.CustomExceptionFilter@533b1c5d, org.springframework.security.web.authentication.logout.LogoutFilter@741c9e54, com.data.filtro.config.JwtFilter@4e5733f, com.data.filtro.config.CustomUsernamePasswordAuthenticationFilter@c328a13, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@281d4158, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7446e78d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c0e4e85, org.springframework.security.web.session.SessionManagementFilter@7de9daf3, org.springframework.security.web.access.ExceptionTranslationFilter@6b5e95c, org.springframework.security.web.access.intercept.AuthorizationFilter@fcd5c6d]
+2024-09-06T06:31:28.962+07:00  INFO 10844 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-06T06:31:29.004+07:00  INFO 10844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-06T06:31:29.013+07:00  INFO 10844 --- [restartedMain] com.data.filtro.FiltroApplication        : Started FiltroApplication in 7.352 seconds (process running for 8.939)
+2024-09-06T06:33:14.188+07:00  INFO 10844 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-06T06:33:14.189+07:00  INFO 10844 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-06T06:33:14.190+07:00  INFO 10844 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-06T06:33:14.620+07:00  WARN 10844 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection]
+2024-09-06T06:33:31.885+07:00  WARN 10844 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection]
+2024-09-06T06:33:32.778+07:00  WARN 10844 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection]
+2024-09-06T06:33:38.449+07:00  WARN 10844 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.data.redis.RedisConnectionFailureException: Cannot get Jedis connection]
+2024-09-06T06:33:55.595+07:00  WARN 10844 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:33:57.311+07:00  WARN 10844 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:33:58.231+07:00  WARN 10844 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:33:58.550+07:00  WARN 10844 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:37:29.189+07:00  INFO 10844 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T06:37:36.538+07:00  INFO 14564 --- [restartedMain] com.data.filtro.FiltroApplication        : Starting FiltroApplication using Java 17.0.5 with PID 14564 (D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker\target\classes started by WINDOWS 10 in D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker)
+2024-09-06T06:37:36.540+07:00  INFO 14564 --- [restartedMain] com.data.filtro.FiltroApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-06T06:37:36.604+07:00  INFO 14564 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-06T06:37:36.604+07:00  INFO 14564 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-06T06:37:37.503+07:00  INFO 14564 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T06:37:37.505+07:00  INFO 14564 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-06T06:37:37.701+07:00  INFO 14564 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 189 ms. Found 19 JPA repository interfaces.
+2024-09-06T06:37:37.719+07:00  INFO 14564 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T06:37:37.720+07:00  INFO 14564 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-06T06:37:37.737+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.interview.ModelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.738+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.738+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.738+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CategoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.738+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ContactRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.739+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.EmailValidCodeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.739+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.FeedbackRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.739+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.GuestCartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.739+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.740+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.740+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.MaterialRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.740+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.741+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.741+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderShipperRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.741+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.PaymentMethodRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.742+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.743+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.StaffRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.743+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserPermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.743+07:00  INFO 14564 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:37:37.744+07:00  INFO 14564 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2024-09-06T06:37:38.636+07:00  INFO 14564 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-06T06:37:38.645+07:00  INFO 14564 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-06T06:37:38.646+07:00  INFO 14564 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2024-09-06T06:37:38.730+07:00  INFO 14564 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-06T06:37:38.730+07:00  INFO 14564 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2125 ms
+2024-09-06T06:37:39.156+07:00  INFO 14564 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-06T06:37:39.203+07:00  INFO 14564 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-09-06T06:37:39.521+07:00  INFO 14564 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-09-06T06:37:39.524+07:00  WARN 14564 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-09-06T06:37:40.547+07:00  INFO 14564 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-06T06:37:40.556+07:00  INFO 14564 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T06:37:42.391+07:00  WARN 14564 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-06T06:37:42.771+07:00  INFO 14564 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@a5abe6e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6298ef8f, org.springframework.security.web.context.SecurityContextHolderFilter@4b727799, org.springframework.security.web.header.HeaderWriterFilter@3fb3775f, com.data.filtro.config.CustomExceptionFilter@1bfa99a3, org.springframework.security.web.authentication.logout.LogoutFilter@edfcc00, com.data.filtro.config.JwtFilter@cdebdb9, com.data.filtro.config.CustomUsernamePasswordAuthenticationFilter@7e2368dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53754d88, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@230a2682, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21d510b8, org.springframework.security.web.session.SessionManagementFilter@1c438d4, org.springframework.security.web.access.ExceptionTranslationFilter@25db9aaf, org.springframework.security.web.access.intercept.AuthorizationFilter@b7c6ac0]
+2024-09-06T06:37:43.341+07:00  INFO 14564 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-06T06:37:43.379+07:00  INFO 14564 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-06T06:37:43.386+07:00  INFO 14564 --- [restartedMain] com.data.filtro.FiltroApplication        : Started FiltroApplication in 7.511 seconds (process running for 8.596)
+2024-09-06T06:38:02.693+07:00  INFO 14564 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-06T06:38:02.693+07:00  INFO 14564 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-06T06:38:02.694+07:00  INFO 14564 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-06T06:38:03.026+07:00  WARN 14564 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:38:17.044+07:00  WARN 14564 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:38:17.202+07:00  WARN 14564 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:38:49.122+07:00  WARN 14564 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:39:54.890+07:00  WARN 14564 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:40:12.857+07:00  INFO 14564 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T06:40:15.556+07:00  INFO 4116 --- [restartedMain] com.data.filtro.FiltroApplication        : Starting FiltroApplication using Java 17.0.5 with PID 4116 (D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker\target\classes started by WINDOWS 10 in D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker)
+2024-09-06T06:40:15.558+07:00  INFO 4116 --- [restartedMain] com.data.filtro.FiltroApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-06T06:40:15.600+07:00  INFO 4116 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-06T06:40:15.600+07:00  INFO 4116 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-06T06:40:16.413+07:00  INFO 4116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T06:40:16.414+07:00  INFO 4116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-06T06:40:16.609+07:00  INFO 4116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 187 ms. Found 19 JPA repository interfaces.
+2024-09-06T06:40:16.624+07:00  INFO 4116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T06:40:16.626+07:00  INFO 4116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-06T06:40:16.642+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.interview.ModelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.642+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.642+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.643+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CategoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.643+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ContactRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.643+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.EmailValidCodeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.643+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.FeedbackRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.644+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.GuestCartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.644+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.645+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.645+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.MaterialRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.645+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.646+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.646+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderShipperRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.646+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.PaymentMethodRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.647+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.648+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.StaffRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.648+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserPermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.648+07:00  INFO 4116 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T06:40:16.648+07:00  INFO 4116 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2024-09-06T06:40:17.496+07:00  INFO 4116 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-06T06:40:17.505+07:00  INFO 4116 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-06T06:40:17.506+07:00  INFO 4116 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2024-09-06T06:40:17.596+07:00  INFO 4116 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-06T06:40:17.596+07:00  INFO 4116 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1995 ms
+2024-09-06T06:40:18.025+07:00  INFO 4116 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-06T06:40:18.074+07:00  INFO 4116 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-09-06T06:40:18.375+07:00  INFO 4116 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-09-06T06:40:18.378+07:00  WARN 4116 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-09-06T06:40:19.388+07:00  INFO 4116 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-06T06:40:19.397+07:00  INFO 4116 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T06:40:21.100+07:00  WARN 4116 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-06T06:40:21.414+07:00  INFO 4116 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@c2dda2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d1ecfa1, org.springframework.security.web.context.SecurityContextHolderFilter@42d880f9, org.springframework.security.web.header.HeaderWriterFilter@3dbd5b5, com.data.filtro.config.CustomExceptionFilter@2f71247b, org.springframework.security.web.authentication.logout.LogoutFilter@60d284f5, com.data.filtro.config.JwtFilter@3a0d376a, com.data.filtro.config.CustomUsernamePasswordAuthenticationFilter@35f7b30d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@592353c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@338666c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@234e47dc, org.springframework.security.web.session.SessionManagementFilter@2c6d19db, org.springframework.security.web.access.ExceptionTranslationFilter@2ba392f9, org.springframework.security.web.access.intercept.AuthorizationFilter@1ebc63b8]
+2024-09-06T06:40:21.945+07:00  INFO 4116 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-06T06:40:21.982+07:00  INFO 4116 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-06T06:40:21.990+07:00  INFO 4116 --- [restartedMain] com.data.filtro.FiltroApplication        : Started FiltroApplication in 6.812 seconds (process running for 8.068)
+2024-09-06T06:40:25.219+07:00  INFO 4116 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-06T06:40:25.219+07:00  INFO 4116 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-06T06:40:25.220+07:00  INFO 4116 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-06T06:40:25.542+07:00  WARN 4116 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:40:54.541+07:00  WARN 4116 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:41:28.003+07:00  WARN 4116 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:41:29.154+07:00  WARN 4116 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:41:29.691+07:00  WARN 4116 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:41:29.952+07:00  WARN 4116 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:41:30.271+07:00  WARN 4116 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:03.017+07:00  WARN 4116 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:03.134+07:00  WARN 4116 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:53.762+07:00  WARN 4116 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:54.484+07:00  WARN 4116 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:54.714+07:00  WARN 4116 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:54.913+07:00  WARN 4116 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:42:55.046+07:00  WARN 4116 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:43:05.461+07:00  WARN 4116 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:43:40.426+07:00  WARN 4116 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T06:44:06.003+07:00  WARN 4116 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T07:02:07.604+07:00  INFO 4116 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T07:02:14.945+07:00  INFO 13648 --- [restartedMain] com.data.filtro.FiltroApplication        : Starting FiltroApplication using Java 17.0.5 with PID 13648 (D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker\target\classes started by WINDOWS 10 in D:\springboot\workspace\FourLeavesShoesDocker\FourLeavesShoeDocker)
+2024-09-06T07:02:14.948+07:00  INFO 13648 --- [restartedMain] com.data.filtro.FiltroApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-06T07:02:15.008+07:00  INFO 13648 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-06T07:02:15.009+07:00  INFO 13648 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-06T07:02:15.884+07:00  INFO 13648 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T07:02:15.886+07:00  INFO 13648 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-06T07:02:16.078+07:00  INFO 13648 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 185 ms. Found 19 JPA repository interfaces.
+2024-09-06T07:02:16.095+07:00  INFO 13648 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-06T07:02:16.096+07:00  INFO 13648 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-06T07:02:16.114+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.interview.ModelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.115+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.115+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.116+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.CategoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.116+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ContactRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.116+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.EmailValidCodeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.116+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.FeedbackRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.117+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.GuestCartRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.117+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.117+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.InvoiceRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.117+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.MaterialRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.118+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.118+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.118+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.OrderShipperRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.118+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.PaymentMethodRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.119+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.119+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.StaffRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.119+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserPermissionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.119+07:00  INFO 13648 --- [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.data.filtro.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-06T07:02:16.119+07:00  INFO 13648 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2024-09-06T07:02:16.982+07:00  INFO 13648 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-06T07:02:16.995+07:00  INFO 13648 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-06T07:02:16.995+07:00  INFO 13648 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2024-09-06T07:02:17.065+07:00  INFO 13648 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-06T07:02:17.066+07:00  INFO 13648 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2056 ms
+2024-09-06T07:02:17.472+07:00  INFO 13648 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-06T07:02:17.523+07:00  INFO 13648 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-09-06T07:02:17.857+07:00  INFO 13648 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-09-06T07:02:17.860+07:00  WARN 13648 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-09-06T07:02:18.873+07:00  INFO 13648 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-06T07:02:18.882+07:00  INFO 13648 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-06T07:02:20.599+07:00  WARN 13648 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-06T07:02:20.903+07:00  INFO 13648 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@666fc033, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d9c10d1, org.springframework.security.web.context.SecurityContextHolderFilter@649ceb0c, org.springframework.security.web.header.HeaderWriterFilter@4691d423, com.data.filtro.config.CustomExceptionFilter@febc2b, org.springframework.security.web.authentication.logout.LogoutFilter@1f065e91, com.data.filtro.config.JwtFilter@50b7d05c, com.data.filtro.config.CustomUsernamePasswordAuthenticationFilter@2f634c8b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@579c8cca, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@766ec320, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@37957f0c, org.springframework.security.web.session.SessionManagementFilter@1391d318, org.springframework.security.web.access.ExceptionTranslationFilter@2c24dcf7, org.springframework.security.web.access.intercept.AuthorizationFilter@236b1c6b]
+2024-09-06T07:02:21.427+07:00  INFO 13648 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-06T07:02:21.461+07:00  INFO 13648 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-06T07:02:21.469+07:00  INFO 13648 --- [restartedMain] com.data.filtro.FiltroApplication        : Started FiltroApplication in 7.158 seconds (process running for 8.144)
+2024-09-06T07:08:33.724+07:00  INFO 13648 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-06T07:08:33.724+07:00  INFO 13648 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-06T07:08:33.725+07:00  INFO 13648 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-06T07:08:34.037+07:00  WARN 13648 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+2024-09-06T07:10:36.616+07:00  INFO 13648 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'

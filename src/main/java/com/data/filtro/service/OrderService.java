@@ -2,6 +2,7 @@ package com.data.filtro.service;
 
 import com.data.filtro.Util.Utility;
 import com.data.filtro.model.*;
+import com.data.filtro.model.payment.ApiOrderDTO;
 import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.model.payment.PaymentMethod;
 import com.data.filtro.repository.OrderDetailRepository;
@@ -147,7 +148,11 @@ public class OrderService {
     }
 
     public Order getOrderById(int id) {
-        return orderRepository.findOrderById(id);
+        return orderRepository.findById(id).orElse(null);
+    }
+
+    public ApiOrderDTO getApiOrderById(int id) {
+        return orderRepository.findById(id).orElse(null).convertToApiDTO();
     }
 
 

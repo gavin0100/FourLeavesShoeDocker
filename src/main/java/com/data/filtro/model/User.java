@@ -86,8 +86,9 @@ public class User implements UserDetails, Serializable {
     @JsonIgnore
     private List<Invoice> invoices;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+//    @JsonBackReference
     private List<Order> orders;
 
     @Override

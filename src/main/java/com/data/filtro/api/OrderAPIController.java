@@ -1,6 +1,7 @@
 package com.data.filtro.api;
 
 import com.data.filtro.model.*;
+import com.data.filtro.model.payment.ApiOrderDTO;
 import com.data.filtro.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -118,9 +119,7 @@ public class OrderAPIController {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable int id) {
-        System.out.println("Order: ");
-        Order order = orderService.getOrderById(id);
-        System.out.println("Order: " + order);
+        ApiOrderDTO order = orderService.getApiOrderById(id);
         if (order == null) {
             String message = "Order not found!";
             ErrorResponse err = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());

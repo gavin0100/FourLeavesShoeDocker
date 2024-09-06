@@ -1,7 +1,9 @@
 package com.data.filtro.model;
 
+import com.data.filtro.model.payment.ApiOrderDTO;
 import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.model.payment.PaymentMethod;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -68,9 +70,26 @@ public class Order implements Serializable {
     @Column(name = "order_code")
     private String order_code;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "orderId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "orderId")
 //    @JsonIgnore
     @JsonManagedReference
     private List<OrderDetail> orderDetails;
+
+    public ApiOrderDTO convertToApiDTO(){
+        return ApiOrderDTO.builder().
+                id(this.id)
+                .userId(this.user.getId())
+                .orderDate(this.orderDate)
+                .email(this.email)
+                .phoneNumber(this.getPhoneNumber())
+                .address(this.address)
+                .city(this.city)
+                .zip(this.zip)
+                .paymentMethod(this.paymentMethod)
+                .total(this.total)
+                .statusPayment(this.statusPayment)
+                .build();
+
+    }
 
 }

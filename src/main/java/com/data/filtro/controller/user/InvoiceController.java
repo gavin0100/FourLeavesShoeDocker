@@ -38,7 +38,7 @@ public class InvoiceController {
         try {
             User user = (User) session.getAttribute("user");
             if (user == null) {
-                throw new AuthenticationAccountException("Please login to see your order!");
+                throw new AuthenticationAccountException("Vui lòng đăng nhập để xem đơn hàng của bạn!");
             }
             Order order = orderService.getOrderById(orderId);
             List<OrderDetail> orderDetailList = order.getOrderDetails();
@@ -75,7 +75,7 @@ public class InvoiceController {
         try {
             User user = (User) session.getAttribute("user");
             if (user == null) {
-                throw new AuthenticationAccountException("Please login to see your order!");
+                throw new AuthenticationAccountException("Vui lòng đăng nhập để xem đơn hàng của bạn!");
             }
             Order order = orderService.getOrderById(orderId);
             invoiceService.makeInvoice(order, totalPrice);

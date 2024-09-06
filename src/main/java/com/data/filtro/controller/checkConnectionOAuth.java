@@ -46,8 +46,6 @@ public class checkConnectionOAuth {
         }
 
         AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password, session);
-//            User user = userService.authenticateUser(accountName, password);
-//            System.out.println(user.getName());
         session.setAttribute("user", authenticateResponse.getUser());
         Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
         cookie.setHttpOnly(true);

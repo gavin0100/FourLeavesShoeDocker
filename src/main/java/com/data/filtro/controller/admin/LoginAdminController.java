@@ -47,10 +47,8 @@ public class LoginAdminController {
             cookie.setHttpOnly(true);
             cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
             response.addCookie(cookie);
-//            System.out.println(account.getAccountName());
             return "redirect:/admin/dashboard";
         } catch (AuthenticationAccountException exception) {
-            exception.printStackTrace();
             model.addAttribute("message", "Tên tài khoản hoặc mật khẩu không chính xác");
         } catch (Exception err){
             model.addAttribute("message", "Tên tài khoản hoặc mật khẩu không chính xác");

@@ -35,7 +35,6 @@ public class HomeController {
         model.addAttribute("productTopSellingList", productTopSellingList);
         model.addAttribute("product6thList", product6thList);
         model.addAttribute("productTop4DiscountList", productTop4Discount);
-//        System.out.println("Chuan bi chuyen den trang html");
         return "user/boot1/index";
     }
 

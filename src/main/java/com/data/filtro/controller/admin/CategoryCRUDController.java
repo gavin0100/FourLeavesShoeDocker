@@ -5,6 +5,7 @@ import com.data.filtro.model.Category;
 import com.data.filtro.model.User;
 import com.data.filtro.service.CategoryService;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/category")
+@Slf4j
 public class CategoryCRUDController {
 
     @Autowired
@@ -88,14 +90,13 @@ public class CategoryCRUDController {
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY')")
     public String importFile(@RequestParam("file") MultipartFile file,
                              Model model){
-        System.out.println(file.getOriginalFilename());
-        System.out.println(file.getSize());
+        log.info(file.getOriginalFilename() + ", size: " + file.getSize());
         try{
             boolean result = categoryService.importCategory(file);
             if (result == true){
-                model.addAttribute("message", "Successfully import!");
+                model.addAttribute("message", "Import thành công!");
             } else {
-                model.addAttribute("message", "Import failed!");
+                model.addAttribute("message", "Import thất bại!");
             }
 
         } catch (Exception ex){

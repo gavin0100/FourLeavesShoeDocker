@@ -45,14 +45,11 @@ public class LoginController {
     @GetMapping
     public String show(Model model, HttpSession session) {
         if (session.getAttribute("user") != null){
+            System.out.println("hihi login");
             return "redirect:/";
         }
         User user = (User) session.getAttribute("user");
         if (user == null) {
-//            String _csrfToken = generateRandomString();
-//            csrfToken = _csrfToken;
-//        System.out.println("csrfToken:" + _csrfToken);
-//            model.addAttribute("_csrfToken", _csrfToken);
             return "user/boot1/login";
         }
         else {
@@ -63,7 +60,6 @@ public class LoginController {
     @GetMapping("/login-failure")
     public String loginFailure(Model model, HttpSession session) {
         model.addAttribute("message", "Thông tin đăng nhập không đúng");
-        System.out.println("hihi");
         return "user/boot1/login";
     }
 
@@ -144,10 +140,6 @@ public class LoginController {
             HttpServletResponse response,
             HttpSession session,
             Model model) {
-        System.out.println("SecurityContextHolder chứa thông tin: " +
-                SecurityContextHolder.getContext().getAuthentication().getCredentials() +
-                SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
-                SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
         session.setAttribute("user", authenticateResponse.getUser());
         Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
@@ -166,8 +158,6 @@ public class LoginController {
 
     @GetMapping("/session")
     public String check(HttpSession session) {
-//        Account account = (Account) session.getAttribute("account");
-//        System.out.println("session lay duoc la: " + account.getAccountName());
         return "session";
     }
     public String generateRandomString() {

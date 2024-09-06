@@ -137,8 +137,6 @@ public class OrderController {
         int orderId = order.getId();
         String url = "";
         MomoResponse momoResponse = placeMomoOrder(orderId);
-//        model.addAttribute("redirectUrl", momoResponse.getPayUrl());
-//        return "user/boot1/payment/paymentRedirect";
         response.sendRedirect(momoResponse.getPayUrl());
     }
 
@@ -169,7 +167,6 @@ public class OrderController {
         int orderId = order.getId();
         String url = "";
         VNPResponse vnpResponse = placeVNPayOrder(orderId, request);
-//        model.addAttribute("redirectUrl", vnpResponse.getPaymentUrl());
         response.sendRedirect(vnpResponse.getPaymentUrl());
 
     }

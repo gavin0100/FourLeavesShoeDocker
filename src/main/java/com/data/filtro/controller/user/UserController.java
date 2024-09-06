@@ -1,6 +1,7 @@
 package com.data.filtro.controller.user;
 
 import com.data.filtro.exception.AuthenticationAccountException;
+import com.data.filtro.exception.PasswordDoNotMatchException;
 import com.data.filtro.model.*;
 import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.service.*;
@@ -80,7 +81,6 @@ public class UserController {
             model.addAttribute("message", "Please Login");
             return "user/boot1/user-billing";
         }
-//        System.out.println("user id: " + user.getId() + " " + user.getName());
         List<Order> orderList;
         try {
             orderList = orderService.getOrderByUserId(user.getId());
@@ -88,7 +88,6 @@ public class UserController {
             orderList = new ArrayList<>();
         }
         List<OrderStatus> orderStatusList = returnListOrderStatus();
-        //orderList.forEach(s -> System.out.println(s.getId()));
         model.addAttribute("orderList", orderList);
         model.addAttribute("orderStatusList", orderStatusList);
         return "user/boot1/user-billing";
@@ -120,6 +119,10 @@ public class UserController {
             model.addAttribute("errorMessage", e.getMessage());
         } catch (AuthenticationAccountException ex) {
             model.addAttribute("errorMessage", ex.getMessage());
+        } catch (PasswordDoNotMatchException pe){
+            model.addAttribute("errorMessage", pe.getMessage());
+        } catch (Exception ex){
+            model.addAttribute("errorMessage", "Không thể đổi mật khẩu!");
         }
         return "user/boot1/user-security";
     }

@@ -31,7 +31,7 @@ public class OrderCRUDController {
     public Pageable sortOrder(int currentPage, int pageSize, int sortType) {
         Pageable pageable;
         switch (sortType) {
-            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
             default -> {
                 pageSize = 5;
                 pageable = PageRequest.of(currentPage - 1, pageSize);
@@ -43,10 +43,6 @@ public class OrderCRUDController {
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER', 'VIEW_ORDER')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
-//        User admin = (User) session.getAttribute("admin");
-//        if (admin == null) {
-//            return "redirect:/admin/login";
-//        }
         List<Order> deliveriedOrders = orderService.filterStatusOrder(4);
         int numberOfdeliveriedOrders = deliveriedOrders.size();
         List<Order> awaitingRefundOrders = orderService.filterStatusOrder(5);

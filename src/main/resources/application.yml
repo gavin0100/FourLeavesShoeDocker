@@ -74,7 +74,6 @@ application:
       vnp_HashSecret: 70OXPPONL7XA9QR57L1QDWQVZPYC4L3U
 logging:
   file:
-#    name: D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log
     name: ${LOG_ADDRESS:D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log}
 #  level:
 #    root: error

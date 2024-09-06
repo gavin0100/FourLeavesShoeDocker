@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.filter.GenericFilterBean;
@@ -16,7 +17,13 @@ public class CustomExceptionFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
             filterChain.doFilter(servletRequest, servletResponse);
-        } catch (RuntimeException ex) {
+        }
+//        catch (AccessDeniedException accessDeniedException){
+//            System.out.println("AccessDeniedException được gọi");
+//            ((HttpServletResponse) servletResponse).sendRedirect("/");
+//        }
+        // chỗ này bắt luôn AccessDeniedException
+        catch (RuntimeException ex) {
             // Handle your custom exception here
             System.out.println("bat MyServletException trong CustomExceptionFilter");
             ((HttpServletResponse) servletResponse).sendRedirect("/logout_to_login/fromJwtEmptyOrNullException");

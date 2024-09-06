@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.supercsv.cellprocessor.FmtDate;
 import org.supercsv.cellprocessor.constraint.NotNull;
@@ -56,14 +57,15 @@ public class UserCRUDController {
         }
         return pageable;
     }
+    String errorMessage = "";
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_USER', 'VIEW_USER')")
     public String show(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page, Model model, HttpSession session) {
-//        User admin = (User) session.getAttribute("admin");
-//        if (admin == null) {
-//            return "redirect:/admin/login";
-//        }
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
         int currentPage = page.orElse(1);
         int pageSize = sortType;
         List<User> usableAccounts = userService.getAppropriateAccountForUser();
@@ -131,14 +133,46 @@ public class UserCRUDController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority( 'FULL_ACCESS_USER')")
-    public String create(@ModelAttribute UserDTO user) {
+    public String create(
+            @RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page,
+            @ModelAttribute UserDTO user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errorMessage", "Nhập sai định dạng dữ liệu");
+            if (user.getPhoneNumber().matches("\\d+")){
+                model.addAttribute("errorMessage", "Nhập sai định dạng số điện thoại");
+            }
+            int currentPage = page.orElse(1);
+            int pageSize = sortType;
+            List<User> usableAccounts = userService.getAppropriateAccountForUser();
+            Pageable pageable;
+            Page<User> userPage;
+            pageable = sortUser(currentPage, pageSize, sortType);
+            userPage = userService.getAllPagingUser(pageable);
+            model.addAttribute("users", userPage.getContent());
+            model.addAttribute("totalPages", userPage.getTotalPages());
+            model.addAttribute("currentPage", currentPage);
+            model.addAttribute("sortType", sortType);
+            model.addAttribute("totalElements", userPage.getTotalElements());
+            model.addAttribute("usableAccounts", usableAccounts);
+            return "admin/boot1/user";
+        }
         userService.create(user);
         return "redirect:/admin/user";
     }
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority( 'FULL_ACCESS_USER')")
-    public String update(@ModelAttribute UserDTO user) {
+    public String update(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page,
+                         @ModelAttribute UserDTO user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/admin/user";
+        }
+
+        if (isNumeric(user.getPhoneNumber())== false){
+            errorMessage = "Nhập sai định dạng số điện thoại";
+            return "redirect:/admin/user";
+        }
         userService.update(user);
         return "redirect:/admin/user";
     }
@@ -149,5 +183,9 @@ public class UserCRUDController {
         User user = userService.getByUserId(id);
         userService.deleteById(id);
         return "redirect:/admin/user";
+    }
+
+    public boolean isNumeric(String str) {
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
     }
 }

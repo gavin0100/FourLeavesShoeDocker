@@ -56,18 +56,20 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
         }
-        // xử lý cho trang home, khi đã đăng nhập xong nhưng lại mất token,
+        // TH1: xử lý cho trang home, khi đã đăng nhập xong nhưng lại mất token,
         // load lại trang home nhưng dữ liệu trong session ở controller vẫn chưa bị xóa
-//        System.out.println(path);
-//        System.out.println(jwt);
-        if ((path.equals("/")||path.equals(""))&&(jwt.equals("") || jwt== null)&&request.getSession().getAttribute("user") != null){
-//            System.out.println("hihihiihhi");
+        // TH2: nếu token mất mà session vẫn còn, thì user bị trả về đây
+        // trong lần chuyển tiếp và xóa đi session, ng dùng cần truy cập lại url lần 2 mới vào được trang không cần quyền
+        if (!path.equals("/logout_to_login/fromJwtEmptyOrNullException")
+                && !path.equals("/logout")
+                && (jwt.equals("") || jwt== null)
+                && request.getSession().getAttribute("user") != null){
             throw new AccessDeniedException("token khong ton tai");
         }
 
         // đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập la
         String accountName = "";
-        if (!jwt.equals("") && jwt != null && accountName != null && request.getSession().getAttribute("user") == null && (
+        if (!jwt.equals("") && jwt != null && request.getSession().getAttribute("user") == null && (
                 path.startsWith("/product/") ||
                 path.startsWith("/cart") ||
                 path.startsWith("/category/") ||
@@ -78,7 +80,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/user") ||
                 path.startsWith("/admin") ||
                 path.equals("/") ||
-                path.equals(""))){
+                path.equals("") ||
+                path.equals("/session"))){
             try{
                 System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
                 accountName = jwtService.extractUsername(jwt);

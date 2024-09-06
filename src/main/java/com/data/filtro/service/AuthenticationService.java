@@ -55,7 +55,7 @@ public class AuthenticationService {
                     SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         }catch (AuthenticationException e){
 //            System.out.println(e.getMessage());
-            throw new AuthenticationAccountException("Invalid username/password supplied: " + e.getMessage());
+            throw new AuthenticationAccountException("Tên tài khoản, mật khẩu không đúng");
         }
         User user = userService.getUserByAccountName(accountName);
         String token = jwtService.generateToken(user);

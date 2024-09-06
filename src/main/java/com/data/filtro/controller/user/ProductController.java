@@ -9,6 +9,7 @@ import com.data.filtro.service.FeedbackService;
 import com.data.filtro.service.InputService;
 import com.data.filtro.service.ProductService;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/product")
+@Slf4j
 public class ProductController {
 
     @Autowired
@@ -77,7 +79,7 @@ public class ProductController {
         model.addAttribute("feedbackList", feedbackList);
         if (errorMessage != null){
             model.addAttribute("errorMessage", errorMessage);
-            System.out.println(errorMessage);
+            log.error(errorMessage);
         }
         errorMessage = null;
         return "user/boot1/detail";

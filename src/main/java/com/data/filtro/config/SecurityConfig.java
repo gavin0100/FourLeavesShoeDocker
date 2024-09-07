@@ -89,10 +89,10 @@ public class SecurityConfig{
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**", "/product/img/**").permitAll()
-                                .anyRequest().authenticated();
-//                                .and()
-//                                .exceptionHandling()
-//                                .accessDeniedHandler(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
+                                .anyRequest().authenticated()
+                                .and()
+                                .exceptionHandling()
+                                .accessDeniedHandler(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
 //                                .and()
 //                                .logout() // neu da dang ky ngoai nay thi may cai viet trong controler logout khong duoc thuc hien
 //                                .invalidateHttpSession(true)

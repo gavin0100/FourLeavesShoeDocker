@@ -109,7 +109,6 @@ public class SecurityConfig{
 //                                });
                     } catch (Exception e) {
                         e.printStackTrace();
-                        throw new RuntimeException(e);
                     }
                 })
                 .formLogin().disable()

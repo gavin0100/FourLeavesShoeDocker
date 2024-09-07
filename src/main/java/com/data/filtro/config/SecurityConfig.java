@@ -128,6 +128,7 @@ public class SecurityConfig{
                     try {
                         ahr.and()
                                 .exceptionHandling()
+                                .accessDeniedHandler(accessDeniedHandler())
                                 .authenticationEntryPoint(accessErrorHandler());
                     } catch (Exception e) {
                         throw new RuntimeException(e);

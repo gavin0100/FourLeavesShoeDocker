@@ -124,16 +124,16 @@ public class SecurityConfig{
                             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                             .logoutSuccessUrl("/login");
                 })
-                .exceptionHandling(ahr ->{
+                .exceptionHandling(ahr -> {
                     try {
-                        ahr.and()
-                                .exceptionHandling()
+                        ahr
                                 .accessDeniedPage("/")
                                 .authenticationEntryPoint(accessErrorHandler());
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace(); // Or use a logging framework
                     }
                 })
+
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
 

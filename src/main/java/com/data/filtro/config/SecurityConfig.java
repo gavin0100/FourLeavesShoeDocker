@@ -92,7 +92,7 @@ public class SecurityConfig{
                                 .anyRequest().authenticated()
                                 .and()
                                 .exceptionHandling()
-                                .accessDeniedHandler(accessDeniedHandler());  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
+                                .accessDeniedPage("/");  // chuyen huong den trang access-denied khi cố gắng truy cập vào một tài nguyên mà họ không được phép khi chưa xác thực
 //                                .and()
 //                                .logout() // neu da dang ky ngoai nay thi may cai viet trong controler logout khong duoc thuc hien
 //                                .invalidateHttpSession(true)
@@ -128,7 +128,7 @@ public class SecurityConfig{
                     try {
                         ahr.and()
                                 .exceptionHandling()
-                                .accessDeniedHandler(accessDeniedHandler())
+                                .accessDeniedPage("/")
                                 .authenticationEntryPoint(accessErrorHandler());
                     } catch (Exception e) {
                         throw new RuntimeException(e);

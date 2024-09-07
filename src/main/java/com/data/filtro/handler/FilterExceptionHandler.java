@@ -28,7 +28,7 @@ import java.util.Date;
 //@Component
 //@RequiredArgsConstructor
 //@Slf4j
-//public class FilterExceptionHandler extends OncePerRequestFilter {
+//public class FilterExceptionHandler extends Author {
 public class FilterExceptionHandler  {
 //    private final Logger logger = LoggerFactory.getLogger(FilterExceptionHandler.class);
 //    @Override

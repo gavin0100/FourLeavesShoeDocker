@@ -108,6 +108,7 @@ public class SecurityConfig{
 //                                    oauth2.defaultSuccessUrl("/user_google_hihi", true);
 //                                });
                     } catch (Exception e) {
+                        e.printStackTrace();
                         throw new RuntimeException(e);
                     }
                 })

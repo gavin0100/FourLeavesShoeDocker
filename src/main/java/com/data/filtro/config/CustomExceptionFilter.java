@@ -18,10 +18,10 @@ public class CustomExceptionFilter extends GenericFilterBean {
         try {
             filterChain.doFilter(servletRequest, servletResponse);
         }
-//        catch (AccessDeniedException accessDeniedException){
-//            System.out.println("AccessDeniedException được gọi");
-//            ((HttpServletResponse) servletResponse).sendRedirect("/");
-//        }
+        catch (AccessDeniedException accessDeniedException){
+            System.out.println("AccessDeniedException trong CustomExceptionFilter  được gọi");
+            ((HttpServletResponse) servletResponse).sendRedirect("/");
+        }
         // chỗ này bắt luôn AccessDeniedException
         catch (RuntimeException ex) {
             // Handle your custom exception here

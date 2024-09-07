@@ -21,6 +21,8 @@ public class AccessDeniedProcession {
 
     // AccessDeniedException là do AuthorizationFilter có order 3600 thấp nhất quăng ra
     // nên mấy lớp khác global mới bắt được
+
+    // cách này không bắt AccessDeniedException trong docker được
     @ExceptionHandler(value = AccessDeniedException.class)
     public void accessDenied(HttpServletResponse response) throws IOException, MyServletException {
         System.out.println("AccessDeniedProcession được gọi");

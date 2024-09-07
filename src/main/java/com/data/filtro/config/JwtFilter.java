@@ -65,7 +65,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 && !path.equals("/logout")
                 && (jwt.equals("") || jwt== null)
                 && request.getSession().getAttribute("user") != null){
-            throw new AccessDeniedException("token khong ton tai");
+            throw new JwtNullOrEmptyException("token khong ton tai", null, false, false);
         }
 
         // đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập la

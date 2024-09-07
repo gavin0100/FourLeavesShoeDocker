@@ -47,7 +47,6 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
-        System.out.println("path test access denied: " + path);
         String jwt = "";
         if (request.getCookies() != null){
             for (int i =0; i < request.getCookies().length; i++){

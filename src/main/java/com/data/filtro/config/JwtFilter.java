@@ -85,6 +85,9 @@ public class JwtFilter extends OncePerRequestFilter {
             try{
                 System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
                 accountName = jwtService.extractUsername(jwt);
+                if (jwtService.isTokenExpired(jwt)){
+                    throw new MyServletException("Token is Expired ", null, false, false);
+                }
                 UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
                 if(jwtService.isValidToken(jwt, userDetails)){
                     request.getSession().setAttribute("user", (User)userDetails);
@@ -99,6 +102,9 @@ public class JwtFilter extends OncePerRequestFilter {
             try{
                 System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
                 accountName = jwtService.extractUsername(jwt);
+                if (jwtService.isTokenExpired(jwt)){
+                    throw new MyServletException("Token is Expired ", null, false, false);
+                }
                 UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
                 if(jwtService.isValidToken(jwt, userDetails)){
                     request.getSession().setAttribute("admin", (User)userDetails);
@@ -148,6 +154,9 @@ public class JwtFilter extends OncePerRequestFilter {
                                 request.getSession().getAttribute("admin") != null)){
                     try{
                         accountName = jwtService.extractUsername(jwt);
+                        if (jwtService.isTokenExpired(jwt)){
+                            throw new MyServletException("Token is Expired ", null, false, false);
+                        }
                     } catch (Exception ex){
                         throw new MyServletException("Can't get accountName from JWT", null, false, false);
                     }
@@ -186,12 +195,18 @@ public class JwtFilter extends OncePerRequestFilter {
         if (accountName.equals("")){
             try{
                 accountName = jwtService.extractUsername(jwt);
+                if (jwtService.isTokenExpired(jwt)){
+                    throw new MyServletException("Token is Expired ", null, false, false);
+                }
             } catch (Exception ex){
                 throw new MyServletException("Can't get accountName from JWT", null, false, false);
             }
         }
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){
+            if (jwtService.isTokenExpired(jwt)){
+                throw new MyServletException("Token is Expired ", null, false, false);
+            }
             UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
             if(jwtService.isValidToken(jwt, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

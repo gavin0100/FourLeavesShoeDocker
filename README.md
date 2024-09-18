@@ -187,7 +187,7 @@ Here is VnpayService.java
 
 ![img_13.png](image/img_13.png)
 
-![data angular thread-security spring.png](data%20angular%20thread-security%20spring.png)
+![data angular thread-security spring.png](image/data%20angular%20thread-security%20spring.png)
 
 
 

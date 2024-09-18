@@ -1,0 +1,6 @@
+1. after my each question, can you correct them with proper grammar and practical vocabulary? 
+
+What does the --proxy-config option mean in package.json?
+When I run ng serve, how does this configuration affect my project?
+
+2. 

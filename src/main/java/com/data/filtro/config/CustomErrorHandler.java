@@ -15,7 +15,7 @@ public class CustomErrorHandler implements AccessDeniedHandler, AuthenticationEn
 //public class CustomErrorHandler implements AuthenticationEntryPoint {
     // handle là của AccessDeniedHandler, được thực thi nếu ng dùng không có quyền,
     // lúc này request đã đi qua hầu hết bộ lọc filter, bị kẹt lại ở AuthorizationFilter chỉ còn bước lấy Authentication
-    // từ SecurityContextHolder lên để so sáng với @PreAuthorized nhưng không khớp
+    // từ SecurityContextHolder lên để so sánh với @PreAuthorized nhưng không khớp
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {

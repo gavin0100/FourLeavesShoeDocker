@@ -30,6 +30,7 @@ import java.io.IOException;
 //@RequiredArgsConstructor
 @Slf4j
 public class JwtFilter extends OncePerRequestFilter {
+
     private final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsService userDetailsService;
     private final JwtService jwtService;
@@ -67,7 +68,7 @@ public class JwtFilter extends OncePerRequestFilter {
             throw new JwtNullOrEmptyException("token khong ton tai", null, false, false);
         }
 
-        // đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập la
+        // đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các page và cần đăng nhập lại
         String accountName = "";
         if (!jwt.equals("") && jwt != null && request.getSession().getAttribute("user") == null && (
                 path.startsWith("/product/") ||
@@ -86,6 +87,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
                 accountName = jwtService.extractUsername(jwt);
                 if (jwtService.isTokenExpired(jwt)){
+                    System.out.println("token het han rui");
                     throw new MyServletException("Token is Expired ", null, false, false);
                 }
                 UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);

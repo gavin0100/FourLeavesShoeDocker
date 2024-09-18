@@ -85,7 +85,8 @@ public class SecurityConfig{
                                         "/app-minio/**",
                                         "/logout_to_login/**",
                                         "/user/billing/reset_login",
-                                        "/session"
+                                        "/session",
+                                        "/favicon.ico"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**", "/product/img/**").permitAll()
@@ -127,7 +128,7 @@ public class SecurityConfig{
                 .exceptionHandling(ahr -> {
                     try {
                         ahr
-                                .accessDeniedPage("/")
+//                                .accessDeniedPage("/")
                                 .authenticationEntryPoint(accessErrorHandler());
                     } catch (Exception e) {
                         e.printStackTrace(); // Or use a logging framework

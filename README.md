@@ -41,7 +41,6 @@
 
 ### Security
 - Utilized Spring Security and JWT tokens for managing authentication and authorization.
-- Secured the web application against attacks like CSRF, Brute Force, Clickjacking, XSS.
 
 ### Payment Integration
 - Payment is handled through Momo e-wallet and Vnpay payment gateway.
@@ -56,6 +55,16 @@
 
 ### ELK Stack
 - Used Elasticsearch, Kibana, and Logstash to store logs from a Spring Boot application.
+
+### Redis, MinIO
+- Used Redis as a cache and MinIO for image storage.
+
+### Unit test
+- Automatically performed unit tests using JUnit, Mockito, and GitHub Actions.
+
+### Deployment
+- Deployed all services using Docker Compose and Ngrok. (Full demo)
+- Deployed SpringBoot and Thymeleaf with Render. (Incomplete demo)
 
 # ===================================================================================================================
 
@@ -89,22 +98,26 @@
 
 ## 2. Payment is handled through Momo e-wallet and Vnpay payment gateway.
 If you run this project in local, you have to map your url from http to https, in order to receive response returned from the IPN of Momo and Vnpay.
-![img.png](img.png)
+![img.png](image/img.png)
 
 If you run this project locally, you need to map your URL from HTTP to HTTPS to receive responses from the IPN of Momo and Vnpay.
 Here is MomoService.java
-![img_1.png](img_1.png)
+![img_1.png](image/img_1.png)
 
 Here is VnpayService.java
-![img_2.png](img_2.png)
+![img_2.png](image/img_2.png)
 ### 2.1. Payment through Momo e-wallet
 ![chonPhuongThucThanhToan](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/33abae17-62af-4195-acee-5e37726ed427)
 ![trangThanhToanMomo](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/4ddf59cb-08c2-44fe-943a-f94108b8750d)
 
 - At the homepage of Momo's application
-  ![momoap_trangChu](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/17d5da92-6362-4b37-b3f7-4a8758f03780)
-  ![momoapp_thanhToanThanhCong](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/ca0e5fd5-1f6c-49ec-81e2-879097cb90d3)
-  ![momoapp_thongTinDonHang](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/69c3c9bc-a7e4-4899-977f-4f9cbd74152a)
+
+<img src="https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/17d5da92-6362-4b37-b3f7-4a8758f03780" height="500">
+
+<img src="https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/ca0e5fd5-1f6c-49ec-81e2-879097cb90d3" height="500">
+
+<img src="https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/69c3c9bc-a7e4-4899-977f-4f9cbd74152a" height="500">
+  
 
 - After check out successfully, the webpage is reset.
   ![thanhToanMomoThanhCong](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/19f16a25-1eb1-41ef-b327-348b9ff7f5dc)
@@ -127,13 +140,31 @@ Here is VnpayService.java
 - Send invoices after purchasing
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/74141053-0ceb-459f-8ea7-8e6e59ff4b7e)
 
-### 3.2. Working with Excel (CSV) - under development
+### 3.2. Working with Excel (CSV)
 
 - Export, Import CSV files in store management for employees
 
-### 3.3. Working with PDF - under development
+![img_3.png](image/img_3.png)
+
+![img_4.png](image/img_4.png)
+
+![img_6.png](image/img_6.png)
+
+![img_7.png](image/img_7.png)
+
+![img_8.png](image/img_8.png)
+
+
+
+### 3.3. Working with PDF
 
 - Print invoices in PDF format
+
+![img_9.png](image/img_9.png)
+
+![img_10.png](image/img_10.png)
+
+![img_11.png](image/img_11.png)
 
 ## 4. Wrote APIs for Android app integration.
 - Example of getting product's list api
@@ -145,31 +176,33 @@ Here is VnpayService.java
 
 ## 5. Utilized Spring Security and JWT tokens for managing authentication and authorization.
 
-### 5.1. JWT tokens and permissions
+### 5.1. Security FilterChain, Filters, Exceptions
+
+- Default Security FilterChain
+- [Refer to] - Linh Vu. "3. Spring Security: Security Filter - Register a Custom SecurityFilter into a SecurityFilterChain", 24/03/2024. [Online]. Link: https://www.youtube.com/watch?v=fxROf5ygVSg&t=4s . [Access: 05/09/2024  ]
+
+<img src="image/img_12.png" height="700">
+
+- Here is my filter chain.
+
+![img_13.png](image/img_13.png)
+
+![data angular thread-security spring.png](data%20angular%20thread-security%20spring.png)
+
+
+
+### 5.2. JWT tokens and permissions
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6f8c3ec7-f06c-45e6-9a11-48639e2da7d8)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/ecdb5f49-59fa-489a-94bf-a311627eba71)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/e2549f2f-50c5-4578-8395-58ecddd0dd1c)
 
-### 5.2. Incorrect login
+### 5.3. Incorrect login
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6c3bef7b-83a1-4464-8237-d6b4bf347c50)
 
-### 5.3. Access denied when trying to access unauthorized areas (before and after login)
-- Without login: Let's access this url without login: http://localhost:3030/admin/user. Here is the result
-  ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/3c77ed53-fb0e-4bff-97d5-814b228c7afe)
 
-- After login
-  ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/7936d63b-e965-48b5-9af5-d28e6699cd3a)
+## 6. Used OAuth2 for logging in with Google, Facebook (under development).
 
-## 6. Secured the web application against attacks like CSRF, Brute Force, Clickjacking, XSS.
-
-- Protect against CSRF (Cross-Site Request Forgery) attacks: FourLeavesShoes uses CSRF tokens to validate user requests and prevent CSRF attacks.
-- Protect against Brute Force attacks: FourLeavesShoes applies a policy to limit the number of failed login attempts and waiting time between logins to prevent Brute Force attacks.
-- Protect against Clickjacking attacks: FourLeavesShoes uses HTTP header frame options to prevent Clickjacking attacks.
-- Protect against XSS (Cross-Site Scripting) attacks: FourLeavesShoes applies input filtering and output encoding to prevent XSS attacks.
-
-## 7. Used OAuth2 for logging in with Google, Facebook (under development).
-
-## 8. Used Twilio to send SMS messages through a phone number for verification support (under development).
+## 7. Used Twilio to send SMS messages through a phone number for verification support (under development).
 
 ## 9. Used Elasticsearch, Kibana, and Logstash to store logs from a Spring Boot application
 

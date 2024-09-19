@@ -1,5 +1,6 @@
 # Four Leaves Shoe - Project Overview
 - URL: https://shoeselling-fourleavesshoes.onrender.com
+- The old repository: https://github.com/gavin0100/sellingshoe
 - This project aims to replicate the functionality of an e-commerce website. It offers a comprehensive suite of features that cater to both customers and store managers.
 
 # Technologies Used
@@ -11,19 +12,6 @@
 - Run project: Docker
 - Store image: MinIO
 - Redis 
-
-## Features
-
-### For Customers
-- **Store Information**: Provides details about the store.
-- **Order Placement**: Allows customers to place orders for their desired products.
-- **Payment Gateway**: Facilitates payment transactions for purchases.
-
-### For Store Management
-- **User Information Management**: Handles the data related to store users.
-- **Product Management**: Involves adding, updating, and removing products.
-- **Order Management**: Tracks and manages customer orders.
-- **User Role Assignments**: Administers the roles and permissions of users on the website.
 
 ## Admin Account
 
@@ -68,9 +56,38 @@
 
 # ===================================================================================================================
 
-## 1. Provided functionalities of an e-commerce website, including viewing items, managing the shopping cart, order placing for customers, and shop management for employees.
+## 1. Utilized Spring Security and JWT tokens for managing authentication and authorization.
 
-### 1.1. Account registration and login
+### 1.1. Security FilterChain, Filters, Exceptions
+
+- Default Security FilterChain
+- [Refer to] - Linh Vu. "3. Spring Security: Security Filter - Register a Custom SecurityFilter into a SecurityFilterChain", 24/03/2024. [Online]. Link: https://www.youtube.com/watch?v=fxROf5ygVSg&t=4s . [Access: 05/09/2024  ]
+
+<img src="image/img_12.png" height="700">
+
+- Here is my filter chain.
+
+![img_13.png](image/img_13.png)
+
+![data angular thread-security spring.png](image/data%20angular%20thread-security%20spring.png)
+
+
+
+### 1.2. JWT tokens and permissions
+
+![jwt thread.png](image%2Fjwt%20thread.png)
+
+![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6f8c3ec7-f06c-45e6-9a11-48639e2da7d8)
+![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/ecdb5f49-59fa-489a-94bf-a311627eba71)
+![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/e2549f2f-50c5-4578-8395-58ecddd0dd1c)
+
+### 1.3. Incorrect login
+![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6c3bef7b-83a1-4464-8237-d6b4bf347c50)
+
+
+## 2. Provided functionalities of an e-commerce website, including viewing items, managing the shopping cart, order placing for customers, and shop management for employees.
+
+### 2.1. Account registration and login
 - Registration
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/44cac01e-4a48-4e31-a2e4-35bb4dce51b7)
 
@@ -84,29 +101,40 @@
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/28d5c7bc-cc4f-4492-8dcc-67cb8b27144b)
 
 
-### 1.2. View homepage, products, product details
+### 2.2. View homepage, products, product details
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/649e918b-01c5-4766-95c3-945f24b1aacf)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/78a28ae4-6295-409b-a970-4606099c1d07)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/51e3d658-0ab0-45a9-b908-e2853010a049)
 
-### 1.3. View, add, remove products from the shopping cart
+### 2.3. View, add, remove products from the shopping cart
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/bfe2bd94-dda7-441e-91ef-065a8ef23873)
 
-### 1.4. Place Cash on Delivery (COD) orders
+### 2.4. Place Cash on Delivery (COD) orders
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/1da2c500-4693-40ba-a68c-5f3c932f48d5)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/87d43512-0fb6-4de5-8ad8-e13dafcd3ac1)
 
-## 2. Payment is handled through Momo e-wallet and Vnpay payment gateway.
-If you run this project in local, you have to map your url from http to https, in order to receive response returned from the IPN of Momo and Vnpay.
+## 3. Payment is handled through Momo e-wallet and Vnpay payment gateway.
+If you run this project in local, you have to map your url from https to http, in order to receive response returned from the IPN of Momo and Vnpay.
 ![img.png](image/img.png)
 
-If you run this project locally, you need to map your URL from HTTP to HTTPS to receive responses from the IPN of Momo and Vnpay.
+If you run this project locally, you need to map your URL from HTTPS to HTTP to receive responses from the IPN of Momo and Vnpay.
 Here is MomoService.java
 ![img_1.png](image/img_1.png)
 
 Here is VnpayService.java
 ![img_2.png](image/img_2.png)
-### 2.1. Payment through Momo e-wallet
+
+Beside Serveo, you can use Ngrok familiar to proxy.
+
+Command line: ngrok http http://localhost:8080
+
+![img_ngrok.png](image%2Fimg_ngrok.png)
+
+
+### 3.1. Payment through Momo e-wallet
+
+![data angular thread-momo.png](image%2Fdata%20angular%20thread-momo.png)
+
 ![chonPhuongThucThanhToan](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/33abae17-62af-4195-acee-5e37726ed427)
 ![trangThanhToanMomo](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/4ddf59cb-08c2-44fe-943a-f94108b8750d)
 
@@ -123,16 +151,40 @@ Here is VnpayService.java
   ![thanhToanMomoThanhCong](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/19f16a25-1eb1-41ef-b327-348b9ff7f5dc)
   ![trangThaiOrder](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/b7746bf4-a866-4fef-ada7-6652f76d69d1)
 
-### 2.2. Payment through Vnpay payment gateway
+### 3.2. Payment through Vnpay payment gateway
+
+![vnpay.png](image%2Fvnpay.png)
+
 ![chonPhuongThucThanhToan](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6ac7a1e3-75c6-49be-b608-3c26518a95e4)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/f0b1959e-a6c5-4051-9d36-0c2fa3003ebf)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/f153790b-b772-44de-ac79-2a5f26232f2d)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/8c740ddd-1ae5-4d29-bdbd-5adcbb71713c)
 ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/67947bcb-cccb-4413-8e8e-3af923a3521d)
 
-## 3. Working with Gmail, Excel, and PDF applications to manage orders for customers and data management for the store.
+## 4. Working with Gmail, Excel, and PDF applications to manage orders for customers and data management for the store.
 
-### 3.1. Working with Gmail
+### 4.1. Working with Gmail
+
+```agsl
+<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.6.2</version>
+</dependency>
+
+Session session = Session.getInstance(properties, new Authenticator() {
+    @Override
+    protected PasswordAuthentication getPasswordAuthentication(){
+        return new  PasswordAuthentication("voduc0100@gmail.com", "arozojkhspxuuxeg");
+    }
+});
+
+MimeMessage message = new MimeMessage(session);
+message.setFrom; message.addRecipient; message.setSubject; message.setContent
+Transport.send(message);
+```
+
+
 - Change password
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/dce95b65-8b18-4d8c-b594-225c3522287c)
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/260b303f-5c80-48e8-b90f-d724d076f896)
@@ -140,9 +192,9 @@ Here is VnpayService.java
 - Send invoices after purchasing
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/74141053-0ceb-459f-8ea7-8e6e59ff4b7e)
 
-### 3.2. Working with Excel (CSV)
+### 4.2. Working with Excel (CSV)
 
-- Export, Import CSV files in store management for employees
+- Import CSV files in page's management for category
 
 ![img_3.png](image/img_3.png)
 
@@ -154,9 +206,18 @@ Here is VnpayService.java
 
 ![img_8.png](image/img_8.png)
 
+- Export CSV files in page's management for employees
+
+![exportCSV1.png](image%2FexportCSV1.png)
+
+![exportCSV2.png](image%2FexportCSV2.png)
+
+![exportCSV3.png](image%2FexportCSV3.png)
 
 
-### 3.3. Working with PDF
+
+
+### 4.3. Working with PDF
 
 - Print invoices in PDF format
 
@@ -166,7 +227,7 @@ Here is VnpayService.java
 
 ![img_11.png](image/img_11.png)
 
-## 4. Wrote APIs for Android app integration.
+## 5. Wrote APIs for Android app integration.
 - Example of getting product's list api
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/c6be7ed9-6874-4ce8-9146-4f0a503b3c36)
 
@@ -174,37 +235,11 @@ Here is VnpayService.java
   ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/34a04b7c-32f4-458b-bd47-5821c54cdd65)
 
 
-## 5. Utilized Spring Security and JWT tokens for managing authentication and authorization.
-
-### 5.1. Security FilterChain, Filters, Exceptions
-
-- Default Security FilterChain
-- [Refer to] - Linh Vu. "3. Spring Security: Security Filter - Register a Custom SecurityFilter into a SecurityFilterChain", 24/03/2024. [Online]. Link: https://www.youtube.com/watch?v=fxROf5ygVSg&t=4s . [Access: 05/09/2024  ]
-
-<img src="image/img_12.png" height="700">
-
-- Here is my filter chain.
-
-![img_13.png](image/img_13.png)
-
-![data angular thread-security spring.png](image/data%20angular%20thread-security%20spring.png)
-
-
-
-### 5.2. JWT tokens and permissions
-![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6f8c3ec7-f06c-45e6-9a11-48639e2da7d8)
-![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/ecdb5f49-59fa-489a-94bf-a311627eba71)
-![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/e2549f2f-50c5-4578-8395-58ecddd0dd1c)
-
-### 5.3. Incorrect login
-![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/6c3bef7b-83a1-4464-8237-d6b4bf347c50)
-
-
 ## 6. Used OAuth2 for logging in with Google, Facebook (under development).
 
 ## 7. Used Twilio to send SMS messages through a phone number for verification support (under development).
 
-## 9. Used Elasticsearch, Kibana, and Logstash to store logs from a Spring Boot application
+## 8. Used Elasticsearch, Kibana, and Logstash to store logs from a Spring Boot application
 
 This project demonstrates the use of the ELK stack (Elasticsearch, Logstash, and Kibana) to store and visualize logs generated by a Spring Boot application.
 
@@ -285,6 +320,115 @@ At http://localhost:5601/, go to the Navigation Bar, select 'Analytics', and the
 
 ![image](https://github.com/user-attachments/assets/7b53e028-c4a2-41df-87cd-f16ab83efce7)
 ![image](https://github.com/user-attachments/assets/fb7ae8cc-c98f-4e67-aec9-96b08c8dfae6)
+
+## 9. Redis, MinIO
+
+### Redis: 5.0.14.1
+
+- Used with the detail of products and lists of products at the home page.
+- When administrators update a specified product, the backend updates the database before deleting keys in the redis cache.
+
+![redisCLI.png](image/19_9_2024/redisCLI.png)
+
+### Minio:
+- Used to store images of products.
+- Run this command line in PowerShell: .\minio.exe server D:\MinIO --console-address :9001
+
+![minioBucket.png](image/19_9_2024/minioBucket.png)
+
+![img_2.png](image/19_9_2024/img_2.png)
+
+- Let's create a product
+
+![img_3.png](image/19_9_2024/img_3.png)
+
+![img_4.png](image/19_9_2024/img_4.png)
+
+![img_5.png](image/19_9_2024/img_5.png)
+
+- In this case, the Redis cache doesn't contain this product with product's id equal to 125. 
+
+![img_6.png](image/19_9_2024/img_6.png)
+
+- Let's access the page of the product's details to save it to Redis cache.
+
+![img_7.png](image/19_9_2024/img_7.png)
+
+![img_8.png](image/19_9_2024/img_8.png)
+
+- Let's update this product and this key is deleted in Redis cache
+
+![img_9.png](image/19_9_2024/img_9.png)
+
+![img_10.png](image/19_9_2024/img_10.png)
+
+- When any users access to the page of this product's detail, it is saved again in Redis cache.
+
+![img_12.png](image/19_9_2024/img_12.png)
+
+![img_11.png](image/19_9_2024/img_11.png)
+
+- When administrators update images, the old image in MinIO's bucket will be deleted and the new one will be added to this storage.
+  - Let's change the product's image: carousel-3.png to carousel-5.jpg
+
+![img_13.png](image/19_9_2024/img_13.png)
+
+![img_14.png](image/19_9_2024/img_14.png)
+
+![img_15.png](image/19_9_2024/img_15.png)
+
+![img_16.png](image/19_9_2024/img_16.png)
+
+
+## 10. Unit test
+Automatically performed unit tests using JUnit, Mockito, and GitHub Actions.
+
+I used Junit, Mockito to perform UnitTest in CartService.
+
+![img_17.png](image/19_9_2024/img_17.png)
+
+In GithubAction, I configured to automatically perform these unit tests.
+
+![img_18.png](image/19_9_2024/img_18.png)
+
+
+## 11. Deployment
+### Deployed all services using Docker Compose and Ngrok (Full demo)
+- Run these command lines: 
+  - docker-compose up                            --> run these services: spring boot, mysql, redis, minio
+  - docker-compose -f elk-docker-compose.yml up  --> run these services: logstash, elasticsearch, kibana 
+
+![img_19.png](image/19_9_2024/img_19.png)
+
+![img_ngrok.png](image%2Fimg_ngrok.png)
+
+- Let's change the value of environment's variable in docker-compose.yml: SERVEO_LINK
+
+![img_23.png](image/19_9_2024/img_23.png)
+
+- This is the default page of Ngrok, let's press "Visit Site"
+
+![img_24.png](image/19_9_2024/img_24.png)
+
+![img_25.png](image/19_9_2024/img_25.png)
+
+### Deployed SpringBoot and Thymeleaf with Render. (Incomplete demo)
+
+![img_20.png](image/19_9_2024/img_20.png)
+
+https://shoeselling-fourleavesshoes.onrender.com
+
+![img_21.png](image/19_9_2024/img_21.png)
+
+![img_22.png](image/19_9_2024/img_22.png)
+
+![img_26.png](image/19_9_2024/img_26.png)
+
+
+
+
+
+
 
 
 

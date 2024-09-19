@@ -40,12 +40,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class MomoService {
-//    private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
-//    private final String RETURN_URL = "https://shoeselling-fourleavesshoes.onrender.com/user/billing";
-//    private final String IPN_API = "https://shoeselling-fourleavesshoes.onrender.com";
-
     private final String MOMO_API = "https://test-payment.momo.vn/v2/gateway/api";
-//    private final String RETRN_URL = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login";
     @Value("${spring.data.payment.serveo_link}")
     private String IPN_API;
 

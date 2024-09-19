@@ -57,10 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
         }
-        // TH1: xử lý cho trang home, khi đã đăng nhập xong nhưng lại mất token,
-        // load lại trang home nhưng dữ liệu trong session ở controller vẫn chưa bị xóa
-        // TH2: nếu token mất mà session vẫn còn, thì user bị trả về đây
-        // trong lần chuyển tiếp và xóa đi session, ng dùng cần truy cập lại url lần 2 mới vào được trang không cần quyền
+
         if (!path.equals("/logout_to_login/fromJwtEmptyOrNullException")
                 && !path.equals("/logout")
                 && (jwt.equals("") || jwt== null)
@@ -68,7 +65,6 @@ public class JwtFilter extends OncePerRequestFilter {
             throw new JwtNullOrEmptyException("token khong ton tai", null, false, false);
         }
 
-        // đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các page và cần đăng nhập lại
         String accountName = "";
         if (!jwt.equals("") && jwt != null && request.getSession().getAttribute("user") == null && (
                 path.startsWith("/product/") ||
@@ -84,10 +80,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.equals("") ||
                 path.equals("/session"))){
             try{
-                System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
                 accountName = jwtService.extractUsername(jwt);
                 if (jwtService.isTokenExpired(jwt)){
-                    System.out.println("token het han rui");
                     throw new MyServletException("Token is Expired ", null, false, false);
                 }
                 UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
@@ -102,7 +96,6 @@ public class JwtFilter extends OncePerRequestFilter {
         if (!jwt.equals("") && jwt != null && accountName != null && request.getSession().getAttribute("admin") == null && (
                 path.startsWith("/admin"))){
             try{
-                System.out.println("đôi khi token tồn tại nhưng chưa xác thực mà ng dùng muốn truy cập các trang không cần xác thực và cần đăng nhập lại");
                 accountName = jwtService.extractUsername(jwt);
                 if (jwtService.isTokenExpired(jwt)){
                     throw new MyServletException("Token is Expired ", null, false, false);
@@ -139,7 +132,6 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.equals("/") ||
                 path.startsWith("/logout_to_login") ||
                 path.startsWith("/user/billing/reset_login")){
-            // Nếu đúng là tài nguyên tĩnh, cho phép yêu cầu đi qua mà không xử lý thêm
             if (path.startsWith("/product/") ||
                     path.startsWith("/cart") ||
                     path.startsWith("/category/") ||
@@ -150,7 +142,6 @@ public class JwtFilter extends OncePerRequestFilter {
                     path.equals("/") ||
                     path.startsWith("/login")
             ){
-                // token bị đổi
                 if (!jwt.equals("") && jwt != null && accountName.equals("") && (
                         request.getSession().getAttribute("user") != null ||
                                 request.getSession().getAttribute("admin") != null)){
@@ -167,31 +158,9 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        System.out.println(path);
-        // khi respone gửi momo, vnpay về thông qua ipn thì token fourleavesshoestoken của mình đã bị xóa,
-        // tuy nhiên các yêu cầu khi nhận respone thông qua ipn vẫn làm đủ. nhưng khi trả về trang user-billing thì không có token,
-        // nên giờ phải thêm lại
-//        System.out.println("SecurityContextHolder chứa thông tin: " +
-//                SecurityContextHolder.getContext().getAuthentication());
 
-//        if (path.startsWith("/user/billing") && SecurityContextHolder.getContext().getAuthentication() != null){
-//            AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
-//            Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
-//            cookie.setHttpOnly(true);
-//            cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
-//            response.addCookie(cookie);
-//            response.sendRedirect("/user/billing");
-//            filterChain.doFilter(request, response);
-//            return;
-//        }
-//        System.out.println(path);
-
-        // chưa có token thì xóa hết dữ liệu, quay lại trạng thái không đăng nhập
         if (jwt.equals("") || jwt== null){
             throw new AccessDeniedException("token khong tai");
-            // cách nào cũng được
-//            response.sendRedirect("/logout_to_login/fromJwtEmptyOrNullException");  // bí quá thì trả về response.sendRedirect("/");
-//            return;
         }
 
         if (accountName.equals("")){
@@ -217,23 +186,11 @@ public class JwtFilter extends OncePerRequestFilter {
                         userDetails.getAuthorities()
                 );
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                // lưu những thông tin chi tiết vào SecurityContextHolder như thông tin địa chỉ IP, session ID của request gửi yêu cầu có token mà context holder không chứa thông tin
                 SecurityContextHolder.getContext().setAuthentication(authToken);
-//                System.out.println("SecurityContextHolder chứa thông tin: " + temp +
-//                        SecurityContextHolder.getContext().getAuthentication().getCredentials() +
-//                        SecurityContextHolder.getContext().getAuthentication().getPrincipal() +
-//                        SecurityContextHolder.getContext().getAuthentication().getAuthorities() );
-
             } else {
                 throw new MyServletException("Token is not valid", null, false, false);
             }
         }
-//        System.out.println("SecurityContextHolder chứa thông tin: " +
-//                        SecurityContextHolder.getContext().getAuthentication());
-        // có token mà không có session
-
-
-        temp = temp + 1;
         filterChain.doFilter(request, response);
     }
 }

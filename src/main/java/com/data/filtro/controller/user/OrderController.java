@@ -135,8 +135,8 @@ public class OrderController {
         paymentMethod1 = com.data.filtro.model.payment.PaymentMethod.MOMO;
         Order order = orderService.placeOrder(user, phone, email, address, city, zip, paymentMethod1, cartItemList);
         int orderId = order.getId();
-        String url = "";
         MomoResponse momoResponse = placeMomoOrder(orderId);
+        System.out.println("momoResponse.getPayUrl(): " + momoResponse.getPayUrl());
         response.sendRedirect(momoResponse.getPayUrl());
     }
 
@@ -167,6 +167,7 @@ public class OrderController {
         int orderId = order.getId();
         String url = "";
         VNPResponse vnpResponse = placeVNPayOrder(orderId, request);
+
         response.sendRedirect(vnpResponse.getPaymentUrl());
 
     }

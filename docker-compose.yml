@@ -35,7 +35,7 @@ services:
       BUCKET_NAME: fourleavesshoedocker
       RESET_TOP_SELLING_PRODUCTS_BY_DAYS: 1
       RESET_TOP_SELLING_PRODUCTS_BY_HOURS: 0
-      SERVEO_LINK: https://3b02-116-98-0-16.ngrok-free.app
+      SERVEO_LINK: https://fc2c-116-98-0-153.ngrok-free.app
       JAVA_OPTS: -Dfile:encoding=UTF-8
     volumes:
       - /etc/timezone:/etc/timezone:ro

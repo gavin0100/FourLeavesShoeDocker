@@ -42,10 +42,6 @@ public class VNPayService {
     private final Environment env;
     private final OrderService orderService;
     private final CartService cartService;
-//    private final String RETURN_URL = "https://shoeselling-fourleavesshoes.onrender.com/user/billing";
-//    private final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-
-//    private final String RETURN_URL = "http://localhost:8080/user/billing/reset_login";
     private final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
     @Autowired
@@ -65,6 +61,7 @@ public class VNPayService {
         try{
             ObjectMapper mapper = new  ObjectMapper();
             VNPIPN vnpipn = mapper.convertValue(params, VNPIPN.class); // map sang đối tượng VNPIPN
+            System.out.println("secure hash sau khi gửi: " + vnpipn.getVnp_SecureHash());
             VNPIPNResponse response;
             if(validateSignature(vnpipn)){   // kiểm tra chữ ký hợp lệ không
                 if(verifyOrder(vnpipn)){   // kiểm tra mã đơn hàng có tồn tại trong database không
@@ -183,19 +180,13 @@ public class VNPayService {
 //    }
 
     private String vnpRequest(Order order, HttpServletRequest req){
-//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//        String vnp_CreateDate = dateFormat.format(calendar.getTime());
-//        calendar.add(Calendar.MINUTE, 15);
-//        String vnp_ExpireDate = dateFormat.format(calendar.getTime());
-
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         calendar.add(Calendar.HOUR_OF_DAY, 14);
         String vnp_CreateDate = dateFormat.format(calendar.getTime());
         calendar.add(Calendar.MINUTE, 15);
         String vnp_ExpireDate = dateFormat.format(calendar.getTime());
-        // phải thêm 7 tiếng vì giờ của server thuê là ở múi giờ 0, còn vnpay là +7.
+
 //        String fullReturnUrl = RETURN_URL + "?username=" + order.getUser().getAccountName();
         String fullReturnUrl = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login" + "?username=" + order.getUser().getAccountName();
         // khi response gửi từ vnpay hay momo về thì mất token, session, không vào lại web với quyền truy cập được
@@ -208,7 +199,7 @@ public class VNPayService {
                 .vnp_IpAddr(getIpAddress(req)) //
                 .vnp_TmnCode(env.getProperty("application.security.vnpay.vnp_TmnCode"))
                 .vnp_CurrCode("VND")
-                .vnp_Inv_Company("FILTRO")
+                .vnp_Inv_Company("FOUR-LEAVES-SHOES")
                 .vnp_OrderType("other")  // đơn hàng không thuộc bất cứ loại cụ thể nào được định nghĩa bởi VNPAY
                 .vnp_OrderInfo("Thanh toán bằng VNPay")
                 .vnp_Locale("vn")
@@ -219,6 +210,7 @@ public class VNPayService {
 
         String rawData = hashAllFields(request);
         String secureHash = hmacSHA512(env.getProperty("application.security.vnpay.vnp_HashSecret"), rawData);
+        System.out.println("securehash trước khi gửi: " + secureHash);
         request.setVnp_SecureHash(secureHash);
         return vnp_PayUrl + "?"+ rawData + "&vnp_SecureHash=" + secureHash;
     }
@@ -228,9 +220,11 @@ public class VNPayService {
         String ipAdress;
         try {
             ipAdress = request.getHeader("X-FORWARDED-FOR"); // ipAddress là giá trị của header X-FORWARDED-FOR
+            System.out.println("ipAdress 1: " +  ipAdress);
             // nếu không có thì là null
             if (ipAdress == null) {
                 ipAdress = request.getRemoteAddr();
+                System.out.println("ipAdress 2: " + ipAdress);
                 // nếu chạy localhost:8080 thì giá trị ip máy client là 0:0:0:0:0:0:0:1
             }
         } catch (Exception e) {
@@ -339,6 +333,7 @@ public class VNPayService {
         }
         sb.delete(sb.length()-1, sb.length());
         // Xóa ký tự ‘&’ cuối cùng trong chuỗi kết quả.
+        System.out.println("sb: " + sb);
         return sb.toString();
         // email=john.doe%40example.com&name=John%20Doe&phone=1234567890
     }

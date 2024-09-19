@@ -37,6 +37,10 @@ public class MailSenderService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            System.out.println("new InternetAddress(from): " + new InternetAddress(from));
+            System.out.println("new InternetAddress(to): " + new InternetAddress(to));
+            System.out.println("message.setFrom: " + message.getFrom());
+            System.out.println("message.addRecipient: " + Arrays.toString(message.getRecipients(Message.RecipientType.TO)));
             message.setSubject(subject);
             String htmlMessage = buildHtmlBill4(matKhauMoi);
             message.setContent(htmlMessage, "text/html; charset=UTF-8");

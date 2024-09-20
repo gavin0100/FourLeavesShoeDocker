@@ -62,11 +62,16 @@ public class PasswordResetController {
             String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - ĐẶT LẠI MẬT KHẨU CHO TÀI KHOẢN!";
             String newPassword = Utility.getRandomString();
             User user = userService.getUserByEmail(email);
+            if (user == null){
+                throw new UserNotFoundException("Email chưa đăng ký tài khoản!");
+            }
             userService.updatePassword(user, newPassword);
             mailSenderService.sendEmailGetPassword(to, from, host, subject, newPassword );
             model.addAttribute("successMessage", "Mật khẩu mới đã được gửi tới email của bạn.!");
         } catch (UserNotFoundException ex) {
             model.addAttribute("message", ex.getMessage());
+        } catch (Exception ex) {
+            model.addAttribute("message", "Không thể gửi mail!");
         }
         return "user/boot1/forgotPassword";
     }

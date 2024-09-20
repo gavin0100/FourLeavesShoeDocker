@@ -165,6 +165,14 @@ Command line: ngrok http http://localhost:8080
 
 ### 4.1. Working with Gmail
 
+![img.png](image/19_9_2024/img.png)
+
+- Sending message to SMTP server via TCP/IP, encode messages by TLS port.
+- Using JavaMail API by injecting the `javax.mail` dependency.
+- Port: 587 (TLS port); 465 (SSL port); 25 (unencrypted port). TLS is more secure than SSL.
+- Enabling authentication with Google Application's password.
+- Using MimeMessage to store all information and sending it via Transport.
+
 ```agsl
 <dependency>
     <groupId>com.sun.mail</groupId>
@@ -173,7 +181,7 @@ Command line: ngrok http http://localhost:8080
 </dependency>
 
 Session session = Session.getInstance(properties, new Authenticator() {
-    @Override
+     @Override
     protected PasswordAuthentication getPasswordAuthentication(){
         return new  PasswordAuthentication("voduc0100@gmail.com", "arozojkhspxuuxeg");
     }
@@ -195,18 +203,53 @@ Transport.send(message);
 ### 4.2. Working with Excel (CSV)
 
 - Import CSV files in page's management for category
+  - To handle file uploads in a Spring Boot application, using a form with the method="post" and enctype="multipart/form-data" attributes:
+    ```agsl
+    <form method="post" enctype="multipart/form-data">
+          <input type="file" name="file">
+    </form>
+    ```
+  - In Spring Boot controller, using the @RequestParam annotation to handle the uploaded file `@RequestParam("file") MultipartFile file`
+  - Using POI library to read/write file CSV
+    ```agsl
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>5.2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>5.2.5</version>
+    </dependency> 
+    ```
+  - Using java.io.InputStream to read file via byte
+  - Using IOException to catch read/write error.
+  - File xlsx -> Object: XSSFWorkbook
+  - Sheet -> Object: XSSFSheet;
+  - Reading file is perform via poi.ss.usermodel.Row and poi.ss.usermodel.Cell
 
 ![img_3.png](image/img_3.png)
 
 ![img_4.png](image/img_4.png)
 
-![img_6.png](image/img_6.png)
+![img_6.png](image%2Fimg_6.png)
 
 ![img_7.png](image/img_7.png)
 
 ![img_8.png](image/img_8.png)
 
 - Export CSV files in page's management for employees
+  - Setting HttpServletResponse.Header:
+    - setContentType("text/csv; charset=UTF-8")
+    - setCharacterEncoding("UTF-8")
+    - headerKey = "Content-Disposition"
+    - headerValue = "attachment; filename=users_" + currentDateTime + ".csv";
+  - Using Writer = OutputStreamWriter {HttpServletResponse.getOutputStream() --> byte[], "UTF-8"}: convert HttpServletResponse to byte[] in order to add ICsvBeanWriter's data
+  - ICsvBeanWriter write CsvHeader, write content List<User>
+  - Writer add ICsvBeanWriter via Writer.flush() method.
+  - Automatically send HttpServletResponse.
+
 
 ![exportCSV1.png](image%2FexportCSV1.png)
 
@@ -220,6 +263,26 @@ Transport.send(message);
 ### 4.3. Working with PDF
 
 - Print invoices in PDF format
+  - Using iText 7 Core library in order to write data for PDF file
+    ```agsl
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>itext7-core</artifactId>
+        <version>7.1.16</version>
+        <type>pom</type>
+    </dependency>
+    ```
+  - Using Document (created from PdfDocument (created from PdfWriter))
+  - Use FontProgram, Paragraph, and Table to write content to the PDF file. Add content to the document using the Document.add() method.
+  - Convert the PdfWriter output to a ByteArrayInputStream and pass it into the body of a ResponseEntity.
+  - Setting
+    - headder: "Content-Disposition", "attachment;filename=invoice.pdf"
+    - Send ResponseEntity
+      - headers
+      - contentType(MediaType.APPLICATION_PDF)
+      - body(new InputStreamResource(bis)
+
+
 
 ![img_9.png](image/img_9.png)
 
@@ -327,12 +390,41 @@ At http://localhost:5601/, go to the Navigation Bar, select 'Analytics', and the
 
 - Used with the detail of products and lists of products at the home page.
 - When administrators update a specified product, the backend updates the database before deleting keys in the redis cache.
+- Using Jedis library to integrate Redis and using spring-boot-starter-data-redis to simplifies the configuration and usage of Redis in Spring applications.
+  ```agsl
+  <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+  </dependency>
+  
+  RedisTemplate<String, Object>
+  .opsForValue().set(key, value)              => void
+  .expire(key, timeoutInDays, TimeUnit.DAYS)  => void
+  .opsForValue().get(key)                     => Object
+  .delete(key)				                  => void
+  .hasKey(key)                                => boolean
+  .opsForList().range(key, 0, -1)             => List<Object>
+
+  HashOperations<String, String, Object>
+  .put(key, field, value)			          => void
+  .hasKey(key, field)                         => boolean
+  .entries(key)                               => Map<String, Object>
+  .get(key, field)                            => Object     
+  .entries(key).keySet()                      => Set<String> ~ list of fields
+  .delete(key, field)                         => void
+  .hasKey(key)                                => boolean
+  ```
 
 ![redisCLI.png](image/19_9_2024/redisCLI.png)
 
-### Minio:
+### Minio: RELEASE.2024-08-26T15-33-07Z
 - Used to store images of products.
 - Run this command line in PowerShell: .\minio.exe server D:\MinIO --console-address :9001
+
 
 ![minioBucket.png](image/19_9_2024/minioBucket.png)
 
@@ -341,6 +433,25 @@ At http://localhost:5601/, go to the Navigation Bar, select 'Analytics', and the
 - Let's create a product
 
 ![img_3.png](image/19_9_2024/img_3.png)
+
+- Here's the way that product's images is added in MinIO
+  ```agsl
+  <form method="post" enctype="multipart/form-data">
+  
+  @PostMapping("/create")
+  public String create(@ModelAttribute("product") Product product,BindingResult bindingResult,
+                           @RequestParam("avatarFile") MultipartFile avatarFile)
+  
+  MultipartFile --> InputStream 
+  
+  MinioClient.putObject(PutObjectArgs.builder()
+                      .bucket(bucketName)
+                      .object(avatarFile.getOriginalFilename())
+                      .stream(inputStream, inputStream.available(), -1)
+                      .build());
+  String avatarLink = urlHostImage + bucketName+ "/" + avatarFile.getOriginalFilename();
+  product.setImage(avatarLink);
+  ```
 
 ![img_4.png](image/19_9_2024/img_4.png)
 
@@ -370,6 +481,9 @@ At http://localhost:5601/, go to the Navigation Bar, select 'Analytics', and the
 
 - When administrators update images, the old image in MinIO's bucket will be deleted and the new one will be added to this storage.
   - Let's change the product's image: carousel-3.png to carousel-5.jpg
+    - Update the product's image
+      - 1. If the product’s image name contains “fourleavesshoedocker”, retrieve the image name and delete it from MinIO storage using minioClient.removeObject(io.minio.RemoveObjectArgs).
+      - 2. Add the new product image, following the same steps as in the “create product” section.
 
 ![img_13.png](image/19_9_2024/img_13.png)
 

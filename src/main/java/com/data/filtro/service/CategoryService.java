@@ -90,7 +90,6 @@ public class CategoryService {
     public boolean importCategory(MultipartFile file) throws IOException {
         if (checkExcelFormat(file)){
             Map<String, List<?>> result = toSyllabus(file.getInputStream());
-            System.out.println("Sau khi chuyen");
             List<Category> categoryList = (List<Category>) result.get("category");
 
             categoryList.forEach(category -> {
@@ -119,13 +118,9 @@ public class CategoryService {
 
     public Map<String, List<?>> toSyllabus(InputStream inputStream){
         List<Category> categoryList = new ArrayList<>();
-        System.out.println("truoc try");
         try{
-            System.out.println("tao workbook");
             XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-            System.out.println("truy cap sheet");
             XSSFSheet sheet = workbook.getSheet("categories");
-            System.out.println("sau khi truy cap sheet");
             int rowNumber = 0;
             for (Row row : sheet) {
                 if (rowNumber == 0) {
@@ -152,7 +147,6 @@ public class CategoryService {
         } catch (Exception e){
             throw new RuntimeException("Error when convert file csv!" + e);
         }
-        System.out.println("sau try");
         HashMap<String, List<?>> map = new HashMap<>();
         map.put("category", categoryList);
         return map;

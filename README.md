@@ -164,8 +164,9 @@ Command line: ngrok http http://localhost:8080
 ## 4. Working with Gmail, Excel, and PDF applications to manage orders for customers and data management for the store.
 
 ### 4.1. Working with Gmail
+- [Refer to] - GP Coder. "Hướng dẫn sử dụng thư viện Java Mail", 02/04/2018. [Online]. Link: https://gpcoder.com/3753-huong-dan-su-dung-thu-vien-java-mail/ . [Access: 05/09/2024  ]
 
-![img.png](image/19_9_2024/img.png)
+- ![img.png](image/19_9_2024/img.png)
 
 - Sending message to SMTP server via TCP/IP, encode messages by TLS port.
 - Using JavaMail API by injecting the `javax.mail` dependency.
@@ -533,8 +534,6 @@ In GithubAction, I configured to automatically perform these unit tests.
 https://shoeselling-fourleavesshoes.onrender.com
 
 ![img_21.png](image/19_9_2024/img_21.png)
-
-![img_22.png](image/19_9_2024/img_22.png)
 
 ![img_26.png](image/19_9_2024/img_26.png)
 

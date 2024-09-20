@@ -67,7 +67,7 @@ public class CategoryController {
     @GetMapping("/{id}")
     public String showProductsByCategory(@PathVariable String id,
                                          @RequestParam(defaultValue = "0") String lowPrice,
-                                         @RequestParam(defaultValue = "1000") String highPrice,
+                                         @RequestParam(defaultValue = "10000000") String highPrice,
                                          @RequestParam(defaultValue = "best_selling") String sortType,
                                          @RequestParam(defaultValue = "0") String materialId,
                                          @RequestParam(defaultValue = "1") String currentPage,

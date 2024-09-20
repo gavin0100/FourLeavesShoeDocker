@@ -75,14 +75,14 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 justify-content-center">
             <!-- Shop Product Start -->
-            <th:block th:if="${#lists.isEmpty(products)}">
-                <div class="col-lg-9 col-md-12">
+<!--            <th:block th:if="${#lists.isEmpty(products)}">-->
+<!--                <div class="col-lg-9 col-md-12">-->
 
-                    <h2 class="text-center">No matching products found!</h2>
+<!--                    <h2 class="text-center">No matching products found!</h2>-->
 
-                </div>
-            </th:block>
-            <th:block th:if="${not #lists.isEmpty(products)}">
+<!--                </div>-->
+<!--            </th:block>-->
+            <th:block>
                 <!-- Shop Sidebar Start -->
                 <div class="col-lg-3 col-md-12">
                     <form id="hiddenForm" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id})}" method="GET" style="display: none;">
@@ -97,33 +97,33 @@
                         <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
                         <form>
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="price-all" value="0,1000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 0 && dataHighPrice == 1000}">
+                                <input type="checkbox" class="custom-control-input" id="price-all" value="0,10000000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 0 && dataHighPrice == 10000000}">
                                 <label class="custom-control-label" for="price-all">All Price</label>
 
                             </div>
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="price-1" value="0,50" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 0 && dataHighPrice == 50}">
-                                <label class="custom-control-label" for="price-1">$0 - $50</label>
+                                <input type="checkbox" class="custom-control-input" id="price-1" value="0,200000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 0 && dataHighPrice == 200000}">
+                                <label class="custom-control-label" for="price-1">0 - 200000</label>
 
                             </div>
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="price-2" value="50,100" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 50 && dataHighPrice == 100}">
-                                <label class="custom-control-label" for="price-2">$50 - $100</label>
+                                <input type="checkbox" class="custom-control-input" id="price-2" value="200000,400000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 200000 && dataHighPrice == 400000}">
+                                <label class="custom-control-label" for="price-2">200000 - 400000</label>
 
                             </div>
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="price-3" value="100,150" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 100 && dataHighPrice == 150}">
-                                <label class="custom-control-label" for="price-3">$100 - $150</label>
+                                <input type="checkbox" class="custom-control-input" id="price-3" value="400000,800000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 400000 && dataHighPrice == 800000}">
+                                <label class="custom-control-label" for="price-3">400000 - 800000</label>
 
                             </div>
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="price-4" value="150,200" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 150 && dataHighPrice == 200}">
-                                <label class="custom-control-label" for="price-4">$150 - $200</label>
+                                <input type="checkbox" class="custom-control-input" id="price-4" value="800000,1500000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 800000 && dataHighPrice == 1500000}">
+                                <label class="custom-control-label" for="price-4">800000 - 1500000</label>
 
                             </div>
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                                <input type="checkbox" class="custom-control-input" id="price-5" value="200,500" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 200 && dataHighPrice == 500}">
-                                <label class="custom-control-label" for="price-5">Over $200</label>
+                                <input type="checkbox" class="custom-control-input" id="price-5" value="1500000,10000000" onchange="submitHiddenFormFromSortType(this.value)" th:checked="${dataLowPrice == 1500000 && dataHighPrice == 10000000}">
+                                <label class="custom-control-label" for="price-5">Trên 1500000</label>
 
                             </div>
                         </form>
@@ -164,18 +164,11 @@
                                     <a class="dropdown-item" id="price_desc" onclick="submitHiddenFormFromSortType(this.id)">Price Descending</a>
                                     <a class="dropdown-item" id="newest" onclick="submitHiddenFormFromSortType(this.id)">Newest</a>
                                     <a class="dropdown-item" id="oldest" onclick="submitHiddenFormFromSortType(this.id)">Oldest</a>
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='best_selling')}">Top-selling product</a>-->
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='product_name_asc')}">Product Name: A-Z</a>-->
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='product_name_desc')}">Product Name: Z-A</a>-->
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='price_asc')}">Price Ascending</a>-->
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='price_desc')}">Price Descending</a>-->
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='newest')}">Newest</a>-->
-                                    <!--                                <a class="dropdown-item" th:href="@{/category/{id}(id=${currentIdAll == 'all' ? 'all' : category.id},sortType='oldest')}">Oldest</a>-->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row pb-3 px-xl-5" >
+                    <div class="row pb-3 px-xl-5" th:if="${not #lists.isEmpty(products)}">
 
                         <div th:each="product : ${products}" class="col-lg-3-three col-md-6 col-sm-12 pb-1">
                             <form th:action="@{/cart/add}" method="POST">
@@ -187,9 +180,6 @@
                                         <h6 class="text-truncate mb-3" th:text="${product.productName}">Colorful Stylish Shirt</h6>
                                         <div class="d-flex justify-content-center">
                                             <h6 th:text="${#numbers.formatDecimal(product.price - (product.price*product.discount/100), 0, 'COMMA', 0, 'COMMA')} + 'đ'">$123.00</h6><h6 class="text-muted ml-2" ><del th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA')} + 'đ'">$123.00</del></h6>
-                                            <!--                                        th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA')} + 'đ'"-->
-                                            <!--                                        th:text="${#numbers.formatDecimal(product.price - (product.price*product.discount/100), 0, 'COMMA', 0, 'COMMA') + 'đ'}"-->
-                                            <!--                                        th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA') + 'đ'}"-->
                                         </div>
                                     </div>
                                     <input type="hidden" th:value="${product.id}" name="productId">
@@ -245,9 +235,10 @@
                             </nav>
                         </div>
                     </div>
+                    <div class="row pb-3 px-xl-5" th:if="${#lists.isEmpty(products)}">
+                        <h2 class="text-center">No matching products found!</h2>
+                    </div>
                 </div>
-                <!-- Shop Product End -->
-                <!-- Shop Sidebar End -->
             </th:block>
         </div>
     </div>

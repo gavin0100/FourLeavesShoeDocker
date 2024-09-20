@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select p from Product p order by p.sold desc limit 8")
     List<Product> findTop8SellingProducts();
 
-    @Query("select p from Product p order by p.createdDate desc limit 6")
+    @Query("select p from Product p where p.quantity > 0 order by p.createdDate desc limit 6")
     List<Product> find6thProducts();
 
     @Query("select p from Product p order by p.discount desc limit 4")

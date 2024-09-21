@@ -9,6 +9,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,7 +41,9 @@ public class GlobalExceptionHandler {
         response.sendRedirect("/");
     }
 
-
-
-
+//    @ExceptionHandler(NoHandlerFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public void handleNotFound(NoHandlerFoundException ex, HttpServletResponse response) throws IOException {
+//        response.sendRedirect("/404");
+//    }
 }

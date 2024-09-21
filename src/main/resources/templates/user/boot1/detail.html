@@ -171,8 +171,8 @@
             <div class="row px-xl-5">
                 <div class="col">
                     <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                        <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                        <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3" th:text="${('Review (' + numberOfFeedback + ')')}"></a>
+                        <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1" onclick="activateTab('tab-pane-1')">Description</a>
+                        <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3" th:text="${('Review (' + numberOfFeedback + ')')}" onclick="activateTab('tab-pane-3')"></a>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
@@ -342,6 +342,33 @@
                 let nav = document.getElementById("navbarCollapse");
                 nav.classList.toggle("show");
             }
+        </script>
+        <script>
+            function activateTab(tabId) {
+                var event = window.event;
+
+                // Ngăn hành vi mặc định của thẻ <a> (trôi màn hình)
+                event.preventDefault();
+                // Loại bỏ class 'active' khỏi tất cả các tab và pane
+                var tabs = document.querySelectorAll('.nav-link');
+                tabs.forEach(function(tab) {
+                    tab.classList.remove('active');
+                });
+
+                var panes = document.querySelectorAll('.tab-pane');
+                panes.forEach(function(pane) {
+                    pane.classList.remove('show', 'active');
+                });
+
+                // Thêm class 'active' cho tab được nhấp vào
+                var selectedTab = document.querySelector('a[href="#' + tabId + '"]');
+                selectedTab.classList.add('active');
+
+                // Thêm class 'show active' cho tab-pane tương ứng
+                var selectedPane = document.getElementById(tabId);
+                selectedPane.classList.add('show', 'active');
+            }
+
         </script>
     </div>
 

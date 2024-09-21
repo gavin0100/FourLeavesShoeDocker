@@ -33,6 +33,20 @@
                 display: block; /* Hiển thị khi được bật */
             }
 
+            .dropdown-menu {
+                position: absolute;  /* Đặt vị trí của dropdown-menu là absolute */
+                display: none;       /* Ẩn menu theo mặc định */
+                will-change: transform; /* Cải thiện hiệu suất khi di chuyển menu */
+            }
+
+            .dropdown.show .dropdown-menu {
+                display: block;      /* Hiển thị menu khi dropdown có class 'show' */
+                transform: translate3d(-108px, 37px, 0px); /* Điều chỉnh vị trí của dropdown menu */
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+
 
         </style>
     </th:block>
@@ -311,6 +325,33 @@
             let nav = document.getElementById("navbarCollapse");
             nav.classList.toggle("show");
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdownToggle = document.getElementById('triggerId');
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // Tính toán vị trí và thêm class 'show'
+                if (!dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.add('show');
+                    dropdownMenu.style.right = "auto";
+                } else {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+
+            // Đóng dropdown khi nhấn bên ngoài
+            window.addEventListener('click', function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        });
+
+
     </script>
 </div>
 

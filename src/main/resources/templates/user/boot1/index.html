@@ -215,7 +215,7 @@
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3" th:text="${product.productName}">Colorful Stylish Shirt</h6>
                             <div class="d-flex justify-content-center">
-                                <h6 th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA') + 'đ'}">$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h6 th:text="${#numbers.formatDecimal(product.price - product.price*product.discount/100, 0, 'COMMA', 0, 'COMMA') + 'đ'}">$123.00</h6><h6 class="text-muted ml-2"><del th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA') + 'đ'}">$123.00</del></h6>
                             </div>
                         </div>
                         <input type="hidden" th:value="${product.id}" name="productId">
@@ -269,7 +269,7 @@
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3" th:text="${product.productName}">Colorful Stylish Shirt</h6>
                             <div class="d-flex justify-content-center">
-                                <h6 th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA') + 'đ'}">$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h6 th:text="${#numbers.formatDecimal(product.price - product.price*product.discount/100, 0, 'COMMA', 0, 'COMMA') + 'đ'}">$123.00</h6><h6 class="text-muted ml-2"><del th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'COMMA') + 'đ'}">$123.00</del></h6>
                             </div>
                         </div>
                         <input type="hidden" th:value="${product.id}" name="productId">

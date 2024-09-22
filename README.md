@@ -20,9 +20,12 @@
 
 ## Main Features
 
+### ER Diagram
+
+![database.png](image%2Fdatabase.png)
+
 ### Design and User Interface
 - Built according to the MVC model and designing UI/UX for the application.
-- ![image](https://github.com/VoVanDuc20110635/DoAnXinViec_fourleavesshoes/assets/116067030/a12210f8-4a25-42f4-9170-506571f3f747)
 
 ### E-commerce Functionalities
 - Provided functionalities of an e-commerce website, including viewing items, managing the shopping cart, order placing for customers, and shop management for employees.

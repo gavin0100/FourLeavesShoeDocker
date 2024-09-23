@@ -57,59 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
         }
-
-        if (!path.equals("/logout_to_login/fromJwtEmptyOrNullException")
-                && !path.equals("/logout")
-                && (jwt.equals("") || jwt== null)
-                && request.getSession().getAttribute("user") != null){
-            throw new JwtNullOrEmptyException("token khong ton tai", null, false, false);
-        }
-
         String accountName = "";
-        if (!jwt.equals("") && jwt != null && request.getSession().getAttribute("user") == null && (
-                path.startsWith("/product/") ||
-                path.startsWith("/cart") ||
-                path.startsWith("/category/") ||
-                path.startsWith("/register") ||
-                path.startsWith("/login") ||
-                path.startsWith("/forgot-password") ||
-                path.startsWith("/contact") ||
-                path.startsWith("/user") ||
-                path.startsWith("/admin") ||
-                path.equals("/") ||
-                path.equals("") ||
-                path.equals("/session"))){
-            try{
-                accountName = jwtService.extractUsername(jwt);
-                if (jwtService.isTokenExpired(jwt)){
-                    throw new MyServletException("Token is Expired ", null, false, false);
-                }
-                UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
-                if(jwtService.isValidToken(jwt, userDetails)){
-                    request.getSession().setAttribute("user", (User)userDetails);
-                }
-            } catch (Exception ex){
-                throw new MyServletException("Can't get accountName from JWT or Token is not valid", null, false, false);
-            }
-        }
-
-        if (!jwt.equals("") && jwt != null && accountName != null && request.getSession().getAttribute("admin") == null && (
-                path.startsWith("/admin"))){
-            try{
-                accountName = jwtService.extractUsername(jwt);
-                if (jwtService.isTokenExpired(jwt)){
-                    throw new MyServletException("Token is Expired ", null, false, false);
-                }
-                UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
-                if(jwtService.isValidToken(jwt, userDetails)){
-                    request.getSession().setAttribute("admin", (User)userDetails);
-                }
-            } catch (Exception ex){
-                throw new MyServletException("Can't get accountName from JWT or Token is not valid", null, false, false);
-            }
-        }
-
-
 
         if (path.startsWith("/css/") ||
                 path.startsWith("/javascript/") ||
@@ -142,14 +90,11 @@ public class JwtFilter extends OncePerRequestFilter {
                     path.equals("/") ||
                     path.startsWith("/login")
             ){
-                if (!jwt.equals("") && jwt != null && accountName.equals("") && (
-                        request.getSession().getAttribute("user") != null ||
-                                request.getSession().getAttribute("admin") != null)){
+
+                if (!jwt.equals("") && jwt != null && accountName.equals("")){
                     try{
                         accountName = jwtService.extractUsername(jwt);
-                        if (jwtService.isTokenExpired(jwt)){
-                            throw new MyServletException("Token is Expired ", null, false, false);
-                        }
+                        setSecurityContextHolder(jwt, accountName, request);
                     } catch (Exception ex){
                         throw new MyServletException("Can't get accountName from JWT", null, false, false);
                     }
@@ -166,7 +111,7 @@ public class JwtFilter extends OncePerRequestFilter {
         if (accountName.equals("")){
             try{
                 accountName = jwtService.extractUsername(jwt);
-                if (jwtService.isTokenExpired(jwt)){
+                if (isTokenExpired(jwt)){
                     throw new MyServletException("Token is Expired ", null, false, false);
                 }
             } catch (Exception ex){
@@ -175,22 +120,30 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         if(accountName!=null && SecurityContextHolder.getContext().getAuthentication() == null){
-            if (jwtService.isTokenExpired(jwt)){
-                throw new MyServletException("Token is Expired ", null, false, false);
-            }
-            UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
-            if(jwtService.isValidToken(jwt, userDetails)){
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-            } else {
-                throw new MyServletException("Token is not valid", null, false, false);
-            }
+            setSecurityContextHolder(jwt, accountName, request);
         }
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isTokenExpired (String jwt){
+        return jwtService.isTokenExpired(jwt);
+    }
+
+    private void setSecurityContextHolder(String jwt, String accountName, HttpServletRequest request) throws MyServletException {
+        if (isTokenExpired(jwt)){
+            throw new MyServletException("Token is Expired ", null, false, false);
+        }
+        UserDetails userDetails = userDetailsService.loadUserByUsername(accountName);
+        if(jwtService.isValidToken(jwt, userDetails)){
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    userDetails,
+                    null,
+                    userDetails.getAuthorities()
+            );
+            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+        } else {
+            throw new MyServletException("Token is not valid", null, false, false);
+        }
     }
 }

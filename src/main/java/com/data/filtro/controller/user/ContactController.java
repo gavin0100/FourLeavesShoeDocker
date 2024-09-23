@@ -6,6 +6,9 @@ import com.data.filtro.model.User;
 import com.data.filtro.service.ContactService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +20,14 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
     @GetMapping
-    public String loadContactPage(){
+    public String loadContactPage(Model model){
+
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
+        model.addAttribute("user", user);
         return "user/boot1/contact";
     }
 
@@ -26,7 +36,8 @@ public class ContactController {
                              @RequestParam("email") String email,
                              @RequestParam("subject") String subject,
                              @RequestParam("message") String message,
-                             HttpSession session, Model model) {
+                             Model model) {
+
         Contact contact = new Contact();
         contact.setName(name);
         contact.setEmail(email);

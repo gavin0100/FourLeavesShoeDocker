@@ -9,6 +9,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +29,14 @@ public class LoginAdminController {
     private AuthenticationService authenticationService;
 
     @GetMapping
-    public String show(HttpSession session) {
-        if (session.getAttribute("admin") != null){
-            return "redirect:/admin/dashboard";
+    public String show() {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+            if (user.getUserPermission().getRole() == Role.ADMIN){
+                return "redirect:/admin/dashboard";
+            }
         }
         return "admin/boot1/login";
     }
@@ -37,12 +45,10 @@ public class LoginAdminController {
     public String login(@RequestParam("accountName") String accountName,
                         @RequestParam("password") String password,
                         HttpServletResponse response,
-                        HttpSession session,
                         Model model) {
 
         try {
-            AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password, session);
-            session.setAttribute("admin", authenticateResponse.getUser());
+            AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password);
             Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
             cookie.setHttpOnly(true);
             cookie.setPath("/"); // This makes the cookie valid for all routes on your domain

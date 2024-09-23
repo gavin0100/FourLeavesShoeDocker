@@ -14,7 +14,6 @@ import java.io.IOException;
 public class CustomErrorHandler implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        System.out.println("CustomErrorHandler AuthenticationEntryPoint");
         response.sendRedirect("/access-denied");
     }
 }

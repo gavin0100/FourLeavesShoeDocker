@@ -3,6 +3,7 @@ package com.data.filtro.controller.user;
 import com.data.filtro.model.Category;
 import com.data.filtro.model.Material;
 import com.data.filtro.model.Product;
+import com.data.filtro.model.User;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.ProductService;
@@ -11,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +51,12 @@ public class SearchController {
                                  @RequestParam(defaultValue = "best_selling") String sortType,
                                  @RequestParam(name = "page") Optional<Integer> page,
                                  Model model) {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
+        model.addAttribute("user", user);
 
         int currentPage = page.orElse(1);
         int pageSize = 6;

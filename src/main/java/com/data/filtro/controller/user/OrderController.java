@@ -10,6 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,13 +47,18 @@ public class OrderController {
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('FULL_ACCESS_PLACE_ORDER')")
-    public String show(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
+    public String show(Model model) {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user != null) {
             Cart cart = cartService.getCurrentCartByUserId(user.getId());
             if (cart != null) {
                 List<CartItem> cartItemList = cart.getCartItemList();
                 if (user.getAddress() != null && user.getCity() != null && user.getZip() != null && user.getPhoneNumber() != null) {
+                    model.addAttribute("user", user);
                     model.addAttribute("address", user.getAddress());
                     model.addAttribute("city", user.getCity());
                     model.addAttribute("zip", user.getZip());
@@ -74,12 +82,15 @@ public class OrderController {
             @RequestParam("city") String city,
             @RequestParam("zip") Integer zip,
             @RequestParam("paymentMethod") String paymentMethod,
-            HttpSession session,
             HttpServletRequest request,
             Model model
     ) {
 
-        User user = (User) session.getAttribute("user");
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user == null) {
             throw new RuntimeException("Please login before checkout");
         }
@@ -118,14 +129,16 @@ public class OrderController {
             @RequestParam("city") String city,
             @RequestParam("zip") Integer zip,
             @RequestParam("paymentMethod") String paymentMethod,
-            HttpSession session,
             HttpServletRequest request,
             HttpServletResponse response,
             Model model,
             RedirectAttributes redirectAttributes
     ) throws IOException {
-        System.out.println("truy cap order controller momo");
-        User user = (User) session.getAttribute("user");
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user == null) {
             throw new RuntimeException("Please login before checkout");
         }
@@ -149,13 +162,16 @@ public class OrderController {
             @RequestParam("city") String city,
             @RequestParam("zip") Integer zip,
             @RequestParam("paymentMethod") String paymentMethod,
-            HttpSession session,
             HttpServletRequest request,
             HttpServletResponse response,
             Model model,
             RedirectAttributes redirectAttributes
     ) throws IOException {
-        User user = (User) session.getAttribute("user");
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user == null) {
             throw new RuntimeException("Please login before checkout");
         }
@@ -193,8 +209,12 @@ public class OrderController {
     }
 
     @ModelAttribute("sum")
-    public int sumOfProducts(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public int sumOfProducts() {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user != null) {
             Cart cart = cartService.getCurrentCartByUserId(user.getId());
             if (cart != null) {

@@ -33,7 +33,6 @@ public class checkConnectionOAuth {
     @GetMapping("/user_google_hihi")
     public String getUser(@AuthenticationPrincipal OAuth2User oAuth2User,
                           HttpServletResponse response,
-                          HttpSession session,
                           Model model){
         String accountName = String.valueOf(oAuth2User.getAttributes().get("email"));
         String password = String.valueOf(oAuth2User.getAttributes().get("email"))+String.valueOf(oAuth2User.getAttributes().get("email")).split("@")[0] + "ABCDEF12@";
@@ -45,19 +44,11 @@ public class checkConnectionOAuth {
                     password);
         }
 
-        AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password, session);
-        session.setAttribute("user", authenticateResponse.getUser());
+        AuthenticateResponse authenticateResponse = authenticationService.authenticate(accountName, password);
         Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
         cookie.setHttpOnly(true);
         cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
         response.addCookie(cookie);
-        Cart cart = cartService.getCurrentCartByUserId(authenticateResponse.getUser().getId());
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
-        if (guestCart != null) {
-            cart = cartService.convertGuestCartToCart(guestCart,  authenticateResponse.getUser());
-            session.removeAttribute("guestCart");
-        }
-        session.setAttribute("cart", cart);
         return "redirect:/";
     }
 }

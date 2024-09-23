@@ -7,6 +7,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -44,11 +45,14 @@ public class LoginController {
 
     @GetMapping
     public String show(Model model, HttpSession session) {
-        if (session.getAttribute("user") != null){
-            System.out.println("hihi login");
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
+        if (user != null){
             return "redirect:/";
         }
-        User user = (User) session.getAttribute("user");
         if (user == null) {
             return "user/boot1/login";
         }
@@ -141,18 +145,10 @@ public class LoginController {
             HttpSession session,
             Model model) {
         AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
-        session.setAttribute("user", authenticateResponse.getUser());
         Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
         cookie.setHttpOnly(true);
         cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
         response.addCookie(cookie);
-        Cart cart = cartService.getCurrentCartByUserId(authenticateResponse.getUser().getId());
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
-        if (guestCart != null) {
-            cart = cartService.convertGuestCartToCart(guestCart,  authenticateResponse.getUser());
-            session.removeAttribute("guestCart");
-        }
-        session.setAttribute("cart", cart);
         return "redirect:/";
     }
 

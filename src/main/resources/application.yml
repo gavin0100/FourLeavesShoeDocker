@@ -55,7 +55,7 @@ spring:
       resetTopSellingProductByDays: ${RESET_TOP_SELLING_PRODUCTS_BY_DAYS:1}
       resetTopSellingProductByHours: ${RESET_TOP_SELLING_PRODUCTS_BY_HOURS:0}
     payment:
-      serveo_link: ${SERVEO_LINK:https://d214-116-98-0-153.ngrok-free.app}
+      serveo_link: ${SERVEO_LINK:https://622b-116-98-0-192.ngrok-free.app}
 twilio:
   AccountSid: AC8c8c886543a259ef1c32a52428752846
   AuthToken: ${{ secrets.TWILIO}}
@@ -70,8 +70,8 @@ application:
       partner-code: MOMOLRJZ20181206
       secret-key: SetA5RDnLHvt51AULf51DyauxUo3kDU6
     vnpay:
-      vnp_TmnCode: X3VCO73C
-      vnp_HashSecret: 70OXPPONL7XA9QR57L1QDWQVZPYC4L3U
+      vnp_TmnCode: 2PI2ATZO
+      vnp_HashSecret: QZKNVD0BUMVJ2SK1UBJ0NSH34Q31AJGC
 logging:
 #  file:
 #    name: ${LOG_ADDRESS:D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log}

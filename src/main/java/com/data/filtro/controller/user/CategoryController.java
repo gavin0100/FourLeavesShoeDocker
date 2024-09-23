@@ -3,11 +3,15 @@ package com.data.filtro.controller.user;
 import com.data.filtro.model.Category;
 import com.data.filtro.model.Material;
 import com.data.filtro.model.Product;
+import com.data.filtro.model.User;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,6 +76,12 @@ public class CategoryController {
                                          @RequestParam(defaultValue = "0") String materialId,
                                          @RequestParam(defaultValue = "1") String currentPage,
                                          Model model) {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
+        model.addAttribute("user", user);
         List<Material> materialList = categoryService.getListMaterials();
         int dataLowPrice = Integer.parseInt(lowPrice);
         int dataHighPrice = Integer.parseInt(highPrice);

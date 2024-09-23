@@ -5,6 +5,10 @@ import com.data.filtro.repository.CartRepository;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,64 +46,53 @@ public class CartController {
 
 
     @GetMapping
-    public String showCart(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
-
-        if (user != null) {
-            Cart cart = cartService.getCurrentCartByUserId(user.getId());
+    public String showCart(Model model) {
+        User userSession = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            userSession = (User) authentication.getPrincipal();
+        }
+        model.addAttribute("userSession", userSession);
+        if (userSession != null) {
+            Cart cart = cartService.getCurrentCartByUserId(userSession.getId());
             if (cart != null) {
                 List<CartItem> cartItemList = cart.getCartItemList();
                 model.addAttribute("cartItemList", cartItemList);
                 model.addAttribute("cart", cart);
             }
-        } else if (guestCart != null) {
-            List<CartItem> cartItemList = guestCart.getCartItemList();
-            model.addAttribute("cartItemList", cartItemList);
-            model.addAttribute("guestCart", guestCart);
         } else {
             model.addAttribute("cartItemList", new ArrayList<CartItem>());
-            model.addAttribute("message", "Không có sản phẩm nào trong giỏ hàng!");
+            model.addAttribute("message", "Bạn cần đăng nhập để sử dụng giỏ hàng!");
         }
         return "user/boot1/cart";
     }
 
     @PostMapping("/add")
-    public String addCart(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity, HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
+    public String addCart(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity) {
+        User userSession = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            userSession = (User) authentication.getPrincipal();
+        }
         Cart cart = null;
-        if (user != null) {
-            System.out.println("bat dau tim cart trong add cart: " + user.getId());
-            cart = cartService.getCurrentCartByUserId(user.getId());
-            System.out.println("cartid trong add cart: " + cart.getId() + " " + cart.getUser().getId());
-            session.setAttribute("cart", cart);
+        if (userSession != null) {
+            cart = cartService.getCurrentCartByUserId(userSession.getId());
             cartService.addProductToCart(cart, productId, quantity);
-        } else if (guestCart != null) {
-            cartService.addProductToGuestCart(guestCart, productId, quantity);
-            return "redirect:/cart";
-        } else {
-            if (guestCart == null) {
-                guestCart = cartService.createGuestCart();
-                session.setAttribute("guestCart", guestCart);
-            }
-            cartService.addProductToGuestCart(guestCart, productId, quantity);
         }
         return "redirect:/cart";
     }
 
 
     @PostMapping("/remove/{productId}")
-    public String removeCartItem(@PathVariable("productId") int productId, HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
-        if (user != null) {
-            Cart cart = cartService.getCurrentCartByUserId(user.getId());
+    public String removeCartItem(@PathVariable("productId") int productId) {
+        User userSession = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            userSession = (User) authentication.getPrincipal();
+        }
+        if (userSession != null) {
+            Cart cart = cartService.getCurrentCartByUserId(userSession.getId());
             cartItemService.removeCartItemByCartIdAndProductId(cart.getId(), productId);
-        } else if (guestCart != null) {
-            cartItemService.removeCartItemByGuestCartIdAndProductId(guestCart.getId(), productId);
-            guestCart.setCartItemList(cartItemService.getCartItemByGuestCartId(guestCart.getId()));
-            session.setAttribute("guestCart", guestCart);
         }
         return "redirect:/cart";
     }
@@ -108,11 +101,13 @@ public class CartController {
     @PostMapping("/update")
     public String updateCartBeforePlaceOrder(@RequestParam("productIds") String productIds,
                                              @RequestParam("quantities") String quantities,
-                                             HttpSession session,
                                              Model model){
-        User user = (User) session.getAttribute("user");
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user == null){
-            model.addAttribute("message", "Please Login To Continue!");
             return "user/boot1/cart";
         }
         if (productIds != null && quantities != null) {
@@ -136,8 +131,11 @@ public class CartController {
 
     @ModelAttribute("sum")
     public int sumOfProducts(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user != null) {
             Cart cart = cartService.getCurrentCartByUserId(user.getId());
             if (cart != null) {
@@ -145,8 +143,6 @@ public class CartController {
             } else {
                 return 0;
             }
-        } else if (guestCart != null) {
-            return cartService.totalOfCartItemTemp(guestCart.getId());
         }
         return 0;
     }

@@ -32,7 +32,7 @@ public class UserPermissionCRUDController {
 
     @GetMapping()
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public String show( Model model, HttpSession session) {
+    public String show( Model model) {
         if (!errorMessage.equals("")){
             model.addAttribute("errorMessage", errorMessage);
             errorMessage="";

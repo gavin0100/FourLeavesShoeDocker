@@ -9,7 +9,7 @@
 </head>
 <body>
 <th:block th:fragment="content">
-    <th:block th:if="${session.user == null}">
+    <th:block th:if="${user == null}">
         <div class="container mb-5 mt-5">
             <div class="text-center">
                 <a th:href="@{/login}" th:text="${message}" style="border: 1px solid black; padding: 5px; background-color: white;"></a>
@@ -17,7 +17,7 @@
         </div>
     </th:block>
 
-    <th:block th:if="${(!#lists.isEmpty(orderDetailList) or orderDetailList!=null) and session.user!=null}">
+    <th:block th:if="${(!#lists.isEmpty(orderDetailList) or orderDetailList!=null) and user!=null}">
         <div class="container mb-5 mt-5">
             <form method="post" th:action="@{/invoice/makeInvoice/{orderId}(orderId=${order.getId()})}">
                 <div class="card">
@@ -151,7 +151,7 @@
         </div>
     </th:block>
     <th:block
-            th:if="${(#lists.isEmpty(orderDetailList) or orderDetailList == null) and session.user !=null}">
+            th:if="${(#lists.isEmpty(orderDetailList) or orderDetailList == null) and user !=null}">
         <div class="container mb-5 mt-5">
             <div class="text-center">
                 <h2>PLEASE CHECKOUT BEFORE READ INVOICE!</h2>

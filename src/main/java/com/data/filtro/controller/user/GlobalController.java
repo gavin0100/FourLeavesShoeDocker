@@ -5,6 +5,9 @@ import com.data.filtro.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,18 +53,18 @@ public class GlobalController {
     }
 
     @ModelAttribute("cartItemList")
-    public List<CartItem> cartItemList(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        GuestCart guestCart = (GuestCart) session.getAttribute("guestCart");
+    public List<CartItem> cartItemList() {
+        User user = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            user = (User) authentication.getPrincipal();
+        }
         if (user != null) {
             Cart cart = cartService.getCurrentCartByUserId(user.getId());
             if (cart != null) {
                 List<CartItem> cartItemList = cart.getCartItemList();
                 return cartItemList;
             }
-        } else if (guestCart != null) {
-            List<CartItem> cartItemList = guestCart.getCartItemList();
-            return cartItemList;
         }
         return null;
     }

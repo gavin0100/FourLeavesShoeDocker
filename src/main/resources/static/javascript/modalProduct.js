@@ -24,7 +24,7 @@ $(document).ready(function () {
         $("#editModal #sold").val(product.sold);
         $("#editModal #description").val(product.description);
         $("#editModal #image").val(product.image);
-        $("#editModal #editStatus").val(product.status);
+        $("#editModal #editProductStatus").val(product.status);
         $("#editModal #discount").val(product.discount);
         $("#editModal #editMaterial").val(product.material.id);
         $("#editModal #editCategory").val(product.category.id);

@@ -4,6 +4,7 @@ import com.data.filtro.model.*;
 import com.data.filtro.repository.InvoiceDetailRepository;
 import com.data.filtro.repository.InvoiceRepository;
 import com.data.filtro.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class InvoiceService {
 
-    @Autowired
-    InvoiceRepository invoiceRepository;
+    private final InvoiceRepository invoiceRepository;
 
-    @Autowired
-    InvoiceDetailRepository invoiceDetailRepository;
+    private final InvoiceDetailRepository invoiceDetailRepository;
 
-    @Autowired
-    OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
 
     public List<Invoice> getAllInvoiceByUserId(int userId) {

@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
 import java.util.function.Function;
@@ -30,8 +32,9 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public Date extractExpiration(String token){
-        return extractClaim(token, Claims::getExpiration);
+    public Instant extractExpiration(String token){
+//        return extractClaim(token, Claims::getExpiration);
+        return extractClaim(token, Claims::getExpiration).toInstant();
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> resolver){
@@ -51,18 +54,28 @@ public class JwtService {
 
 
     public String buildToken(Map<String, Object> extraInfo, UserDetails userDetails, long expirationTime){
-        return Jwts
-                .builder()
+//        return Jwts
+//                .builder()
+//                .setClaims(extraInfo)
+//                .setSubject(userDetails.getUsername())
+//                .setIssuedAt(new Date(System.currentTimeMillis()))
+//                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+//                .signWith(getSigninKey(), SignatureAlgorithm.HS256)
+//                .compact();
+        Instant now = Instant.now();
+        Instant expiration = now.plusMillis(expirationTime);
+        return Jwts.builder()
                 .setClaims(extraInfo)
                 .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(expiration))
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public boolean isTokenExpired(String token){
-        return extractExpiration(token).before(new Date());
+//        return extractExpiration(token).before(new Date());
+        return extractExpiration(token).isBefore(Instant.now());
     }
 
     public boolean isValidToken(String token, UserDetails userDetails){

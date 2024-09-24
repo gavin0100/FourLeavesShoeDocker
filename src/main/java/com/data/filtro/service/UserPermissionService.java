@@ -4,17 +4,18 @@ import com.data.filtro.model.DTO.UserDTO;
 import com.data.filtro.model.User;
 import com.data.filtro.model.UserPermission;
 import com.data.filtro.repository.UserPermissionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserPermissionService {
-    @Autowired
-    UserPermissionRepository userPermissionRepository;
+    private final UserPermissionRepository userPermissionRepository;
 
 
     public void update(UserPermission userPermission) {

@@ -1,12 +1,8 @@
 package com.data.filtro.controller.admin;
 
-import com.data.filtro.model.Account;
 import com.data.filtro.model.Category;
-import com.data.filtro.model.User;
 import com.data.filtro.service.CategoryService;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,8 +22,12 @@ import java.util.Optional;
 @Slf4j
 public class CategoryCRUDController {
 
-    @Autowired
-    CategoryService categoryService;
+
+    final CategoryService categoryService;
+
+    public CategoryCRUDController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     public Pageable sortCategory(int currentPage, int pageSize, int sortType) {
         Pageable pageable;

@@ -6,9 +6,6 @@ import com.data.filtro.model.*;
 import com.data.filtro.service.CartService;
 import com.data.filtro.service.InvoiceService;
 import com.data.filtro.service.OrderService;
-import jakarta.servlet.http.HttpSession;
-import javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,14 +24,17 @@ import java.util.List;
 @RequestMapping("/invoice")
 public class InvoiceController {
 
-    @Autowired
-    CartService cartService;
+    private final CartService cartService;
 
-    @Autowired
-    OrderService orderService;
+    private final OrderService orderService;
 
-    @Autowired
-    InvoiceService invoiceService;
+    private final InvoiceService invoiceService;
+
+    public InvoiceController(CartService cartService, OrderService orderService, InvoiceService invoiceService) {
+        this.cartService = cartService;
+        this.orderService = orderService;
+        this.invoiceService = invoiceService;
+    }
 
     @GetMapping("/{orderId}")
     public String show(@PathVariable("orderId") int orderId, Model model) {

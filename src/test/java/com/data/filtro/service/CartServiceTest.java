@@ -13,7 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +56,7 @@ public class CartServiceTest {
         user = new User(
                 1001,
                 "vo duc",
-                new Date(2002,11,02),
+                ZonedDateTime.of(2002, 12, 2, 0, 0, 0, 0, ZoneId.systemDefault()).toInstant(),
                 "male",
                 "Lam Dong",
                 670000,
@@ -64,7 +67,7 @@ public class CartServiceTest {
                 new UserPermission(1, Role.USER, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, new ArrayList<>()),
                 "voduc0100",
                 "Duc2112002@",
-                new Date(2024,02,12),
+                ZonedDateTime.of(2024, 3, 12, 0, 0, 0, 0, ZoneId.systemDefault()).toInstant(),
                 "",
                 new Cart(),
                 new ArrayList<>(),
@@ -86,7 +89,7 @@ public class CartServiceTest {
     @Test
     public void testCreateGuestCart() {
         GuestCart guestCart = new GuestCart();
-        guestCart.setCreatedDate(new Date());
+        guestCart.setCreatedDate(Instant.now());
         guestCart.setCartItemList(new ArrayList<>());
 
         when(guestCartRepository.save(any(GuestCart.class))).thenReturn(guestCart);
@@ -293,7 +296,7 @@ public class CartServiceTest {
         guestCartItem.setQuantity(2);
         guestCartItem.setPrice(100);
         guestCartItem.setTotal(200);
-        guestCartItem.setPurchasedDate(new Date());
+        guestCartItem.setPurchasedDate(Instant.now());
         guestCartItems.add(guestCartItem);
         guestCart.setCartItemList(guestCartItems);
 

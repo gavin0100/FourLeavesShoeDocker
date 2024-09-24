@@ -22,7 +22,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 public class ExportPdf {
     public static ByteArrayInputStream employeesReport(Order order, List<OrderDetail> orderDetailList) {
@@ -76,14 +77,15 @@ public class ExportPdf {
             table.addCell(new Cell().add(new Paragraph("Tổng").setFont(boldFont)));
 
             // Thêm dữ liệu vào bảng
-            for (OrderDetail orderDetail : orderDetailList) {
+            orderDetailList.forEach(orderDetail -> {
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(orderDetail.getProduct().getId())).setFont(font)));
                 table.addCell(new Cell().add(new Paragraph(orderDetail.getProduct().getProductName()).setFont(font)));
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(orderDetail.getPrice()) + "đ").setFont(font)));
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(orderDetail.getQuantity())).setFont(font)));
                 table.addCell(new Cell().add(new Paragraph("0").setFont(font))); // Giả sử giảm giá là 0
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(orderDetail.getTotal()) + "đ").setFont(font)));
-            }
+            });
+
 
             document.add(table);
 
@@ -96,11 +98,8 @@ public class ExportPdf {
         return new ByteArrayInputStream(out.toByteArray());
     }
     public static String getCurrentTime(){
-        String timeSendMail = String.valueOf(new Date());
-//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        calendar.add(Calendar.HOUR_OF_DAY, 7);
-//        timeSendMail = dateFormat.format(calendar.getTime());
+//        String timeSendMail = String.valueOf(new Date());
+        String timeSendMail = String.valueOf(Instant.now());
         return timeSendMail;
     }
     public static FontProgram loadFont(String path) throws IOException {

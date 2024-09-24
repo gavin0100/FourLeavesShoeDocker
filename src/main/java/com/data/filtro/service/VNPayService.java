@@ -33,6 +33,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -44,8 +49,7 @@ public class VNPayService {
     private final CartService cartService;
     private final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
-    @Autowired
-    CartItemService cartItemService;
+    private final CartItemService cartItemService;
 
     public VNPResponse createVNPayOrder(Order order, HttpServletRequest req){
         String data = vnpRequest(order, req);
@@ -180,12 +184,23 @@ public class VNPayService {
 //    }
 
     private String vnpRequest(Order order, HttpServletRequest req){
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        calendar.add(Calendar.HOUR_OF_DAY, 14);
-        String vnp_CreateDate = dateFormat.format(calendar.getTime());
-        calendar.add(Calendar.MINUTE, 15);
-        String vnp_ExpireDate = dateFormat.format(calendar.getTime());
+//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//        calendar.add(Calendar.HOUR_OF_DAY, 14);
+//        String vnp_CreateDate = dateFormat.format(calendar.getTime());
+//        calendar.add(Calendar.MINUTE, 15);
+//        String vnp_ExpireDate = dateFormat.format(calendar.getTime());
+
+        ZoneId zoneId = ZoneId.of("Asia/Ho_Chi_Minh");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+        LocalDateTime now = LocalDateTime.now(zoneId);
+        LocalDateTime createDate = now.plusHours(14);
+        String vnp_CreateDate = createDate.format(formatter);
+
+        LocalDateTime expireDate = createDate.plusMinutes(15);
+        String vnp_ExpireDate = expireDate.format(formatter);
+
 
 //        String fullReturnUrl = RETURN_URL + "?username=" + order.getUser().getAccountName();
         String fullReturnUrl = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login" + "?username=" + order.getUser().getAccountName();

@@ -3,6 +3,7 @@ package com.data.filtro.service;
 import com.data.filtro.model.Order;
 import com.data.filtro.model.OrderDetail;
 import com.data.filtro.model.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class MailSenderService {
-    @Autowired
-    UserService userService;
+    private final UserService userService;
 
     public void sendEmailGetPassword(String to, String from, String host, String subject, String matKhauMoi) {
         // Get system properties

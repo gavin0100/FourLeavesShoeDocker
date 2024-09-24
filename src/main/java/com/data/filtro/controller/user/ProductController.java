@@ -1,26 +1,22 @@
 package com.data.filtro.controller.user;
 
 import com.data.filtro.Util.JsonConverter;
-import com.data.filtro.interview.BaseRedisService;
+import com.data.filtro.interview.impl.BaseRedisService;
 import com.data.filtro.model.Feedback;
 import com.data.filtro.model.Product;
 import com.data.filtro.model.User;
 import com.data.filtro.service.FeedbackService;
 import com.data.filtro.service.InputService;
 import com.data.filtro.service.ProductService;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriUtils;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,22 +25,24 @@ import java.util.UUID;
 @Slf4j
 public class ProductController {
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    FeedbackService feedbackService;
+    private final FeedbackService feedbackService;
 
-    @Autowired
-    InputService inputService;
+    private final InputService inputService;
 
-    @Autowired
-    private BaseRedisService baseRedisService;
+    private final BaseRedisService baseRedisService;
 
     private final String PREFIX_DETAILED_PRODUCT = "detailed_product:";
 
     private String errorMessage;
-    private String csrfToken;
+
+    public ProductController(ProductService productService, FeedbackService feedbackService, InputService inputService, BaseRedisService baseRedisService) {
+        this.productService = productService;
+        this.feedbackService = feedbackService;
+        this.inputService = inputService;
+        this.baseRedisService = baseRedisService;
+    }
 
     @GetMapping
     public String product() {
@@ -94,12 +92,6 @@ public class ProductController {
 
     @PostMapping("/{id}/feedback")
     public String feedback(@RequestParam String content, @RequestParam("numberOfStars") int numberOfStars, @RequestParam("_csrfParameterName") String csrfTokenForm, @PathVariable Integer id, Model model) {
-        if (!csrfTokenForm.equals(csrfToken)) {
-            String message = "Incorrect Anti-CSRF token code!";
-            errorMessage = message;
-            model.addAttribute("errorMessage", message);
-            return "redirect:/product/" + id;
-        }
         if (!inputService.isValidComment(content)){
             String message = "The comment content should only consist of lowercase letters, numbers, '@' symbol, parentheses, commas, periods, exclamation marks, and spaces.";
             errorMessage = message;

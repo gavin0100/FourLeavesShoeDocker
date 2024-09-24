@@ -3,16 +3,17 @@ package com.data.filtro.service;
 import com.data.filtro.model.CartItem;
 import com.data.filtro.repository.CartItemRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CartItemService {
 
-    @Autowired
-    CartItemRepository cartItemRepository;
+    final CartItemRepository cartItemRepository;
 
 
     public List<CartItem> getCartItemByCartId(int id) {

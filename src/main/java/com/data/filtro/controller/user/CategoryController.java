@@ -7,7 +7,6 @@ import com.data.filtro.model.User;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,22 +15,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
 
-    @Autowired
-    CategoryService categoryService;
+    private final CategoryService categoryService;
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    MaterialService materialService;
+    private final MaterialService materialService;
+
+    public CategoryController(CategoryService categoryService, ProductService productService, MaterialService materialService) {
+        this.categoryService = categoryService;
+        this.productService = productService;
+        this.materialService = materialService;
+    }
 
 
     @ModelAttribute(name = "discountProducts")

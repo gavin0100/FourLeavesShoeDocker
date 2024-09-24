@@ -1,11 +1,8 @@
 package com.data.filtro.controller.user;
 
 import com.data.filtro.model.Contact;
-import com.data.filtro.model.Feedback;
 import com.data.filtro.model.User;
 import com.data.filtro.service.ContactService;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/contact")
 public class ContactController {
 
-    @Autowired
-    private ContactService contactService;
+    private final ContactService contactService;
+
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
+    }
+
     @GetMapping
     public String loadContactPage(Model model){
 

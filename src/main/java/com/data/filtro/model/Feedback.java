@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
-
+//import java.util.Date;
+import java.time.Instant;
 @Entity
 @Table(name = "phanhoi")
 @Data
@@ -34,7 +34,7 @@ public class Feedback implements Serializable {
     private String content;
 
     @Column(name = "ngayph")
-    private Date date;
+    private Instant date;
 
     @Column(name = "sosao")
     private int stars;

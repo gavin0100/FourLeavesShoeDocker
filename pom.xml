@@ -203,6 +203,15 @@
             <scope>test</scope>
         </dependency>
 
+<!--        được sử dụng để convert java.time.Instance từ token sang Object-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.4</version>
+        </dependency>
+
+
+
     </dependencies>
 
 <!--    <dependencyManagement>-->

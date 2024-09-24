@@ -2,7 +2,8 @@ package com.data.filtro.model.payment;
 
 import lombok.*;
 
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,7 +13,7 @@ public class ApiOrderDTO {
     private Integer id;
     private Integer userId;
 
-    private Date orderDate;
+    private Instant orderDate;
 
     private String email;
     private String phoneNumber;

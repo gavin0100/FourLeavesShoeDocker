@@ -12,7 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 
@@ -35,7 +36,7 @@ public class Order implements Serializable {
     private User user;
 
     @Column(name = "ngaydathang")
-    private Date orderDate;
+    private Instant orderDate;
 
     @Column(name = "diachi")
     private String address;

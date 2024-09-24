@@ -1,22 +1,16 @@
 package com.data.filtro.controller.user;
 
-import com.data.filtro.interview.BaseRedisService;
-import com.data.filtro.model.Category;
+import com.data.filtro.interview.impl.BaseRedisService;
 import com.data.filtro.model.Product;
 import com.data.filtro.model.User;
-import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.ProductService;
-import com.twilio.rest.serverless.v1.service.environment.Log;
 import jakarta.servlet.http.HttpServletRequest;
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -25,11 +19,14 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    BaseRedisService baseRedisService;
+    private final BaseRedisService baseRedisService;
+
+    public HomeController(ProductService productService, BaseRedisService baseRedisService) {
+        this.productService = productService;
+        this.baseRedisService = baseRedisService;
+    }
 
     @GetMapping
     public String home(HttpServletRequest request, Model model) {

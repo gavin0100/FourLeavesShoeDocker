@@ -4,8 +4,6 @@ import com.data.filtro.model.*;
 import com.data.filtro.repository.CartRepository;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,29 +18,26 @@ import java.util.List;
 @RequestMapping("/cart")
 public class CartController {
 
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    ProductService productService;
-
-    @Autowired
-    CartRepository cartRepository;
-
-    @Autowired
-    CartService cartService;
-
-    @Autowired
-    GuestCartService guestCartService;
-
-    @Autowired
-    CartItemService cartItemService;
+    private final UserService userService;
+    private final ProductService productService;
+    private final CartRepository cartRepository;
+    private final CartService cartService;
+    private final GuestCartService guestCartService;
+    private final CartItemService cartItemService;
 
     private String[] productIdArray;
     private String[] quantityArray;
 
     private Product tempProduct = new Product();
+
+    public CartController(UserService userService, ProductService productService, CartRepository cartRepository, CartService cartService, GuestCartService guestCartService, CartItemService cartItemService) {
+        this.userService = userService;
+        this.productService = productService;
+        this.cartRepository = cartRepository;
+        this.cartService = cartService;
+        this.guestCartService = guestCartService;
+        this.cartItemService = cartItemService;
+    }
 
 
     @GetMapping

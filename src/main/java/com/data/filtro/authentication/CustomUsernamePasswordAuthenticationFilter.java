@@ -1,4 +1,4 @@
-package com.data.filtro.config;
+package com.data.filtro.authentication;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -8,7 +8,8 @@ import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -30,10 +31,10 @@ public class Cart implements Serializable {
     private User user;
 
     @Column(name = "thoigiantao")
-    private Date createdDate;
+    private Instant createdDate;
 
     @Column(name = "thoigiancapnhat")
-    private Date updatedDate;
+    private Instant updatedDate;
 
     @Column(name = "trangthai")
     private Integer status;

@@ -51,10 +51,9 @@ public class OrderAPIController {
                 return new ResponseEntity<>(listOrder, HttpStatus.OK);
             } else {
                 List<OrderShipper> orderShippers = orderShipperService.loadOrdersByOrderShipperAndStatus(shipperId, status);
-                for (OrderShipper orderShipper : orderShippers){
-                    System.out.println(orderShipper.getOrderId() + " " + orderShipper.getUserId() + " " + orderShipper.getStatus());
-                    listOrder.add(orderService.getOrderById(orderShipper.getOrderId()));
-                }
+                orderShippers.stream()
+                        .map(orderShipper -> orderService.getOrderById(orderShipper.getOrderId()))
+                        .forEach(listOrder::add);
                 return new ResponseEntity<>(listOrder, HttpStatus.OK);
             }
         }

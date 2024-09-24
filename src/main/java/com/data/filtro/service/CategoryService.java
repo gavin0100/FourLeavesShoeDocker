@@ -5,6 +5,7 @@ import com.data.filtro.model.Category;
 import com.data.filtro.model.Material;
 import com.data.filtro.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,10 +28,10 @@ import java.util.*;
 import java.util.zip.ZipInputStream;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
 
     public List<Category> getAll() {

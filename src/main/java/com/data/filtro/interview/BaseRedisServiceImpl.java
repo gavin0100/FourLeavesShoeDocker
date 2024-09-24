@@ -1,5 +1,6 @@
 package com.data.filtro.interview;
 
+import com.data.filtro.interview.impl.BaseRedisService;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class BaseRedisServiceImpl implements BaseRedisService{
+public class BaseRedisServiceImpl implements BaseRedisService {
     private final RedisTemplate<String, Object> redisTemplate;
     private final HashOperations<String, String, Object> hashOperations;
 

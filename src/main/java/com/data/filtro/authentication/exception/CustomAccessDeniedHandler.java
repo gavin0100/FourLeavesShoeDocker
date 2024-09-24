@@ -1,4 +1,4 @@
-package com.data.filtro.config;
+package com.data.filtro.authentication.exception;
 
 import com.data.filtro.authentication.JwtService;
 import jakarta.servlet.ServletException;

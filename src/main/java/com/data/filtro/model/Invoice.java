@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class Invoice {
     private User user;
 
     @Column(name = "ngaymua")
-    private Date purchasedDate;
+    private Instant purchasedDate;
 
     @Column(name = "tong")
     private Integer total;

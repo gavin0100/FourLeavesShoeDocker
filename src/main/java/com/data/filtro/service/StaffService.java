@@ -4,22 +4,21 @@ import com.data.filtro.model.Account;
 import com.data.filtro.model.Staff;
 import com.data.filtro.repository.StaffRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StaffService {
-    public StaffService() {
-    }
 
-    @Autowired
-    StaffRepository staffRepository;
+    private final StaffRepository staffRepository;
 
     public Staff getById(int id) {
         return staffRepository.findById(id);

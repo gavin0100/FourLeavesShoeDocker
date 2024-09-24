@@ -1,11 +1,7 @@
 package com.data.filtro.controller.admin;
 
-import com.data.filtro.model.Account;
 import com.data.filtro.model.Material;
-import com.data.filtro.model.User;
 import com.data.filtro.service.MaterialService;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,8 +20,12 @@ import java.util.Optional;
 public class MaterialCRUDController {
     private String errorMessage = "";
     private String message="";
-    @Autowired
-    MaterialService materialService;
+
+    final MaterialService materialService;
+
+    public MaterialCRUDController(MaterialService materialService) {
+        this.materialService = materialService;
+    }
 
     public Pageable sortFlavor(int currentPage, int pageSize, int sortType) {
         Pageable pageable;

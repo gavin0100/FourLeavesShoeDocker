@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -49,7 +50,7 @@ public class Product implements Serializable {
     private String image;
 
     @Column(name = "ngaytao")
-    private Date createdDate;
+    private Instant createdDate;
 
     @Column(name = "tinhtrang")
     private Integer status;

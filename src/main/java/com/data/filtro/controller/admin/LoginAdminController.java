@@ -3,12 +3,9 @@ package com.data.filtro.controller.admin;
 import com.data.filtro.exception.AuthenticationAccountException;
 import com.data.filtro.model.*;
 import com.data.filtro.service.AuthenticationService;
-import com.data.filtro.service.CartService;
 import com.data.filtro.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/admin/login")
 public class LoginAdminController {
 
-    @Autowired
-    UserService userService;
-    @Autowired
-    private AuthenticationService authenticationService;
+    private final UserService userService;
+    private final AuthenticationService authenticationService;
+
+    public LoginAdminController(UserService userService, AuthenticationService authenticationService) {
+        this.userService = userService;
+        this.authenticationService = authenticationService;
+    }
 
     @GetMapping
     public String show() {

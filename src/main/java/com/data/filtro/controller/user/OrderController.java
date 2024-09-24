@@ -7,8 +7,6 @@ import com.data.filtro.model.payment.vnpay.VNPResponse;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,25 +23,28 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
 
-    @Autowired
-    OrderService orderService;
+    private final OrderService orderService;
 
-    @Autowired
-    CartItemService cartItemService;
+    private final CartItemService cartItemService;
 
-    @Autowired
-    CartService cartService;
+    private final CartService cartService;
 
-    @Autowired
-    PaymentMethodService paymentMethodService;
+    private final PaymentMethodService paymentMethodService;
 
-    @Autowired
-    MomoService momoService;
-    @Autowired
-    VNPayService vnpayService;
+    private final MomoService momoService;
+    private final VNPayService vnpayService;
 
-    @Autowired
-    MailSenderService mailSender;
+    private final MailSenderService mailSender;
+
+    public OrderController(OrderService orderService, CartItemService cartItemService, CartService cartService, PaymentMethodService paymentMethodService, MomoService momoService, VNPayService vnpayService, MailSenderService mailSender) {
+        this.orderService = orderService;
+        this.cartItemService = cartItemService;
+        this.cartService = cartService;
+        this.paymentMethodService = paymentMethodService;
+        this.momoService = momoService;
+        this.vnpayService = vnpayService;
+        this.mailSender = mailSender;
+    }
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('FULL_ACCESS_PLACE_ORDER')")

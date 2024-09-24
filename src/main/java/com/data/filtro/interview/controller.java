@@ -1,5 +1,6 @@
 package com.data.filtro.interview;
 
+import com.data.filtro.interview.impl.BaseRedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

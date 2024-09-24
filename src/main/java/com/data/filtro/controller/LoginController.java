@@ -1,12 +1,10 @@
 package com.data.filtro.controller;
 
-import com.data.filtro.exception.AuthenticationAccountException;
 import com.data.filtro.model.*;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,29 +17,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
-import static com.data.filtro.service.InputService.containsAllowedCharacters;
-
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
-    private String csrfToken;
 
     private final CartService cartService;
     private final UserService userService;
 
     private final AuthenticationService authenticationService;
 
+    private final ProductService productService;
 
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    public LoginController(UserService userService, CartService cartService, AuthenticationService authenticationService) {
-        this.userService = userService;
+    public LoginController(CartService cartService, UserService userService, AuthenticationService authenticationService, ProductService productService) {
         this.cartService = cartService;
+        this.userService = userService;
         this.authenticationService = authenticationService;
+        this.productService = productService;
     }
+
 
     @GetMapping
     public String show(Model model, HttpSession session) {

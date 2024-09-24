@@ -4,17 +4,13 @@ import com.data.filtro.exception.AccountNameExistException;
 import com.data.filtro.exception.AuthenticationAccountException;
 import com.data.filtro.exception.PasswordDoNotMatchException;
 import com.data.filtro.exception.UserNotFoundException;
-import com.data.filtro.model.Account;
 import com.data.filtro.model.Cart;
 import com.data.filtro.model.DTO.UserDTO;
 import com.data.filtro.model.User;
 import com.data.filtro.model.UserPermission;
-import com.data.filtro.repository.AccountRepository;
 import com.data.filtro.repository.UserPermissionRepository;
 import com.data.filtro.repository.UserRepository;
 import javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,23 +20,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.text.ParseException;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 
 @Service
 public class UserService implements UserDetailsService {
-    public UserService() {
+    private final UserRepository userRepository;
+
+    private final UserPermissionRepository userPermissionRepository;
+
+    private final CartService cartService;
+
+    public UserService(UserRepository userRepository, UserPermissionRepository userPermissionRepository, CartService cartService) {
+        this.userRepository = userRepository;
+        this.userPermissionRepository = userPermissionRepository;
+        this.cartService = cartService;
     }
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserPermissionRepository userPermissionRepository;
-
-    @Autowired
-    CartService cartService;
 
     public User getUserById(int id) {
         return userRepository.findUserById(id);
@@ -93,7 +90,8 @@ public class UserService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashPassword = passwordEncoder.encode(password);
         user.setPassword(hashPassword);
-        user.setCreatedDate(new Date());
+//        user.setCreatedDate(new Date());
+        user.setCreatedDate(Instant.now());
         UserPermission userPermission = userPermissionRepository.findByPermissionId(4);
         user.setUserPermission(userPermission);
 
@@ -126,7 +124,8 @@ public class UserService implements UserDetailsService {
         newUser.setPassword(hashPassword);
 
 
-        newUser.setCreatedDate(new Date());
+//        newUser.setCreatedDate(new Date());
+        newUser.setCreatedDate(Instant.now());
         UserPermission userPermission = userPermissionRepository.findByPermissionId(user.getUserPermissionId());
         newUser.setUserPermission(userPermission);
         userRepository.save(newUser);

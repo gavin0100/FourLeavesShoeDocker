@@ -2,8 +2,6 @@ package com.data.filtro.controller.user;
 
 import com.data.filtro.model.*;
 import com.data.filtro.service.*;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,21 +16,24 @@ import java.util.List;
 @RequestMapping({"/", "/product", "/category", "/search"})
 public class GlobalController {
 
-    @Autowired
-    ProductService productService;
-    @Lazy
-    @Autowired
-    CategoryService categoryService;
+    private final ProductService productService;
 
-    @Lazy
-    @Autowired
-    MaterialService flavorService;
+    private final CategoryService categoryService;
 
-    @Autowired
-    UserService userService;
+    private final MaterialService flavorService;
 
-    @Autowired
-    CartService cartService;
+    private final UserService userService;
+
+    private final CartService cartService;
+
+    public GlobalController(ProductService productService, @Lazy CategoryService categoryService, @Lazy MaterialService flavorService, UserService userService, CartService cartService) {
+        this.productService = productService;
+        this.categoryService = categoryService;
+        this.flavorService = flavorService;
+        this.userService = userService;
+        this.cartService = cartService;
+    }
+
 
     @ModelAttribute("categories")
     public List<Category> getCategories() {

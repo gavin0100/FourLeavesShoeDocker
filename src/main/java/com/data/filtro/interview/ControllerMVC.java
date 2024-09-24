@@ -1,5 +1,6 @@
 package com.data.filtro.interview;
 
+import com.data.filtro.interview.impl.BaseRedisService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

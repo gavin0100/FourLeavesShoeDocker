@@ -4,6 +4,7 @@ import com.data.filtro.model.Account;
 import com.data.filtro.model.Material;
 import com.data.filtro.repository.MaterialRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,10 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MaterialService {
 
-    @Autowired
-    MaterialRepository materialRepository;
+    private final MaterialRepository materialRepository;
 
     public Material getMaterialById(int id) {
         return materialRepository.findById(id);

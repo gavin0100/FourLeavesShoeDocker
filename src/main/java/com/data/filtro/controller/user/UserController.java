@@ -7,15 +7,14 @@ import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -28,19 +27,24 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
 
 
-    @Autowired
-    OrderService orderService;
+    private final OrderService orderService;
 
-    @Autowired
-    AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
-    @Autowired
-    CartService cartService;
+    private final CartService cartService;
 
+    public UserController(UserService userService, OrderService orderService, AuthenticationService authenticationService, CartService cartService) {
+        this.userService = userService;
+        this.orderService = orderService;
+        this.authenticationService = authenticationService;
+        this.cartService = cartService;
+    }
+
+    private String errorMessage = "";
+    private String message = "";
 
     @GetMapping("/profile")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF', 'USER') and hasAnyAuthority('VIEW_USER', 'FULL_ACCESS_USER')")
@@ -57,18 +61,31 @@ public class UserController {
         }
         User user = userService.getByUserId(temp.getId());
         model.addAttribute("user", user);
+
+        if (!errorMessage.equals("")){
+            model.addAttribute("errorMessage", errorMessage);
+            errorMessage="";
+        }
+        if (!message.equals("")){
+            model.addAttribute("message", message);
+            message="";
+        }
+
         return "user/boot1/user-profile";
     }
 
     @PostMapping("/profile/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF', 'USER') and hasAnyAuthority('VIEW_USER', 'FULL_ACCESS_USER')")
-    public String processProfile(@PathVariable("id") int id, @ModelAttribute("user") User updatedUser, Model model) {
+    public String processProfile(@PathVariable("id") int id, @ModelAttribute("user") User updatedUser, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            errorMessage = "Nhập sai định dạng dữ liệu";
+            return "redirect:/user/profile";
+        }
         try {
             userService.updateUser(updatedUser);
-            model.addAttribute("user", updatedUser);
-            model.addAttribute("message", "Cập nhật thông tin thành công!");
+            message = "Cập nhật thông tin thành công!";
         } catch (NotFoundException | ParseException ex) {
-            model.addAttribute("errorMessage", ex.getMessage());
+            errorMessage = "Cập nhật thông tin không thành công!";
         }
         return "redirect:/user/profile";
     }

@@ -1427,7 +1427,7 @@
       <tspan x="85" y="292" th:text="${message2}"></tspan>
       <tspan x="100" y="357" fill="#000" font-size="65" th:text="${HTTPstatus}"></tspan>
       <tspan x="107" y="381.2" fill="#000" font-size="15" th:text="${contentStatus}"></tspan>
-      <tspan x="130" y="400.2" fill="#000" font-size="15" style="border: 1px solid black;padding: 5px;background-color: white;color: #bb2d46;">
+      <tspan x="130" y="400.2" fill="#000" font-size="15" style="border: 1px solid black;padding: 5px;background-color: white;color: #bb2d46;" th:if="${errorNotFound == null}">
         <a th:href="@{/logout_to_login/fromErrorPage}">
           Login
         </a>

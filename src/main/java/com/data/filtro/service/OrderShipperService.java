@@ -2,15 +2,16 @@ package com.data.filtro.service;
 
 import com.data.filtro.model.OrderShipper;
 import com.data.filtro.repository.OrderShipperRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderShipperService {
-    @Autowired
-    OrderShipperRepository orderShipperRepository;
+    private final OrderShipperRepository orderShipperRepository;
 
     public List<OrderShipper> loadOrdersNotDelivery(){
         return orderShipperRepository.findOrderDontDelivery();

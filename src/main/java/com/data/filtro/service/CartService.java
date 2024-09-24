@@ -4,38 +4,32 @@ import com.data.filtro.model.*;
 import com.data.filtro.repository.CartItemRepository;
 import com.data.filtro.repository.CartRepository;
 import com.data.filtro.repository.GuestCartRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CartService {
 
 
-    @Autowired
-    CartItemService cartItemService;
-    @Autowired
-    ProductService productService;
+    private final CartItemService cartItemService;
+    private final ProductService productService;
 
-    @Autowired
-    UserService userService;
+    private final CartRepository cartRepository;
 
-    @Autowired
-    CartRepository cartRepository;
+    private final GuestCartRepository guestCartRepository;
 
-    @Autowired
-    GuestCartRepository guestCartRepository;
+    private final GuestCartService guestCartService;
 
-    @Autowired
-    GuestCartService guestCartService;
-
-    @Autowired
-    CartItemRepository cartItemRepository;
+    private final CartItemRepository cartItemRepository;
 
 
     public List<Cart> getAllOrderCartByUserId(int id) {
@@ -55,7 +49,7 @@ public class CartService {
 //        System.out.println("create cart for: " + user.getName());
         Cart cart = new Cart();
         cart.setUser(user);
-        cart.setCreatedDate(new Date());
+        cart.setCreatedDate(Instant.now());
         cart.setStatus(1);
         cart.setCartItemList(new ArrayList<>());
         cartRepository.save(cart);
@@ -64,7 +58,7 @@ public class CartService {
 
     public GuestCart createGuestCart() {
         GuestCart guestCart = new GuestCart();
-        guestCart.setCreatedDate(new Date());
+        guestCart.setCreatedDate(Instant.now());
         guestCart.setCartItemList(new ArrayList<>());
         guestCart = guestCartRepository.save(guestCart);
         return guestCart;
@@ -99,7 +93,7 @@ public class CartService {
         newCartItem.setPrice(product.getPrice());
         newCartItem.setQuantity(quantity);
         newCartItem.setTotal(product.getPrice() * quantity);
-        newCartItem.setPurchasedDate(new Date());
+        newCartItem.setPurchasedDate(Instant.now());
         newCartItem.setCart(cart);
         cart.getCartItemList().add(newCartItem);
 
@@ -123,7 +117,7 @@ public class CartService {
         cartItem.setPrice(product.getPrice());
         cartItem.setQuantity(quantity);
         cartItem.setTotal(product.getPrice() * quantity);
-        cartItem.setPurchasedDate(new Date());
+        cartItem.setPurchasedDate(Instant.now());
         cartItem.setGuestCart(guestCart);
         guestCart.getCartItemList().add(cartItem);
         guestCart.setUpdatedDate(cartItem.getPurchasedDate());

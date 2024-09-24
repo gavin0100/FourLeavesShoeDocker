@@ -12,8 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.Date;
+//import java.util.Calendar;
+//import java.util.Date;
+import java.time.Instant;
+import java.time.Clock;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -47,8 +49,9 @@ public class FeedbackAPIController {
                                                   @RequestParam int productId) {
         Product product = productservice.getProductById(productId);
         User user = userService.getByUserId(userId);
-        Calendar calendar = Calendar.getInstance();
-        Date currentDate = calendar.getTime();
+//        Calendar calendar = Calendar.getInstance();
+//        Date currentDate = calendar.getTime();
+        Instant currentDate = Clock.systemDefaultZone().instant();
         Feedback feedback1 = new Feedback();
 
 

@@ -7,7 +7,6 @@ import com.data.filtro.model.User;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,14 +29,17 @@ import java.util.Optional;
 public class SearchController {
 
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    CategoryService categoryService;
+    private final CategoryService categoryService;
 
-    @Autowired
-    MaterialService materialService;
+    private final MaterialService materialService;
+
+    public SearchController(ProductService productService, CategoryService categoryService, MaterialService materialService) {
+        this.productService = productService;
+        this.categoryService = categoryService;
+        this.materialService = materialService;
+    }
 
 
     @ModelAttribute(name = "discountProducts")
@@ -96,7 +98,7 @@ public class SearchController {
         String currentIdAll = "";
         currentIdAll = "all";
         int dataLowPrice = 0;
-        int dataHighPrice = 1000;
+        int dataHighPrice = 10000000;
         int dataMaterialId = 0;
         int dataCurrentPage = 1;
 
@@ -114,7 +116,7 @@ public class SearchController {
         model.addAttribute("dataHighPrice", dataHighPrice);
         model.addAttribute("dataMaterialId", dataMaterialId);
         model.addAttribute("currentPage", dataCurrentPage);
-        return "user/boot1/search";
+        return "user/boot1/shop";
     }
 
 }

@@ -18,7 +18,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,8 +28,10 @@ public class UserDTO implements Serializable {
     private Integer id;
     private String name;
 
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    private Date dob;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dob;
+    private Instant dob;
 
     private String sex;
 

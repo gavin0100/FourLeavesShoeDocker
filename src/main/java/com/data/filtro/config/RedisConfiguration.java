@@ -1,4 +1,4 @@
-package com.data.filtro.interview;
+package com.data.filtro.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

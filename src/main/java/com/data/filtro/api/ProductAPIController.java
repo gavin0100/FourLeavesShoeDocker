@@ -13,7 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -86,7 +87,7 @@ public class ProductAPIController {
 
     ) {
         try {
-            Date now = new Date(System.currentTimeMillis());
+            Instant now = Instant.now();
 
             Product product = new Product();
             product.setCreatedDate(now);

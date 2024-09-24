@@ -167,17 +167,12 @@ public class MomoService {
     }
 
     private MomoRequest momoRequest(Order order){
-        System.out.println("truy cap vao momo request");
         List<OrderDetail> orderDetail = orderService.getOrderDetailByOrderId(order.getId());
-        System.out.println(orderDetail.size());
         List<OrderDetailDto> orderDetailDtos = new ArrayList<>();
-        System.out.println("truoc khi chuyen dto");
         if(orderDetail!=null){
             orderDetail.forEach(od-> orderDetailDtos.add(od.convertToDto()));
         }
-        System.out.println("sau khi chuyen dto");
         String orderName = order.getOrder_code() + " " + order.getUser().getAccountName();
-        logger.info(env.getProperty("application.security.momo.partner-code"));
 //        String fullReturnUrl = RETURN_URL + "?username=" + order.getUser().getAccountName();
         String fullReturnUrl = env.getProperty("spring.data.payment.serveo_link") + "/user/billing/reset_login" + "?username=" + order.getUser().getAccountName();
         // khi response gửi từ vnpay hay momo về thì mất token, session, không vào lại web với quyền truy cập được

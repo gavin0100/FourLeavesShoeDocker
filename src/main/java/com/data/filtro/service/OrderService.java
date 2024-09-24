@@ -8,6 +8,7 @@ import com.data.filtro.model.payment.PaymentMethod;
 import com.data.filtro.repository.OrderDetailRepository;
 import com.data.filtro.repository.OrderRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,21 +16,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.management.Query;
+import java.time.Instant;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
 
-    @Autowired
-    OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-    @Autowired
-    OrderDetailRepository orderDetailRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
-    @Autowired
-    ProductService productService;
-    @Autowired
-    OrderShipperService donHangDaGiaoUserService;
+    private final ProductService productService;
+    private final OrderShipperService donHangDaGiaoUserService;
 
 
 
@@ -63,7 +62,7 @@ public class OrderService {
         } else {
             order.setZip(user.getZip());
         }
-        order.setOrderDate(new Date());
+        order.setOrderDate(Instant.now());
         order.setPaymentMethod(paymentMethod);
         order.setStatus(1);
 

@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -20,11 +21,11 @@ public class GuestCart {
     private Integer id;
 
     @Column(name = "thoigiantao")
-    private Date createdDate;
+    private Instant createdDate;
 
 
     @Column(name = "thoigiancapnhat")
-    private Date updatedDate;
+    private Instant updatedDate;
 
     @OneToMany(mappedBy = "guestCart", cascade = CascadeType.ALL)
     private List<CartItem> cartItemList;

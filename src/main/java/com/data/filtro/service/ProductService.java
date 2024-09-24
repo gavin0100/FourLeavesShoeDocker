@@ -1,16 +1,14 @@
 package com.data.filtro.service;
 
 import com.data.filtro.Util.JsonConverter;
-import com.data.filtro.interview.BaseRedisService;
-import com.data.filtro.interview.MyModel;
-import com.data.filtro.model.Account;
+import com.data.filtro.interview.impl.BaseRedisService;
 import com.data.filtro.model.Product;
 import com.data.filtro.repository.ProductRepository;
-import com.github.kristofa.brave.internal.zipkin.internal.moshi.Json;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveObjectArgs;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +18,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private CategoryService categoryService;
+    private final ProductRepository productRepository;
+    private final CategoryService categoryService;
 
-    @Autowired
-    private BaseRedisService baseRedisService;
+    private final BaseRedisService baseRedisService;
 
     @Value("${spring.data.minio.bucketName}")
     private String bucketName;
@@ -56,8 +47,7 @@ public class ProductService {
 
     @Value("${spring.data.app.resetTopSellingProductByHours}")
     private String resetTopSellingProductByHours;
-    @Autowired
-    private MinioClient minioClient;
+    private final MinioClient minioClient;
 
     private final String PREFIX_DETAILED_PRODUCT = "detailed_product:";
 
@@ -68,7 +58,7 @@ public class ProductService {
 
 
     public void addProduct(Product product) throws Exception {
-        product.setCreatedDate(new Date());
+        product.setCreatedDate(Instant.now());
         productRepository.save(product);
     }
     public void addProductWithImage(Product product, MultipartFile avatarFile) throws Exception {
@@ -82,7 +72,7 @@ public class ProductService {
         } catch (Exception ex){
             log.error("ProductService.java addProductWithImage: Can't upload image {} to product has id {}", avatarFile.getOriginalFilename(), product.getId());
         }
-        product.setCreatedDate(new Date());
+        product.setCreatedDate(Instant.now());
         productRepository.save(product);
         baseRedisService.delete("top_sixth_products");
     }

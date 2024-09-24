@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 
 @Entity
 @Table(name = "nhanvien")
@@ -27,7 +28,7 @@ public class Staff implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "ngaysinh")
-    private Date dob;
+    private Instant dob;
 
     @Column(name = "gioitinh")
     private String sex;
@@ -46,7 +47,7 @@ public class Staff implements Serializable {
     private String password;
 
     @Column(name = "ngay_tao")
-    private Date createdDate;
+    private Instant createdDate;
 
     @Column(name = "ma_vai_tro")
     private Integer roleNumber;

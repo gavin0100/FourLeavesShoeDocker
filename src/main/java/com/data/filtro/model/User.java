@@ -14,7 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -35,7 +36,7 @@ public class User implements UserDetails, Serializable {
 
     @Column(name = "ngaysinh")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dob;
+    private Instant dob;
 
     @Column(name = "gioitinh")
     private String sex;
@@ -71,7 +72,7 @@ public class User implements UserDetails, Serializable {
     private String password;
 
     @Column(name = "ngay_tao")
-    private Date createdDate;
+    private Instant createdDate;
 
     @Column(name = "password_reset_token")
     private String passwordResetToken;

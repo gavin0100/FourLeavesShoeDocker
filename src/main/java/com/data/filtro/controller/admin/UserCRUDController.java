@@ -1,13 +1,10 @@
 package com.data.filtro.controller.admin;
 
-import com.data.filtro.model.Account;
+import com.data.filtro.Util.FmtInstant;
 import com.data.filtro.model.DTO.UserDTO;
 import com.data.filtro.model.User;
-import com.data.filtro.service.AccountService;
 import com.data.filtro.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.supercsv.cellprocessor.FmtDate;
-import org.supercsv.cellprocessor.constraint.NotNull;
+import org.supercsv.cellprocessor.ift.CellProcessor;
 import org.supercsv.cellprocessor.ift.CellProcessor;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
@@ -28,8 +25,11 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,8 +37,11 @@ import java.util.Optional;
 @RequestMapping("/admin/user")
 public class UserCRUDController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+
+    public UserCRUDController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     public Pageable sortUser(int currentPage, int pageSize, int sortType) {
@@ -93,8 +96,12 @@ public class UserCRUDController {
         response.setContentType("text/csv; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
+//        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+//        String currentDateTime = dateFormatter.format(new Date());
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
+                .withZone(ZoneId.of("Asia/Ho_Chi_Minh"));
+        String currentDateTime = dateFormatter.format(Instant.now());
+
 
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=users_" + currentDateTime + ".csv";
@@ -114,7 +121,7 @@ public class UserCRUDController {
 
         CellProcessor[] processors = new CellProcessor[] {
                 new org.supercsv.cellprocessor.Optional(), // Name
-                new org.supercsv.cellprocessor.Optional(new FmtDate("yyyy-MM-dd")) , // Date of birth
+                new org.supercsv.cellprocessor.Optional(new FmtInstant("yyyy-MM-dd")) , // Date of birth
                 new org.supercsv.cellprocessor.Optional(), // Sex
                 new org.supercsv.cellprocessor.Optional(),
                 new org.supercsv.cellprocessor.Optional(),
@@ -122,12 +129,16 @@ public class UserCRUDController {
                 new org.supercsv.cellprocessor.Optional(),
                 new org.supercsv.cellprocessor.Optional(),
                 new org.supercsv.cellprocessor.Optional(),
-                new org.supercsv.cellprocessor.Optional(new FmtDate("yyyy-MM-dd"))
+                new org.supercsv.cellprocessor.Optional(new FmtInstant("yyyy-MM-dd"))
         };
 
-        for (User user : listUsers) {
-            csvWriter.write(user, nameMapping, processors);
-        }
+        listUsers.stream().forEach(user -> {
+            try {
+                csvWriter.write(user, nameMapping, processors);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         writer.flush(); // Flush the writer to ensure all data is written to the stream
         csvWriter.close(); // Close the csvWriter

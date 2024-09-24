@@ -1,21 +1,16 @@
-package com.data.filtro.config;
+package com.data.filtro.authentication;
 
-import com.data.filtro.authentication.JwtService;
-import com.data.filtro.model.AuthenticateResponse;
-import com.data.filtro.model.User;
+import com.data.filtro.authentication.exception.MyServletException;
 import com.data.filtro.service.AuthenticationService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,8 +31,6 @@ public class JwtFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
 
     private final AuthenticationService authenticationService;
-    private int temp = 0;
-    private boolean tempbool = false;
 
     public JwtFilter(UserDetailsService userDetailsService, @Lazy JwtService jwtService, @Lazy AuthenticationService authenticationService) {
         this.userDetailsService = userDetailsService;
@@ -58,28 +51,29 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
         String accountName = "";
-
         if (path.startsWith("/css/") ||
                 path.startsWith("/javascript/") ||
                 path.startsWith("/image/") ||
-                path.startsWith("/login") ||
+                path.equals("/login") ||
                 path.startsWith("/img/") ||
                 path.startsWith("/access-denied") ||
                 path.startsWith("/product/img") ||
                 path.startsWith("/product/") ||
                 path.startsWith("/cart") ||
                 path.startsWith("/category/") ||
-                path.startsWith("/register") ||
+                path.equals("/register") ||
                 path.startsWith("/api/") ||
                 path.startsWith("/test") ||
                 path.startsWith("/app-minio") ||
-                path.startsWith("/contact") ||
+                path.equals("/contact") ||
                 path.startsWith("/admin/login") ||
-                path.startsWith("/forgot-password") ||
+                path.equals("/forgot-password") ||
                 path.startsWith("/favicon.ico") ||
                 path.equals("/") ||
                 path.startsWith("/logout_to_login") ||
-                path.startsWith("/user/billing/reset_login")){
+                path.startsWith("/user/billing/reset_login") ||
+                path.startsWith("/search") ||
+                path.equals("/404")){
             if (path.startsWith("/product/") ||
                     path.startsWith("/cart") ||
                     path.startsWith("/category/") ||
@@ -88,7 +82,8 @@ public class JwtFilter extends OncePerRequestFilter {
                     path.startsWith("/admin/login") ||
                     path.startsWith("/forgot-password") ||
                     path.equals("/") ||
-                    path.startsWith("/login")
+                    path.startsWith("/login") ||
+                    path.startsWith("/search")
             ){
 
                 if (!jwt.equals("") && jwt != null && accountName.equals("")){
@@ -105,7 +100,7 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         if (jwt.equals("") || jwt== null){
-            throw new AccessDeniedException("token khong tai");
+            throw new AccessDeniedException("token khong ton tai");
         }
 
         if (accountName.equals("")){

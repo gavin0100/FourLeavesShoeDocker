@@ -1,4 +1,4 @@
-package com.data.filtro.config;
+package com.data.filtro.authentication.exception;
 
 import com.data.filtro.authentication.JwtService;
 import jakarta.servlet.ServletException;
@@ -14,6 +14,12 @@ import java.io.IOException;
 public class CustomErrorHandler implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        response.sendRedirect("/access-denied");
+        Integer statusCode = (Integer) response.getStatus();
+        if (statusCode != null && statusCode == 404) {
+            response.sendRedirect("/404");
+        } else {
+            response.sendRedirect("/access-denied");
+        }
+
     }
 }

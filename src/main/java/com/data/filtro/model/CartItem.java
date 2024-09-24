@@ -9,7 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.time.Instant;
 
 @Entity
 @Table(name = "giohang_chitiet")
@@ -41,7 +42,7 @@ public class CartItem implements Serializable {
     private Integer total;
 
     @Column(name = "thoigianmua")
-    private Date purchasedDate;
+    private Instant purchasedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "magiohangtam", referencedColumnName = "id")

@@ -1,12 +1,10 @@
 package com.data.filtro.controller.admin;
 
-import com.data.filtro.interview.BaseRedisService;
+import com.data.filtro.interview.impl.BaseRedisService;
 import com.data.filtro.model.*;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.ProductService;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,27 +23,30 @@ import java.util.Optional;
 @RequestMapping("/admin/product")
 public class ProductCURDController {
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
 
-    @Autowired
-    CategoryService categoryService;
+    private final CategoryService categoryService;
 
-    @Autowired
-    MaterialService materialService;
+    private final MaterialService materialService;
 
     private final String PREFIX_DETAILED_PRODUCT = "detailed_product:";
 
-    @Autowired
-    private BaseRedisService baseRedisService;
+    private final BaseRedisService baseRedisService;
 
     private String errorMessage = "";
     private String message="";
 
+    public ProductCURDController(ProductService productService, CategoryService categoryService, MaterialService materialService, BaseRedisService baseRedisService) {
+        this.productService = productService;
+        this.categoryService = categoryService;
+        this.materialService = materialService;
+        this.baseRedisService = baseRedisService;
+    }
+
     public Pageable sortProduct(int currentPage, int pageSize, int sortType) {
         Pageable pageable;
         switch (sortType) {
-            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
             default -> {
                 pageSize = 5;
                 pageable = PageRequest.of(currentPage - 1, pageSize);

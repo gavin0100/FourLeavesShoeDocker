@@ -1,6 +1,7 @@
 package com.data.filtro.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserPermission implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Tsid
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "permission_id")
-    private int permissionId;
+    private Long permissionId;
     //    @NotEmpty(message = "role name is required!")
     @Column(name = "role", length = 50)
     @Enumerated(EnumType.STRING)

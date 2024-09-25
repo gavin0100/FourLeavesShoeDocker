@@ -22,11 +22,11 @@ public class InvoiceService {
     private final OrderRepository orderRepository;
 
 
-    public List<Invoice> getAllInvoiceByUserId(int userId) {
+    public List<Invoice> getAllInvoiceByUserId(long userId) {
         return invoiceRepository.findAllInvoiceByUserId(userId);
     }
 
-    public Invoice getInvoiceByCartId(int cartId) {
+    public Invoice getInvoiceByCartId(long cartId) {
         return invoiceRepository.findInvoiceByCartId(cartId);
     }
 

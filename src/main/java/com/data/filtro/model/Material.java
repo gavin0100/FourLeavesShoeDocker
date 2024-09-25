@@ -1,8 +1,10 @@
 package com.data.filtro.model;
 
+import com.data.filtro.model.DTO.MaterialJsDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,10 +21,10 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 public class Material {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Tsid
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mavatlieu")
-    private Integer id;
+    private Long id;
 
     @Column(name = "tenvatlieu")
     private String materialName;
@@ -36,5 +38,14 @@ public class Material {
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "material-product")
     private List<Product> products;
+
+    public MaterialJsDTO convertToApiJsDTO(){
+        return MaterialJsDTO.builder()
+                .id(String.valueOf(this.id))
+                .materialName(this.materialName)
+                .description(this.description)
+                .status(this.status)
+                .build();
+    }
 
 }

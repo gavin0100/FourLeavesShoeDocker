@@ -10,15 +10,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CartItemRepository extends JpaRepository<CartItem, Integer> {
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
     @Query("select ci from CartItem ci where ci.cart.id = :id")
-    List<CartItem> findCartItemByCart(@Param("id") int id);
+    List<CartItem> findCartItemByCart(@Param("id") long id);
 
     @Modifying
     @Query("update CartItem c set c.quantity = :quantity1, c.total =:totalPriceItem, c.price = :latestPrice where c.cart.id = :cartId and c.product.id = :productId")
-    void updateQuantityByProductId(@Param("cartId") int cartId,
-                                   @Param("productId") int productId,
+    void updateQuantityByProductId(@Param("cartId") long cartId,
+                                   @Param("productId") long productId,
                                    @Param("quantity1") int quantity1,
                                    @Param("totalPriceItem") int totalPriceItem,
                                    @Param("latestPrice") int latestPrice);
@@ -28,17 +28,17 @@ public interface CartItemRepository extends JpaRepository<CartItem, Integer> {
 
     @Modifying
     @Query("delete from CartItem  ci where ci.cart.id = :cartId and ci.product.id = :productId ")
-    void removeCartItemByCartIdAndProductId(@Param("cartId") int cartId, @Param("productId") int productId);
+    void removeCartItemByCartIdAndProductId(@Param("cartId") long cartId, @Param("productId") long productId);
 
     @Modifying
     @Query("delete from CartItem  ci where ci.guestCart.id = :guestCartId and ci.product.id = :productId ")
     void removeGuestCartItemByCartIdAndProductId(@Param("guestCartId") int guestCartId, @Param("productId") int productId);
 
     @Query("select ci  from CartItem  ci where ci.cart.id = :cartId and ci.product.id = :productId ")
-    List<CartItem> getByCartAndProduct(@Param("cartId") int cartId, @Param("productId") int productId);
+    List<CartItem> getByCartAndProduct(@Param("cartId") long cartId, @Param("productId") long productId);
 
     @Modifying
     @Query("delete from CartItem  ci where ci.id = :cartItemId and ci.cart.id = :cartId ")
-    void deleteCartItemByCartItemIdAndCartId(@Param("cartItemId") int cartItemId, @Param("cartId") int cartId);
+    void deleteCartItemByCartItemIdAndCartId(@Param("cartItemId") long cartItemId, @Param("cartId") long cartId);
 
 }

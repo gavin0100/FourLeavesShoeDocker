@@ -24,7 +24,7 @@ import java.io.IOException;
 @Component
 //@RequiredArgsConstructor
 @Slf4j
-public class JwtFilter extends OncePerRequestFilter {
+public class    JwtFilter extends OncePerRequestFilter {
 
     private final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsService userDetailsService;
@@ -55,11 +55,12 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/javascript/") ||
                 path.startsWith("/image/") ||
                 path.equals("/login") ||
+                path.equals("/login/login_failure") ||
                 path.startsWith("/img/") ||
                 path.startsWith("/access-denied") ||
                 path.startsWith("/product/img") ||
                 path.startsWith("/product/") ||
-                path.startsWith("/cart") ||
+                path.equals("/cart") ||
                 path.startsWith("/category/") ||
                 path.equals("/register") ||
                 path.startsWith("/api/") ||

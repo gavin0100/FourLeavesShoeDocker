@@ -20,7 +20,7 @@ public class StaffService {
 
     private final StaffRepository staffRepository;
 
-    public Staff getById(int id) {
+    public Staff getById(long id) {
         return staffRepository.findById(id);
     }
 
@@ -57,7 +57,7 @@ public class StaffService {
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(long id) {
         staffRepository.delete(id);
     }
 

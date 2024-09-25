@@ -80,7 +80,7 @@ public class ProductService {
 
     public void update(Product product, MultipartFile avatarFile) throws Exception {
 
-        Product existingProduct = productRepository.findById(product.getId()).orElseThrow(null);
+        Product existingProduct = productRepository.findById(product.getId()).get();
 
         // Update the existing product's properties with the new product's properties
         existingProduct.setProductName(product.getProductName());
@@ -137,11 +137,11 @@ public class ProductService {
 
 
 
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         productRepository.deleteById(id);
     }
 
-    public Product getProductById(int id) {
+    public Product getProductById(long id) {
         return productRepository.findById(id);
     }
 
@@ -234,34 +234,34 @@ public class ProductService {
         return productRepository.discountProducts();
     }
 
-    public Page<Product> getProductByPriceAndMaterial(int lowPrice, int highPrice, int materialId, Pageable pageable){
+    public Page<Product> getProductByPriceAndMaterial(int lowPrice, int highPrice, long materialId, Pageable pageable){
         return productRepository.getProductByPriceAndMaterial(lowPrice, highPrice, materialId,pageable);
     }
     public Page<Product> getProductByPrice(int lowPrice, int highPrice, Pageable pageable){
         return productRepository.getProductByPrice(lowPrice, highPrice,pageable);
     }
-    public Page<Product> getProductByMaterial( int materialId, Pageable pageable){
+    public Page<Product> getProductByMaterial( long materialId, Pageable pageable){
         return productRepository.getProductByMaterial(materialId,pageable);
     }
-    public Page<Product> getProductByCategoryAndPriceAndMaterial(int categoryId, int lowPrice, int highPrice, int materialId, Pageable pageable){
+    public Page<Product> getProductByCategoryAndPriceAndMaterial(long categoryId, int lowPrice, int highPrice, long materialId, Pageable pageable){
         return productRepository.getProductByCategoryAndPriceAndMaterial(categoryId, lowPrice, highPrice, materialId,pageable);
     }
-    public Page<Product> getProductByCategoryAndPrice(int categoryId, int lowPrice, int highPrice, Pageable pageable){
+    public Page<Product> getProductByCategoryAndPrice(long categoryId, int lowPrice, int highPrice, Pageable pageable){
         return productRepository.getProductByCategoryAndPrice(categoryId, lowPrice, highPrice, pageable);
     }
-    public Page<Product> getProductByCategoryAndMaterial(int categoryId, int materialId, Pageable pageable){
+    public Page<Product> getProductByCategoryAndMaterial(long categoryId, long materialId, Pageable pageable){
         return productRepository.getProductByCategoryAndMaterial(categoryId, materialId,pageable);
     }
 
-    public Page<Product> getProductByCategory(int id, Pageable pageable) {
+    public Page<Product> getProductByCategory(long id, Pageable pageable) {
         return productRepository.findProductsByCategory(id, pageable);
     }
 
-    public Page<Product> getProductByConditions(int id, int lowPrice, int highPrice, int materialId, Pageable pageable) {
+    public Page<Product> getProductByConditions(long id, int lowPrice, int highPrice, int materialId, Pageable pageable) {
         return productRepository.findProductsByCategory(id, pageable);
     }
 
-    public Page<Product> getProductsByFlavorId(int id, Pageable pageable) {
+    public Page<Product> getProductsByFlavorId(long id, Pageable pageable) {
         return productRepository.findProductsByFlavor(id, pageable);
     }
 
@@ -274,7 +274,7 @@ public class ProductService {
         return productRepository.findAll().stream().count();
     }
 
-    public List<Product> getTop4ProductsByMaterial(int id, int currentProductId) {
+    public List<Product> getTop4ProductsByMaterial(long id, long currentProductId) {
         return productRepository.findTop4ProductsByFlavor(id, currentProductId);
     }
 

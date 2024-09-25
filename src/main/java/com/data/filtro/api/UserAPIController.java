@@ -1,6 +1,7 @@
 package com.data.filtro.api;
 
 import com.data.filtro.model.Account;
+import com.data.filtro.model.DTO.UserJsDTO;
 import com.data.filtro.model.ErrorResponse;
 import com.data.filtro.model.User;
 import com.data.filtro.service.CartService;
@@ -26,9 +27,10 @@ public class UserAPIController {
 
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<?> findUser(@PathVariable("id") int id) {
+    public ResponseEntity<?> findUser(@PathVariable("id") long id) {
         try {
-            User user = userService.getByUserId(id);
+            User user1 = userService.getByUserId(id);
+            UserJsDTO user = user1.convertToApiJsDTO();
             if (user == null) {
                 String message = "No user found!";
                 ErrorResponse err = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());
@@ -55,7 +57,7 @@ public class UserAPIController {
         }
     }
     @PostMapping("/editUserInfo")
-    public ResponseEntity<?> editUserInfo(@RequestParam int userId,
+    public ResponseEntity<?> editUserInfo(@RequestParam long userId,
                                           @RequestParam String name,
                                           @RequestParam String sex,
                                           @RequestParam String address,
@@ -79,7 +81,7 @@ public class UserAPIController {
 
     }
     @PostMapping("/editRole")
-    public ResponseEntity<?> editUserInfo(@RequestParam int userId,
+    public ResponseEntity<?> editUserInfo(@RequestParam long userId,
                                           @RequestParam int role){
         try{
             User user = userService.getByUserId(userId);

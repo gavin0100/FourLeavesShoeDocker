@@ -30,7 +30,7 @@ public class MaterialCRUDController {
     public Pageable sortFlavor(int currentPage, int pageSize, int sortType) {
         Pageable pageable;
         switch (sortType) {
-            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
             default -> {
                 pageSize = 5;
                 pageable = PageRequest.of(currentPage - 1, pageSize);
@@ -94,7 +94,7 @@ public class MaterialCRUDController {
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_MATERIAL')")
-    public String delete(@RequestParam int id) {
+    public String delete(@RequestParam long id) {
         materialService.delete(id);
         message="Xóa material thành công";
         return "redirect:/admin/material";

@@ -1,5 +1,6 @@
 package com.data.filtro.api;
 
+import com.data.filtro.model.DTO.ProductJsDTO;
 import com.data.filtro.model.ErrorResponse;
 import com.data.filtro.model.Product;
 import com.data.filtro.service.CategoryService;
@@ -42,8 +43,8 @@ public class ProductAPIController {
     }
 
     @GetMapping("find/{id}")
-    public ResponseEntity<?> find(@PathVariable int id) {
-        Product product = productService.getProductById(id);
+    public ResponseEntity<?> find(@PathVariable Long id) {
+        ProductJsDTO product = productService.getProductById(id).convertToApiJsDTO();
         if (product == null) {
             String message = "No product found!";
             ErrorResponse errorResponse = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());

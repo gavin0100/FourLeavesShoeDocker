@@ -14,27 +14,27 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Page<Order> findAll(Pageable pageable);
 
     @Query("select o from Order o where o.user.id =:userId")
-    List<Order> findOrderByUserId(@Param("userId") int userId);
+    List<Order> findOrderByUserId(@Param("userId") long userId);
 
     @Query("select o from Order o where o.status =:status")
     List<Order> findOrderByStatusOrder(@Param("status") int status);
 
     @Query("select o from Order o where o.user.cart.id =:cartId order by o.orderDate desc limit 1")
-    Order finCurrentOrderByCartId(@Param("cartId") int cartId);
+    Order finCurrentOrderByCartId(@Param("cartId") long cartId);
 
     @Query("select o from Order o where o.id =:orderId")
-    Order findOrderById(@Param("orderId") int orderId);
+    Order findOrderById(@Param("orderId") long orderId);
 
     @Query("select o from Order o where o.order_code =:orderCode")
     Order findOrderByOrderCode(@Param("orderCode") String orderCode);
 
     @Query("select o.status from Order o where o.id =:orderId")
-    int checkOrderStatusById(@Param("orderId") int orderId);
+    int checkOrderStatusById(@Param("orderId") long orderId);
 
     @Query("select o from Order o where o.status = 2")
     List<Order> findAllVerifiedOrders();
@@ -45,7 +45,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     @Modifying
     @Query("update Order o set o.statusPayment= :orderStatus where o.id =:id")
-    void cancelOrder(@Param("id") int id, @Param("orderStatus")OrderStatus orderStatus);
+    void cancelOrder(@Param("id") long id, @Param("orderStatus")OrderStatus orderStatus);
 
     @Query("select a from Order a where a.status = :status")
     List<Order> filterStatusOrder(@Param("status") int status);

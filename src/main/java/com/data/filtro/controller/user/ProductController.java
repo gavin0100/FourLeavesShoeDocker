@@ -50,14 +50,14 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public String product(@PathVariable Integer id, Model model) {
+    public String product(@PathVariable Long id, Model model) {
         User user = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             user = (User) authentication.getPrincipal();
         }
         model.addAttribute("user", user);
-        int currentProductId = id;
+        long currentProductId = id;
         long maxProductId = productService.countAll();
         int t1 = 13;
         long t2 = 24;
@@ -91,7 +91,7 @@ public class ProductController {
     }
 
     @PostMapping("/{id}/feedback")
-    public String feedback(@RequestParam String content, @RequestParam("numberOfStars") int numberOfStars, @RequestParam("_csrfParameterName") String csrfTokenForm, @PathVariable Integer id, Model model) {
+    public String feedback(@RequestParam String content, @RequestParam("numberOfStars") int numberOfStars, @RequestParam("_csrfParameterName") String csrfTokenForm, @PathVariable Long id, Model model) {
         if (!inputService.isValidComment(content)){
             String message = "The comment content should only consist of lowercase letters, numbers, '@' symbol, parentheses, commas, periods, exclamation marks, and spaces.";
             errorMessage = message;

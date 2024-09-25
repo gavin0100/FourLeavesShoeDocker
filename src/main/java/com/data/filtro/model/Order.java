@@ -6,6 +6,7 @@ import com.data.filtro.model.payment.PaymentMethod;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,10 +25,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Order implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Tsid
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "madathang")
-    private Integer id;
+    private Long id;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -78,8 +79,8 @@ public class Order implements Serializable {
 
     public ApiOrderDTO convertToApiDTO(){
         return ApiOrderDTO.builder().
-                id(this.id)
-                .userId(this.user.getId())
+                id(String.valueOf(this.id))
+                .name(this.user.getName())
                 .orderDate(this.orderDate)
                 .email(this.email)
                 .phoneNumber(this.getPhoneNumber())

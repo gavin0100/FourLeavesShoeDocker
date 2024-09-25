@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
     //@Query("select distinct c.user from Cart c")
     //@Query("select distinct c.user from Cart c join fetch User u")
     //@Query("select u from User u inner join User on u.id in (select distinct c.user.id from Cart c)")
@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 
     @Query("select u from User u where u.id =:id")
-    User findUserById(@Param("id") int id);
+    User findUserById(@Param("id") long id);
 
     @Query("select u from User u where u.email =:email")
     User findByEmail(@Param("email") String email);
@@ -37,10 +37,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select u from User u")
     Page<User> findAll(Pageable pageable);
 
-    @Query("select u from User u where u.userPermission.permissionId = 4")
+    @Query("select u from User u where u.userPermission.permissionId = 626589413728739336")
     Page<User> findAllUser(Pageable pageable);
 
-    @Query("select u from User u where u.userPermission.permissionId != 4")
+    @Query("select u from User u where u.userPermission.permissionId != 626589413728739336")
     Page<User> findAllStaff(Pageable pageable);
 
 
@@ -62,7 +62,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //    User findByEmail(@Param("email") String email);
 
     @Query("select a from  User  a where a.id =:id")
-    User findById(@Param("id") int id);
+    User findById(@Param("id") long id);
 
     @Query("select a from User a where a.status = :status")
     List<User> activeUsers(@Param("status") int status);
@@ -70,10 +70,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select a from User a where a.userPermission.permissionId = :role")
     List<User> userUsers(@Param("role") int role);
 
-    @Query("select a from User a where a.userPermission.permissionId = 4")
+    @Query("select a from User a where a.userPermission.permissionId = 626589413728739336")
     List<User> findAppropriateUserForUser();
 
-    @Query("select a from User a where a.userPermission.permissionId != 4")
+    @Query("select a from User a where a.userPermission.permissionId != 626589413728739336")
     List<User> findEligibleUserForStaff();
 
 }

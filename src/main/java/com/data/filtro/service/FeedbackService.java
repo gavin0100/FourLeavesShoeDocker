@@ -17,10 +17,10 @@ public class FeedbackService {
 
     private final FeedbackRepository feedbackRepository;
 
-    public List<Feedback> getAllFeedbackByProduct(int productId) {
+    public List<Feedback> getAllFeedbackByProduct(long productId) {
         return feedbackRepository.findAllByProductId(productId);
     }
-    public List<Feedback> getAllFeedBackByProductId(int id) {
+    public List<Feedback> getAllFeedBackByProductId(long id) {
         return feedbackRepository.findAllByProductId(id);
     }
 

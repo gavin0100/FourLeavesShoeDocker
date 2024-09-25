@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderShipperRepository extends JpaRepository<OrderShipper, Integer> {
+public interface OrderShipperRepository extends JpaRepository<OrderShipper, Long> {
     @Query("select c from OrderShipper c where c.userId = :userId and c.status = :status")
-    List<OrderShipper> findByShipperIdAndStatus(@Param("userId") int userId, @Param("status") int status);
+    List<OrderShipper> findByShipperIdAndStatus(@Param("userId") long userId, @Param("status") int status);
 
     @Query("select c from OrderShipper c where c.orderId = :orderId")
-    OrderShipper findByOrderId(@Param("orderId") int orderId);
+    OrderShipper findByOrderId(@Param("orderId") long orderId);
 
     @Query("select c from OrderShipper c where c.status = 2")
     List<OrderShipper> findOrderDontDelivery();

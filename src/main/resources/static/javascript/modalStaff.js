@@ -15,16 +15,16 @@ $(document).ready(function () {
     const id = $(this).parent().find("#id").val();
     $.ajax({
       type: "GET",
-      url: `/api/staff/find/${id}`,
-      success: function (staff) {
+      url: `/api/user/find/${id}`,
+      success: function (user) {
         $("#editModal #saveStaffId").val(id);
-        $("#editModal #staffName").val(staff.name);
-        const dobUTC = moment.utc(staff.dob, "YYYY/MM/DD").add(1, 'days').format("YYYY-MM-DD");
+        $("#editModal #staffName").val(user.name);
+        const dobUTC = moment.utc(user.dob, "YYYY/MM/DD").add(1, 'days').format("YYYY-MM-DD");
         $("#editModal #dob").val(dobUTC);
-        $("#editModal #sex").val(staff.sex);
-        $("#editModal #phoneNumber").val(staff.phoneNumber);
-        $("#editModal #editStatus").val(staff.status);
-        $("#editModal #editAccount").val(staff.account.id);
+        $("#editModal #sex").val(user.sex);
+        $("#editModal #phoneNumber").val(user.phoneNumber);
+        $("#editModal #editStatus").val(user.status);
+        $("#editModal #editAccount").val(user.account.id);
       },
     });
   });

@@ -1,12 +1,13 @@
 package com.data.filtro.interview;
 
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
 
 @Entity
 @Table(name="model")
@@ -14,8 +15,13 @@ import org.springframework.data.redis.core.RedisHash;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MyModel implements MyModelInterface{
-    @Id
-    private int id;
+    // @Tsid là cách viết tắt để sử dụng TsidGenerator
+    // kiểu truyền thống thì phải viết @GenericGenerator và @GeneratedValue. để sài generator tùy chỉnh trong Hibernate.
+    @Id @Tsid
+//    @GeneratedValue(generator = "tsid")
+//    @GenericGenerator(name = "tsid",
+//            strategy = "io.hypersistence.utils.hibernate.id.TsidGenerator")
+    private Long id;
     private String name;
     private boolean status;
 

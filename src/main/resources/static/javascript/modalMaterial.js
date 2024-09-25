@@ -17,6 +17,7 @@ $(document).ready(function () {
       type: "GET",
       url: `/api/material/find/${id}`,
       success: function (material) {
+        console.log(material);
         $("#editModal #saveId").val(id);
         $("#editModal #materialName").val(material.materialName);
         $("#editModal #description").val(material.description);

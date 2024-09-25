@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
+public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     @Query("select i from Invoice i where i.user.id =:userId")
-    List<Invoice> findAllInvoiceByUserId(@Param("userId") int userId);
+    List<Invoice> findAllInvoiceByUserId(@Param("userId") long userId);
 
     @Query("select i from Invoice i where i.user.cart.id =:cartId")
-    Invoice findInvoiceByCartId(@Param("cartId") int cartId);
+    Invoice findInvoiceByCartId(@Param("cartId") long cartId);
 
 }

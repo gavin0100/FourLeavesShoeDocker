@@ -570,6 +570,11 @@ invoiceDetail.setName("Updated Child Name");
 
 productRepository.save(product);
 ```
+- @Transaction
+  - This annotation makrs the method or class is transactional. That means if any step in this method is error,all of step is rollback and return the origin status.
+
+- Serializable
+  - Implementing this interface indicates that the class can be converted into a stream of bytes, allowing it to be stored in a database or transmitted over a network, and then reconstructed back into an object. 
 
 #### How to convert back and forth between JSON and Object Model
 ```agsl
@@ -685,7 +690,7 @@ Product product = objectMapper.readValue(String json, Product.class);
     }
 
     ```
-
+- Optional: is the result of the object or nothing
 
 ## The purpose of persistence data, persistence, jdbc, ORM, hibernate, spring data JPA, JPA
 ![JPAtoJDBC.jpg](JPAtoJDBC.jpg)

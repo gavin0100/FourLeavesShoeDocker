@@ -37,7 +37,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/{orderId}")
-    public String show(@PathVariable("orderId") int orderId, Model model) {
+    public String show(@PathVariable("orderId") long orderId, Model model) {
         try {
             User user = null;
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -62,7 +62,7 @@ public class InvoiceController {
     }
 
     @GetMapping(value = "/{orderId}/exportpdf", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> showOrderPdf(@PathVariable("orderId") int orderId, Model model) {
+    public ResponseEntity<InputStreamResource> showOrderPdf(@PathVariable("orderId") long orderId, Model model) {
         Order order = orderService.getOrderById(orderId);
         List<OrderDetail> orderDetailList = order.getOrderDetails();
 
@@ -77,7 +77,7 @@ public class InvoiceController {
     }
 
     @PostMapping("/makeInvoice/{orderId}")
-    public String makeInvoice(@PathVariable("orderId") int orderId,
+    public String makeInvoice(@PathVariable("orderId") long orderId,
                               @RequestParam("totalPrice") int totalPrice,
                               Model model) {
         try {

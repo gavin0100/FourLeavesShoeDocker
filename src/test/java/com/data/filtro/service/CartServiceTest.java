@@ -54,7 +54,7 @@ public class CartServiceTest {
     @BeforeEach
     void setUp() {
         user = new User(
-                1001,
+                Long.parseLong("626589413728739350"),
                 "vo duc",
                 ZonedDateTime.of(2002, 12, 2, 0, 0, 0, 0, ZoneId.systemDefault()).toInstant(),
                 "male",
@@ -64,7 +64,7 @@ public class CartServiceTest {
                 "voduc0100@gmail.com",
                 "0869990187",
                 1,
-                new UserPermission(1, Role.USER, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, new ArrayList<>()),
+                new UserPermission(Long.parseLong("626589413728739333"), Role.USER, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, Permission.VIEW, new ArrayList<>()),
                 "voduc0100",
                 "Duc2112002@",
                 ZonedDateTime.of(2024, 3, 12, 0, 0, 0, 0, ZoneId.systemDefault()).toInstant(),
@@ -128,7 +128,7 @@ public class CartServiceTest {
 
     @Test
     public void testAddProductToCart_ProductExistsInCart() {
-        int productId = 1;
+        long productId = Long.parseLong("626589413728739309");
         int quantity = 2;
         Product product = new Product();
         product.setId(productId);
@@ -154,7 +154,7 @@ public class CartServiceTest {
 
     @Test
     public void testAddProductToCart_ProductDoesNotExistInCart() {
-        int productId = 1;
+        long productId = Long.parseLong("626589413728739309");
         int quantity = 2;
         Product product = new Product();
         product.setId(productId);
@@ -197,7 +197,7 @@ public class CartServiceTest {
     @Test
     void testAddProductToGuestCart_ProductExists() {
         // Arrange
-        int productId = 1;
+        long productId = Long.parseLong("626589413728739309");
         int quantity = 2;
 
         Product product = new Product();
@@ -229,7 +229,7 @@ public class CartServiceTest {
     @Test
     void testAddProductToGuestCart_ProductDoesNotExist() {
         // Arrange
-        int productId = 1;
+        long productId = Long.parseLong("626589413728739309");
         int quantity = 2;
 
         Product product = new Product();
@@ -260,14 +260,14 @@ public class CartServiceTest {
         List<CartItem> cartItemList = new ArrayList<>();
         CartItem existingCartItem = new CartItem();
         existingCartItem.setProduct(new Product());
-        existingCartItem.getProduct().setId(1);
+        existingCartItem.getProduct().setId(Long.parseLong("626589413728739309"));
         existingCartItem.setQuantity(1);
         existingCartItem.setTotal(100);
         cartItemList.add(existingCartItem);
         guestCart.setCartItemList(cartItemList);
 
         Product product = new Product();
-        product.setId(1);
+        product.setId(Long.parseLong("626589413728739309"));
         product.setPrice(100);
 
         when(productService.getProductById(1)).thenReturn(product);
@@ -286,7 +286,7 @@ public class CartServiceTest {
     public void testConvertGuestCartToCart() {
         // Arrange
         User user = new User();
-        user.setId(1);
+        user.setId(Long.parseLong("626589413728739309"));
         user.setName("Test User");
 
         GuestCart guestCart = new GuestCart();
@@ -327,14 +327,14 @@ public class CartServiceTest {
     public void testRemoveAllProductInCar() {
         // Arrange
         Cart cart = new Cart();
-        cart.setId(1);
+        cart.setId(Long.parseLong("626589413728739309"));
         List<CartItem> cartItemList = new ArrayList<>();
         CartItem cartItem1 = new CartItem();
         cartItem1.setProduct(new Product());
-        cartItem1.getProduct().setId(1);
+        cartItem1.getProduct().setId(Long.parseLong("626589413728739309"));
         CartItem cartItem2 = new CartItem();
         cartItem2.setProduct(new Product());
-        cartItem2.getProduct().setId(2);
+        cartItem2.getProduct().setId(Long.parseLong("626589413728739309"));
         cartItemList.add(cartItem1);
         cartItemList.add(cartItem2);
         cart.setCartItemList(cartItemList);
@@ -351,7 +351,7 @@ public class CartServiceTest {
     public void testTotalOfCartItem() {
         // Arrange
         User user = new User();
-        user.setId(1);
+        user.setId(Long.parseLong("626589413728739309"));
 
         Cart cart = new Cart();
         List<CartItem> cartItemList = new ArrayList<>();

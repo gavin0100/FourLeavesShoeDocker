@@ -18,7 +18,7 @@ $(document).ready(function () {
       url: `/api/order/find/${id}`,
       success: function (order) {
         $("#editModal #saveOrderId").val(order.id);
-        $("#editModal #user").val(order.userId);
+        $("#editModal #user").val(order.name);
         $("#editModal #orderDate").val(order.orderDate);
         $("#editModal #email").val(order.email);
         $("#editModal #phoneNumber").val(order.phoneNumber);

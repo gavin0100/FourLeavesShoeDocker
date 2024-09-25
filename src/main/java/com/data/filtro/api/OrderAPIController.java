@@ -32,7 +32,7 @@ public class OrderAPIController {
     CartService cartService;
 
     @GetMapping("/findByUserId/{id}")
-    public ResponseEntity<?> getOrderByUserId(@PathVariable int id) {
+    public ResponseEntity<?> getOrderByUserId(@PathVariable long id) {
         List<Order> listOrder = orderService.getOrderByUserId(id);
         if (listOrder == null) {
             String message = "Order not found!";
@@ -64,7 +64,7 @@ public class OrderAPIController {
     }
 
     @PostMapping("/updateStatusOrder")
-    public ResponseEntity<?> nhanGiaoDonHangHoacDaGiaoHang(@RequestParam int orderId, @RequestParam int status, @RequestParam int shipperId) {
+    public ResponseEntity<?> nhanGiaoDonHangHoacDaGiaoHang(@RequestParam long orderId, @RequestParam int status, @RequestParam int shipperId) {
         String message;
         ErrorResponse err;
         Order order = orderService.getOrderById(orderId);
@@ -117,7 +117,7 @@ public class OrderAPIController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<?> find(@PathVariable int id) {
+    public ResponseEntity<?> find(@PathVariable Long id) {
         ApiOrderDTO order = orderService.getApiOrderById(id);
         if (order == null) {
             String message = "Order not found!";
@@ -163,7 +163,7 @@ public class OrderAPIController {
 //    }
 //
     @PostMapping("/placeOrder")
-    public ResponseEntity<?> placeOrder(@RequestParam int userId,
+    public ResponseEntity<?> placeOrder(@RequestParam long userId,
                                         @RequestParam String phone,
                                         @RequestParam String email,
                                         @RequestParam String address,
@@ -190,7 +190,7 @@ public class OrderAPIController {
 
     }
     @PostMapping("/changestatusorder")
-    public ResponseEntity<?> changeStatusOrder(@RequestParam int orderId,
+    public ResponseEntity<?> changeStatusOrder(@RequestParam long orderId,
                                                @RequestParam int status){
         try{
         Order order=orderService.getOrderById(orderId);

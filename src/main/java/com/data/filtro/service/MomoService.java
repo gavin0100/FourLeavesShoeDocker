@@ -133,21 +133,21 @@ public class MomoService {
         Field[] fields = momoIPN.getClass().getDeclaredFields();
         List<String> fieldsName = Arrays.stream(fields).map(Field::getName).sorted().toList();
         StringBuilder rawSignature = new StringBuilder();
-        for(String fieldName : fieldsName){
-            try{
+        fieldsName.forEach(fieldName -> {
+            try {
                 Field field = momoIPN.getClass().getDeclaredField(fieldName);
                 field.setAccessible(true);
-                if(fieldName.equals("signature")){
-                    continue;
-                }
-                String fieldValue = String.valueOf(field.get(momoIPN));
-                if(fieldValue!=null){
-                    rawSignature.append(fieldName).append("=").append(fieldValue).append("&");
+                if (!fieldName.equals("signature")) {
+                    String fieldValue = String.valueOf(field.get(momoIPN));
+                    if (fieldValue != null) {
+                        rawSignature.append(fieldName).append("=").append(fieldValue).append("&");
+                    }
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 logger.info("Error: {}", e.getMessage());
             }
-        }
+        });
+
         rawSignature.deleteCharAt(rawSignature.length()-1);
         return hmacSHA256(rawSignature.toString());
     }
@@ -215,6 +215,9 @@ public class MomoService {
             sumOfQuantity += od.getQuantity();
             momoItems.add(momoItem);
         }
+
+
+
         momoRequest.setItems(momoItems);
         MomoUserInfo momoUserInfo = MomoUserInfo.builder()
                 .name(orderName)  //mã đơn hàng

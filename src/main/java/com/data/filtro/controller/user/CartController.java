@@ -63,7 +63,7 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public String addCart(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity) {
+    public String addCart(@RequestParam("productId") long productId, @RequestParam("quantity") int quantity) {
         User userSession = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
@@ -79,7 +79,7 @@ public class CartController {
 
 
     @PostMapping("/remove/{productId}")
-    public String removeCartItem(@PathVariable("productId") int productId) {
+    public String removeCartItem(@PathVariable("productId") long productId) {
         User userSession = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
@@ -116,10 +116,10 @@ public class CartController {
         for (int i = 0; i < productIdArray.length; i++) {
             String productId = productIdArray[i].trim();
             String quantity = quantityArray[i].trim();
-            tempProduct = productService.getProductById(Integer.parseInt(productId));
+            tempProduct = productService.getProductById(Long.parseLong(productId));
             totalPriceItem = (tempProduct.getPrice() - tempProduct.getPrice()*tempProduct.getDiscount()/100) * Integer.parseInt(quantity);
             latestPrice = tempProduct.getPrice() - tempProduct.getPrice()*tempProduct.getDiscount()/100;
-            cartItemService.updateQuantityByProductId(cart.getId(),Integer.parseInt(productId), Integer.parseInt(quantity), totalPriceItem, latestPrice);
+            cartItemService.updateQuantityByProductId(cart.getId(),Long.parseLong(productId), Integer.parseInt(quantity), totalPriceItem, latestPrice);
         }
         return "redirect:/order";
     }

@@ -14,10 +14,14 @@
 <th:block th:fragment="content">
     <div class="container">
         <div class="py-5 text-center">
-            <h2>Payment for an order</h2>
+            <h2>ĐẶT HÀNG</h2>
         </div>
-        <div class="text-center" th:if="${user == null}">
+        <div class="text-center" th:if="${user == null && message != null}">
             <a th:href="@{/login}" th:text="${message}" style="border: 1px solid black; padding: 5px; background-color: white;">
+            </a>
+        </div>
+        <div class="text-center" th:if="${user == null && messageMissInfor != null}">
+            <a th:href="@{/user/profile}" th:text="${messageMissInfor}" style="border: 1px solid black; padding: 5px; background-color: white;">
             </a>
         </div>
         <th:block th:if="${user != null}">

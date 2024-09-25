@@ -51,7 +51,7 @@ public class UserCRUDController {
             case 10:
             case 25:
             case 50:
-                pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name"));
+                pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("createdDate").descending());
                 break;
             default:
                 pageSize = 5;
@@ -197,7 +197,7 @@ public class UserCRUDController {
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority( 'FULL_ACCESS_USER')")
-    public String delete(@RequestParam("id") int id) {
+    public String delete(@RequestParam("id") long id) {
         userService.deleteById(id);
         message="Cập nhật thông tin thành công";
         return "redirect:/admin/user";

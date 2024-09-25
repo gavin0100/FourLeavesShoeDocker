@@ -1,9 +1,12 @@
 package com.data.filtro.model;
 
+import com.data.filtro.model.DTO.UserJsDTO;
+import com.data.filtro.model.payment.ApiOrderDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,10 +29,10 @@ import java.util.List;
 @NoArgsConstructor
 @ToString(exclude = {"cart", "invoices", "orders"})
 public class User implements UserDetails, Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Tsid
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "makh")
-    private Integer id;
+    private Long id;
 
     @Column(name = "hoten")
     private String name;
@@ -130,5 +133,24 @@ public class User implements UserDetails, Serializable {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UserJsDTO convertToApiJsDTO(){
+        return UserJsDTO.builder().
+                id(String.valueOf(this.id))
+                .name(this.name)
+                .dob(this.dob)
+                .sex(this.sex)
+                .address(this.address)
+                .zip(this.zip)
+                .city(this.city)
+                .email(this.email)
+                .phoneNumber(this.phoneNumber)
+                .status(this.status)
+                .userPermission_id(String.valueOf(this.userPermission.getPermissionId()))
+                .accountName(this.accountName)
+                .password(this.password)
+                .build();
+
     }
 }

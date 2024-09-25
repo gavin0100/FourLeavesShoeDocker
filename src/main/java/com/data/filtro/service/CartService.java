@@ -32,7 +32,7 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
 
 
-    public List<Cart> getAllOrderCartByUserId(int id) {
+    public List<Cart> getAllOrderCartByUserId(long id) {
         return cartRepository.findAllOrderCartByUserId(id);
     }
 
@@ -64,17 +64,17 @@ public class CartService {
         return guestCart;
     }
 
-    public Cart getCartByUserId(int userId) {
+    public Cart getCartByUserId(long userId) {
         return cartRepository.findCartByUserId(userId);
     }
 
 
 
-    public Cart getCurrentCartByUserId(int userId) {
+    public Cart getCurrentCartByUserId(long userId) {
         return cartRepository.findCurrentCartByUserId(userId);
     }
 
-    public void addProductToCart(Cart cart, int productId, int quantity) {
+    public void addProductToCart(Cart cart, long productId, int quantity) {
         Product product = productService.getProductById(productId);
         if (product == null) {
             throw new RuntimeException("Không tìm thấy sản phẩm!");
@@ -101,7 +101,7 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public void addProductToGuestCart(GuestCart guestCart, int productId, int quantity) {
+    public void addProductToGuestCart(GuestCart guestCart, long productId, int quantity) {
         Product product = productService.getProductById(productId);
         List<CartItem> cartItemList = guestCart.getCartItemList();
         for (CartItem cartItem : cartItemList) {
@@ -153,9 +153,7 @@ public class CartService {
 
     public void removeAllProductInCar(Cart cart){
         List<CartItem> cartItemList = cart.getCartItemList();
-        for(CartItem cartItem : cartItemList){
-            cartItemService.removeCartItemByCartIdAndProductId(cart.getId(), cartItem.getProduct().getId());
-        }
+        cartItemList.forEach(cartItem -> cartItemService.removeCartItemByCartIdAndProductId(cart.getId(), cartItem.getProduct().getId()));
 
     }
 
@@ -179,11 +177,11 @@ public class CartService {
     public void removeCart(Cart cart){
         cartRepository.delete(cart);
     }
-    public void removeCartByCartId(int cartId) {
+    public void removeCartByCartId(long cartId) {
         cartRepository.deleteById(cartId);
     }
 
-    public int checkCartStatusByCartId(int cartId) {
+    public int checkCartStatusByCartId(long cartId) {
         return cartRepository.checkCartStatusByCartId(cartId);
     }
 

@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StaffRepository extends JpaRepository<Staff, Integer> {
+public interface StaffRepository extends JpaRepository<Staff, Long> {
 
     @Query("select s from Staff s where s.id =:id")
-    Staff findById(@Param("id") int id);
+    Staff findById(@Param("id") long id);
 
     @Modifying
     @Query("update Staff s set s.status = 0 where s.id =:id")
-    void delete(@Param("id") int id);
+    void delete(@Param("id") long id);
 
     @Override
     Page<Staff> findAll(Pageable pageable);

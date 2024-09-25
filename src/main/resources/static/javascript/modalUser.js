@@ -31,7 +31,7 @@ $(document).ready(function () {
         $("#editModal #accountName").val(user.accountName);
         $("#editModal #password").val(user.password);
         $("#editModal #editStatus").val(user.status);
-        $("#editModal #editRole").val(user.userPermission.permissionId);
+        $("#editModal #editRole").val(user.userPermission_id);
       },
     });
   });

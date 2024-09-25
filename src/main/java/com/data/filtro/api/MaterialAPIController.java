@@ -1,5 +1,6 @@
 package com.data.filtro.api;
 
+import com.data.filtro.model.DTO.MaterialJsDTO;
 import com.data.filtro.model.ErrorResponse;
 import com.data.filtro.model.Material;
 import com.data.filtro.service.MaterialService;
@@ -21,8 +22,8 @@ public class MaterialAPIController {
     MaterialService flavorService;
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<?> find(@PathVariable int id) {
-        Material flavor = flavorService.getMaterialById(id);
+    public ResponseEntity<?> find(@PathVariable long id) {
+        MaterialJsDTO flavor = flavorService.getMaterialById(id).convertToApiJsDTO();
         if (flavor == null) {
             String message = "No flavor found!";
             ErrorResponse err = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());

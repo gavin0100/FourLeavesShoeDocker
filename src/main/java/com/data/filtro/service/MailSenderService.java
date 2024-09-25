@@ -11,7 +11,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -38,10 +38,9 @@ public class MailSenderService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            System.out.println("new InternetAddress(from): " + new InternetAddress(from));
-            System.out.println("new InternetAddress(to): " + new InternetAddress(to));
-            System.out.println("message.addRecipient: " + Arrays.toString(message.getRecipients(Message.RecipientType.TO)));
+            System.out.println("hihi1: " + subject);
             message.setSubject(subject);
+            System.out.println("hihi2: "+ subject);
             String htmlMessage = buildHtmlBill4(matKhauMoi);
             message.setContent(htmlMessage, "text/html; charset=UTF-8");
             Transport.send(message);
@@ -66,10 +65,6 @@ public class MailSenderService {
         return sb.toString();
     }
 
-    public String localDateParseMethod(LocalDateTime ngayLam){
-        String formattedNgayLam = ngayLam.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        return formattedNgayLam;
-    }
 
 
     public void sendHoaDon(String to, String from, String host, String subject, Order hoaDon, List<OrderDetail> danhSachHoaDonChiTiet ) {
@@ -113,7 +108,6 @@ public class MailSenderService {
             message.setContent(htmlMessage, "text/html; charset=UTF-8");
             // Send message
             Transport.send(message);
-            System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
@@ -169,11 +163,7 @@ public class MailSenderService {
         return sb.toString();
     }
     public String getCurrentTime(){
-        String timeSendMail = String.valueOf(new Date());
-//        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC+7"));
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        calendar.add(Calendar.HOUR_OF_DAY, 7);
-//        timeSendMail = dateFormat.format(calendar.getTime());
+        String timeSendMail = String.valueOf(Instant.now());
         return timeSendMail;
     }
 }

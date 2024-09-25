@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query("select c from Material c order by c.materialName")
     List<Material> getMaterialList();
@@ -25,11 +25,11 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     
 
     @Query("select c from Category c where c.id =:id")
-    Category findById(@Param("id") int id);
+    Category findById(@Param("id") long id);
 
     @Modifying
     @Query("update Category c set c.status = 0 where c.id =:id")
-    void deleteById(@Param("id") int id);
+    void deleteById(@Param("id") long id);
 
     @Query("select a from Category a where a.status = :status")
     List<Category> activeCategories(@Param("status") int status);

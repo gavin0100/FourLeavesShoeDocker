@@ -25,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class UserDTO implements Serializable {
-    private Integer id;
+    private Long id;
     private String name;
 
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -48,7 +48,7 @@ public class UserDTO implements Serializable {
     private Integer status;
 
 
-    private int userPermissionId;
+    private Long userPermissionId;
 
     private String accountName;
     private String password;

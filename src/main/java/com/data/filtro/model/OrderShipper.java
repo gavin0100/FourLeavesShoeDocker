@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class OrderShipper {
     @Id
     @Column(name = "orderId")
-    private int orderId;
+    private long orderId;
 
     @Column(name = "userId")
     private int userId;

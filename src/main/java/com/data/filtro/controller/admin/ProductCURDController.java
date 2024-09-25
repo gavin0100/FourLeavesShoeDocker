@@ -101,6 +101,7 @@ public class ProductCURDController {
         }
 
         productService.addProductWithImage(product, avatarFile);
+        message = "Thêm sản phẩm thành công";
         return "redirect:/admin/product";
     }
 
@@ -119,7 +120,7 @@ public class ProductCURDController {
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam int id) {
+    public String delete(@RequestParam long id) {
         productService.deleteById(id);
         message="Cập nhật thông tin thành công";
         return "redirect:/admin/product";

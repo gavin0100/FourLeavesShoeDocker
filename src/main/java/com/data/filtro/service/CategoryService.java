@@ -38,7 +38,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category getCategoryById(int id) {
+    public Category getCategoryById(long id) {
         return categoryRepository.findById(id);
     }
 
@@ -62,7 +62,7 @@ public class CategoryService {
         categoryRepository.save(newCategory);
     }
 
-    public Category updateCategory(int id, Category category) {
+    public Category updateCategory(long id, Category category) {
         System.out.println(category.getId() != null ? category.getId() : "null");
         Category newCategory = getCategoryById(id);
         if (newCategory != null) {
@@ -78,7 +78,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(long id) {
         categoryRepository.deleteById(id);
     }
     public List<Category> getActiveCategory(int status){

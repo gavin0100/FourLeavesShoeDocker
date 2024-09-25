@@ -56,8 +56,11 @@ public class ControllerMVC {
         return "redirect:/test/mvc";
     }
 
-
-
+    @PostMapping("/mvc/addModel")
+    public String addModel(@ModelAttribute("MyModel") MyModel model){
+        service.createModel(model);
+        return "redirect:/test/mvc";
+    }
 
 
 }

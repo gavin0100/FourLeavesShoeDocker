@@ -1,8 +1,11 @@
 package com.data.filtro.interview;
 
 import com.data.filtro.interview.impl.BaseRedisService;
+import io.hypersistence.tsid.TSID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -141,4 +144,13 @@ public class controller {
     // redis trả ve null nhưng null trong redis là giá trị không tồn tại
     // còn null trong java là giá trị mặc định được gán cho biến đã  được khai báo nhưng chưa được định nghĩa,
     // kiểu như null cũng là trạng thái của 1 biến nói biến này chưa được gán giá trị
+
+    @GetMapping("/getTsids")
+    public ResponseEntity<?> return100Tsid(){
+        List<Long> Tsids = new ArrayList<>();
+        for (int i =0; i<= 200; i++){
+            Tsids.add(TSID.fast().toLong());
+        }
+        return new ResponseEntity<>(Tsids, HttpStatus.OK);
+    }
 }

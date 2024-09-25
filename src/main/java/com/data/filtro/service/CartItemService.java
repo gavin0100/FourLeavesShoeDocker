@@ -16,7 +16,7 @@ public class CartItemService {
     final CartItemRepository cartItemRepository;
 
 
-    public List<CartItem> getCartItemByCartId(int id) {
+    public List<CartItem> getCartItemByCartId(long id) {
         List<CartItem> cartItemList = cartItemRepository.findCartItemByCart(id);
         return cartItemList;
     }
@@ -27,12 +27,12 @@ public class CartItemService {
     }
 
     @Transactional
-    public void removeCartItemByCartIdAndProductId(int cartId, int productId) {
+    public void removeCartItemByCartIdAndProductId(long cartId, long productId) {
         cartItemRepository.removeCartItemByCartIdAndProductId(cartId, productId);
     }
 
 
-    public List<CartItem> findAllByCartIdAndProduct(int cartId, int productId) {
+    public List<CartItem> findAllByCartIdAndProduct(long cartId, long productId) {
         return cartItemRepository.getByCartAndProduct(cartId, productId);
     }
 
@@ -42,13 +42,12 @@ public class CartItemService {
     }
 
     @Transactional
-    public void updateQuantityByProductId(int cartId, int productId, int quantity, int totalPriceItem, int latestPrice){
+    public void updateQuantityByProductId(long cartId, long productId, int quantity, int totalPriceItem, int latestPrice){
         cartItemRepository.updateQuantityByProductId(cartId, productId, quantity, totalPriceItem, latestPrice);
     }
 
     @Transactional
-    public void deleteCartItemFromCartItemIdAndCartId(int cartItemId, int cartId){
-        System.out.println("cartItemId va cartID: " + cartItemId + " " + cartId);
+    public void deleteCartItemFromCartItemIdAndCartId(long cartItemId, long cartId){
         cartItemRepository.deleteCartItemByCartItemIdAndCartId(cartItemId, cartId);
     }
 

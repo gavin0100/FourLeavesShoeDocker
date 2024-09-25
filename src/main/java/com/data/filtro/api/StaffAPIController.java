@@ -21,7 +21,7 @@ public class StaffAPIController {
     StaffService staffService;
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<?> find(@PathVariable int id) {
+    public ResponseEntity<?> find(@PathVariable long id) {
         Staff staff = staffService.getById(id);
         if (staff == null) {
             String message = "No staff found!";

@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class OrderDetailDto {
-        private Integer idProductDetail;
+        private Long idProductDetail;
         private String productName;
         private String urlImage;
         private Integer quantity;

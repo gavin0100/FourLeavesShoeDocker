@@ -33,7 +33,7 @@ public class UserPermissionService {
     public List<UserPermission> getAll() {
         return userPermissionRepository.findAll();
     }
-    public UserPermission getByUserPermissionId(int id) {
+    public UserPermission getByUserPermissionId(long id) {
         return userPermissionRepository.findByPermissionId(id);
     }
 }

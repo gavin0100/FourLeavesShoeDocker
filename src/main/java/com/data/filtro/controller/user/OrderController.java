@@ -54,6 +54,7 @@ public class OrderController {
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             user = (User) authentication.getPrincipal();
         }
+
         if (user != null) {
             Cart cart = cartService.getCurrentCartByUserId(user.getId());
             if (cart != null) {
@@ -64,12 +65,14 @@ public class OrderController {
                     model.addAttribute("city", user.getCity());
                     model.addAttribute("zip", user.getZip());
                     model.addAttribute("phone", user.getPhoneNumber());
+                } else {
+                    model.addAttribute("messageMissInfor", "Vui lòng cập nhật thông tin cá nhân trước khi mua hàng!");
                 }
                 model.addAttribute("cartItemList", cartItemList);
             }
 
         } else {
-            model.addAttribute("message", "LOGIN TO PLACE AN ORDER!");
+            model.addAttribute("message", "ĐĂNG NHẬP ĐỂ ĐẶT HÀNG!");
         }
         return "user/boot1/order";
     }
@@ -117,7 +120,7 @@ public class OrderController {
         String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - HÓA ĐƠN MUA HÀNG!";
 
         mailSender.sendHoaDon(to, from, host, subject, order, order.getOrderDetails());
-        int orderId = order.getId();
+        long orderId = order.getId();
         return "redirect:/invoice/" + orderId;
     }
 
@@ -148,7 +151,7 @@ public class OrderController {
         com.data.filtro.model.payment.PaymentMethod paymentMethod1 = com.data.filtro.model.payment.PaymentMethod.COD;
         paymentMethod1 = com.data.filtro.model.payment.PaymentMethod.MOMO;
         Order order = orderService.placeOrder(user, phone, email, address, city, zip, paymentMethod1, cartItemList);
-        int orderId = order.getId();
+        long orderId = order.getId();
         MomoResponse momoResponse = placeMomoOrder(orderId);
         System.out.println("momoResponse.getPayUrl(): " + momoResponse.getPayUrl());
         response.sendRedirect(momoResponse.getPayUrl());
@@ -181,7 +184,7 @@ public class OrderController {
         com.data.filtro.model.payment.PaymentMethod paymentMethod1 = com.data.filtro.model.payment.PaymentMethod.COD;
         paymentMethod1 = com.data.filtro.model.payment.PaymentMethod.VNPAY;
         Order order = orderService.placeOrder(user, phone, email, address, city, zip, paymentMethod1, cartItemList);
-        int orderId = order.getId();
+        long orderId = order.getId();
         String url = "";
         VNPResponse vnpResponse = placeVNPayOrder(orderId, request);
 
@@ -190,13 +193,13 @@ public class OrderController {
     }
 
 
-    public MomoResponse placeMomoOrder(int orderId){
+    public MomoResponse placeMomoOrder(long orderId){
         Order order = orderService.getOrderById(orderId);
         return momoService.createMomoOrder(order);
     }
 
 
-    public VNPResponse placeVNPayOrder(int orderId,  HttpServletRequest request){
+    public VNPResponse placeVNPayOrder(long orderId,  HttpServletRequest request){
         Order order = orderService.getOrderById(orderId);
         return vnpayService.createVNPayOrder(order, request);
     }
@@ -204,7 +207,7 @@ public class OrderController {
 
     @PostMapping("/cancel")
     @PreAuthorize("hasAnyAuthority('FULL_ACCESS_PLACE_ORDER')")
-    public String cancel(@RequestParam int id) {
+    public String cancel(@RequestParam long id) {
         orderService.updateCancelOrder(id);
         return "redirect:/user/billing";
     }

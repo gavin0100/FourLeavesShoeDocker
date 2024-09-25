@@ -12,11 +12,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
     @Query("select p from Product p where p.id =:id")
-    Product findById(@Param("id") int id);
+    Product findById(@Param("id") long id);
 
     @Query("select p from Product p order by p.sold desc limit 8")
     List<Product> findTop8SellingProducts();
@@ -30,13 +30,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     Page<Product> findAll(Pageable pageable);
 
     @Query("select p from Product p where p.category.id = :categoryId")
-    Page<Product> findProductsByCategory(@Param("categoryId") Integer id, Pageable pageable);
+    Page<Product> findProductsByCategory(@Param("categoryId") Long id, Pageable pageable);
 
     @Query("select p from Product p where p.material.id = :flavorId")
-    Page<Product> findProductsByFlavor(@Param("flavorId") Integer id, Pageable pageable);
+    Page<Product> findProductsByFlavor(@Param("flavorId") Long id, Pageable pageable);
 
     @Query("select p from Product p where p.material.id = :flavorId and p.id != :currentProductId order by p.productName limit 4")
-    List<Product> findTop4ProductsByFlavor(@Param("flavorId") Integer id, @Param("currentProductId") Integer currentProductId);
+    List<Product> findTop4ProductsByFlavor(@Param("flavorId") Long id, @Param("currentProductId") Long currentProductId);
 
     @Query("select  p from  Product  p where lower(p.productName) like %:name%")
     Page<Product> findProducsByName(@Param("name") String name, Pageable pageable);
@@ -47,7 +47,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select p from Product p where p.price >= :lowPrice AND p.price <= :highPrice AND p.material.id = :materialId")
     Page<Product> getProductByPriceAndMaterial(@Param("lowPrice") Integer lowPrice,
                                                @Param("highPrice") Integer highPrice,
-                                               @Param("materialId") Integer materialId,
+                                               @Param("materialId") Long materialId,
                                                Pageable pageable);
 
     @Query("select p from Product p where p.price >= :lowPrice AND p.price <= :highPrice")
@@ -56,24 +56,24 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
                                     Pageable pageable);
 
     @Query("select p from Product p where p.material.id = :materialId")
-    Page<Product> getProductByMaterial(@Param("materialId") Integer materialId, Pageable pageable);
+    Page<Product> getProductByMaterial(@Param("materialId") Long materialId, Pageable pageable);
 
     @Query("select p from Product p where p.category.id = :categoryId AND p.price >= :lowPrice AND p.price <= :highPrice AND p.material.id = :materialId")
-    Page<Product> getProductByCategoryAndPriceAndMaterial(@Param("categoryId") Integer categoryId,
+    Page<Product> getProductByCategoryAndPriceAndMaterial(@Param("categoryId") Long categoryId,
                                                           @Param("lowPrice") Integer lowPrice,
                                                           @Param("highPrice") Integer highPrice,
-                                                          @Param("materialId") Integer materialId,
+                                                          @Param("materialId") Long materialId,
                                                           Pageable pageable);
 
     @Query("select p from Product p where p.category.id = :categoryId AND p.price >= :lowPrice AND p.price <= :highPrice")
-    Page<Product> getProductByCategoryAndPrice(@Param("categoryId") Integer categoryId,
+    Page<Product> getProductByCategoryAndPrice(@Param("categoryId") Long categoryId,
                                                @Param("lowPrice") Integer lowPrice,
                                                @Param("highPrice") Integer highPrice,
                                                Pageable pageable);
 
     @Query("select p from Product p where p.category.id = :categoryId AND p.material.id = :materialId")
-    Page<Product> getProductByCategoryAndMaterial(@Param("categoryId") Integer categoryId,
-                                                  @Param("materialId") Integer materialId,
+    Page<Product> getProductByCategoryAndMaterial(@Param("categoryId") Long categoryId,
+                                                  @Param("materialId") Long materialId,
                                                   Pageable pageable);
 
     @Query("select a from Product a where a.status = :status")

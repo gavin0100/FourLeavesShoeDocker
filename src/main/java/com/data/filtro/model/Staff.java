@@ -1,6 +1,7 @@
 package com.data.filtro.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,10 +19,10 @@ import java.time.Instant;
 @NoArgsConstructor
 public class Staff implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Tsid
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "manv")
-    private Integer id;
+    private Long id;
 
     @Column(name = "hoten")
     private String name;

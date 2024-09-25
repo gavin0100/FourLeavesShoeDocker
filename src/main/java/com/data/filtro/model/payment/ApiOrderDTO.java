@@ -10,8 +10,8 @@ import java.time.Instant;
 @NoArgsConstructor
 @Builder
 public class ApiOrderDTO {
-    private Integer id;
-    private Integer userId;
+    private String id;
+    private String name;
 
     private Instant orderDate;
 

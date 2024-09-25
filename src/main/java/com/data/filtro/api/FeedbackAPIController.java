@@ -44,7 +44,7 @@ public class FeedbackAPIController {
     }
 
     @PostMapping("/sentfeedback")
-    public ResponseEntity<?> addFeedbackToProduct(@RequestParam int userId,
+    public ResponseEntity<?> addFeedbackToProduct(@RequestParam long userId,
                                                   @RequestParam String content,
                                                   @RequestParam int productId) {
         Product product = productservice.getProductById(productId);

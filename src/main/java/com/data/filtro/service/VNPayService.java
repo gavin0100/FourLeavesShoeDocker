@@ -287,6 +287,8 @@ public class VNPayService {
             for(byte b: result){
                 sb.append(String.format("%02x", b&0xff));
             }
+
+
             // String.format("%02x", b&0xff): cú pháp chuyển byte thành hex
             // Chuyển đổi mảng byte thành chuỗi hex
 

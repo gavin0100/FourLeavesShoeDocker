@@ -1,7 +1,10 @@
 package com.data.filtro.model;
 
 
+import com.data.filtro.model.DTO.ProductJsDTO;
+import com.data.filtro.model.DTO.UserJsDTO;
 import com.fasterxml.jackson.annotation.*;
+import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,10 +24,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @Tsid
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "masp")
-    private Integer id;
+    private Long id;
 
     @Column(name = "tensanpham")
     private String productName;
@@ -74,4 +77,22 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<InvoiceDetail> invoiceDetails;
+
+    public ProductJsDTO convertToApiJsDTO(){
+        return ProductJsDTO.builder().
+                id(String.valueOf(this.id))
+                .productName(this.productName)
+                .quantity(this.quantity)
+                .sold(this.sold)
+                .price(this.price)
+                .materialId(String.valueOf(this.material.getId()))
+                .description(this.description)
+                .image(this.image)
+                .createdDate(this.createdDate)
+                .status(this.status)
+                .discount(discount)
+                .categoryId(String.valueOf(this.category.getId()))
+                .build();
+
+    }
 }

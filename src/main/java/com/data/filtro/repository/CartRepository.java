@@ -10,26 +10,26 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Integer> {
+public interface CartRepository extends JpaRepository<Cart, Long> {
 
 
     @Query("select c from Cart c where c.user.id = :userId and c.status = 1")
-    Cart findCurrentCartByUserId(@Param("userId") int userId);
+    Cart findCurrentCartByUserId(@Param("userId") long userId);
 
     @Query("select c from Cart c where c.user.id =:userId")
-    Cart findCartByUserId(@Param("userId") int userId);
+    Cart findCartByUserId(@Param("userId") long userId);
 
     @Query("select c from Cart c where c.user.id = :userId and c.status = 0")
-    List<Cart> findAllOrderCartByUserId(@Param("userId") int userId);
+    List<Cart> findAllOrderCartByUserId(@Param("userId") long userId);
 
     @Query("select c from Cart c where c.user.id = :userId and c.status = 0 order by c.createdDate desc limit 1")
-    Cart findCurrentOrderCartByUserId(@Param("userId") int userId);
+    Cart findCurrentOrderCartByUserId(@Param("userId") long userId);
 
     @Query("select c from Cart c where  c.user.accountName = :accountName and c.status = 1")
     Cart findCartByUserName(@Param("accountName") String accountName);
     
     @Query("select c.status from Cart c where c.id =:cartId")
-    int checkCartStatusByCartId(@Param("cartId") int cartId);
+    int checkCartStatusByCartId(@Param("cartId") long cartId);
 
 
 }

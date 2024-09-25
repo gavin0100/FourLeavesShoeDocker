@@ -1,5 +1,6 @@
 package com.data.filtro.controller.admin;
 
+import com.data.filtro.model.DTO.UserDTO;
 import com.data.filtro.model.Staff;
 import com.data.filtro.model.User;
 import com.data.filtro.service.StaffService;
@@ -34,7 +35,7 @@ public class StaffCRUDController {
     public Pageable sortStaff(int currentPage, int pageSize, int sortType) {
         Pageable pageable;
         switch (sortType) {
-            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id"));
+            case 5, 10, 25, 50 -> pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
             default -> {
                 pageSize = 5;
                 pageable = PageRequest.of(currentPage - 1, pageSize);
@@ -73,16 +74,10 @@ public class StaffCRUDController {
         return "admin/boot1/userStaff";
     }
 
-    @PostMapping("/create")
-    @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF')")
-    public String create(@ModelAttribute Staff staff) {
-        staffService.create(staff);
-        return "redirect:/admin/staff";
-    }
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF')")
-    public String update(@ModelAttribute Staff staff, BindingResult bindingResult) {
+    public String update(@ModelAttribute UserDTO staff, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/staff";
@@ -92,15 +87,15 @@ public class StaffCRUDController {
             errorMessage = "Nhập sai định dạng số điện thoại";
             return "redirect:/admin/staff";
         }
-        staffService.update(staff);
+        userService.update(staff);
         message="Cập nhật thông tin thành công";
         return "redirect:/admin/staff";
     }
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF')")
-    public String delete(@RequestParam int id) {
-        staffService.delete(id);
+    public String delete(@RequestParam long id) {
+        userService.delete(id);
         message="Cập nhật thông tin thành công";
         return "redirect:/admin/staff";
     }

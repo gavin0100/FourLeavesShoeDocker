@@ -21,7 +21,7 @@ public class OrderShipperService {
         return orderShipperRepository.findByShipperIdAndStatus(shipperId, status);
     }
 
-    public OrderShipper loadOrderShipperByOrderId(int orderId){
+    public OrderShipper loadOrderShipperByOrderId(long orderId){
         return orderShipperRepository.findByOrderId(orderId);
     }
 

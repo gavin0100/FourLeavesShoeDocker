@@ -96,7 +96,7 @@ public class OrderCRUDController {
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER')")
-    public String delete(@RequestParam int id) {
+    public String delete(@RequestParam long id) {
         orderService.delete(id);
         message="Cập nhật thông tin thành công";
         return "redirect:/admin/order";

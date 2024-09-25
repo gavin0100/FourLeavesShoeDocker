@@ -13,9 +13,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
+public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
     @Query("SELECT f FROM Feedback f WHERE f.product.id = :productId")
-    List<Feedback> findAllByProductId(@Param("productId") int productId);
+    List<Feedback> findAllByProductId(@Param("productId") long productId);
 
 }

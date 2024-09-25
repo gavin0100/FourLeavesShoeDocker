@@ -18,7 +18,7 @@ public class MaterialService {
 
     private final MaterialRepository materialRepository;
 
-    public Material getMaterialById(int id) {
+    public Material getMaterialById(long id) {
         return materialRepository.findById(id);
     }
 
@@ -40,7 +40,7 @@ public class MaterialService {
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(long id) {
         materialRepository.deleteById(id);
     }
 

@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MaterialRepository extends JpaRepository<Material, Integer> {
+public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     @Query("select f from Material f where f.id =:id")
-    Material findById(@Param("id") int id);
+    Material findById(@Param("id") long id);
 
     @Modifying
     @Query("update Material f set f.status=0 where f.id=:id")
-    void deleteById(@Param("id") int id);
+    void deleteById(@Param("id") long id);
 
     Page<Material> findAll(Pageable pageable);
 

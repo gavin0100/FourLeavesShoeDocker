@@ -26,7 +26,7 @@ public class CartAPIController {
     UserService userService;
 
     @GetMapping("/getUserCart/{id}")
-    public ResponseEntity<?> getUserCart(@PathVariable int id) {
+    public ResponseEntity<?> getUserCart(@PathVariable long id) {
         User user = userService.getByUserId(id);
         if (user == null) {
             String message = "User not found!";
@@ -62,7 +62,7 @@ public class CartAPIController {
 //        Cart cart = new Cart();
 //    }
 @PostMapping("/addToCart")
-public ResponseEntity<?> addToCart(@RequestParam int userId,
+public ResponseEntity<?> addToCart(@RequestParam long userId,
                                    @RequestParam int productId,
                                    @RequestParam int quantity) {
     User user = userService.getByUserId(userId);
@@ -80,7 +80,7 @@ public ResponseEntity<?> addToCart(@RequestParam int userId,
 }
 
     @DeleteMapping("/removeCartItem")
-    public ResponseEntity<?> removeCartItem(@RequestParam int userId, @RequestParam int productId) {
+    public ResponseEntity<?> removeCartItem(@RequestParam long userId, @RequestParam int productId) {
         Cart cart = cartService.getCartByUserId(userId);
         if (cart == null) {
             return new ResponseEntity<>("Khong co cart can tim!", HttpStatus.BAD_REQUEST);

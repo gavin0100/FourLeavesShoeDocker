@@ -68,7 +68,6 @@ public class OrderService {
 
         order.setStatusPayment(OrderStatus.PENDING);
         String orderCode = Utility.generateRandomString(10) + order.getUser().getAccountName();
-        System.out.println("orderCode: " + orderCode);
         order.setOrder_code(orderCode);
         orderRepository.save(order);
 //        System.out.println("price chuan bi nhap vo order detail: " + cartItemList.get(0).getPrice() + " " + cartItemList.get(1).getPrice() );
@@ -96,7 +95,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public List<Order> getOrderByUserId(int id) {
+    public List<Order> getOrderByUserId(long id) {
         return orderRepository.findOrderByUserId(id);
     }
 
@@ -142,20 +141,20 @@ public class OrderService {
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(long id) {
         orderRepository.cancelOrder(id, OrderStatus.CANCELED);
     }
 
-    public Order getOrderById(int id) {
+    public Order getOrderById(long id) {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public ApiOrderDTO getApiOrderById(int id) {
+    public ApiOrderDTO getApiOrderById(long id) {
         return orderRepository.findById(id).orElse(null).convertToApiDTO();
     }
 
 
-    public int checkOrderStatusById(int id) {
+    public int checkOrderStatusById(long id) {
         return orderRepository.checkOrderStatusById(id);
     }
 
@@ -164,7 +163,7 @@ public class OrderService {
     }
 
     @Transactional
-    public void updateCancelOrder(int id) {
+    public void updateCancelOrder(long id) {
         orderRepository.cancelOrder(id, OrderStatus.CANCELED);
     }
 
@@ -172,35 +171,12 @@ public class OrderService {
         return orderRepository.filterStatusOrder(status);
     }
 
-    public void updateOrderStatus(int orderId) {
+    public void updateOrderStatus(long orderId) {
         Order order = getOrderById(orderId);
         if (order != null) {
 
             int status = order.getStatus();
             if (status == 2) {
-//                try {
-//                    Timer timer = new Timer();
-//                    timer.schedule(new TimerTask() {
-//                        @Override
-//                        public void run() {
-//                            order.setStatus(3);
-//                            orderRepository.save(order);
-//                            System.out.println("Order status updated to shipped");
-//                            System.out.println("Current time: " + System.currentTimeMillis());
-//                            timer.schedule(new TimerTask() {
-//                                @Override
-//                                public void run() {
-//                                    order.setStatus(4);
-//                                    orderRepository.save(order);
-//                                    System.out.println("Order status updated to delivered");
-//                                }
-//                            }, 300000L);
-//                        }
-//                    }, 60000L);
-//
-//                } catch (Exception ex) {
-//                    ex.printStackTrace();
-//                }
                 try {
                     Timer timer = new Timer();
                     TimerTask shippedTask = new TimerTask() {
@@ -265,8 +241,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public List<OrderDetail> getOrderDetailByOrderId (int orderId){
-        System.out.println("getOrderDetailByOrderId");
+    public List<OrderDetail> getOrderDetailByOrderId (long orderId){
         return orderDetailRepository.findOrderDetailByOrderId(orderId);
     }
 }

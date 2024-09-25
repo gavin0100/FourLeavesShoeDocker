@@ -40,14 +40,4 @@ public class AdminProductController {
         return "admin/product/list";
     }
 
-//    @GetMapping("/list")
-//    public String show(Model model) {
-//        Product newProduct = (Product) model.asMap().get("newProduct");
-//        if (newProduct != null) {
-//            model.addAttribute("products", Collections.singletonList(newProduct));
-//        } else {
-//            model.addAttribute("products", productService.getAll());
-//        }
-//        return "admin/product/list";
-//    }
 }

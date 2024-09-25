@@ -89,7 +89,7 @@ public class CategoryController {
         int dataCurrentPage = Integer.parseInt(currentPage);
 
         int pageSize = 6;
-        int currentId = 0;
+        long currentId = 0;
         Pageable pageable;
         Page<Product> productPage;
         Category category = null;
@@ -110,16 +110,16 @@ public class CategoryController {
             currentIdAll = "all";
         } else {
             if (dataHighPrice != 1000 && dataMaterialId != 0){
-                productPage = productService.getProductByCategoryAndPriceAndMaterial(Integer.parseInt(id), dataLowPrice, dataHighPrice, dataMaterialId, pageable);
+                productPage = productService.getProductByCategoryAndPriceAndMaterial(Long.parseLong(id), dataLowPrice, dataHighPrice, dataMaterialId, pageable);
             } else if (dataHighPrice != 1000){
-                productPage = productService.getProductByCategoryAndPrice(Integer.parseInt(id), dataLowPrice, dataHighPrice, pageable);
+                productPage = productService.getProductByCategoryAndPrice(Long.parseLong(id), dataLowPrice, dataHighPrice, pageable);
             } else if (dataMaterialId != 0){
-                productPage = productService.getProductByCategoryAndMaterial(Integer.parseInt(id), dataMaterialId, pageable);
+                productPage = productService.getProductByCategoryAndMaterial(Long.parseLong(id), dataMaterialId, pageable);
             } else {
-                productPage = productService.getProductByCategory(Integer.parseInt(id), pageable);
+                productPage = productService.getProductByCategory(Long.parseLong(id), pageable);
             }
-            category = categoryService.getCategoryById(Integer.parseInt(id));
-            currentId = Integer.parseInt(id);
+            category = categoryService.getCategoryById(Long.parseLong(id));
+            currentId = Long.parseLong(id);
         }
         List<Product> productListModel = productPage.getContent();
         model.addAttribute("materialList",materialList);

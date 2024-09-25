@@ -23,7 +23,7 @@ public class Service {
         return modelRepository.findAll();
     }
 
-    public MyModel getModelById(int id){
+    public MyModel getModelById(long id){
         return modelRepository.findById(id).orElse(null);
     }
 
@@ -55,6 +55,9 @@ public class Service {
             log.error("Can't upload image {} to model has id {}", avatarFile.getOriginalFilename(), myModel.getId());
         }
     }
+    public void createModel(MyModel myModel){
+         modelRepository.save(myModel);
+    }
     public void updateAvatarToMinIO(MultipartFile avatarFile){
         try {
             InputStream inputStream = avatarFile.getInputStream();
@@ -69,7 +72,7 @@ public class Service {
         }
     }
     public MyModelInterface testInterface(){
-        return new MyModel(1, "a", false, "link");
+        return new MyModel( (long)1, "a", false, "link");
     }
 
 

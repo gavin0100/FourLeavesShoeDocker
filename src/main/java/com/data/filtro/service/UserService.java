@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         userRepository.deleteById(id);
     }
 
@@ -206,7 +206,7 @@ public class UserService implements UserDetailsService {
 
         }
 
-    public User getByUserId(int id) {
+    public User getByUserId(long id) {
         return userRepository.findUserById(id);
     }
 
@@ -343,7 +343,7 @@ public class UserService implements UserDetailsService {
     public void updateRole(User user){
         userRepository.save(user);
     }
-    public void delete(int id) {
+    public void delete(long id) {
         userRepository.deleteById(id);
     }
 

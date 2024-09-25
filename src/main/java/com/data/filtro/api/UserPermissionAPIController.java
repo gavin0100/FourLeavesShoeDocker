@@ -23,10 +23,10 @@ public class UserPermissionAPIController {
     UserPermissionService userPermissionService;
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<?> find(@PathVariable int id) {
+    public ResponseEntity<?> find(@PathVariable Long id) {
         UserPermission userPermission = userPermissionService.getByUserPermissionId(id);
         if (userPermission == null) {
-            String message = "No flavor found!";
+            String message = "No userPermission found!";
             ErrorResponse err = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());
             return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
         }

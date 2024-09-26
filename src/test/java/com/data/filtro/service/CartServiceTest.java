@@ -270,9 +270,9 @@ public class CartServiceTest {
         product.setId(Long.parseLong("626589413728739309"));
         product.setPrice(100);
 
-        when(productService.getProductById(1)).thenReturn(product);
+        when(productService.getProductById(Long.parseLong("626589413728739309"))).thenReturn(product);
 
-        cartService.addProductToGuestCart(guestCart, 1, 3);
+        cartService.addProductToGuestCart(guestCart, Long.parseLong("626589413728739309"), 3);
 
         assertEquals(1, guestCart.getCartItemList().size());
         CartItem cartItem = guestCart.getCartItemList().get(0);
@@ -324,7 +324,7 @@ public class CartServiceTest {
     }
 
     @Test
-    public void testRemoveAllProductInCar() {
+    public void testRemoveAllProductInCart() {
         // Arrange
         Cart cart = new Cart();
         cart.setId(Long.parseLong("626589413728739309"));
@@ -334,7 +334,7 @@ public class CartServiceTest {
         cartItem1.getProduct().setId(Long.parseLong("626589413728739309"));
         CartItem cartItem2 = new CartItem();
         cartItem2.setProduct(new Product());
-        cartItem2.getProduct().setId(Long.parseLong("626589413728739309"));
+        cartItem2.getProduct().setId(Long.parseLong("626589413728739310"));
         cartItemList.add(cartItem1);
         cartItemList.add(cartItem2);
         cart.setCartItemList(cartItemList);

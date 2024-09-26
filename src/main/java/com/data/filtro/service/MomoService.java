@@ -1,9 +1,6 @@
 package com.data.filtro.service;
 
-import com.data.filtro.model.Cart;
-import com.data.filtro.model.CartItem;
-import com.data.filtro.model.Order;
-import com.data.filtro.model.OrderDetail;
+import com.data.filtro.model.*;
 import com.data.filtro.model.payment.OrderDetailDto;
 import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.model.payment.momo.*;
@@ -48,10 +45,11 @@ public class MomoService {
     private final CartService cartService;
     private final OrderService orderService;
     private final RestTemplate restTemplate;
+    private final MailSenderService mailSender;
+
     private final Logger logger = LoggerFactory.getLogger(MomoService.class);
 
-    @Autowired
-    CartItemService cartItemService;
+    private final CartItemService cartItemService;
 
     public MomoResponse createMomoOrder(Order order){
         System.out.println("truy cap vao create Momo order");
@@ -117,6 +115,7 @@ public class MomoService {
                     cartItemService.deleteCartItemFromCartItemIdAndCartId(cartItem.getId(), cartItem.getCart().getId());
                 }
                 order.setStatusPayment(OrderStatus.PAID_MOMO);
+                sendMail(order.getUser(), order ) ;
                 break;
             case "1006":
                 order.setStatusPayment(OrderStatus.CANCELED);
@@ -235,5 +234,19 @@ public class MomoService {
         return momoRequest;
     }
 
+    private void sendMail(User user, Order order){
+        String to = user.getEmail();
+
+        // Sender's email ID needs to be mentioned
+        String from = "voduc0100@gmail.com";
+
+        // Assuming you are sending email from localhost
+        String host = "smtp.gmail.com";
+
+        // Subject
+        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - HÓA ĐƠN MUA HÀNG!";
+
+        mailSender.sendHoaDon(to, from, host, subject, order, order.getOrderDetails());
+    }
 
 }

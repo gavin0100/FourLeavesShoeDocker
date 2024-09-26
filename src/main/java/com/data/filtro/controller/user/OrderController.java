@@ -108,18 +108,7 @@ public class OrderController {
             cartItemService.deleteCartItemFromCartItemIdAndCartId(cartItem.getId(), cartItem.getCart().getId());
         }
         orderService.updateStatusOrder(OrderStatus.PENDING, order);
-        String to = user.getEmail();
-
-        // Sender's email ID needs to be mentioned
-        String from = "voduc0100@gmail.com";
-
-        // Assuming you are sending email from localhost
-        String host = "smtp.gmail.com";
-
-        // Subject
-        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - HÓA ĐƠN MUA HÀNG!";
-
-        mailSender.sendHoaDon(to, from, host, subject, order, order.getOrderDetails());
+        sendMail(user, order);
         long orderId = order.getId();
         return "redirect:/invoice/" + orderId;
     }
@@ -153,7 +142,6 @@ public class OrderController {
         Order order = orderService.placeOrder(user, phone, email, address, city, zip, paymentMethod1, cartItemList);
         long orderId = order.getId();
         MomoResponse momoResponse = placeMomoOrder(orderId);
-        System.out.println("momoResponse.getPayUrl(): " + momoResponse.getPayUrl());
         response.sendRedirect(momoResponse.getPayUrl());
     }
 
@@ -233,4 +221,18 @@ public class OrderController {
         return paymentMethodService.getAllPaymentMethods();
     }
 
+    private void sendMail(User user, Order order){
+        String to = user.getEmail();
+
+        // Sender's email ID needs to be mentioned
+        String from = "voduc0100@gmail.com";
+
+        // Assuming you are sending email from localhost
+        String host = "smtp.gmail.com";
+
+        // Subject
+        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - HÓA ĐƠN MUA HÀNG!";
+
+        mailSender.sendHoaDon(to, from, host, subject, order, order.getOrderDetails());
+    }
 }

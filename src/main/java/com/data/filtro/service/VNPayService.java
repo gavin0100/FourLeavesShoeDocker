@@ -3,6 +3,7 @@ package com.data.filtro.service;
 import com.data.filtro.model.Cart;
 import com.data.filtro.model.CartItem;
 import com.data.filtro.model.Order;
+import com.data.filtro.model.User;
 import com.data.filtro.model.payment.OrderStatus;
 
 
@@ -50,6 +51,8 @@ public class VNPayService {
     private final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
     private final CartItemService cartItemService;
+
+    private final MailSenderService mailSender;
 
     public VNPResponse createVNPayOrder(Order order, HttpServletRequest req){
         String data = vnpRequest(order, req);
@@ -160,6 +163,7 @@ public class VNPayService {
                     cartItemService.deleteCartItemFromCartItemIdAndCartId(cartItem.getId(), cartItem.getCart().getId());
                 }
                 order.setStatusPayment(OrderStatus.PAID_VNPAY);
+                sendMail(order.getUser(), order ) ;
                 break;
             case "24":
                 order.setStatusPayment(OrderStatus.CANCELED);
@@ -355,4 +359,18 @@ public class VNPayService {
         // email=john.doe%40example.com&name=John%20Doe&phone=1234567890
     }
 
+    private void sendMail(User user, Order order){
+        String to = user.getEmail();
+
+        // Sender's email ID needs to be mentioned
+        String from = "voduc0100@gmail.com";
+
+        // Assuming you are sending email from localhost
+        String host = "smtp.gmail.com";
+
+        // Subject
+        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - HÓA ĐƠN MUA HÀNG!";
+
+        mailSender.sendHoaDon(to, from, host, subject, order, order.getOrderDetails());
+    }
 }

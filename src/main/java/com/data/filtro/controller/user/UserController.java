@@ -76,7 +76,7 @@ public class UserController {
 
     @PostMapping("/profile/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF', 'USER') and hasAnyAuthority('VIEW_USER', 'FULL_ACCESS_USER')")
-    public String processProfile(@PathVariable("id") int id, @ModelAttribute("user") User updatedUser, BindingResult bindingResult, Model model) {
+    public String processProfile(@PathVariable("id") long id, @ModelAttribute("user") User updatedUser, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/user/profile";

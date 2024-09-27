@@ -52,7 +52,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
         if(StringUtils.isEmpty(oAuth2UserInfo.getEmail())) {
             throw new OAuth2AuthenticationProcessingException("Email not found from OAuth2 provider");
         }
-
         Optional<User> userOptional = Optional.ofNullable(userRepository.findByEmail(oAuth2UserInfo.getEmail()));
         User user = null;
         if(userOptional.isPresent()) {
@@ -62,13 +61,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
                         user.getProvider() + " account. Please use your " + user.getProvider() +
                         " account to login.");
             }
-            user    = userRepository.findByEmail(oAuth2UserInfo.getEmail());
+            user = userRepository.findByEmail(oAuth2UserInfo.getEmail());
         } else {
-            OAuth2User oAuth2User1 = UserPrincipal.create(user, oAuth2User.getAttributes());
-            System.out.println(oAuth2User1.getName() + " " + oAuth2User1.getAttributes());
-            String username = String.valueOf(oAuth2User1.getAttribute("family_name")) + String.valueOf(oAuth2User1.getAttribute("given_name"));
-            String accountName = String.valueOf(oAuth2User1.getAttribute("email"));
-            String email = String.valueOf(oAuth2User1.getAttribute("email"));
+            System.out.println("come here");
+            System.out.println("oAuth2User: " + oAuth2User);
+            System.out.println( oAuth2User.getAttribute("family_name").toString());
+            System.out.println("oAuth2User.getAttributes(): " + oAuth2User.getAttributes());
+            String username = oAuth2User.getAttribute("family_name").toString() + oAuth2User.getAttribute("given_name").toString();
+            String accountName = oAuth2User.getAttribute("email").toString();
+            String email = oAuth2User.getAttribute("email").toString();
             String newPassword = Utility.getRandomString();
             userService.registerUserViaOauth(username, accountName, email, newPassword, newPassword, Provider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
             String to = email;
@@ -76,6 +77,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
             String host = "smtp.gmail.com";
             String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - MẬT KHẨU CHO TÀI KHOẢN!";
             mailSenderService.sendEmailGetPassword(to, from, host, subject, newPassword );
+            user = userRepository.findByEmail(oAuth2UserInfo.getEmail());
         }
 
         return UserPrincipal.create(user, oAuth2User.getAttributes());

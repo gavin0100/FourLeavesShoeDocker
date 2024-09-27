@@ -135,6 +135,14 @@ public class SecurityConfig {
                             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                             .logoutSuccessUrl("/login");
                 })
+                .exceptionHandling(ahr -> {
+                    try {
+                        ahr
+                                .authenticationEntryPoint(accessErrorHandler());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                })
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2Login()
                 .loginPage("/login")

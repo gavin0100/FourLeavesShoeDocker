@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,5 +153,17 @@ public class controller {
             Tsids.add(TSID.fast().toLong());
         }
         return new ResponseEntity<>(Tsids, HttpStatus.OK);
+    }
+
+    @GetMapping("/user1")
+    public Principal user1(Principal principal){
+        System.out.println("test user controller");
+        System.out.println("username: " + principal.getName());
+        return principal;
+    }
+    @GetMapping("/userad")
+    public String user(){
+        System.out.println("test user controller");
+        return "test user controller";
     }
 }

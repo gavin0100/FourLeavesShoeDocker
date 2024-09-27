@@ -153,4 +153,9 @@ public class LoginController {
     public String generateRandomString() {
         return UUID.randomUUID().toString();
     }
+
+    @PostMapping("/oauth2/code/google")
+    public String loginViaGoogle(){
+        return "loginViaGoogle";
+    }
 }

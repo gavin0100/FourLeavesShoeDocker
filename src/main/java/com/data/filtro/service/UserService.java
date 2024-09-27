@@ -6,6 +6,7 @@ import com.data.filtro.exception.PasswordDoNotMatchException;
 import com.data.filtro.exception.UserNotFoundException;
 import com.data.filtro.model.Cart;
 import com.data.filtro.model.DTO.UserDTO;
+import com.data.filtro.model.Provider;
 import com.data.filtro.model.User;
 import com.data.filtro.model.UserPermission;
 import com.data.filtro.repository.UserPermissionRepository;
@@ -92,13 +93,39 @@ public class UserService implements UserDetailsService {
         user.setPassword(hashPassword);
 //        user.setCreatedDate(new Date());
         user.setCreatedDate(Instant.now());
-        UserPermission userPermission = userPermissionRepository.findByPermissionId(4);
+        UserPermission userPermission = userPermissionRepository.findByPermissionId(Long.parseLong("626589413728739336"));
         user.setUserPermission(userPermission);
-
+        user.setProvider(Provider.local);
         userRepository.save(user);
         Cart cart = cartService.createCart(user);
     }
 
+    public void registerUserViaOauth(String userName, String accountName, String email, String password, String repeatPassword, Provider provider) {
+
+        if (checkUserName(accountName)) {
+            throw new AccountNameExistException("Tên tài khoản đã được đặt");
+        }
+
+        if (!password.equals(repeatPassword)) {
+            throw new PasswordDoNotMatchException("Không đúng mật khẩu !");
+        }
+
+        User user = new User();
+        user.setName(userName);
+        user.setEmail(email);
+        userRepository.save(user);
+        user.setAccountName(accountName);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashPassword = passwordEncoder.encode(password);
+        user.setPassword(hashPassword);
+//        user.setCreatedDate(new Date());
+        user.setCreatedDate(Instant.now());
+        UserPermission userPermission = userPermissionRepository.findByPermissionId(Long.parseLong("626589413728739336"));
+        user.setUserPermission(userPermission);
+        user.setProvider(provider);
+        userRepository.save(user);
+        Cart cart = cartService.createCart(user);
+    }
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -355,5 +382,15 @@ public class UserService implements UserDetailsService {
         return userRepository.findEligibleUserForStaff();
     }
 
+    public void processOAuthPostLogin(String username) {
+        User existUser = userRepository.findByEmail(username);
+        System.out.println("hihi");
+        System.out.println(existUser);
+        if (existUser != null) {
+            existUser.setProvider(Provider.google);
+            userRepository.save(existUser);
+        }
+
+    }
 
 }

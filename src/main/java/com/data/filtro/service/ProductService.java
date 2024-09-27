@@ -142,7 +142,17 @@ public class ProductService {
     }
 
     public Product getProductById(long id) {
-        return productRepository.findById(id);
+        Product product;
+        if (baseRedisService.hasKey(PREFIX_DETAILED_PRODUCT + id)){
+            String jsonProduct = (String) baseRedisService.get(PREFIX_DETAILED_PRODUCT + id);
+            product = JsonConverter.convertJsonToProduct(jsonProduct);
+            return product;
+        } else {
+            product = productRepository.findById(id);
+            String json = JsonConverter.convertToJsonProduct(product);
+            baseRedisService.set(PREFIX_DETAILED_PRODUCT + id, json);
+        }
+        return product;
     }
 
     @Transactional

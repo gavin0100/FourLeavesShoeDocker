@@ -80,6 +80,10 @@ public class User implements UserDetails, Serializable {
     @Column(name = "password_reset_token")
     private String passwordResetToken;
 
+    @Column(name = "provider")
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
 
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

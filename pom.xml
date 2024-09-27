@@ -15,8 +15,8 @@
     <description>filtro</description>
     <properties>
         <java.version>17</java.version>
-<!--        <spring-cloud-gcp.version>4.3.0</spring-cloud-gcp.version>-->
-<!--        <spring-cloud.version>2022.0.2</spring-cloud.version>-->
+        <!--        <spring-cloud-gcp.version>4.3.0</spring-cloud-gcp.version>-->
+        <!--        <spring-cloud.version>2022.0.2</spring-cloud.version>-->
     </properties>
     <dependencies>
         <dependency>
@@ -105,7 +105,7 @@
             <version>2.16.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
-<!--        phải khai báo 2 lần javax.mail, nếu không thì bị xung đột bên dưới, không hiểu tại sao :v-->
+        <!--        phải khai báo 2 lần javax.mail, nếu không thì bị xung đột bên dưới, không hiểu tại sao :v-->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
@@ -210,14 +210,14 @@
             <scope>test</scope>
         </dependency>
 
-<!--        được sử dụng để convert java.time.Instance từ token sang Object-->
+        <!--        được sử dụng để convert java.time.Instance từ token sang Object-->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.13.4</version>
         </dependency>
 
-<!--        sử dụng sài Tsid-->
+        <!--        sử dụng sài Tsid-->
         <dependency>
             <groupId>io.hypersistence</groupId>
             <artifactId>hypersistence-utils-hibernate-60</artifactId>
@@ -228,24 +228,24 @@
 
     </dependencies>
 
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>com.google.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-gcp-dependencies</artifactId>-->
-<!--                <version>${spring-cloud-gcp.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-dependencies</artifactId>-->
-<!--                <version>${spring-cloud.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
+    <!--    <dependencyManagement>-->
+    <!--        <dependencies>-->
+    <!--            <dependency>-->
+    <!--                <groupId>com.google.cloud</groupId>-->
+    <!--                <artifactId>spring-cloud-gcp-dependencies</artifactId>-->
+    <!--                <version>${spring-cloud-gcp.version}</version>-->
+    <!--                <type>pom</type>-->
+    <!--                <scope>import</scope>-->
+    <!--            </dependency>-->
+    <!--            <dependency>-->
+    <!--                <groupId>org.springframework.cloud</groupId>-->
+    <!--                <artifactId>spring-cloud-dependencies</artifactId>-->
+    <!--                <version>${spring-cloud.version}</version>-->
+    <!--                <type>pom</type>-->
+    <!--                <scope>import</scope>-->
+    <!--            </dependency>-->
+    <!--        </dependencies>-->
+    <!--    </dependencyManagement>-->
 
     <build>
         <plugins>
@@ -269,15 +269,15 @@
                     <skipTests>false</skipTests>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.google.cloud.tools</groupId>-->
-<!--                <artifactId>appengine-maven-plugin</artifactId>-->
-<!--                <version>2.4.4</version>-->
-<!--                <configuration>-->
-<!--                    <version>1</version>-->
-<!--                    <projectId>awesome-habitat-385806</projectId>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>com.google.cloud.tools</groupId>-->
+            <!--                <artifactId>appengine-maven-plugin</artifactId>-->
+            <!--                <version>2.4.4</version>-->
+            <!--                <configuration>-->
+            <!--                    <version>1</version>-->
+            <!--                    <projectId>awesome-habitat-385806</projectId>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 

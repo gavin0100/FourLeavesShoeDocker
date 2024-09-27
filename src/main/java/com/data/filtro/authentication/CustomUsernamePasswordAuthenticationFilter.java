@@ -24,9 +24,9 @@ public class CustomUsernamePasswordAuthenticationFilter extends UsernamePassword
             UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
             return this.getAuthenticationManager().authenticate(authRequest);
         } catch (InternalAuthenticationServiceException ex) {
-            // Re-throw as AuthenticationException to trigger failure handler
             throw new AuthenticationException(ex.getMessage(), ex) {};
         } catch (AuthenticationException ex) {
+            System.out.println(ex.getMessage());
             throw ex;
         }
 

@@ -5,6 +5,7 @@ import com.data.filtro.model.OrderDetail;
 import com.data.filtro.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
@@ -19,6 +20,9 @@ import java.util.*;
 @RequiredArgsConstructor
 public class MailSenderService {
     private final UserService userService;
+
+    @Value("${spring.data.payment.serveo_link}")
+    private String IPN_API;
 
     public void sendEmailGetPassword(String to, String from, String host, String subject, String matKhauMoi) {
         // Get system properties
@@ -38,13 +42,10 @@ public class MailSenderService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            System.out.println("hihi1: " + subject);
             message.setSubject(subject);
-            System.out.println("hihi2: "+ subject);
             String htmlMessage = buildHtmlBill4(matKhauMoi);
             message.setContent(htmlMessage, "text/html; charset=UTF-8");
             Transport.send(message);
-            System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
@@ -166,4 +167,5 @@ public class MailSenderService {
         String timeSendMail = String.valueOf(Instant.now());
         return timeSendMail;
     }
+
 }

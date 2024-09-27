@@ -64,6 +64,7 @@ public class PasswordResetController {
         } catch (UserNotFoundException ex) {
             model.addAttribute("message", ex.getMessage());
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             model.addAttribute("message", "Không thể gửi mail!");
         }
         return "user/boot1/forgotPassword";

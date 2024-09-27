@@ -46,18 +46,18 @@
               <div class="col-md-12 form-group">
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required>
               </div>
-              <div class="col-md-12 form-group">
-                <div class="password-input-wrapper">
-                  <input type="password" id="password" class="form-control" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
-                  <span class="toggle-password" onclick="togglePasswordVisibility('password')"><i class="fa fa-eye"></i></span>
-                </div>
-              </div>
-              <div class="col-md-12 form-group">
-                <div class="password-input-wrapper">
-                  <input type="password" id="repeatPassword" class="form-control" name="repeatPassword" placeholder="Repeat Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RepeatPassword'" required>
-                  <span class="toggle-password" onclick="togglePasswordVisibility('repeatPassword')"><i class="fa fa-eye"></i></span>
-                </div>
-              </div>
+<!--              <div class="col-md-12 form-group">-->
+<!--                <div class="password-input-wrapper">-->
+<!--                  <input type="password" id="password" class="form-control" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>-->
+<!--                  <span class="toggle-password" onclick="togglePasswordVisibility('password')"><i class="fa fa-eye"></i></span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-md-12 form-group">-->
+<!--                <div class="password-input-wrapper">-->
+<!--                  <input type="password" id="repeatPassword" class="form-control" name="repeatPassword" placeholder="Repeat Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RepeatPassword'" required>-->
+<!--                  <span class="toggle-password" onclick="togglePasswordVisibility('repeatPassword')"><i class="fa fa-eye"></i></span>-->
+<!--                </div>-->
+<!--              </div>-->
               <div class="col-md-12 form-group">
                 <button type="submit" class="primary-btn">Register</button>
                 <input type="hidden" name="_csrfToken" th:value="${_csrfToken}">

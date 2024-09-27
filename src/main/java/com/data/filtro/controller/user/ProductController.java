@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -62,16 +63,8 @@ public class ProductController {
         int t1 = 13;
         long t2 = 24;
         Product product = new Product();
-        if (baseRedisService.hasKey(PREFIX_DETAILED_PRODUCT + String.valueOf(id))){
-            String discountProductJson = (String) baseRedisService.get(PREFIX_DETAILED_PRODUCT + String.valueOf(id));
-            product = JsonConverter.convertJsonToProduct(discountProductJson);
-            Hibernate.initialize(product.getCategory());
-        }
 
         product = productService.getProductById(id);
-        String json = JsonConverter.convertToJsonProduct(product);
-        baseRedisService.set(PREFIX_DETAILED_PRODUCT + String.valueOf(id), json);
-
         List<Feedback> feedbackList = feedbackService.getAllFeedBackByProductId(id);
         int numberOfFeedback = feedbackList.size();
         List<Product> productList = productService.getTop4ProductsByMaterial(product.getMaterial().getId(), currentProductId);

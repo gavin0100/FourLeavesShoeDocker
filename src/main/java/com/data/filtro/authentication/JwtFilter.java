@@ -22,9 +22,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-//@RequiredArgsConstructor
 @Slf4j
-public class    JwtFilter extends OncePerRequestFilter {
+public class JwtFilter extends OncePerRequestFilter {
+//public class JwtFilter{
 
     private final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsService userDetailsService;
@@ -38,7 +38,7 @@ public class    JwtFilter extends OncePerRequestFilter {
         this.authenticationService = authenticationService;
     }
 
-    @Override
+//    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getRequestURI();
         String jwt = "";
@@ -50,6 +50,7 @@ public class    JwtFilter extends OncePerRequestFilter {
                 }
             }
         }
+
         String accountName = "";
         if (path.startsWith("/css/") ||
                 path.startsWith("/javascript/") ||
@@ -64,6 +65,7 @@ public class    JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/category/") ||
                 path.equals("/register") ||
                 path.startsWith("/api/") ||
+                path.startsWith("/rest") ||
                 path.startsWith("/test") ||
                 path.startsWith("/app-minio") ||
                 path.equals("/contact") ||
@@ -74,7 +76,11 @@ public class    JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/logout_to_login") ||
                 path.startsWith("/user/billing/reset_login") ||
                 path.startsWith("/search") ||
-                path.equals("/404")){
+                path.equals("/404") ||
+                path.startsWith("/oauth") ||
+                path.equals("/login/google/code") ||
+                path.equals("/login/google/auth") ||
+                path.equals("/login/oauth2/code/google") ){
             if (path.startsWith("/product/") ||
                     path.startsWith("/cart") ||
                     path.startsWith("/category/") ||
@@ -99,7 +105,6 @@ public class    JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
         if (jwt.equals("") || jwt== null){
             throw new AccessDeniedException("token khong ton tai");
         }

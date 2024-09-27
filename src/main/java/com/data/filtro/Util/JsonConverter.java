@@ -23,6 +23,7 @@ public class JsonConverter {
 
     public static String convertToJsonProduct(Product product) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         try {
             return objectMapper.writeValueAsString(product);
         } catch (Exception e) {
@@ -45,6 +46,7 @@ public class JsonConverter {
 
     public static Product convertJsonToProduct(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         try {
             Product product = objectMapper.readValue(json, Product.class);
             return product;

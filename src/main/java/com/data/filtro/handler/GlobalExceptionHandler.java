@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.io.IOException;
@@ -47,6 +48,11 @@ public class GlobalExceptionHandler {
             }
             return;
         }
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public void handleTypeMismatch(MethodArgumentTypeMismatchException ex, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/404");
     }
 
 //    @ExceptionHandler(NoHandlerFoundException.class)

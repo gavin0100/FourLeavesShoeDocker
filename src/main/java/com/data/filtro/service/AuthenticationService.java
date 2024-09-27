@@ -37,7 +37,6 @@ public class AuthenticationService {
             Authentication authentication = manager.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }catch (AuthenticationException e){
-//            System.out.println(e.getMessage());
             throw new AuthenticationAccountException("Tên tài khoản, mật khẩu không đúng");
         }
         User user = userService.getUserByAccountName(accountName);
@@ -50,6 +49,14 @@ public class AuthenticationService {
 
     public AuthenticateResponse authenticate(Authentication authentication){
         User user = (User) authentication.getPrincipal();
+        String token = jwtService.generateToken(user);
+        AuthenticateResponse authenticateResponse = new AuthenticateResponse();
+        authenticateResponse.setAccessToken(token);
+        authenticateResponse.setUser(user);
+        return authenticateResponse;
+    }
+    public AuthenticateResponse authenticateViaEmail(String email){
+        User user = userService.getUserByEmail(email);
         String token = jwtService.generateToken(user);
         AuthenticateResponse authenticateResponse = new AuthenticateResponse();
         authenticateResponse.setAccessToken(token);

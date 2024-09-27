@@ -133,6 +133,17 @@ public class LoginController {
         return "user/boot1/login";
     }
 
+    @GetMapping("/oauth_failure")
+    public String loginOauth(
+            @RequestParam String error,
+            HttpServletResponse response,
+                        Authentication authentication,
+                        HttpSession session,
+                        Model model) {
+        model.addAttribute("message", "Xác thực qua FaceBook hoặc Google thất bại!");
+        return "user/boot1/login";
+    }
+
     @PostMapping("/logincontroller")
     public String login(
             HttpServletResponse response,

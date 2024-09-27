@@ -69,7 +69,7 @@ public class CartServiceTest {
                 "Duc2112002@",
                 ZonedDateTime.of(2024, 3, 12, 0, 0, 0, 0, ZoneId.systemDefault()).toInstant(),
                 "",
-                Provider.LOCAL,
+                Provider.local,
                 new Cart(),
                 new ArrayList<>(),
                 new ArrayList<>()

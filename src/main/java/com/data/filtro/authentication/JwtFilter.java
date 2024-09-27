@@ -57,6 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/image/") ||
                 path.equals("/login") ||
                 path.equals("/login/login_failure") ||
+                path.equals("/login/oauth_failure") ||
                 path.startsWith("/img/") ||
                 path.startsWith("/access-denied") ||
                 path.startsWith("/product/img") ||

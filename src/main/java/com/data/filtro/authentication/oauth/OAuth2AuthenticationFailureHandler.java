@@ -16,7 +16,7 @@ import java.io.IOException;
 import static com.data.filtro.authentication.oauth.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 @Component
-public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class  OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Autowired
     HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
@@ -24,14 +24,14 @@ public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationF
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         System.out.println("xac thuc that bai");
-        String targetUrl = CookieUtils.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
-                .map(Cookie::getValue)
-                .orElse(("/"));
-
+//        String targetUrl = CookieUtils.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
+//                .map(Cookie::getValue)
+//                .orElse(("/"));
+        String targetUrl = "/login/oauth_failure";
         targetUrl = UriComponentsBuilder.fromUriString(targetUrl)
-                .queryParam("error", exception.getLocalizedMessage())
+                .queryParam("error", "failure")
                 .build().toUriString();
-
+        System.out.println(targetUrl);
         httpCookieOAuth2AuthorizationRequestRepository.removeAuthorizationRequestCookies(request, response);
 
         getRedirectStrategy().sendRedirect(request, response, targetUrl);

@@ -1,5 +1,5 @@
 package com.data.filtro.model;
 
 public enum Provider {
-    local, google
+    local, google, facebook
 }

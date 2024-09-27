@@ -63,11 +63,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
             }
             user = userRepository.findByEmail(oAuth2UserInfo.getEmail());
         } else {
-            System.out.println("come here");
-            System.out.println("oAuth2User: " + oAuth2User);
-            System.out.println( oAuth2User.getAttribute("family_name").toString());
-            System.out.println("oAuth2User.getAttributes(): " + oAuth2User.getAttributes());
-            String username = oAuth2User.getAttribute("family_name").toString() + oAuth2User.getAttribute("given_name").toString();
+            String username = "";
+            if (Provider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()) == Provider.google){
+                username = oAuth2User.getAttribute("family_name").toString() + oAuth2User.getAttribute("given_name").toString();
+            } else {
+                username = oAuth2User.getAttribute("name").toString();
+            }
+
             String accountName = oAuth2User.getAttribute("email").toString();
             String email = oAuth2User.getAttribute("email").toString();
             String newPassword = Utility.getRandomString();

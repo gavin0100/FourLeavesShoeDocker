@@ -1,0 +1,1 @@
+2024-09-28T13:15:15.376+07:00 ERROR 13728 --- [http-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : Duplicate entry 'lexoy44759@exweme.com' for key 'unique_email'

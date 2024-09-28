@@ -163,6 +163,50 @@ public class MailSenderService {
 
         return sb.toString();
     }
+
+    public void sendEmailGetOtpLogin(String to, String from, String host, String subject, String otp) {
+        // Get system properties
+        Properties properties = System.getProperties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.setProperty("mail.smtp.host", host);
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new  PasswordAuthentication("voduc0100@gmail.com", "arozojkhspxuuxeg");
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(subject);
+            String htmlMessage = buildHtmlOTP(otp);
+            message.setContent(htmlMessage, "text/html; charset=UTF-8");
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
+    public String buildHtmlOTP(String matKhauMoi) {
+        String timeSendMail = getCurrentTime();
+
+        // Use StringBuilder to create the HTML content
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html><head><meta charset='UTF-8'></head><body style='font-family: Arial, sans-serif; background-color: #f7f7f7; color: #333;'>");
+        sb.append("<div style='max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border: 1px solid #ddd;'>");
+        sb.append("<h2 style='text-align: center; color: #4A90E2;'>Shop bán giày Four Leave Shoes</h2>");
+        sb.append("<p style='text-align: center;'>Thời gian in: " + timeSendMail +"</p>");
+        sb.append("<h1 style='background-color: #4A90E2; color: #fff; padding: 10px; text-align: center;'>OTP: "+ matKhauMoi + "</h1>");
+
+        return sb.toString();
+    }
+
+
+
     public String getCurrentTime(){
         String timeSendMail = String.valueOf(Instant.now());
         return timeSendMail;

@@ -73,7 +73,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public void registerUser(String userName, String accountName, String email, String password, String repeatPassword) {
+    public void registerUser(String userName, String accountName, String email, String phoneNumber, String password, String repeatPassword) {
 
         if (checkUserName(accountName)) {
             throw new AccountNameExistException("Tên tài khoản đã được đặt");
@@ -82,22 +82,28 @@ public class UserService implements UserDetailsService {
         if (!password.equals(repeatPassword)) {
             throw new PasswordDoNotMatchException("Không đúng mật khẩu !");
         }
-
-        User user = new User();
-        user.setName(userName);
-        user.setEmail(email);
-        userRepository.save(user);
-        user.setAccountName(accountName);
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashPassword = passwordEncoder.encode(password);
-        user.setPassword(hashPassword);
+        try{
+            User user = new User();
+            user.setName(userName);
+            user.setEmail(email);
+            userRepository.save(user);
+            user.setAccountName(accountName);
+            user.setPhoneNumber(phoneNumber);
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashPassword = passwordEncoder.encode(password);
+            user.setPassword(hashPassword);
 //        user.setCreatedDate(new Date());
-        user.setCreatedDate(Instant.now());
-        UserPermission userPermission = userPermissionRepository.findByPermissionId(Long.parseLong("626589413728739336"));
-        user.setUserPermission(userPermission);
-        user.setProvider(Provider.local);
-        userRepository.save(user);
-        Cart cart = cartService.createCart(user);
+            user.setCreatedDate(Instant.now());
+            UserPermission userPermission = userPermissionRepository.findByPermissionId(Long.parseLong("626589413728739336"));
+            user.setUserPermission(userPermission);
+            user.setProvider(Provider.local);
+            user.setOtp("637211");
+            userRepository.save(user);
+            Cart cart = cartService.createCart(user);
+        } catch (Exception exception){
+            throw new AccountNameExistException("Không thể tạo tài khoản!");
+        }
+
     }
 
     public void registerUserViaOauth(String userName, String accountName, String email, String password, String repeatPassword, Provider provider) {
@@ -391,6 +397,16 @@ public class UserService implements UserDetailsService {
             userRepository.save(existUser);
         }
 
+    }
+    public User getUserFromOtp(String accountName, String password, String otp){
+        System.out.println(accountName + " " + password + " " + otp);
+        return userRepository.findByOtp(accountName, password, otp);
+    }
+
+    public void updateOtpUser(String otp, long userId){
+        User user = userRepository.findById(userId);
+        user.setOtp(otp);
+        userRepository.save(user);
     }
 
 }

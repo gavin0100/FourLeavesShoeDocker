@@ -97,12 +97,13 @@ public class RegisterController {
     public String registerUser(@RequestParam("userName") String userName,
                                @RequestParam("accountName") String accountName,
                                @RequestParam("email") String email,
+                               @RequestParam("phoneNumber") String phoneNumber,
                                Model model) {
         if(containsUTF8(userName) && containsAllowedCharacters(accountName)
-                && containsAllowedCharacters(email) && isStringLengthLessThan50(userName)){
+                && containsAllowedCharacters(email) && isStringLengthLessThan50(userName) && Utility.checkPhoneNumber(phoneNumber)){
             try {
                 String newPassword = Utility.getRandomString();
-                userService.registerUser(userName, accountName, email, newPassword, newPassword);
+                userService.registerUser(userName, accountName, email, phoneNumber, newPassword, newPassword);
                 String to = email;
                 String from = "voduc0100@gmail.com";
                 String host = "smtp.gmail.com";
@@ -122,7 +123,7 @@ public class RegisterController {
             return "user/boot1/register";
         }
         else {
-            String message = "Tên người dùng chỉ được chứa chữ cái viết thường; email, tên chỉ được chứa chữ cái viết thường và các ký tự '()', '@'";
+            String message = "Tên người dùng chỉ được chứa chữ cái viết thường; email, tên chỉ được chứa chữ cái viết thường và các ký tự '()', '@'; số điện thoại chỉ chứa số!";
             model.addAttribute("errorMessage", message);
             return "user/boot1/register";
         }

@@ -1,5 +1,6 @@
 package com.data.filtro.controller;
 
+import com.data.filtro.Util.Utility;
 import com.data.filtro.model.*;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.Cookie;
@@ -29,11 +30,14 @@ public class LoginController {
 
     private final ProductService productService;
 
-    public LoginController(CartService cartService, UserService userService, AuthenticationService authenticationService, ProductService productService) {
+    private final MailSenderService mailSenderService;
+
+    public LoginController(CartService cartService, UserService userService, AuthenticationService authenticationService, ProductService productService, MailSenderService mailSenderService) {
         this.cartService = cartService;
         this.userService = userService;
         this.authenticationService = authenticationService;
         this.productService = productService;
+        this.mailSenderService = mailSenderService;
     }
 
 
@@ -150,11 +154,44 @@ public class LoginController {
             HttpSession session,
             Model model) {
         AuthenticateResponse authenticateResponse = authenticationService.authenticate(SecurityContextHolder.getContext().getAuthentication());
-        Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
-        cookie.setHttpOnly(true);
-        cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
-        response.addCookie(cookie);
-        return "redirect:/";
+        model.addAttribute("accountName", authenticateResponse.getUser().getAccountName());
+        model.addAttribute("password", authenticateResponse.getUser().getPassword());
+        String newOtp = Utility.getRandomNumberString();
+        userService.updateOtpUser(newOtp, authenticateResponse.getUser().getId());
+        String to = authenticateResponse.getUser().getEmail();
+        String from = "voduc0100@gmail.com";
+        String host = "smtp.gmail.com";
+        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - MẬT KHẨU CHO TÀI KHOẢN!";
+        mailSenderService.sendEmailGetOtpLogin(to, from, host, subject, newOtp );
+        return "user/boot1/otpLogin";
+    }
+    @PostMapping("/otp")
+    public String otpLogin( @RequestParam("accountName") String accountName,
+            @RequestParam("password") String password,
+            @RequestParam("otp") String otp,
+            HttpServletResponse response,
+            HttpSession session,
+            Model model) {
+        try{
+            User user = userService.getUserFromOtp(accountName, password, otp);
+            System.out.println("user: " + user);
+            if (user == null){
+                throw new Exception("User not found");
+            }
+            AuthenticateResponse authenticateResponse = authenticationService.authenticateWithOnlyAccountName(accountName);
+            String newOtp = Utility.getRandomNumberString();
+            userService.updateOtpUser(newOtp, authenticateResponse.getUser().getId());
+            Cookie cookie = new Cookie("fourleavesshoestoken", authenticateResponse.getAccessToken());
+            cookie.setHttpOnly(true);
+            cookie.setPath("/"); // This makes the cookie valid for all routes on your domain
+            response.addCookie(cookie);
+            return "redirect:/";
+        } catch (Exception ex){
+            model.addAttribute("message", "Thông tin đăng nhập không đúng");
+            return "user/boot1/login";
+        }
+
+
     }
 
     @GetMapping("/session")

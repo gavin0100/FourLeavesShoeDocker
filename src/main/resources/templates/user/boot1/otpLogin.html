@@ -29,9 +29,9 @@
                         </div>
                         <form th:action="@{/login/otp} " method="post">
                             <div class="mb-3">
-                                <label for="otp" class="form-label">Email</label>
+                                <label for="otp" class="form-label">OTP</label>
                                 <input type="otp" id="otp" class="form-control" name="otp"
-                                       placeholder="Enter your email"
+                                       placeholder="Nhập OTP"
                                        required="">
                             </div>
                             <div class="mb-3 d-grid">
@@ -42,7 +42,8 @@
                             <div class="d-flex justify-content-between">
                                 <a th:href="@{/login}">Trở về</a>
                             </div>
-                            <input id="username" hidden="hidden" name="username" th:value="${accountName}">
+                            <input id="username" hidden="hidden" name="accountName" th:value="${accountName}">
+                            <input id="password" hidden="hidden" name="password" th:value="${password}">
                         </form>
                     </div>
                 </div>

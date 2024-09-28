@@ -349,7 +349,7 @@
                                     2022-11-12
                                 </td>
                                 <td class="px-4 py-3 text-sm" style="text-align: center;">
-                                    <a th:href="@{'http://localhost:8080/app-minio/download/' + ${product.image != null ? product.image.substring(product.image.lastIndexOf('/') + 1) : ''}}"
+                                    <a th:href="@{'/app-minio/download/' + ${product.image != null ? product.image.substring(product.image.lastIndexOf('/') + 1) : ''}}"
                                        th:if="${product.image != null && product.image.contains('fourleavesshoedocker')}"
                                        style="text-decoration: none; display: inline-block; vertical-align: middle;">
                                         <img th:src="@{${product.image}}" alt="?"

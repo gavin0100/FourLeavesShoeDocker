@@ -90,7 +90,7 @@ Bootstrap, on the other hand, is a collection of CSS classes. Any theme in front
         </button>
 
         <!-- Download Button -->
-        <a th:href="@{'http://localhost:8080/app-minio/download/' + ${model.avatar != null ? model.avatar.substring(model.avatar.lastIndexOf('/') + 1) : ''}}"
+        <a th:href="@{'/app-minio/download/' + ${model.avatar != null ? model.avatar.substring(model.avatar.lastIndexOf('/') + 1) : ''}}"
            th:if="${model.avatar != null}"
            style="text-decoration: none; display: inline-block; vertical-align: middle;">
           <button type="button"

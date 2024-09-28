@@ -28,11 +28,12 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
     private final UserDetailsService userDetailsService;
-    private final JwtService jwtService;
+//    private final JwtService jwtService;
+    private final JwtNimbusService jwtService;
 
     private final AuthenticationService authenticationService;
 
-    public JwtFilter(UserDetailsService userDetailsService, @Lazy JwtService jwtService, @Lazy AuthenticationService authenticationService) {
+    public JwtFilter(UserDetailsService userDetailsService, @Lazy JwtNimbusService jwtService, @Lazy AuthenticationService authenticationService) {
         this.userDetailsService = userDetailsService;
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
@@ -144,11 +145,6 @@ public class JwtFilter extends OncePerRequestFilter {
             );
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authToken);
-            try {
-                jwtService.parseJWT( userDetails);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         } else {
             throw new MyServletException("Token is not valid", null, false, false);
         }

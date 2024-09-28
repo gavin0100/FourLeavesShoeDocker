@@ -1,6 +1,7 @@
 package com.data.filtro.service;
 
 
+import com.data.filtro.authentication.JwtNimbusService;
 import com.data.filtro.authentication.JwtService;
 import com.data.filtro.exception.AuthenticationAccountException;
 import com.data.filtro.model.AuthenticateResponse;
@@ -22,8 +23,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserService userService;
-    private final JwtService jwtService;
-
+//    private final JwtService jwtService;
+    private final JwtNimbusService jwtService;
     private final AuthenticationManager manager;
 
 

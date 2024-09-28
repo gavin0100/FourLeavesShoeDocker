@@ -3,6 +3,7 @@ package com.data.filtro.api;
 import com.data.filtro.model.*;
 import com.data.filtro.model.payment.ApiOrderDTO;
 import com.data.filtro.service.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/order")
+@RequiredArgsConstructor
 public class OrderAPIController {
 
-
-
-    @Autowired
-    OrderService orderService;
-    @Autowired
-    PaymentMethodService paymentMethodService;
-    @Autowired
-    OrderShipperService orderShipperService;
+    private final OrderService orderService;
+    private final PaymentMethodService paymentMethodService;
+    private final OrderShipperService orderShipperService;
 
     @Autowired
     UserService userService;

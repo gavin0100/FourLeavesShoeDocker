@@ -66,7 +66,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/category/") ||
                 path.equals("/register") ||
                 path.startsWith("/api/") ||
-                path.startsWith("/rest") ||
+//                path.startsWith("/rest") ||
                 path.startsWith("/test") ||
                 path.startsWith("/app-minio") ||
                 path.equals("/contact") ||
@@ -144,6 +144,11 @@ public class JwtFilter extends OncePerRequestFilter {
             );
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authToken);
+            try {
+                jwtService.parseJWT( userDetails);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } else {
             throw new MyServletException("Token is not valid", null, false, false);
         }

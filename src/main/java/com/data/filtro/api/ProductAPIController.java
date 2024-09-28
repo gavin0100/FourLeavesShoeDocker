@@ -6,6 +6,7 @@ import com.data.filtro.model.Product;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,15 +22,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/product")
 @Slf4j
+@RequiredArgsConstructor
 public class ProductAPIController {
 
 
-    @Autowired
-    ProductService productService;
-    @Autowired
-    CategoryService categoryService;
-    @Autowired
-    MaterialService flavorService;
+    private final ProductService productService;
+    private final CategoryService categoryService;
+    private final MaterialService flavorService;
 
     @GetMapping("/getProductList")
     public ResponseEntity<List<Product>> getProductList() {

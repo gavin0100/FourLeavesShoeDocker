@@ -3,6 +3,7 @@ package com.data.filtro.api;
 import com.data.filtro.model.Staff;
 import com.data.filtro.model.ErrorResponse;
 import com.data.filtro.service.StaffService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/staff")
+@RequiredArgsConstructor
 public class StaffAPIController {
 
-    @Autowired
-    StaffService staffService;
+    private final StaffService staffService;
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable long id) {

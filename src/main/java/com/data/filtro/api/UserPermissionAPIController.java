@@ -5,6 +5,7 @@ import com.data.filtro.model.Material;
 import com.data.filtro.model.UserPermission;
 import com.data.filtro.service.MaterialService;
 import com.data.filtro.service.UserPermissionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user-permission")
+@RequiredArgsConstructor
 public class UserPermissionAPIController {
 
-    @Autowired
-    UserPermissionService userPermissionService;
+    private final UserPermissionService userPermissionService;
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> find(@PathVariable Long id) {

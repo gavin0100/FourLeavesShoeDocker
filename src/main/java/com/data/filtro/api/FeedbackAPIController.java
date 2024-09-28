@@ -7,6 +7,7 @@ import com.data.filtro.model.User;
 import com.data.filtro.service.FeedbackService;
 import com.data.filtro.service.ProductService;
 import com.data.filtro.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +22,13 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/comment")
+@RequiredArgsConstructor
 public class FeedbackAPIController {
-    @Autowired
-    UserService userService;
-    @Autowired
-    ProductService productservice;
-    @Autowired
-    FeedbackService feedbackService;
+    private final UserService userService;
+    private final ProductService productservice;
+    private final FeedbackService feedbackService;
     @GetMapping("/getAll/{productId}")
-    public ResponseEntity<?> getAllFeedbackByProduct(@PathVariable int productId) {
+    public ResponseEntity<?> getAllFeedbackByProduct(@PathVariable long productId) {
         try {
             List<Feedback> feedbacks = feedbackService.getAllFeedbackByProduct(productId);
             if (feedbacks == null) {

@@ -1,5 +1,8 @@
 package com.data.filtro.authentication;
 
+import com.nimbusds.jose.*;
+import com.nimbusds.jose.crypto.*;
+import com.nimbusds.jwt.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 //import java.util.Date;
+import java.text.ParseException;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
@@ -54,14 +58,6 @@ public class JwtService {
 
 
     public String buildToken(Map<String, Object> extraInfo, UserDetails userDetails, long expirationTime){
-//        return Jwts
-//                .builder()
-//                .setClaims(extraInfo)
-//                .setSubject(userDetails.getUsername())
-//                .setIssuedAt(new Date(System.currentTimeMillis()))
-//                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
-//                .signWith(getSigninKey(), SignatureAlgorithm.HS256)
-//                .compact();
         Instant now = Instant.now();
         Instant expiration = now.plusMillis(expirationTime);
         return Jwts.builder()
@@ -114,5 +110,55 @@ public class JwtService {
         return !isTokenExpired(token);
     }
 
+    public void parseJWT( UserDetails userDetails) throws Exception {
+        System.out.println("=======================================");
+        byte[] bytes = Decoders.BASE64.decode(secretKey);
+        Instant now = Instant.now();
+        Instant expiration = now.plusMillis(expirationTime);
+        JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
+                .claim("role", userDetails.getAuthorities().stream()
+                        .map(Object::toString)
+                        .toList())
+                .subject("alice")
+                .issuer("https://fourleavesshoes.com")
+                .issueTime(Date.from(now))
+                .expirationTime(Date.from(expiration)) // 1 phút
+                .build();
+        SignedJWT signedJWT1 = new SignedJWT(new JWSHeader(JWSAlgorithm.HS256), claimsSet);
+        JWSSigner signer = new MACSigner(bytes);
+        signedJWT1.sign(signer);
 
+        System.out.println("signedJWT1: " + signedJWT1.serialize());
+
+
+        SignedJWT signedJWT;
+        try {
+            signedJWT = SignedJWT.parse(signedJWT1.serialize());
+            System.out.println("signedJWT.getJWTClaimsSet(): " + signedJWT.getJWTClaimsSet());
+            System.out.println("signedJWT.getHeader(): " + signedJWT.getHeader());
+            System.out.println("======");
+            System.out.println("signedJWT.getPayload(): " + signedJWT.getPayload());
+            System.out.println("role: " + signedJWT.getJWTClaimsSet().getClaim("role"));
+            System.out.println("sub: " + signedJWT.getJWTClaimsSet().getClaim("sub"));
+            String nameaa = String.valueOf(signedJWT.getJWTClaimsSet().getClaim("sub"));
+            System.out.println(nameaa);
+            Date expDate = (Date) signedJWT.getJWTClaimsSet().getClaim("exp");
+            Instant expirationTime = expDate.toInstant();
+            System.out.println(expirationTime);
+            System.out.println("exp: " + signedJWT.getJWTClaimsSet().getClaim("exp"));
+            System.out.println("iat: " + signedJWT.getJWTClaimsSet().getClaim("iat"));
+            System.out.println("======");
+            System.out.println("signedJWT.getSignature(): " + signedJWT.getSignature());
+        } catch (java.text.ParseException e) {
+            throw new Exception("Invalid token!");
+        }
+        JWSVerifier verifier = new MACVerifier(Decoders.BASE64.decode(secretKey));
+        boolean isVerified = signedJWT.verify(verifier);
+        if (isVerified) {
+            System.out.println("JWT signature is valid.");
+        } else {
+            System.out.println("JWT signature is invalid.");
+        }
+        System.out.println("=======================================");
+    }
 }

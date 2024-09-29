@@ -3,8 +3,11 @@ package com.data.filtro.handler;
 import com.data.filtro.exception.EmptyException;
 import com.data.filtro.exception.NotFoundException;
 import com.data.filtro.exception.ApiResponse;
-import com.data.filtro.exception.api.CartGetException;
-import com.data.filtro.exception.api.CartNotFoundException;
+import com.data.filtro.exception.api.cart.CartCantAddProductException;
+import com.data.filtro.exception.api.cart.CartCantRemoveProductException;
+import com.data.filtro.exception.api.cart.CartGetException;
+import com.data.filtro.exception.api.cart.CartNotFoundException;
+import com.data.filtro.exception.api.user.UserNotFoundOrAuthorizeException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.io.IOException;
@@ -33,6 +35,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Value("${spring.data.payment.serveo_link}")
     private String serveoLink;
+
+
+    //============================= cart ====================================
     @ExceptionHandler(CartNotFoundException.class)
     ProblemDetail CartNotFoundException(CartNotFoundException e) throws UnsupportedEncodingException {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
@@ -48,7 +53,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CartGetException.class)
     ProblemDetail CartGetException(CartGetException e) throws UnsupportedEncodingException {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
-        problemDetail.setTitle("Cart Not Found");
+        problemDetail.setTitle("Can't get cart");
         String content = URLEncoder.encode("Không thể truy cập", StandardCharsets.UTF_8.toString());
         String object = URLEncoder.encode("giỏ hàng", StandardCharsets.UTF_8.toString());
         String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
@@ -57,7 +62,42 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(CartCantAddProductException.class)
+    ProblemDetail CartCantAddProductException(CartCantAddProductException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Cart can't add product");
+        String content = URLEncoder.encode("Không thể thêm", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("sản phẩm", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
 
+    @ExceptionHandler(CartCantRemoveProductException.class)
+    ProblemDetail CartCantRemoveProductException(CartCantRemoveProductException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Cart can't remove product");
+        String content = URLEncoder.encode("Không thể thêm", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("sản phẩm", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    // ============================= user ====================================
+    @ExceptionHandler(UserNotFoundOrAuthorizeException.class)
+    ProblemDetail UserNotFoundOrAuthorizeException(UserNotFoundOrAuthorizeException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("User Not Found or Authorized");
+        String content = URLEncoder.encode("Không thể truy cập", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("tài khoản", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
     // =====================================================================================
 
     @ExceptionHandler(Exception.class)

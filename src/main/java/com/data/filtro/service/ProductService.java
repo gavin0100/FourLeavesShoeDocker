@@ -142,6 +142,7 @@ public class ProductService {
     }
 
     public Product getProductById(long id) {
+        System.out.println("addProductToCart2");
         Product product;
         if (baseRedisService.hasKey(PREFIX_DETAILED_PRODUCT + id)){
             String jsonProduct = (String) baseRedisService.get(PREFIX_DETAILED_PRODUCT + id);

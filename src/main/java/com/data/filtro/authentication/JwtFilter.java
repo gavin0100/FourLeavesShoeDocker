@@ -67,7 +67,6 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.startsWith("/category/") ||
                 path.equals("/register") ||
                 path.startsWith("/api/") ||
-//                path.startsWith("/rest") ||
                 path.startsWith("/test") ||
                 path.startsWith("/app-minio") ||
                 path.equals("/contact") ||
@@ -84,6 +83,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.equals("/login/google/auth") ||
                 path.equals("/login/otp") ||
                 path.equals("/login/oauth2/code/google") ||
+                path.startsWith("/rest/api") ||
                 path.equals("/error_problem_detail")){
             if (path.startsWith("/product/") ||
                     path.startsWith("/cart") ||
@@ -94,6 +94,7 @@ public class JwtFilter extends OncePerRequestFilter {
                     path.startsWith("/forgot-password") ||
                     path.equals("/") ||
                     path.startsWith("/login") ||
+                    path.startsWith("/rest/api") ||
                     path.startsWith("/search")
             ){
 

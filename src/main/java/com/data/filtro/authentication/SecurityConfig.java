@@ -111,7 +111,7 @@ public class SecurityConfig {
                                         "/favicon.ico",
                                         "/search",
                                         "/404",
-//                                        "/rest/**",
+                                        "/rest/api/**",
                                         "/oauth/**",
                                         "/auth/**",
                                         "/error_problem_detail"

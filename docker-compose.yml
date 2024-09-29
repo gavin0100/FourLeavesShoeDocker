@@ -37,8 +37,8 @@ services:
       RESET_TOP_SELLING_PRODUCTS_BY_HOURS: 0
       SERVEO_LINK: https://f486-116-98-0-46.ngrok-free.app
       JAVA_OPTS: -Dfile:encoding=UTF-8
-      REDIRECT_URI_GOOGLE: https://shoeselling-fourleavesshoes.onrender.com/oauth2/callback/google
-      REDIRECT_URI_FACEBOOK: https://shoeselling-fourleavesshoes.onrender.com/oauth2/callback/book
+      REDIRECT_URI_GOOGLE: https://df02-116-98-0-46.ngrok-free.app/oauth2/callback/google
+      REDIRECT_URI_FACEBOOK: https://df02-116-98-0-46.ngrok-free.app/oauth2/callback/facebook
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

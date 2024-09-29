@@ -89,7 +89,7 @@ public class User implements UserDetails, Serializable {
 
 
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Cart cart;
 

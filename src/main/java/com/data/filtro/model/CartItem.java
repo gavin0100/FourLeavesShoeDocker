@@ -29,7 +29,7 @@ public class CartItem implements Serializable {
     @JsonManagedReference
     private Cart cart;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "masp", referencedColumnName = "masp")
     private Product product;
 

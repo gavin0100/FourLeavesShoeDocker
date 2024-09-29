@@ -29,7 +29,7 @@ public class Cart implements Serializable {
     @Column(name = "magiohang")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "makh", referencedColumnName = "makh")
     private User user;
 

@@ -47,10 +47,6 @@ spring:
             scope:
               - email
               - public_profile
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8083
-            # http://localhost:8082/.well-known/openid-configuration
   data:
     redis:
       host: ${SPRING_REDIS_HOST:localhost}
@@ -85,8 +81,8 @@ application:
       vnp_TmnCode: 2PI2ATZO
       vnp_HashSecret: QZKNVD0BUMVJ2SK1UBJ0NSH34Q31AJGC
 logging:
-  level:
-    root: error
+#  level:
+#    root: error
   file:
     name: ${LOG_ADDRESS:D:/springboot/workspace/FourLeavesShoesDocker/FourLeavesShoeDocker/elk-stack.log}
 

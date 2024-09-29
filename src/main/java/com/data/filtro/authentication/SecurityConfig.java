@@ -113,7 +113,8 @@ public class SecurityConfig {
                                         "/404",
 //                                        "/rest/**",
                                         "/oauth/**",
-                                        "/auth/**"
+                                        "/auth/**",
+                                        "/error_problem_detail"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**", "/product/img/**").permitAll()

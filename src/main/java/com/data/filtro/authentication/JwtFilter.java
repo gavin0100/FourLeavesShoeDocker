@@ -83,7 +83,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.equals("/login/google/code") ||
                 path.equals("/login/google/auth") ||
                 path.equals("/login/otp") ||
-                path.equals("/login/oauth2/code/google") ){
+                path.equals("/login/oauth2/code/google") ||
+                path.equals("/error_problem_detail")){
             if (path.startsWith("/product/") ||
                     path.startsWith("/cart") ||
                     path.startsWith("/category/") ||

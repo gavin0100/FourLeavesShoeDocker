@@ -64,7 +64,7 @@
                                         <input class="form-control" id="inputUsername" type="text"
                                                name="name"
                                                placeholder="Enter your first name"
-                                               th:value="${user.getName()}">
+                                               th:value="${user.getName()}" required>
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                         <input class="form-control" id="inputLocation" type="text"
                                                name="address"
                                                placeholder="Enter your first name"
-                                               th:value="${user.getAddress() != null ? user.getAddress() : 'Address'}">
+                                               th:value="${user.getAddress() != null ? user.getAddress() : 'Address'}" required>
                                     </div>
                                 </div>
                                 <!-- Form Row        -->
@@ -86,7 +86,7 @@
                                         <input class="form-control" id="inputZip" type="text"
                                                name="zip"
                                                placeholder="Enter your organization name"
-                                               th:value="${user.getZip() != null ? user.getZip() : 1}">
+                                               th:value="${user.getZip() != null ? user.getZip() : 1}" requirede>
                                     </div>
                                     <!-- Form Group (location)-->
                                     <div class="col-md-6">
@@ -94,7 +94,7 @@
                                         <input class="form-control" id="inputCity" type="text"
                                                name="city"
                                                placeholder="Enter your location"
-                                               th:value="${user.getCity() != null ? user.getCity() : 'HCM'}">
+                                               th:value="${user.getCity() != null ? user.getCity() : 'HCM'}" required>
                                     </div>
                                 </div>
                                 <!-- Form Group (email address)-->
@@ -103,7 +103,7 @@
                                     <input class="form-control" id="inputEmailAddress" type="email"
                                            name="email"
                                            placeholder="Enter your email address"
-                                           th:value="${user.getEmail()}">
+                                           th:value="${user.getEmail()}" required>
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
@@ -113,7 +113,7 @@
                                         <input class="form-control" id="inputPhone" type="text"
                                                name="phoneNumber"
                                                placeholder="Enter your phone number"
-                                               th:value="${user.getPhoneNumber() != null ? user.getPhoneNumber() : '086'}">
+                                               th:value="${user.getPhoneNumber() != null ? user.getPhoneNumber() : '086'}" required>
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-4">
@@ -121,14 +121,14 @@
                                         <input class="form-control" id="inputBirthday" type="text"
                                                name="dob"
                                                placeholder="yyyy-MM-dd"
-                                               th:value="${user.getDob() != null ? #dates.format(user.getDob(), 'yyyy-MM-dd') : #dates.format(#dates.create(2002, 11, 2), 'yyyy-MM-dd')}">
+                                               th:value="${user.getDob() != null ? #dates.format(user.getDob(), 'yyyy-MM-dd') : #dates.format(#dates.create(2002, 11, 2), 'yyyy-MM-dd')}" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="inputSex">Sex</label>
                                         <input class="form-control" id="inputSex" type="text"
                                                name="sex"
                                                placeholder="Enter your sex"
-                                               th:value="${user.getSex() != null ? user.getSex() : 'Male'}">
+                                               th:value="${user.getSex() != null ? user.getSex() : 'Male'}" required>
                                     </div>
                                 </div>
                                 <!-- Save changes button-->

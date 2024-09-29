@@ -36,6 +36,7 @@ public class Material {
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JsonBackReference(value = "material-product")
+    @JsonIgnore
     private List<Product> products;
 
     public MaterialJsDTO convertToApiJsDTO(){

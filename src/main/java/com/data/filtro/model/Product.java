@@ -23,6 +23,7 @@ import java.util.List;
 // muốn loại bỏ khỏi kết quả của phương thức toString()
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product implements Serializable {
     @Id @Tsid
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +44,7 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "mavatlieu", referencedColumnName = "mavatlieu")
-    @JsonBackReference(value = "material-product")
+//    @JsonManagedReference(value = "material-product")
     private Material material;
 
     @Column(name = "mota")
@@ -63,7 +64,7 @@ public class Product implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "madanhmuc", referencedColumnName = "madanhmuc")
-    @JsonBackReference(value = "category-product")
+//    @JsonManagedReference(value = "category-product")
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

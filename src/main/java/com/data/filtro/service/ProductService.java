@@ -146,6 +146,7 @@ public class ProductService {
         if (baseRedisService.hasKey(PREFIX_DETAILED_PRODUCT + id)){
             String jsonProduct = (String) baseRedisService.get(PREFIX_DETAILED_PRODUCT + id);
             product = JsonConverter.convertJsonToProduct(jsonProduct);
+            System.out.println(product);
             return product;
         } else {
             product = productRepository.findById(id);

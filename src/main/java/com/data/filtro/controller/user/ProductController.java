@@ -60,11 +60,7 @@ public class ProductController {
         model.addAttribute("user", user);
         long currentProductId = id;
         long maxProductId = productService.countAll();
-        int t1 = 13;
-        long t2 = 24;
-        Product product = new Product();
-
-        product = productService.getProductById(id);
+        Product product = productService.getProductById(id);
         List<Feedback> feedbackList = feedbackService.getAllFeedBackByProductId(id);
         int numberOfFeedback = feedbackList.size();
         List<Product> productList = productService.getTop4ProductsByMaterial(product.getMaterial().getId(), currentProductId);

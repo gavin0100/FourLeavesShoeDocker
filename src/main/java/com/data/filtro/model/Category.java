@@ -1,9 +1,6 @@
 package com.data.filtro.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,7 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Category implements Serializable {
     @Id @Tsid
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +30,8 @@ public class Category implements Serializable {
     @Column(name = "tinhtrang")
     private Integer status;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JsonManagedReference(value = "category-product")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JsonBackReference(value = "category-product")
     private List<Product> productList;
 
 }

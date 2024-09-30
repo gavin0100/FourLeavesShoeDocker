@@ -35,10 +35,11 @@ public class AccessDeniedController {
     public String getNotFoundProblemDetail(
             @RequestParam("content") String content,
             @RequestParam("object") String object,
+            @RequestParam("status") String status,
             HttpServletResponse response, Model model) {
         model.addAttribute("message1", content);   // 4 chữ
         model.addAttribute("message2", object);    // 3 chữ
-        model.addAttribute("HTTPstatus", "404");
+        model.addAttribute("HTTPstatus", status);
         model.addAttribute("contentStatus", "Vui lòng liên hệ voduc0100@gmail.com");
         return "error/problemDetailPage";
     }

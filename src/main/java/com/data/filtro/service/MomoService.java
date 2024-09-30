@@ -52,7 +52,6 @@ public class MomoService {
     private final CartItemService cartItemService;
 
     public MomoResponse createMomoOrder(Order order){
-        System.out.println("truy cap vao create Momo order");
         String endpoint = MOMO_API + "/create";
         logger.info(endpoint);
         MomoRequest momoRequest = momoRequest(order);
@@ -61,7 +60,6 @@ public class MomoService {
 
 
     private MomoResponse processMomoOrder(String endpoint, MomoRequest momoRequest) {
-        System.out.println("truy cap vao process momo order");
         try{
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(momoRequest);

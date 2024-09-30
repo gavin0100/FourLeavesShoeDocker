@@ -1,7 +1,6 @@
 package com.data.filtro.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,6 +20,7 @@ import java.util.List;
 @EqualsAndHashCode(exclude = "user")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @ToString(exclude = {"user", "cartItemList"})
 public class Cart implements Serializable {
 
@@ -43,6 +43,6 @@ public class Cart implements Serializable {
     private Integer status;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonManagedReference
     private List<CartItem> cartItemList;
 }

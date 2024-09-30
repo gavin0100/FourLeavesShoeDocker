@@ -3,7 +3,7 @@ package com.data.filtro.authentication.oauth;
 import com.data.filtro.Util.Utility;
 import com.data.filtro.authentication.oauth.user.OAuth2UserInfo;
 import com.data.filtro.authentication.oauth.user.OAuth2UserInfoFactory;
-import com.data.filtro.exception.OAuth2AuthenticationProcessingException;
+import com.data.filtro.exception.controller.OAuth2AuthenticationProcessingException;
 import com.data.filtro.model.Provider;
 import com.data.filtro.model.User;
 import com.data.filtro.repository.UserRepository;

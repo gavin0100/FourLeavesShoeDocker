@@ -1,6 +1,6 @@
 package com.data.filtro.authentication.oauth.user;
 
-import com.data.filtro.exception.OAuth2AuthenticationProcessingException;
+import com.data.filtro.exception.controller.OAuth2AuthenticationProcessingException;
 import com.data.filtro.model.Provider;
 
 import java.util.Map;

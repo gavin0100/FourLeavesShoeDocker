@@ -2,21 +2,15 @@ package com.data.filtro.service;
 
 
 import com.data.filtro.authentication.JwtNimbusService;
-import com.data.filtro.authentication.JwtService;
-import com.data.filtro.exception.AuthenticationAccountException;
+import com.data.filtro.exception.controller.AuthenticationAccountException;
 import com.data.filtro.model.AuthenticateResponse;
 import com.data.filtro.model.User;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service

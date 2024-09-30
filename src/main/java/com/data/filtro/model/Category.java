@@ -31,7 +31,7 @@ public class Category implements Serializable {
     private Integer status;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "category-product")
+//    @JsonManagedReference(value = "category-product")
     @JsonIgnore
     private List<Product> productList;
 

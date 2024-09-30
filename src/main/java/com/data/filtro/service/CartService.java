@@ -75,9 +75,7 @@ public class CartService {
     }
 
     public void addProductToCart(Cart cart, long productId, int quantity) {
-        System.out.println("addProductToCart1");
         Product product = productService.getProductById(productId);
-        System.out.println(product);
         if (product == null) {
             throw new RuntimeException("Không tìm thấy sản phẩm!");
         }

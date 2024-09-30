@@ -85,7 +85,7 @@ public class CategoryController {
         List<Material> materialList = categoryService.getListMaterials();
         int dataLowPrice = Integer.parseInt(lowPrice);
         int dataHighPrice = Integer.parseInt(highPrice);
-        int dataMaterialId = Integer.parseInt(materialId);
+        long dataMaterialId = Long.parseLong(materialId);
         int dataCurrentPage = Integer.parseInt(currentPage);
 
         int pageSize = 6;

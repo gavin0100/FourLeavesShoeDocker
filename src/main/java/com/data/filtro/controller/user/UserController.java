@@ -1,7 +1,7 @@
 package com.data.filtro.controller.user;
 
-import com.data.filtro.exception.AuthenticationAccountException;
-import com.data.filtro.exception.PasswordDoNotMatchException;
+import com.data.filtro.exception.controller.AuthenticationAccountException;
+import com.data.filtro.exception.controller.PasswordDoNotMatchException;
 import com.data.filtro.model.*;
 import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.service.*;

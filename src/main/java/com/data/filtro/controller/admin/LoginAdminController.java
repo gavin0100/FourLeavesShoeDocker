@@ -1,6 +1,6 @@
 package com.data.filtro.controller.admin;
 
-import com.data.filtro.exception.AuthenticationAccountException;
+import com.data.filtro.exception.controller.AuthenticationAccountException;
 import com.data.filtro.model.*;
 import com.data.filtro.service.AuthenticationService;
 import com.data.filtro.service.UserService;

@@ -23,7 +23,7 @@ public class JwtNimbusService {
 
     @Value("${application.security.jwt.expiration}")
     private long expirationTime;
-    // 1 giờ = 3600000 mili giây
+    // 1 giờ = 36000000 mili giây
 
     public String extractUsername(String token){
         try{

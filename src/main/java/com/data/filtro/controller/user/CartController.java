@@ -105,6 +105,7 @@ public class CartController {
         if (user == null){
             return "user/boot1/cart";
         }
+        System.out.println(productIds + " " + quantities);
         if (productIds != null && quantities != null) {
             productIdArray = productIds.split(",");
             quantityArray = quantities.split(",");

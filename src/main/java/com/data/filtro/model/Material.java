@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Material {
+public class Material implements Serializable{
     @Id @Tsid
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mavatlieu")
@@ -35,7 +35,7 @@ public class Material {
     private Integer status;
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "material-product")
+//    @JsonManagedReference(value = "material-product")
     @JsonIgnore
     private List<Product> products;
 

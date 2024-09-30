@@ -1,12 +1,13 @@
 package com.data.filtro.handler;
 
-import com.data.filtro.exception.EmptyException;
-import com.data.filtro.exception.NotFoundException;
-import com.data.filtro.exception.ApiResponse;
-import com.data.filtro.exception.api.cart.CartCantAddProductException;
-import com.data.filtro.exception.api.cart.CartCantRemoveProductException;
-import com.data.filtro.exception.api.cart.CartGetException;
-import com.data.filtro.exception.api.cart.CartNotFoundException;
+import com.data.filtro.exception.api.home.CantGetInformationHomePageException;
+import com.data.filtro.exception.api.invoice.CantExportFilePDFInvoiceException;
+import com.data.filtro.exception.api.invoice.CantFindInvoiceWithOrderIdException;
+import com.data.filtro.exception.controller.EmptyException;
+import com.data.filtro.exception.controller.NotFoundException;
+import com.data.filtro.exception.controller.ApiResponse;
+import com.data.filtro.exception.api.cart.*;
+import com.data.filtro.exception.api.category.CantGetProductListPageException;
 import com.data.filtro.exception.api.user.UserNotFoundOrAuthorizeException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,7 +37,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Value("${spring.data.payment.serveo_link}")
     private String serveoLink;
 
-
+    //============================= Rest controller ====================================
     //============================= cart ====================================
     @ExceptionHandler(CartNotFoundException.class)
     ProblemDetail CartNotFoundException(CartNotFoundException e) throws UnsupportedEncodingException {
@@ -86,6 +87,30 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(CartCantBeUpdateException.class)
+    ProblemDetail CartCantBeUpdateException(CartCantBeUpdateException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Cart can't be updated");
+        String content = URLEncoder.encode("Không thể cập nhật", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("giỏ hàng", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(ProductsNotMatchQuantitiesException.class)
+    ProblemDetail ProductsNotMatchQuantitiesException(ProductsNotMatchQuantitiesException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("The length product's array not match with quantity's array");
+        String content = URLEncoder.encode("Không thể cập nhật", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("giỏ hàng", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
     // ============================= user ====================================
     @ExceptionHandler(UserNotFoundOrAuthorizeException.class)
     ProblemDetail UserNotFoundOrAuthorizeException(UserNotFoundOrAuthorizeException e) throws UnsupportedEncodingException {
@@ -98,7 +123,71 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }
-    // =====================================================================================
+
+    // ============================= home ====================================
+    @ExceptionHandler(CantGetInformationHomePageException.class)
+    ProblemDetail CantGetInformationHomePageException(CantGetInformationHomePageException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Can't get information from home page");
+        String content = URLEncoder.encode("Không thể truy cập", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("thông tin", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    // ============================= category - shop ====================================
+    @ExceptionHandler(CantGetProductListPageException.class)
+    ProblemDetail CantGetProductListPageException(CantGetProductListPageException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Can't access product's list page");
+        String content = URLEncoder.encode("Không thể truy cập", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("shop page", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+
+    // ============================= invoice ====================================
+    @ExceptionHandler(CantFindInvoiceWithOrderIdException.class)
+    ProblemDetail CantFindInvoiceWithOrderId(CantFindInvoiceWithOrderIdException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Can't find invoice with order id");
+        String content = URLEncoder.encode("Không thể truy cập", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("hóa đơn", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(CantExportFilePDFInvoiceException.class)
+    ProblemDetail CantExportFilePDFInvoiceException(CantExportFilePDFInvoiceException e) throws UnsupportedEncodingException {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Can't export file pdf invoice with order id");
+        String content = URLEncoder.encode("Không thể xuất file", StandardCharsets.UTF_8.toString());
+        String object = URLEncoder.encode("hóa đơn", StandardCharsets.UTF_8.toString());
+        String url = "http://localhost:8080/error_problem_detail?content=" + content + "&object=" + object;
+        problemDetail.setType(URI.create(url));
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    // ================================= controller====================================================
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

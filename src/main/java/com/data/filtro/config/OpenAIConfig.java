@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
+// http://localhost:8080/swagger-ui/index.html#/
 @OpenAPIDefinition(
         info = @Info(
                 contact = @Contact(

@@ -114,7 +114,9 @@ public class SecurityConfig {
                                         "/rest/api/**",
                                         "/oauth/**",
                                         "/auth/**",
-                                        "/error_problem_detail"
+                                        "/error_problem_detail",
+                                        "/v3/**",
+                                        "/swagger-ui/**"
 
                                 ).permitAll()
                                 .requestMatchers("/css/**", "/js/**", "/image/**", "/javascript/**", "/access-denied", "/img/**", "/product/img/**").permitAll()

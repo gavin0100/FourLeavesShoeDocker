@@ -84,7 +84,9 @@ public class JwtFilter extends OncePerRequestFilter {
                 path.equals("/login/otp") ||
                 path.equals("/login/oauth2/code/google") ||
                 path.startsWith("/rest/api") ||
-                path.equals("/error_problem_detail")){
+                path.equals("/error_problem_detail") ||
+                path.startsWith("/v3") ||
+                path.startsWith("/swagger-ui")){
             if (path.startsWith("/product/") ||
                     path.startsWith("/cart") ||
                     path.startsWith("/category/") ||

@@ -3,6 +3,7 @@ package com.data.filtro.controller.admin;
 import com.data.filtro.model.Order;
 import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -78,7 +79,7 @@ public class OrderCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_ORDER')")
-    public String update(@ModelAttribute Order order, BindingResult bindingResult) {
+    public String update(@ModelAttribute @Valid Order order, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/order";

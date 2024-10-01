@@ -13,6 +13,7 @@ import com.data.filtro.service.OrderService;
 import com.data.filtro.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -77,7 +78,7 @@ public class UserAPIRestController {
 
 
     @PostMapping("/profile/{id}")
-    public ResponseEntity<String> processProfile(@PathVariable("id") long id, @ModelAttribute("user") User updatedUser, BindingResult bindingResult) {
+    public ResponseEntity<String> processProfile(@PathVariable("id") long id, @ModelAttribute("user") @Valid  User updatedUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ParamNotValidException();
         }

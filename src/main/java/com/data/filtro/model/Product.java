@@ -6,6 +6,9 @@ import com.data.filtro.model.DTO.UserJsDTO;
 import com.fasterxml.jackson.annotation.*;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,15 +34,19 @@ public class Product implements Serializable {
     private Long id;
 
     @Column(name = "tensanpham")
+    @NotBlank
     private String productName;
 
     @Column(name = "soluong")
+    @NotBlank
     private Integer quantity;
 
     @Column(name = "daban")
+    @NotNull
     private Integer sold;
 
     @Column(name = "giatien")
+    @NotBlank
     private Integer price;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -48,6 +55,7 @@ public class Product implements Serializable {
     private Material material;
 
     @Column(name = "mota")
+    @NotEmpty
     private String description;
 
     @Column(name = "anh")
@@ -60,6 +68,7 @@ public class Product implements Serializable {
     private Integer status;
 
     @Column(name = "giamgia")
+    @NotNull
     private Integer discount;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -2,6 +2,7 @@ package com.data.filtro.controller.admin;
 
 import com.data.filtro.model.UserPermission;
 import com.data.filtro.service.UserPermissionService;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class UserPermissionCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public String update(@ModelAttribute UserPermission userPermission, BindingResult bindingResult) {
+    public String update(@ModelAttribute @Valid UserPermission userPermission, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/user-permission";

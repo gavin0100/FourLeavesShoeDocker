@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,25 +40,32 @@ public class Order implements Serializable {
     private User user;
 
     @Column(name = "ngaydathang")
+    @NotBlank
     private Instant orderDate;
 
     @Column(name = "diachi")
+    @NotBlank
     private String address;
 
     @Column(name = "zip")
+    @NotBlank
     private Integer zip;
 
     @Column(name = "thanhpho")
+    @NotBlank
     private String city;
 
 
     @Column(name = "SDT")
+    @NotBlank
     private String phoneNumber;
 
     @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "tong")
+    @NotNull
     private Integer total;
 
 

@@ -2,6 +2,7 @@ package com.data.filtro.controller.admin;
 
 import com.data.filtro.model.Material;
 import com.data.filtro.service.MaterialService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -70,7 +71,7 @@ public class MaterialCRUDController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_MATERIAL')")
-    public String create(@ModelAttribute Material material, BindingResult bindingResult) {
+    public String create(@ModelAttribute @Valid Material material, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/material";
@@ -82,7 +83,7 @@ public class MaterialCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_MATERIAL')")
-    public String update(@ModelAttribute Material material, BindingResult bindingResult) {
+    public String update(@ModelAttribute @Valid Material material, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/material";

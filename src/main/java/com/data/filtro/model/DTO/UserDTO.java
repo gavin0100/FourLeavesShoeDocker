@@ -7,6 +7,10 @@ import com.data.filtro.model.UserPermission;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,26 +35,38 @@ public class UserDTO implements Serializable {
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    private Date dob;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotBlank
     private Instant dob;
 
+    @NotBlank
     private String sex;
 
+    @NotBlank
     private String address;
 
+    @NotBlank
     private Integer zip;
 
+    @NotBlank
     private String city;
 
+    @NotBlank
+    @Email
     private String email;
 
+    @NotBlank
+    @Pattern(regexp = "\\d+")
+    @Size(min = 10, max = 11)
     private String phoneNumber;
 
+    @NotBlank
     private Integer status;
 
-
+    @NotBlank
     private Long userPermissionId;
-
+    @NotBlank
     private String accountName;
+    @NotBlank
     private String password;
 
 }

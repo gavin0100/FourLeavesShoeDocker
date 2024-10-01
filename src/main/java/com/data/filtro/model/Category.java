@@ -3,6 +3,7 @@ package com.data.filtro.model;
 import com.fasterxml.jackson.annotation.*;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,11 @@ public class Category implements Serializable {
     private Long id;
 
     @Column(name = "tendanhmuc")
+    @NotBlank
     private String categoryName;
 
     @Column(name = "tinhtrang")
+    @NotBlank
     private Integer status;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

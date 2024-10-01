@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,9 @@ public class MyModel implements MyModelInterface{
 //    @GenericGenerator(name = "tsid",
 //            strategy = "io.hypersistence.utils.hibernate.id.TsidGenerator")
     private Long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private boolean status;
 
     private String avatar;

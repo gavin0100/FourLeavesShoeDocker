@@ -5,6 +5,7 @@ import com.data.filtro.model.Staff;
 import com.data.filtro.model.User;
 import com.data.filtro.service.StaffService;
 import com.data.filtro.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -77,7 +78,7 @@ public class StaffCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_STAFF')")
-    public String update(@ModelAttribute UserDTO staff, BindingResult bindingResult) {
+    public String update(@ModelAttribute @Valid UserDTO staff, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/staff";

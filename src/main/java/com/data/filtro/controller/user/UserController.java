@@ -7,6 +7,7 @@ import com.data.filtro.model.payment.OrderStatus;
 import com.data.filtro.service.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import javassist.NotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -76,7 +77,7 @@ public class UserController {
 
     @PostMapping("/profile/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF', 'USER') and hasAnyAuthority('VIEW_USER', 'FULL_ACCESS_USER')")
-    public String processProfile(@PathVariable("id") long id, @ModelAttribute("user") User updatedUser, BindingResult bindingResult, Model model) {
+    public String processProfile(@PathVariable("id") long id, @ModelAttribute("user") @Valid User updatedUser, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/user/profile";

@@ -2,6 +2,7 @@ package com.data.filtro.controller.admin;
 
 import com.data.filtro.model.Category;
 import com.data.filtro.service.CategoryService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -74,7 +75,7 @@ public class CategoryCRUDController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY')")
-    public String create(@ModelAttribute Category category, BindingResult bindingResult) {
+    public String create(@ModelAttribute @Valid Category category, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/order";
@@ -86,7 +87,7 @@ public class CategoryCRUDController {
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_CATEGORY')")
-    public String update(@ModelAttribute Category category, BindingResult bindingResult) {
+    public String update(@ModelAttribute @Valid Category category, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/order";

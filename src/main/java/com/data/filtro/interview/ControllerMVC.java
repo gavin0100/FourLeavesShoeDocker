@@ -2,6 +2,7 @@ package com.data.filtro.interview;
 
 import com.data.filtro.interview.impl.BaseRedisService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,7 +58,7 @@ public class ControllerMVC {
     }
 
     @PostMapping("/mvc/addModel")
-    public String addModel(@ModelAttribute("MyModel") MyModel model){
+    public String addModel(@ModelAttribute("MyModel") @Valid MyModel model){
         service.createModel(model);
         return "redirect:/test/mvc";
     }

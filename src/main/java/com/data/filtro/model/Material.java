@@ -4,6 +4,7 @@ import com.data.filtro.model.DTO.MaterialJsDTO;
 import com.fasterxml.jackson.annotation.*;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,12 +27,15 @@ public class Material implements Serializable{
     private Long id;
 
     @Column(name = "tenvatlieu")
+    @NotBlank
     private String materialName;
 
     @Column(name = "mota")
+    @NotBlank
     private String description;
 
     @Column(name = "tinhtrang")
+    @NotBlank
     private Integer status;
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

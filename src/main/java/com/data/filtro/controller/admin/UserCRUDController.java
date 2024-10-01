@@ -5,6 +5,7 @@ import com.data.filtro.model.DTO.UserDTO;
 import com.data.filtro.model.User;
 import com.data.filtro.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -151,7 +152,7 @@ public class UserCRUDController {
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority( 'FULL_ACCESS_USER')")
     public String create(
             @RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page,
-            @ModelAttribute UserDTO user, BindingResult bindingResult, Model model) {
+            @ModelAttribute @Valid UserDTO user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errorMessage", "Nhập sai định dạng dữ liệu");
             if (user.getPhoneNumber().matches("\\d+")){
@@ -180,7 +181,7 @@ public class UserCRUDController {
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority( 'FULL_ACCESS_USER')")
     public String update(@RequestParam(defaultValue = "5") int sortType, @RequestParam("currentPage") Optional<Integer> page,
-                         @ModelAttribute UserDTO user, BindingResult bindingResult, Model model) {
+                         @ModelAttribute @Valid UserDTO user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
             return "redirect:/admin/user";

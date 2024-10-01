@@ -3,9 +3,11 @@ package com.data.filtro.controller.admin;
 import com.data.filtro.model.Product;
 import com.data.filtro.service.CategoryService;
 import com.data.filtro.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -31,9 +33,11 @@ public class AdminProductController {
 
     @PostMapping("/addProduct")
     @PreAuthorize("hasAnyRole('ADMIN', 'WAREHOUSE_STAFF', 'ACCOUNTING_STAFF') and hasAnyAuthority('FULL_ACCESS_PRODUCT')")
-    public String addProduct(@ModelAttribute("product") Product product,
+    public String addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult,
                              Model model) throws Exception {
-
+        if(bindingResult.hasErrors()){
+            return "Một hoặc nhiều trường truyền vào không hợp lệ!";
+        }
         productService.addProduct(product);
 
         model.addAttribute("product", product);

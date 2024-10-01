@@ -115,7 +115,7 @@ public class LoginController {
         String to = authenticateResponse.getUser().getEmail();
         String from = "voduc0100@gmail.com";
         String host = "smtp.gmail.com";
-        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - MẬT KHẨU CHO TÀI KHOẢN!";
+        String subject = "SHOP BÁN GIÀY FOUR LEAVES SHOE - OTP CHO TÀI KHOẢN!";
         mailSenderService.sendEmailGetOtpLogin(to, from, host, subject, newOtp );
         return "user/boot1/otpLogin";
     }

@@ -56,9 +56,9 @@ services:
 #      retries: 3
     ports:
       - "6379:6379"
-    volumes:
-      - /path/to/local/dаta:/root/redis
-      - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
+#    volumes:
+#      - /path/to/local/dаta:/root/redis
+#      - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
 #    depends_on:
 #      back-end:
 #        condition: service_healthy

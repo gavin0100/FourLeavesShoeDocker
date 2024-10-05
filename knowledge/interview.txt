@@ -199,19 +199,49 @@
 			- cluster là nơi lưu trữ mọi dữ liệu, cluster chia thành các data node, mỗi data node lại chứa hỗn hợp dữ liệu thuộc các index khác nhau
 	- khó khăn:
 - Redis
-	- cách làm:
+	- cách làm: sử dụng redis 5.0.14.1
 		- sử dụng để lưu dữ liệu danh sách sản phẩm hiển thị trong trang home và chi tiết sản phẩm
 		- sử dụng 2 thư viện:
-			- sử dụng jedis để sử dụng các api tương tác giữa java và redis
-			- sử dụng spring-boot-starter-data-redis để sử dụng các cấu hình 
-	- nhược điểm:
+			- sử dụng jedis để sử dụng các api tương tác giữa java và redis như opsForValue().set(key, value), opsForValue().get(key), expire, delete, hasKey
+			- sử dụng spring-boot-starter-data-redis để sử dụng các cấu hình mặc định giữa redis và spring boot
+		- sử dụng cặp giá trị {key, value} để lưu danh sách sản phẩm hoặc sản phẩm dưới dạng Json
+		- Cách xử lý Json: sử dụng jackson-databind để chuyển đội qua lại giữa Object và Json
+			- Chuyển Object thành Json:
+				- sử dụng phương thức ObjectMapper.writeValueAsString và kết hợp với JavaTimeModule để chuyển giá trị qua lại giữa Instance và String.
+			- Chuyển Json thành Object:
+				- sử dụng thêm thư viện jackson-datatype-jsr310 để chuyển dữ liệu json thành Instance (1728153061  là số giây kể từ 00:00:00 UTC ngày 1 tháng 1 năm 1970.
+				- sử dụng ObjectMapper.readValue để chuyển json sang Object
+
+	- lưu ý:
+		- khi sử dụng redis, phải tuân thủ nguyên tắc là cập nhật database trước , rồi mới cập nhật lại trong redis
 	- khó khăn:
 - MinIO
-	- ưu điểm:
-	- nhược điểm:
+	- cách làm: phiên bản minio:RELEASE.2024-08-26T15-33-07Z
+		- kiểm tra ảnh của sản phẩm đã tồn tại trong bucket chưa bằng cách xem tên ảnh có chứa cụm từ fourleavesshoedocker hay không, nếu chứa thì xóa ảnh khỏi bucket trong minio bằng minioClient.removeObject (tên ảnh, tên bucket)
+		- tạo đường link (nơi lưu ảnh) và lưu dưới database 
+		- sử dụng phương thức minioClient.putObject để lưu ảnh, trước khi lưu thì chuyển ảnh thành dạng mảng byte[]
+	- lưu ý:
+		- MinIO giống như AWS S3, nhưng được chạy local
 	- khó khăn:
-- JUnit và Mockito
-	- ưu điểm:
+- JUnit và Mockito và Github action
+	- cách làm: sử dụng junit và mockito-core 3.12.4
+		- trong dự án viết unit cho các hàm trong service
+		- sử dụng @BeforeEach để tạo ra các User input, sử dụng @MockBean để tạo ra các bean giả, còn đối với service đang được test thì sử dụng @Autow‏ired
+		- sử dụng @Test trên các phương thức unit test
+		- sử dụng các phương thức assert như assertNotNull, assertEquals, assertTrue, verify để kiểm tra điều kiện xem test này được thông qua hay không.
+		- nếu trong phương thức đang test có gọi phương thức của các mockbean thì sử dụng when.[hàm].thenReturn([*]) với [*] là dữ liệu mà ta đã tạo sẵn trước đó.
+
+
+		- trong file maven.yml (CI) thì chúng ta cấu hình như sau:
+			- để chạy được các action trong git flow này, cần tải image mysql 8.0 trên con runner của github. sau đó cài tên tài khoản, mật khẩu, kiểm tra trạng thái của container này
+			- sử dụng ubuntu để chạy các actions trong workflow
+			- sử dụng checkout@v3 để lấy code từ repository
+			- sử dụng setup-java@v3 để cài bản JDK 17 từ nhà cung cấp temurin, sử dụng maven
+			- cấu hình thực hiện unit test
+				- chạy lệnh mvn -B test --file pom.xml, có nghĩa nó sẽ vào file pom để thực hiện các unit test được định nghĩa trong ngày, mà trong phần build của file pom, tắt phần cấu hình skipTests, thì các phương thức được đánh annotation @Test sẽ được thực thi.
+				- nếu các unit test được thông qua thì tiếp tục workflow, nếu sai thì dừng lại flow.
+			- Sử dụng build-push-action@v3 để tạo image và push lên docker hub thông qua file DockerFile. File dockerfile và file jar có được trong runner là do checkout@v3 
+			- Trong docker file, sau khi cài jdk và copy file jar từ trong runner github sang docker hub, sẽ tiến hành chạy file jar này và đóng gói lại thành image có tên được quy định trong file maven.yml
 	- nhược điểm:
 	- khó khăn:
 - Docker compose 

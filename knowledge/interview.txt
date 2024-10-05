@@ -1,9 +1,12 @@
 1. giới thiệu bản thân
 
 2. em biết gì về công ty
-- product >< outsource
-- tệp khách hàng
-- cách thức làm việc
+- TMA là công ty oursourcing,TMA đã xây dựng được đội ngũ 4000 kỹ sư trẻ, thành lập từ năm 1997
+- tệp khách hàng đến từ hơn 30 quốc gia trên thế giới
+- cách thức làm việc:
+	- Củng cố kiến thức chuyên môn bằng các khóa đào tạo dành cho nhân viên mới từ 1-2 tháng (đào tạo nâng cao dựa trên nền tảng kiến thức lập trình đã có)
+	- Tham gia làm việc tại dự án thực tế sau khi được đào tạo
+
 
 3. hiện tại em đang làm gì
 - em đang cập nhật cho đồ án cá nhân của mình. sau kỳ thực tập ở FPT và quá trình học đại học, em nhận thấy mình còn ít tiếp xúc kinh nghiệm thực tế. Tuy trong lúc đi thực tập, em đã được đào tạo cách viết APIs và xử lý các loại phản hồi; trải nghiệm quy trình làm việc Srum thông qua dự án thực tập ở công ty, em nhận thấy bản thân vẫn chưa được tiếp xúc với nhiều công nghệ, kỹ thuật code khác. Sau khi tốt nghiệp, em đã xem qua những video review CV và dự án trên internet thì phát hiện ra những thiếu sót của mình như về độ lỗi thời của thư viện, những cách xử lý dữ liệu không thực tế (validate, chọn kiểu dữ liệu cho model), sử dụng những công cụ khác tích hợp vào dự án xin việc. Sau đó em đã dành ra 2 tháng để hoàn thành đồ án và kiến thức của mình.
@@ -245,13 +248,31 @@
 	- nhược điểm:
 	- khó khăn:
 - Docker compose 
-	- ưu điểm:
+	- lưu ý:
+		- phiên bản docker compose (v2.27.1-desktop.1) tương thích với phiên bản docker (26.1.4)
+		- file yml phải đúng
+		- trong mỗi file docker compose thì nên định nghĩa mạng network riêng để có thể tương tác qua tên giữa các service, nếu không thì phải sử dụng IP
+		- biết cách sử dụng volumn để lưu dữ liệu sau khi tắt container và chia sẻ dữ liệu giữa các container
+		- khai báo biến môi trường hợp lý, có nghĩa là thiết kế sao cho source code có thể vừa chạy được local, vừa chạy được docker compose
+		- khóa API không nên lưu trong file yml.
 	- nhược điểm:
 	- khó khăn:
 - MySQL và PostgreSQL
-	- ưu điểm:
-	- nhược điểm:
+	- giống nhau:
+		- đều sử dụng ngôn ngữ truy vấn có cấu trúc SQL
+		- hệ quản trị cơ sở dữ liệu quan hệ
+	- khác nhau:
+		- postgreSQL tuân thủ ACID hơn Mysql (Tính nguyên tử, tính nhất quán, tính cô lập và tính bền vững )
+			- tính nguyên tử: nếu 1 bước trong 1 quy trình không thực hiện được thì kết quả các bước trước bị hủy bỏ
+			- tính nhất quán: tất cả các câu truy vấn đề không thể vi phạm contrains được đặt ra từ đầu
+			- tính cô lập
+			- tính bền vừng: một khi dữ liệu thay đổi thì nó sẽ được lưu vĩnh viễn, không bị mất
 	- khó khăn:
+- Swagger:
+	- cách làm:
+		- sử dụng Springdoc, thư viện springdoc-openapi-starter-webmvc-ui 2.1.0
+		- springdoc sẽ quét các các rest controller api và sử dụng swagger UI để hiện thị chúng
+		- cấu hình xác thực bằng jwt token trong cookie
 6. đồ án tốt nghiệp
 - Angular
 - Chatbot với LLM's OpenAI, thư viện LangChain

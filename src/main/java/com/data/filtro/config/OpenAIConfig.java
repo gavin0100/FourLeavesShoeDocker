@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
@@ -35,15 +36,14 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         description = "",
                         url = "#"
                 ),
-        }
+        },
+        security = @SecurityRequirement(name = "cookieAuth")
 )
 @SecurityScheme(
-        name = "Authorization",
-        description = "JWT Token",
-        type = SecuritySchemeType.HTTP,
-        bearerFormat = "JWT",
-        scheme = "bearer",
-        in = SecuritySchemeIn.HEADER
+        name = "cookieAuth",
+        type = SecuritySchemeType.APIKEY,
+        in = SecuritySchemeIn.COOKIE,
+        paramName = "fourleavesshoestoken"
 )
 
 public class OpenAIConfig {

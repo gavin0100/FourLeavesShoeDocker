@@ -53,14 +53,15 @@ public class CartAPIRestController {
                     response.put("cartItemList", cartItemList);
                     response.put("cart", cart);
                     return ResponseEntity.ok(response);
+                } else {
+                    throw new CartNotFoundException(userSession.getId());
                 }
             } else {
-                throw new CartNotFoundException(userSession.getId());
+                throw new UserNotFoundOrAuthorizeException();
             }
         } catch (Exception ex){
-            throw new CartGetException(userSession.getId());
+            throw ex;
         }
-        throw new CartGetException(userSession.getId());
     }
 
     @PostMapping("/add")

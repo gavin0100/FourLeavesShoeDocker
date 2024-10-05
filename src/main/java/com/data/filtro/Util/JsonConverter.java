@@ -32,17 +32,17 @@ public class JsonConverter {
         }
     }
 
-        public static List<Product> convertJsonToListProduct(String json) {
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule());
-            try {
+    public static List<Product> convertJsonToListProduct(String json) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        try {
                 List<Product> products = objectMapper.readValue(json, new TypeReference<List<Product>>() {});
-                return products;
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
+            return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+    }
 
     public static Product convertJsonToProduct(String json) {
         ObjectMapper objectMapper = new ObjectMapper();

@@ -1,0 +1,228 @@
+1. giới thiệu bản thân
+
+2. em biết gì về công ty
+- product >< outsource
+- tệp khách hàng
+- cách thức làm việc
+
+3. hiện tại em đang làm gì
+- em đang cập nhật cho đồ án cá nhân của mình. sau kỳ thực tập ở FPT và quá trình học đại học, em nhận thấy mình còn ít tiếp xúc kinh nghiệm thực tế. Tuy trong lúc đi thực tập, em đã được đào tạo cách viết APIs và xử lý các loại phản hồi; trải nghiệm quy trình làm việc Srum thông qua dự án thực tập ở công ty, em nhận thấy bản thân vẫn chưa được tiếp xúc với nhiều công nghệ, kỹ thuật code khác. Sau khi tốt nghiệp, em đã xem qua những video review CV và dự án trên internet thì phát hiện ra những thiếu sót của mình như về độ lỗi thời của thư viện, những cách xử lý dữ liệu không thực tế (validate, chọn kiểu dữ liệu cho model), sử dụng những công cụ khác tích hợp vào dự án xin việc. Sau đó em đã dành ra 2 tháng để hoàn thành đồ án và kiến thức của mình.
+
+
+4. mô tả thực tập
+- em thực tập ở công ty FPT software academy.
+- em sẽ chia thời gian 3 tháng thực tập ra làm 2 phần:
+	- trong một tháng rưỡi đầu tiên, em được training viết RESTFul APIs và cách xử lý các phản hồi của chúng. Cách xử lý dữ liệu như thế nào để tránh bị vòng lặp vô hạn, cách xử lý Json, sử dụng ProblemDetail để xử lý phản hồi lỗi, các thư viện lỗi thời (java.util.date, @Valid và tự động validate). 
+	- trong một tháng rưỡi tiếp theo, em quản lý nhóm mình thực hiện dự án thực tập từ tài liệu đặc tả mà công ty chuẩn bị với mô hình Scrum, sử dụng Spring boot và Thymeleaf.
+		- em là scrum master, mentor là product owner, product backlog là tập requirements mà mentor cung cấp, bên trong liệt kê rõ tất cả user story và các yêu cầu thiết kế khác.
+		- em chia khoảng thời gian làm dự án làm 3 sprints, mỗi sprint kéo dài 2 tuần. 	
+		- nhóm tiến hành họp vào lúc 20h từ thứ 2 đến thứ 6. họp với product owner vào thứ 2,4 trên công ty.
+		- sau khi nhận product backlog, nhóm tiến hành đọc hiểu, em là người thiết kế database, diagram cho dự án. sau đó họp với các thành viên để thống nhất.
+		- sau đó, em là người thiết kế cấu trúc source cho dự án, bao gồm cấu hình spring security.
+		- sau đó, em tiến hành viết task từ các user story và phân chia công việc ở trên trello.
+		- về daily meeting sẽ xoay quanh các câu hỏi là: trong ngày hôm nay đã làm được gì? ngày mai sẽ làm gì? có gặp khó khăn gì không? -> nếu có thì em sẽ phụ trách hỗ trợ đầu tiên, sau đó sẽ nhờ các bạn trong team.
+		- cuối sprints sẽ báo cáo cho mentor những chức năng (task) được giao trên trello.
+- khó khăn:
+	- khi tổ chức daily meeting thì thường xuyên vắng mặt thành viên do bận việc cá nhân, gây khó trong quá trình hỗ trợ nếu thành viên đó gặp khó khăn. 
+	- khó khăn trong thời gian merge code giữa các thành viên. thường xuyên bị conflict code, không thống nhất api giữa 2 bên backend và frontend. 
+	- khi gặp vấn đề nghiệp vụ của dự án hoặc trạng thái của thư viện thì mới tham khảo mentor, còn những vấn đề về kỹ thuật xử lý, logic thì sẽ hỏi các thành viên trong nhóm.
+- ưu điểm:
+- nhược điểm:
+
+5. đồ án cá nhân
+- đồ án viết bằng spring boot và thymeleaf. bên cạnh đó em có viết thêm một bộ RESTFul API, xử lý phản hồi lỗi với ProblemDetail (RFC 7807).
+- em sử dụng spring security để sử dụng các bộ lọc cho request:
+	- CustomExceptionFilter extends GenericFilterBean để bắt các exception được ném ra từ các bộ lọc có độ ưu tiên hơn bộ lọc ExceptionTranslationFilter: AccessDeniedException và JwtNullOrEmptyException.
+	- CustomUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter để thực hiện login bằng username, password với provider là DaoAuthenticationProvider (cấu hình lại vì e muốn tắt trang login mặc định đi, sài trang login của mình)
+		- Sử dụng gửi OTP qua gmail sau khi đăng nhập bằng username, password.
+	- Sử dụng 2 bộ lọc OAuth2AuthorizationRequestRedirectFilter và OAuth2LoginAuthenticationFilter để thực hiện đăng nhập thông qua Facebook và Google. 
+	   - Các thông tin như cookie hoặc dữ liệu trao đổi giữa server và authorization endpoint sẽ được xử lý riêng trong authorizationRequestRepository {loadUser, saveUser, removeUser}.
+		- Ngay khi người dùng nhấn vào nút login in facebook hay google có uri /oauth2/authorization/facebook >< /google
+		- OAuth2AuthorizationRequestRedirectFilter tạo ra 1 yêu cầu ủy quyền OAuth2 kèm với 1 đối tượng OAuth2AuthorizationRequest {scope, state, uri}.
+			- Sử dụng AuthorizationRequestRepository.saveAuthorizationRequest để thêm cookie vào yêu cầu ủy quyền OAuth2 .
+				- OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME với giá trị OAuth2AuthorizationRequest bị chuyển sang base 64
+				- REDIRECT_URI_PARAM_COOKIE_NAME với giá trị redirect_uri trong OAuth2AuthorizationRequest được cấu hình trong file yml.
+			- OAuth2AuthorizationRequestRedirectFilter sẽ gửi yêu cầu ủy quyền OAuth2 này tới Authorization Endpoint của Facebook hoặc Google
+		- Sau khi người dùng đăng nhập, Authorization endpoint sẽ chuyển hướng về ứng dụng với mã ủy quyền theo cơ chế call back.
+			- AuthorizationRequestRepository.removeAuthorizationRequest sẽ lấy đi OAuth2AuthorizationRequest thông qua phương thức loadRequest và bộ lọc OAuth2AuthorizationRequestRedirectFilter xóa đi yêu cầu xác thực ủy quyền về việc ứng dụng này có được sử dụng chức năng của authorization endpoint hay không.
+				- sau đó AuthorizationRequestRepository.loadAuthorizationRequest sẽ lấy giá trị của cookie OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME và chuyển đổi ngược lại từ base64 sang OAuth2AuthorizationRequest object, để lấy thông tin cho OAuth2LoginAuthenticationFilter sử dụng cho các request kế tiếp.
+				- nếu mã ủy quyền không đúng thì bên endpoint sẽ trả về một trang thông báo lỗi như google: ứng dụng bạn đã bị chặn quyền
+		- OAuth2LoginAuthenticationFilter sẽ gửi mã ủy quyền này kèm với secretkey mà được cung cấp lúc đăng ký application.
+		- Authorization Endpoint sẽ trả về token chứa thông tin xác thực
+		- Bên backend sẽ 
+		     Nếu thành công thì:
+			- giải mã token này trong phương thức loadUser của DefaultOAuth2UserService. 
+			- kiểm tra 
+				- nếu tài khoản tồn tại, đúng provider đăng nhập thì tạo token
+				- nếu tài khoản tồn tại, sai provider thì thả về OAuth2AuthenticationProcessingException và chuyển sang cho bên OAuth2AuthenticationFailureHandler
+				- nếu tài khoản chưa tồn tại thì đăng ký tạo mới User, cung cấp mật khẩu mới được gửi sang Gmail.
+			
+			- sau đó trả về OAuth2User object thông qua đối tượng UserPrincipal.create(user (trong database), oAuth2User (trả về từ Authorization Endpoint)).
+			- xóa 2 cookie OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME và REDIRECT_URI_PARAM_COOKIE_NAME ra khỏi request, response
+		     Nếu thất bại thì:
+			- xóa 2 cookie OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME và REDIRECT_URI_PARAM_COOKIE_NAME ra khỏi request, response
+			- chuyển về endpoint /login/oauth_failure
+		- Sử dụng Oauth2User để tạo token cho user này trong hệ thống, và lưu các thông tin xác thực như username, quyền vào SecurityContextHolder.
+	- JWTFilter dùng để giải mã token và lưu thông tin xác thực vào SecurityContextHolder.
+		- trong bộ lọc này, em Sử dụng thư viện Nimbus thay cho thư viện jsonwebtoken để tạo và giải mã token.
+			- Muốn lấy tên người dùng thì sử dụng signedJWT.getJWTClaimsSet().getClaims("sub")
+			- Muốn xem token hết hạn hay chưa thì sử dụng (Date) signedJWT.getJWTClaimsSet().getClaim("exp") và chuyển sang Instance và so sánh .isBefore(Instant.now());
+			- Muốn tạo token thì làm theo các bước sau:
+				- Tạo ra 2 mốc thời gian, bao gồm thời gian tạo và thời gian hết hạn.
+				- tạo ra bộ claims bao gồm quyền, tên user, trang phát hành token, ngày tạo, ngày hết hạn token.
+				- chuyển secret sang mảng byte[], tạo đối tượng MACSigner implement interface JWSSigner. [1]
+				- Mã hóa bộ ClaimsSet với thuật toán HS256 (HMAC SHA256), sau đó ký claimsSet với chữ ký bằng phương thứcSignedJWT.sign([1])
+				- lúc giải mã thì xem chữ ký có hợp lệ hay không bằng phương thức SignedJWT.parse(token).
+	- Chỉnh sửa lại bộ lọc LogoutFilter bằng việc xóa đi cookie chứa token, bắt request có uri /logout và trả về /login nếu logout thành công.
+	- ExceptionTranslationFilter sẽ bắt toàn bộ các lỗi được trả ra từ các filter có độ ưu tiên thấp hơn mà bộ lọc CustomExceptionFilter không bắt và xử lý bằng authenticationEntryPoint.
+	- Cấu hình các URI không cần phải xác thực trong bộ lọc AuthorizationFilter
+- Viết dự án theo stateless. 
+	- Sau khi xác thực thành công, dữ liệu người dùng UsernamePasswordAuthenticationToken bao gồm principle là UserDetail, authorities là một Collection userDetail.getAuthorize() sẽ được lưu xuống SpringSecurityContextHolder.
+	- Sau khi được chuyển tới bộ lọc AuthorizationFilter và đi xuống các controller, sử dụng SecurityContextHolder.getContext().getAuthentication() và ép kiểu về kiểu dữ liệu User.	
+	- Kết thúc vòng đời 1 request thì nội dung SecurityContextHolder sẽ bị xóa sạch, chỉ khi request tới mang JWT token thì mới có thể tiếp tục xác thực được.
+
+- RESTFul APis với ProblemDetail
+	- cách làm: 
+		- sử dụng @RestController, tạo ra các endpoint thông qua các phương thức HTTP (GET, POST, PUT, DELETE)
+		- sử dụng JWT token làm nơi lưu trữ thông tin người dùng, giữ cho hệ thống hoạt động với thiết kế stateless
+		- viết tài liệu đặc tả về api đó (thường là use case trong Product Backlog, bao gồm các endpoint, phương thức, và các ví dụ về request/response)
+		- sử dụng ProblemDetail theo đặc tả RFC 7807 để xử lý phản hồi lỗi :
+                     - khai báo các ProblemDetail trong @RestControllerAdvice ResponseEntityExceptionHandler để bắt toàn bộ các exception được quăng ra từ các rest controller
+		     - sử dụng @ExceptionHandler(Exception.class) để khai báo ProblemDetail sẽ xử lý Exception nào
+			- type: uri trỏ về trang mô tả chi tiết và các ví dụ về lỗi đó.
+			- title: tiêu đề của lỗi
+			- detail: chi tiết exception được quăng ra
+			- status: mã lỗi
+			- instance: lấy từ request, là uri nơi xảy ra lỗi
+			- properties: các thuộc tính khác, có thể bao gồm thời gian xảy ra lỗi timestamp
+
+	- lưu ý: 
+		- không sử dụng động từ trong endpoint
+		- dữ liệu trả về phải nhất quán giữa data, message, status_code
+	- khó khăn:
+
+- Momo và Vnpay
+	- cách làm: 
+		- tạo ra một mono request hoặc vnpay request dựa trên các thông tin như tên khách hàng, tên cửa hàng, tổng tiền hàng, ...
+		- chuyển request sang dạng raw url sau đó mã hóa thành mảng byte[]
+		- từ hashScret key, chuyển thành mảng byte[] và sử dụng thuật toán HmacSHA512 để mã hóa mảng byte này và tạo đối tượng SecretKetSpec.
+		- Tạo đối tượng Mac và thêm hashScret key vào thông qua phương thức init
+		- tương tự mã hóa mảng byte[] của raw url bằng thuật toán HmacSHA512 và lưu vào đối tượng Mac bằng phương thức doFinal
+		- kết quả thu được là một mảng Byte sau khi được mã hóa, tiến hành chuyển signature về dạng hex; sau đó gộp chung với raw data ở dạng url sẽ tạo thành 1 request.
+		- Momo có cơ chế khác Vnpay:
+			- Khi truy cập url request momo thì bên momo sẽ trả về 1 url, người dùng truy cập url này thì mới có quyền truy cập vào trang thanh toán QR code.
+			- Khi truy cập url request vnpay thì sẽ được chuyển thẳng tới cổng thanh toán Vnpay
+		- Sau khi thanh toán, momo , vnpay sẽ trả về response thông qua IPN
+		- Chuyển các param trong url thành dạng Map<String, String> rồi ánh xạ sang 1 IPN Object.
+		- Backend sẽ lấy thông tin param mới trong response, kết hợp với hash secret và code mà momo hoặc vnpay cung cấp để tạo ra một signature mới, đem nó so sánh với signature của resposne, và đồng thời kiểm tra đơn hàng có tồn tại trong db hay không và tổng số tiền có đúng không, nếu đúng thì tiếp tục xử lý.
+		- Ở phần xử lý code có sự khác nhau:
+			- Ở momo thì code của nó bao gồm:
+				- 0: thanh toán thành công, tiến hành xóa sản phẩm trong giỏ hàng rồi thiết lập order status PAID_MOMO
+				- 1006: thanh toán bị hủy, thiết lập order status CANCELED
+				- còn lại: thanh toán thất bại, thiết lập order status FAILED
+			- Ở Vnpay thì code của nó bao gồm: (87,01,04,02 là do backend tự quy định để gửi về cho người dùng)
+				- 97: signature không hợp lệ
+				- 01: đơn hàng không tồn tại
+				- 04: tổng tiền đơn hàng không hợp lệ
+				- 02: đơn hàng đã được thanh toán trước đó
+				- 00: thanh toán thành công, tiến hành xóa sản phẩm trong giỏ hàng rồi thiết lập order status VNPAY
+				- 24: thanh toán bị hủy, thiết lập order status CANCELED
+				- còn lại: thanh toán thất bại, thiết lập order status FAILED
+		- trong trang web hiện tại thì chưa xử lý việc ng dùng không thanh không thành công, chỉ đơn hàng trả về trang đặt hàng của tài khoản với trạng thái đơn hàng là PENDING.
+	- lưu ý:
+		- khi bên thanh toán trả về response theo IPN thì đồng thời cũng gửi một yêu cầu redirect uri trả về trang danh sách đặt hàng của khách hàng, nhưng bản chất trong response sẽ không chứa token nên ta phải thêm thủ công token vào raw url để xác thực lại khi xử lý IPN. (chưa thực hiện kịp) 
+	- khó khăn:
+- Gmail
+	- cách làm:
+		- sử dụng giao thức TCP để gửi message tới SMTP server
+		- sử dụng thư viện JavaMail API bằng cách tiêm javax.mail dependency.
+		- sử dụng cơ chế xác thực của Google Application's password để tạo session.
+		- sau đó sử dụng MimeMessage để lưu tất cả thông tin như session, host, port, message,... và gửi đi bằng Transport
+	- nhược điểm:
+		- hiệu suất hơi kém nếu gửi nhiều email cùng lúc
+	- khó khăn:
+- Excel
+	- cách làm:
+	    - Import
+		- Sử dụng form POST và enctype="multipart/form-data" để gửi file xlsx
+		- tiếp theo, trong controller sử dụng MultipartFile để bắt file xlsx
+		- Sau đó sử dụng thư viện poi và poi-ooxml để đọc viết file xlsx
+		- sau đó sử dụng  java.io.InputStream để dọc file dưới dạng mảng byte
+		- sử dụng IOException để bắt các lỗi ghi/đọc
+		- sử dụng XSSFWorkbook để ánh xạ file xlsx sang Object
+		- sử dụng XSSFSheet để ánh xạ các sheet trong file xlsx sang Object
+		- sử dụng poi.ss.usermodel.Row và poi.ss.usermodel.Cell để đọc dữ liệu từng ô
+            - Export:
+		- sử dụng thư viện supercsv để viết file csv
+		- tạo HttpServletResponse với header bao gồm các thông tin như Content-Disposition, headerValue là tệp đính kèm attachment và có đuôi file và csv
+		- tiếp theo, chuyển HttpServletResponse sang mảng byte theo chuẩn UTF-8 và thêm vào một đối tượng Writer
+		- Sử dụng ICsvBeanWriter để viết nội dung cho trang sheet csv.
+		- sử dụng ICsvBeanWriter.writeHeader để viết header cho danh sách người dùng, sử dụng ICsvBeanWriter.write(object, danh sách các cột, CellProcessor[]) để viết nội dung cho hàng
+		- thêm ICsvBeanWriter vào Writer và sử dụng Writer.flush() để gửi response này đi.
+	- nhược điểm:
+		- nếu dữ liệu lớn thì 2 thư viện này tốn khá nhiều thời gian.
+		- supercsv thì không định dạng ô, công thức, biểu đồ được, nhưng nó nhanh hơn nếu tập dữ liệu ít.
+	- khó khăn:
+- Pdf
+	- cách làm: 
+		- sử dụng thư viện itex-pdf để tạo viết file pdf
+		- Sử dụng đối tượng Document để thêm các Paragraph , Table với các font chữ FontProgram được định nghĩa từ các file ttf
+		- Từ Document tạo ra các đối tượng theo thứ tự Document -> PdfDocument -> PdfWriter -> ByteArrayOutputStream.
+		- tạo ra ResponseEntity với Http status là 200 cùng với các header Content-Disposition, attachment;filename=invoice.pdf và body là nội dung pdf sau khi chuyển sang mảng byte. 
+	- nhược điểm:
+		- thư viện ít phổ biến và nếu dữ liệu lớn thì tốn thời gian,
+	- khó khăn:
+- Elk stack
+	- cách làm: 
+		- local: sử dụng phiên bản 8.15
+			-  cấu hình file logstash-sample.conf: cấu hình nơi đặt file ghi log, cấu hình format log được in ra màn hình console, cấu hình cổng để kết nối với elasticsearch, tạo index trong elasticcache để quản lý log mà logstash tải lên.
+			-  chạy các dịch vụ theo thứ tự:
+				- lệnh elasticsearch.bat trong elasticsearch-8.15.0\bin  , cổng 9200
+				- lệnh kibana.bat trong kibana-8.15.0\bin, cổng 5601
+				- lệnh .\bin\logstash.bat -f .\config\logstash-sample.conf trong logstash-8.15.0, cổng 9600
+		- docker compose: sử dụng phiên bản 7.16.2
+			- vì ELK stack chạy độc lập với SourceCode nên sẽ chạy trên mạng network elk
+			- Trong file application.yml, cấu hình backend ghi log vào file /app/logs/elk-stack.log.
+			- trong file elk-docker-compose.yml, tạo mạng network elk để các container có thể gọi tên service của nhau, không cần gọi địa chỉ IP.
+			- Trong file docker-compose của sourcode, tạo một volumn elk-logs gắn vào thư mục /app/logs.
+			- trong file elk-docker-compose của ELK, tạo một volumn elk-logs gắn vào thư mục /app/logs để có sử dụng file log được lưu bên backend
+			- bên ngoài máy tạo thủ công file logstash.conf có cấu hình giống bên local, rồi gắn nó vào /logstash_dir/logstash.conf
+			- cấu hình lệnh logstash -f /logstash_dir/logstash.conf để chạy logstash. 	
+			- cấu hình tắt security của xpack trong elasticsearch xpack.security.enabled: "false"
+	- lưu ý:
+		- khi sử dụng ELK stack, thì thông báo bảo mật trong elasticsearch sẽ hiện ra liên tục do liên quan tới vấn đề bảo mật giữa kibana, logstash đối với elasticsearch. trong file elasticsearch.yml thì tắt đi tính năng bảo mật của elasticsearch để không nhận thông báo này nữa, nhưng chỉ nên làm trong môi trường development.
+		- từ logstash, ta đăng ký một index trong elasticsearch, đây như là một kho lưu trữ dữ liệu do logstash gửi lên và tại đây sẽ thực hiện thuật toán tìm kiếm elasticsearch để tìm log và đẩy dữ liệu tìm kiếm lên kibana.
+		- quy tắc lưu trữ dữ liệu của elasticsearch:
+			- indices hay index mình thấy trên localhost:9200/_cat/indices như là một con trỏ, trỏ đến nhiều vùng nhớ (1 data node chứ nhiều vùng nhớ), mỗi vùng nhớ là 1 shard, và 1 shard có nhiều bản sao replica nếu shard không may bị lỗi trong môi trường cloud /ˈreplɪkə/. 
+			- cơ chế hoạt động là phân tán dữ liệu và tìm kiếm song song
+			- mỗi bản ghi trong shard là một document
+			- cluster là nơi lưu trữ mọi dữ liệu, cluster chia thành các data node, mỗi data node lại chứa hỗn hợp dữ liệu thuộc các index khác nhau
+	- khó khăn:
+- Redis
+	- cách làm:
+		- sử dụng để lưu dữ liệu danh sách sản phẩm hiển thị trong trang home và chi tiết sản phẩm
+		- sử dụng 2 thư viện:
+			- sử dụng jedis để sử dụng các api tương tác giữa java và redis
+			- sử dụng spring-boot-starter-data-redis để sử dụng các cấu hình 
+	- nhược điểm:
+	- khó khăn:
+- MinIO
+	- ưu điểm:
+	- nhược điểm:
+	- khó khăn:
+- JUnit và Mockito
+	- ưu điểm:
+	- nhược điểm:
+	- khó khăn:
+- Docker compose 
+	- ưu điểm:
+	- nhược điểm:
+	- khó khăn:
+- MySQL và PostgreSQL
+	- ưu điểm:
+	- nhược điểm:
+	- khó khăn:
+6. đồ án tốt nghiệp
+- Angular
+- Chatbot với LLM's OpenAI, thư viện LangChain
+- Recommender system - KNN 

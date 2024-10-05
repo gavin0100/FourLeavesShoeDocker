@@ -41,4 +41,20 @@ public class UserAPIController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+    @GetMapping("/find")
+    public ResponseEntity<?> findUserTest(@RequestParam("id") long id) {
+        try {
+            User user1 = userService.getByUserId(id);
+            UserJsDTO user = user1.convertToApiJsDTO();
+            if (user == null) {
+                String message = "No user found!";
+                ErrorResponse err = new ErrorResponse(message, HttpStatus.NOT_FOUND.value());
+                return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (NoSuchElementException ex) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
 }

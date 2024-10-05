@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -44,7 +41,6 @@ public class User implements UserDetails, Serializable {
 
     @Column(name = "ngaysinh")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotBlank
     private Instant dob;
 
     @Column(name = "gioitinh")
@@ -56,7 +52,7 @@ public class User implements UserDetails, Serializable {
     private String address;
 
     @Column(name = "zip")
-    @NotBlank
+    @NotNull
     private Integer zip;
 
     @Column(name = "thanhpho")

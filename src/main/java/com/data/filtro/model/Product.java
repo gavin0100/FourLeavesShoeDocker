@@ -38,7 +38,7 @@ public class Product implements Serializable {
     private String productName;
 
     @Column(name = "soluong")
-    @NotBlank
+    @NotNull
     private Integer quantity;
 
     @Column(name = "daban")
@@ -46,7 +46,7 @@ public class Product implements Serializable {
     private Integer sold;
 
     @Column(name = "giatien")
-    @NotBlank
+    @NotNull
     private Integer price;
 
     @ManyToOne(fetch = FetchType.EAGER)

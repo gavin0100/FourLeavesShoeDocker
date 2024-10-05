@@ -11,6 +11,7 @@ import com.data.filtro.model.User;
 import com.data.filtro.model.UserPermission;
 import com.data.filtro.repository.UserPermissionRepository;
 import com.data.filtro.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import javassist.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -390,7 +391,6 @@ public class UserService implements UserDetailsService {
 
     public void processOAuthPostLogin(String username) {
         User existUser = userRepository.findByEmail(username);
-        System.out.println("hihi");
         System.out.println(existUser);
         if (existUser != null) {
             existUser.setProvider(Provider.google);

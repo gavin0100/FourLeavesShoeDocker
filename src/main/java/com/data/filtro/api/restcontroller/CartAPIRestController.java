@@ -10,6 +10,7 @@ import com.data.filtro.service.CartItemService;
 import com.data.filtro.service.CartService;
 import com.data.filtro.service.ProductService;
 import com.data.filtro.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -35,7 +36,8 @@ public class CartAPIRestController {
     private String[] quantityArray;
 
     @GetMapping()
-    public ResponseEntity<?> showCart() {
+    public ResponseEntity<?> showCart(HttpServletRequest request) {
+        // 0:0:0:0:0:0:0:1
         User userSession = null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {

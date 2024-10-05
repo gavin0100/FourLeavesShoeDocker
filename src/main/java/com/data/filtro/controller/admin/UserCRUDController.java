@@ -184,6 +184,13 @@ public class UserCRUDController {
                          @ModelAttribute @Valid UserDTO user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             errorMessage = "Nhập sai định dạng dữ liệu";
+            StringBuilder errorMessage1 = new StringBuilder("Nhập sai định dạng dữ liệu: ");
+            bindingResult.getFieldErrors().forEach(error -> {
+                errorMessage1.append("Field: ").append(error.getField())
+                        .append(", Error: ").append(error.getDefaultMessage())
+                        .append("; ");
+            });
+            message = errorMessage1.toString();
             return "redirect:/admin/user";
         }
 

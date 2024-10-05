@@ -40,7 +40,6 @@ public class Order implements Serializable {
     private User user;
 
     @Column(name = "ngaydathang")
-    @NotBlank
     private Instant orderDate;
 
     @Column(name = "diachi")
@@ -48,7 +47,7 @@ public class Order implements Serializable {
     private String address;
 
     @Column(name = "zip")
-    @NotBlank
+    @NotNull
     private Integer zip;
 
     @Column(name = "thanhpho")

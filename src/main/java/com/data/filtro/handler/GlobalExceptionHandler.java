@@ -17,6 +17,7 @@ import com.data.filtro.exception.controller.NotFoundException;
 import com.data.filtro.exception.controller.ApiResponse;
 import com.data.filtro.exception.api.cart.*;
 import com.data.filtro.exception.api.category.CantGetProductListPageException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -48,7 +49,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     //============================= Rest controller ====================================
     //============================= cart ====================================
     @ExceptionHandler(CartNotFoundException.class)
-    ProblemDetail CartNotFoundException(CartNotFoundException e) throws UnsupportedEncodingException {
+    ProblemDetail CartNotFoundException(CartNotFoundException e, HttpServletRequest request) throws UnsupportedEncodingException {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problemDetail.setTitle("Cart Not Found");
         String content = URLEncoder.encode("Không thể tìm thấy", StandardCharsets.UTF_8.toString());
@@ -56,6 +57,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         String url = serveoLink + "/error_problem_detail?content=" + content + "&object=" + object + "&status=" + 404;
         problemDetail.setType(URI.create(url));
         problemDetail.setProperty("timestamp", Instant.now());
+        problemDetail.setInstance(URI.create(request.getRequestURI()));
         return problemDetail;
     }
 
